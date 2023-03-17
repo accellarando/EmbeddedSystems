@@ -13,11 +13,11 @@ Each command will consist of one or two bytes, followed by a '\\n' stop bit. "Ve
 | --- | --- | --- |
 | Right | Turn right the specified amount, in 20-degree increments, represented by a digit 1-9. | 'd' |
 | Left | Turn left the specified amount, in 20-degree increments, represented by a digit 1-9. | 'a' |
-| Forward | Go forward the specified amount, in inches, represented by a digit 1-9. Interrupted if a box is detected. | 'w' |
+| Forward | Go forward the specified amount, in inches, represented by a digit 0-9. 0 means "continue forward indefinitely." Interrupted if a box is detected. | 'w' |
 
 ## Scalar commands
 
 | Command | Description | Key |
 | --- | --- | --- |
-| Proceed | Return to autonomous mode, continue forward and navigate around boxes while clear and heading is (-180, 180) degrees. | 'p' |
+| Proceed | Return to autonomous mode, continue forward and navigate around boxes while clear and heading is (-90, 90) degrees. | 'p' |
 | Log | Log sensor data back to the controller. | 'l' |
