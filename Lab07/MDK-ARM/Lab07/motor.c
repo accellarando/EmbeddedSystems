@@ -40,7 +40,7 @@ void pwm_init(void) {
 	
 		// Set PB3 to AF4,
     GPIOB->AFR[0] &= 0xFFFF0FFF; // clear PA4 bits,
-    GPIOB->AFR[0] |= (1 << 14);
+    GPIOB->AFR[0] |= (1 << 13);
 
     // Set up a PA2, PA5 as GPIO output pins for motor direction control
 	GPIOA->MODER &= ~(3<<16);
@@ -79,7 +79,7 @@ void pwm_init(void) {
     TIM14->CR1 |= TIM_CR1_CEN;              // Enable timer
 		
 		TIM2->CCMR1 |= (TIM_CCMR1_OC2M_2 | TIM_CCMR1_OC2M_1 | TIM_CCMR1_OC2PE);
-    TIM2->CCER |= TIM_CCER_CC2E;           // Enable capture-compare channel 1
+    TIM2->CCER |= TIM_CCER_CC2E;           // Enable capture-compare channel 2
     TIM2->PSC = 1;                         // Run timer on 24Mhz
     TIM2->ARR = 1200;                      // PWM at 20kHz
     TIM2->CCR1 = 0;                        // Start PWM at 0% duty cycle
