@@ -65,7 +65,7 @@ static void MX_TIM2_Init(void);
 #define TOGGLE_LED(led) (HAL_GPIO_TogglePin(GPIOC, led))
 
 void LED_Init(uint32_t pins) {
-    __HAL_RCC_GPIOC_CLK_ENABLE();
+    /* __HAL_RCC_GPIOC_CLK_ENABLE(); */
 
     GPIO_InitTypeDef gpio_led_init = {pins,
         GPIO_MODE_OUTPUT_PP,
@@ -86,10 +86,11 @@ void GPIO_AF_Init() {
     __HAL_RCC_GPIOC_CLK_ENABLE();
 
 	// uart_pins
-	HAL_GPIO_Init(&uart_pins.rx.gpio, &uart_pins.rx.pin);
-	HAL_GPIO_Init(&uart_pins.tx.gpio, &uart_pins.tx.pin);
+	HAL_GPIO_Init((uart_pins.rx.gpio), &(uart_pins.rx.pin));
+	HAL_GPIO_Init(&(uart_pins.tx.gpio), &(uart_pins.tx.pin));
 
 	// motor_left_pins
+	/*
 	HAL_GPIO_Init(&motor_left_pins.enable.gpio, &motor_left_pins.enable.pin);
 	HAL_GPIO_Init(&motor_left_pins.dir_a.gpio, &motor_left_pins.dir_a.pin);
 	HAL_GPIO_Init(&motor_left_pins.dir_b.gpio, &motor_left_pins.dir_b.pin);
@@ -110,13 +111,14 @@ void GPIO_AF_Init() {
 	// ultrasonic_right_pins
 	HAL_GPIO_Init(&ultrasonic_right_pins.echo.gpio, &ultrasonic_right_pins.echo.pin);
 	HAL_GPIO_Init(&ultrasonic_right_pins.trig.gpio, &ultrasonic_right_pins.trig.pin);
+	*/
 }
 
 /**
  * @brief Enable the USART3 peripheral.
  */
 void USART_Init() {
-	//__HAL_RCC_USART3_CLK_ENABLE();
+	__HAL_RCC_USART3_CLK_ENABLE();
 	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
 
 	//Set baud rate
@@ -324,8 +326,6 @@ void GetDistance()
  */
 int main(void)
 {
-
-
 	HAL_Init();
 	SystemClock_Config();
 
@@ -478,7 +478,7 @@ static void MX_GPIO_Init(void)
 
 	/* GPIO Ports Clock Enable */
 	__HAL_RCC_GPIOF_CLK_ENABLE();
-	__HAL_RCC_GPIOA_CLK_ENABLE();
+	/* __HAL_RCC_GPIOA_CLK_ENABLE(); */
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);

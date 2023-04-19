@@ -79,7 +79,7 @@ volatile uint8_t test_switch = 0;
 int main(int argc, char* argv[]) {
 
     debouncer = 0;                          // Initialize global variables
-		HAL_Init();															// Initialize HAL
+	HAL_Init();															// Initialize HAL
     LED_init();                             // Initialize LED's
     button_init();                          // Initialize button
 
@@ -110,4 +110,3 @@ int main(int argc, char* argv[]) {
     }
 }
 
-// ----------------------------------------------------------------------------

@@ -8,7 +8,7 @@
 #include "stm32f0xx_hal.h"
 
 typedef struct{
-	GPIO_TypeDef gpio;
+	GPIO_TypeDef *gpio;
 	GPIO_InitTypeDef pin;
 } pin_t;
 
