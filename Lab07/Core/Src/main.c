@@ -90,11 +90,13 @@ int main(int argc, char* argv[]) {
 			switch (test_switch){
 				case 80:
 					pwm_setDutyCycleL(0);
+				  HAL_Delay(128);
 					set_Forward();
 					pwm_setDutyCycleL(100);
 					break;
 				case 160:
 					pwm_setDutyCycleL(0);
+					HAL_Delay(128);
 					set_Backward();
 					pwm_setDutyCycleL(100);
 					test_switch = 0;
