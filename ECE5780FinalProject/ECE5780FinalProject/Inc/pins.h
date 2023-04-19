@@ -5,7 +5,7 @@
 #define __PINS_H
 
 #include <stdint.h>
-#include "stm32f0xx_hal_gpio.h"
+#include "stm32f0xx_hal.h"
 
 typedef struct{
 	GPIO_TypeDef gpio;

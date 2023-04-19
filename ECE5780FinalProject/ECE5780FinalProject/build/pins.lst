@@ -1,0 +1,249 @@
+ARM GAS  /tmp/ccwRqaYA.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"pins.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Src/pins.c"
+  18              		.global	ultrasonic_right_pins
+  19              		.section	.data.ultrasonic_right_pins,"aw"
+  20              		.align	2
+  23              	ultrasonic_right_pins:
+  24 0000 00040048 		.word	1207960576
+  25 0004 00000000 		.space	40
+  25      00000000 
+  25      00000000 
+  25      00000000 
+  25      00000000 
+  26 002c 00200000 		.word	8192
+  27 0030 00000000 		.word	0
+  28 0034 00000000 		.word	0
+  29 0038 03000000 		.word	3
+  30 003c 00000000 		.word	0
+  31 0040 00040048 		.word	1207960576
+  32 0044 00000000 		.space	40
+  32      00000000 
+  32      00000000 
+  32      00000000 
+  32      00000000 
+  33 006c 00400000 		.word	16384
+  34 0070 01000000 		.word	1
+  35 0074 00000000 		.word	0
+  36 0078 03000000 		.word	3
+  37 007c 00000000 		.word	0
+  38              		.global	ultrasonic_left_pins
+  39              		.section	.data.ultrasonic_left_pins,"aw"
+  40              		.align	2
+  43              	ultrasonic_left_pins:
+  44 0000 00040048 		.word	1207960576
+  45 0004 00000000 		.space	40
+  45      00000000 
+  45      00000000 
+  45      00000000 
+  45      00000000 
+  46 002c 00080000 		.word	2048
+  47 0030 00000000 		.word	0
+  48 0034 00000000 		.word	0
+  49 0038 03000000 		.word	3
+ARM GAS  /tmp/ccwRqaYA.s 			page 2
+
+
+  50 003c 00000000 		.word	0
+  51 0040 00040048 		.word	1207960576
+  52 0044 00000000 		.space	40
+  52      00000000 
+  52      00000000 
+  52      00000000 
+  52      00000000 
+  53 006c 00100000 		.word	4096
+  54 0070 01000000 		.word	1
+  55 0074 00000000 		.word	0
+  56 0078 03000000 		.word	3
+  57 007c 00000000 		.word	0
+  58              		.global	motor_right_pins
+  59              		.section	.data.motor_right_pins,"aw"
+  60              		.align	2
+  63              	motor_right_pins:
+  64 0000 00040048 		.word	1207960576
+  65 0004 00000000 		.space	40
+  65      00000000 
+  65      00000000 
+  65      00000000 
+  65      00000000 
+  66 002c 08000000 		.word	8
+  67 0030 02000000 		.word	2
+  68 0034 00000000 		.word	0
+  69 0038 03000000 		.word	3
+  70 003c 02000000 		.word	2
+  71 0040 00040048 		.word	1207960576
+  72 0044 00000000 		.space	40
+  72      00000000 
+  72      00000000 
+  72      00000000 
+  72      00000000 
+  73 006c 04000000 		.word	4
+  74 0070 01000000 		.word	1
+  75 0074 00000000 		.word	0
+  76 0078 03000000 		.word	3
+  77 007c 00000000 		.word	0
+  78 0080 00040048 		.word	1207960576
+  79 0084 00000000 		.space	40
+  79      00000000 
+  79      00000000 
+  79      00000000 
+  79      00000000 
+  80 00ac 00040000 		.word	1024
+  81 00b0 01000000 		.word	1
+  82 00b4 00000000 		.word	0
+  83 00b8 03000000 		.word	3
+  84 00bc 00000000 		.word	0
+  85 00c0 00040048 		.word	1207960576
+  86 00c4 00000000 		.space	40
+  86      00000000 
+  86      00000000 
+  86      00000000 
+  86      00000000 
+  87 00ec 00400000 		.word	16384
+  88 00f0 02000000 		.word	2
+ARM GAS  /tmp/ccwRqaYA.s 			page 3
+
+
+  89 00f4 00000000 		.word	0
+  90 00f8 03000000 		.word	3
+  91 00fc 01000000 		.word	1
+  92 0100 00040048 		.word	1207960576
+  93 0104 00000000 		.space	40
+  93      00000000 
+  93      00000000 
+  93      00000000 
+  93      00000000 
+  94 012c 00800000 		.word	32768
+  95 0130 02000000 		.word	2
+  96 0134 00000000 		.word	0
+  97 0138 03000000 		.word	3
+  98 013c 01000000 		.word	1
+  99              		.global	motor_left_pins
+ 100              		.section	.data.motor_left_pins,"aw"
+ 101              		.align	2
+ 104              	motor_left_pins:
+ 105 0000 00000048 		.word	1207959552
+ 106 0004 00000000 		.space	40
+ 106      00000000 
+ 106      00000000 
+ 106      00000000 
+ 106      00000000 
+ 107 002c 10000000 		.word	16
+ 108 0030 02000000 		.word	2
+ 109 0034 00000000 		.word	0
+ 110 0038 03000000 		.word	3
+ 111 003c 04000000 		.word	4
+ 112 0040 00000048 		.word	1207959552
+ 113 0044 00000000 		.space	40
+ 113      00000000 
+ 113      00000000 
+ 113      00000000 
+ 113      00000000 
+ 114 006c 20000000 		.word	32
+ 115 0070 01000000 		.word	1
+ 116 0074 00000000 		.word	0
+ 117 0078 03000000 		.word	3
+ 118 007c 00000000 		.word	0
+ 119 0080 00000048 		.word	1207959552
+ 120 0084 00000000 		.space	40
+ 120      00000000 
+ 120      00000000 
+ 120      00000000 
+ 120      00000000 
+ 121 00ac 40000000 		.word	64
+ 122 00b0 01000000 		.word	1
+ 123 00b4 00000000 		.word	0
+ 124 00b8 03000000 		.word	3
+ 125 00bc 00000000 		.word	0
+ 126 00c0 00040048 		.word	1207960576
+ 127 00c4 00000000 		.space	40
+ 127      00000000 
+ 127      00000000 
+ 127      00000000 
+ 127      00000000 
+ARM GAS  /tmp/ccwRqaYA.s 			page 4
+
+
+ 128 00ec 10000000 		.word	16
+ 129 00f0 02000000 		.word	2
+ 130 00f4 00000000 		.word	0
+ 131 00f8 03000000 		.word	3
+ 132 00fc 01000000 		.word	1
+ 133 0100 00040048 		.word	1207960576
+ 134 0104 00000000 		.space	40
+ 134      00000000 
+ 134      00000000 
+ 134      00000000 
+ 134      00000000 
+ 135 012c 20000000 		.word	32
+ 136 0130 02000000 		.word	2
+ 137 0134 00000000 		.word	0
+ 138 0138 03000000 		.word	3
+ 139 013c 01000000 		.word	1
+ 140              		.global	uart_pins
+ 141              		.section	.data.uart_pins,"aw"
+ 142              		.align	2
+ 145              	uart_pins:
+ 146 0000 00080048 		.word	1207961600
+ 147 0004 00000000 		.space	40
+ 147      00000000 
+ 147      00000000 
+ 147      00000000 
+ 147      00000000 
+ 148 002c 20000000 		.word	32
+ 149 0030 02000000 		.word	2
+ 150 0034 00000000 		.word	0
+ 151 0038 03000000 		.word	3
+ 152 003c 01000000 		.word	1
+ 153 0040 00080048 		.word	1207961600
+ 154 0044 00000000 		.space	40
+ 154      00000000 
+ 154      00000000 
+ 154      00000000 
+ 154      00000000 
+ 155 006c 10000000 		.word	16
+ 156 0070 02000000 		.word	2
+ 157 0074 00000000 		.word	0
+ 158 0078 03000000 		.word	3
+ 159 007c 01000000 		.word	1
+ 160              		.text
+ 161              	.Letext0:
+ 162              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 163              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 164              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 165              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 166              		.file 6 "Inc/pins.h"
+ARM GAS  /tmp/ccwRqaYA.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 pins.c
+     /tmp/ccwRqaYA.s:23     .data.ultrasonic_right_pins:00000000 ultrasonic_right_pins
+     /tmp/ccwRqaYA.s:20     .data.ultrasonic_right_pins:00000000 $d
+     /tmp/ccwRqaYA.s:43     .data.ultrasonic_left_pins:00000000 ultrasonic_left_pins
+     /tmp/ccwRqaYA.s:40     .data.ultrasonic_left_pins:00000000 $d
+     /tmp/ccwRqaYA.s:63     .data.motor_right_pins:00000000 motor_right_pins
+     /tmp/ccwRqaYA.s:60     .data.motor_right_pins:00000000 $d
+     /tmp/ccwRqaYA.s:104    .data.motor_left_pins:00000000 motor_left_pins
+     /tmp/ccwRqaYA.s:101    .data.motor_left_pins:00000000 $d
+     /tmp/ccwRqaYA.s:145    .data.uart_pins:00000000 uart_pins
+     /tmp/ccwRqaYA.s:142    .data.uart_pins:00000000 $d
+
+NO UNDEFINED SYMBOLS
