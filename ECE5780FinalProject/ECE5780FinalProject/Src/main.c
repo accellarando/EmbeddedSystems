@@ -121,7 +121,8 @@ void USART_Init() {
 
 	//Set baud rate
 	USART3->CR1 &= ~(1<<15);
-	USART3->BRR = HAL_RCC_GetHCLKFreq() / 115200;
+	USART3->BRR = HAL_RCC_GetHCLKFreq() / 9600; //this is the baud rate we need to 
+												//use with the BT adapter
 
 	//Enable transmitter
 	USART3->CR1 |= (1<<3);
@@ -296,6 +297,7 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	//    }
 }
 
+/*
 void Ultrasonic_Init(uint32_t pins)
 {
 	__HAL_RCC_GPIOA_CLK_ENABLE();
@@ -307,6 +309,7 @@ void Ultrasonic_Init(uint32_t pins)
 	};
 	HAL_GPIO_Init(GPIOA, &gpio_init);
 }
+*/
 
 void GetDistance()
 {
@@ -345,7 +348,7 @@ int main(void)
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); //Initalized to GPIO pin PA5
 
 	USART_SendString(prompt);
-	int count = 0;
+	uint32_t count = 0;
 	while (1)
 	{
 		if(count > 1000000)
