@@ -42,17 +42,19 @@ void pwm_init(void) {
     GPIOB->AFR[0] &= 0xFFFF0FFF; // clear PA4 bits,
     GPIOB->AFR[0] |= (1 << 14);
 
-    // Set up a PA5, PA6 as GPIO output pins for motor direction control
-    GPIOA->MODER &= 0xFFFFC3FF; // clear PA5, PA6 bits,
-    GPIOA->MODER |= (1 << 10) | (1 << 12);
-	
+    // Set up a PA2, PA5 as GPIO output pins for motor direction control
+	GPIOA->MODER &= ~(3<<16);
+	GPIOA->MODER &= ~(3<<10);
+	GPIOA->MODER |= (1 << 16);
+    GPIOA->MODER |= (1 << 10);// | (1 << 4);
+
 		// Set up a PB2, PB10 as GPIO output pins for motor direction control
     GPIOB->MODER &= 0xFFCFFFCF; // clear PB2, PB10 bits,
     GPIOB->MODER |= (1 << 4) | (1 << 20);
    
     //Initialize one direction pin to high, the other low
-    GPIOA->ODR |= (1 << 5);
-    GPIOA->ODR &= ~(1 << 6);
+    GPIOA->ODR &= ~(1 << 5);
+    GPIOA->ODR |= (1 << 8);
 		GPIOB->ODR |= (1 << 10);
     GPIOB->ODR &= ~(1 << 2);
 
@@ -103,13 +105,13 @@ void pwm_setDutyCycleR(uint8_t duty) {
 
 void set_Forward(){
 		GPIOA->ODR |= (1 << 5);
-		GPIOA->ODR &= ~(1 << 6);
+		GPIOA->ODR &= ~(1 << 8);
 		GPIOB->ODR |= (1 << 10);
 		GPIOB->ODR &= ~(1 << 2);
 }
 
 void set_Backward(){
-		GPIOA->ODR |= (1 << 6);
+		GPIOA->ODR |= (1 << 8);
 		GPIOA->ODR &= ~(1 << 5);
 		GPIOB->ODR |= (1 << 2);
 		GPIOB->ODR &= ~(1 << 10);
