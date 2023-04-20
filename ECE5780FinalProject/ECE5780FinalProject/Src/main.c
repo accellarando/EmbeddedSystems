@@ -20,6 +20,7 @@
 #include <string.h>
 #include "main.h"
 #include "pins.h"
+#include "motor.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -98,32 +99,30 @@ void GPIO_AF_Init() {
     __HAL_RCC_GPIOC_CLK_ENABLE();
 
 	// uart_pins
-	HAL_GPIO_Init((uart_pins.rx.gpio), &(uart_pins.rx.pin));
-	HAL_GPIO_Init(&(uart_pins.tx.gpio), &(uart_pins.tx.pin));
+	HAL_GPIO_Init(uart_pins.rx.gpio, &(uart_pins.rx.pin));
+	HAL_GPIO_Init(uart_pins.tx.gpio, &(uart_pins.tx.pin));
 
 	// motor_left_pins
-	/*
-	HAL_GPIO_Init(&motor_left_pins.enable.gpio, &motor_left_pins.enable.pin);
-	HAL_GPIO_Init(&motor_left_pins.dir_a.gpio, &motor_left_pins.dir_a.pin);
-	HAL_GPIO_Init(&motor_left_pins.dir_b.gpio, &motor_left_pins.dir_b.pin);
-	HAL_GPIO_Init(&motor_left_pins.enc_a.gpio, &motor_left_pins.enc_a.pin);
-	HAL_GPIO_Init(&motor_left_pins.enc_b.gpio, &motor_left_pins.enc_b.pin);
+	HAL_GPIO_Init(motor_left_pins.enable.gpio, &motor_left_pins.enable.pin);
+	HAL_GPIO_Init(motor_left_pins.dir_a.gpio, &motor_left_pins.dir_a.pin);
+	HAL_GPIO_Init(motor_left_pins.dir_b.gpio, &motor_left_pins.dir_b.pin);
+	HAL_GPIO_Init(motor_left_pins.enc_a.gpio, &motor_left_pins.enc_a.pin);
+	HAL_GPIO_Init(motor_left_pins.enc_b.gpio, &motor_left_pins.enc_b.pin);
 
 	// motor_right_pins
-	HAL_GPIO_Init(&motor_right_pins.enable.gpio, &motor_right_pins.enable.pin);
-	HAL_GPIO_Init(&motor_right_pins.dir_a.gpio, &motor_right_pins.dir_a.pin);
-	HAL_GPIO_Init(&motor_right_pins.dir_b.gpio, &motor_right_pins.dir_b.pin);
-	HAL_GPIO_Init(&motor_right_pins.enc_a.gpio, &motor_right_pins.enc_a.pin);
-	HAL_GPIO_Init(&motor_right_pins.enc_b.gpio, &motor_right_pins.enc_b.pin);
+	HAL_GPIO_Init(motor_right_pins.enable.gpio, &motor_right_pins.enable.pin);
+	HAL_GPIO_Init(motor_right_pins.dir_a.gpio, &motor_right_pins.dir_a.pin);
+	HAL_GPIO_Init(motor_right_pins.dir_b.gpio, &motor_right_pins.dir_b.pin);
+	HAL_GPIO_Init(motor_right_pins.enc_a.gpio, &motor_right_pins.enc_a.pin);
+	HAL_GPIO_Init(motor_right_pins.enc_b.gpio, &motor_right_pins.enc_b.pin);
 
 	// ultrasonic_left_pins
-	HAL_GPIO_Init(&ultrasonic_left_pins.echo.gpio, &ultrasonic_left_pins.echo.pin);
-	HAL_GPIO_Init(&ultrasonic_left_pins.trig.gpio, &ultrasonic_left_pins.trig.pin);
+	HAL_GPIO_Init(ultrasonic_left_pins.echo.gpio, &ultrasonic_left_pins.echo.pin);
+	HAL_GPIO_Init(ultrasonic_left_pins.trig.gpio, &ultrasonic_left_pins.trig.pin);
 
 	// ultrasonic_right_pins
-	HAL_GPIO_Init(&ultrasonic_right_pins.echo.gpio, &ultrasonic_right_pins.echo.pin);
-	HAL_GPIO_Init(&ultrasonic_right_pins.trig.gpio, &ultrasonic_right_pins.trig.pin);
-	*/
+	HAL_GPIO_Init(ultrasonic_right_pins.echo.gpio, &ultrasonic_right_pins.echo.pin);
+	HAL_GPIO_Init(ultrasonic_right_pins.trig.gpio, &ultrasonic_right_pins.trig.pin);
 }
 
 /**
@@ -213,17 +212,6 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	uint8_t left[] = "Turning left ";
 	uint8_t right[] = "Turning right ";
 
-
-	uint8_t one[] = "20\n";
-	uint8_t two[] = "40\n";
-	uint8_t three[] = "60\n";
-	uint8_t four[] = "80\n";
-	uint8_t five[] = "100\n";
-	uint8_t six[] = "120\n";
-	uint8_t seven[] = "140\n";
-	uint8_t eight[] = "160\n";
-	uint8_t nine[] = "180\n";
-
 	if(direction != 'w' && direction != 'a' && direction != 'd'){
 		USART_SendString(err);
 		ClearCommand();
@@ -231,7 +219,7 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	}
 
 	uint8_t* part1;
-	uint8_t* part2;
+	uint8_t part2[3];
 
 	switch(direction){
 		case 'w':
@@ -248,40 +236,15 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 			ClearCommand();
 	}
 
-	switch(distance){
-		case '1':
-			part2 = one;
-			//TODO: Change delay length
-			break;
-		case '2':
-			part2 = two;
-			break;
-		case '3':
-			part2 = three;
-			break;
-		case '4':
-			part2 = four;
-			break;
-		case '5':
-			part2 = five;
-			break;
-		case '6':
-			part2 = six;
-			break;
-		case '7':
-			part2 = seven;
-			break;
-		case '8':
-			part2 = eight;
-			break;
-		case '9':
-			part2 = nine;
-			break;
-		default:
-			USART_SendString(err);
-			ClearCommand();
-			return;
+	if(distance < '1' || distance > '9'){
+		USART_SendString(err);
+		ClearCommand();
+		return;
 	}
+
+
+	uint8_t dist = (distance - '0') * 20;
+	sprintf(part2, "%d\n", dist);
 
 	USART_SendString(part1);
 	USART_SendString(part2);
@@ -399,14 +362,12 @@ int main(void)
         {
             char strLeft[32];
             sprintf(strLeft, "%u", leftDistance);
+			/*
             USART_SendString("Left Ultrasonic: ");
             USART_SendString(strLeft);
             USART_SendString("\n");
+			*/
         }
-        
-        
-        
-        
         
         counter = 0;
         HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_SET);  // pull the TRIG pin HIGH
@@ -446,9 +407,11 @@ int main(void)
         {
             char strRight[32];
             sprintf(strRight, "%u", rightDistance);
+			/*
             USART_SendString("Right Ultrasonic: ");
             USART_SendString(strRight);
             USART_SendString("\n");
+			*/
 	}
 
 		if(incomingCommand)
@@ -458,8 +421,8 @@ int main(void)
 				ProcessCommand(command[0], command[1]);
 			}
 		}
-	}
 	 HAL_Delay(500);
+	}
 }
 
 /**

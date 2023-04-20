@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc4f8Mxs.s 			page 1
+ARM GAS  /tmp/cc4P3OoS.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
   30:Src/system_stm32f0xx.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
   31:Src/system_stm32f0xx.c ****   *
   32:Src/system_stm32f0xx.c ****   ******************************************************************************
-ARM GAS  /tmp/cc4f8Mxs.s 			page 2
+ARM GAS  /tmp/cc4P3OoS.s 			page 2
 
 
   33:Src/system_stm32f0xx.c ****   */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
   87:Src/system_stm32f0xx.c ****   */
   88:Src/system_stm32f0xx.c **** 
   89:Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_Variables
-ARM GAS  /tmp/cc4f8Mxs.s 			page 3
+ARM GAS  /tmp/cc4P3OoS.s 			page 3
 
 
   90:Src/system_stm32f0xx.c ****   * @{
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
   36              	.LFE40:
   38              		.global	__aeabi_uidiv
   39              		.section	.text.SystemCoreClockUpdate,"ax",%progbits
-ARM GAS  /tmp/cc4f8Mxs.s 			page 4
+ARM GAS  /tmp/cc4P3OoS.s 			page 4
 
 
   40              		.align	1
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
   50              		@ args = 0, pretend = 0, frame = 0
   51              		@ frame_needed = 0, uses_anonymous_args = 0
   52 0000 10B5     		push	{r4, lr}
-ARM GAS  /tmp/cc4f8Mxs.s 			page 5
+ARM GAS  /tmp/cc4P3OoS.s 			page 5
 
 
   53              	.LCFI0:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
  213:Src/system_stm32f0xx.c ****       {
  214:Src/system_stm32f0xx.c **** #if defined(STM32F042x6) || defined(STM32F048xx)  || defined(STM32F070x6) \
  215:Src/system_stm32f0xx.c ****  || defined(STM32F078xx) || defined(STM32F071xB)  || defined(STM32F072xB) \
-ARM GAS  /tmp/cc4f8Mxs.s 			page 6
+ARM GAS  /tmp/cc4P3OoS.s 			page 6
 
 
  216:Src/system_stm32f0xx.c ****  || defined(STM32F070xB) || defined(STM32F091xC) || defined(STM32F098xx)  || defined(STM32F030xC)
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
  105 002a 0F23     		movs	r3, #15
  106 002c 1340     		ands	r3, r2
  107              		.loc 1 233 22 view .LVU21
-ARM GAS  /tmp/cc4f8Mxs.s 			page 7
+ARM GAS  /tmp/cc4P3OoS.s 			page 7
 
 
  108 002e 1D4A     		ldr	r2, .L12+12
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
  197:Src/system_stm32f0xx.c ****       predivfactor = (RCC->CFGR2 & RCC_CFGR2_PREDIV) + 1;
  149              		.loc 1 197 7 is_stmt 1 view .LVU35
  197:Src/system_stm32f0xx.c ****       predivfactor = (RCC->CFGR2 & RCC_CFGR2_PREDIV) + 1;
-ARM GAS  /tmp/cc4f8Mxs.s 			page 8
+ARM GAS  /tmp/cc4P3OoS.s 			page 8
 
 
  150              		.loc 1 197 27 is_stmt 0 view .LVU36
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
  190              	.LVL20:
  191              	.L10:
  203:Src/system_stm32f0xx.c ****       }
-ARM GAS  /tmp/cc4f8Mxs.s 			page 9
+ARM GAS  /tmp/cc4P3OoS.s 			page 9
 
 
  192              		.loc 1 203 9 is_stmt 1 view .LVU51
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
  240      06
  241 000d 070809   		.ascii	"\007\010\011"
  242              		.global	SystemCoreClock
-ARM GAS  /tmp/cc4f8Mxs.s 			page 10
+ARM GAS  /tmp/cc4P3OoS.s 			page 10
 
 
  243              		.section	.data.SystemCoreClock,"aw"
@@ -551,22 +551,22 @@ ARM GAS  /tmp/cc4f8Mxs.s 			page 1
  252              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
  253              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
  254              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
-ARM GAS  /tmp/cc4f8Mxs.s 			page 11
+ARM GAS  /tmp/cc4P3OoS.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 system_stm32f0xx.c
-     /tmp/cc4f8Mxs.s:19     .text.SystemInit:00000000 $t
-     /tmp/cc4f8Mxs.s:25     .text.SystemInit:00000000 SystemInit
-     /tmp/cc4f8Mxs.s:40     .text.SystemCoreClockUpdate:00000000 $t
-     /tmp/cc4f8Mxs.s:46     .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
-     /tmp/cc4f8Mxs.s:219    .text.SystemCoreClockUpdate:00000098 $d
-     /tmp/cc4f8Mxs.s:247    .data.SystemCoreClock:00000000 SystemCoreClock
-     /tmp/cc4f8Mxs.s:239    .rodata.AHBPrescTable:00000000 AHBPrescTable
-     /tmp/cc4f8Mxs.s:232    .rodata.APBPrescTable:00000000 APBPrescTable
-     /tmp/cc4f8Mxs.s:229    .rodata.APBPrescTable:00000000 $d
-     /tmp/cc4f8Mxs.s:236    .rodata.AHBPrescTable:00000000 $d
-     /tmp/cc4f8Mxs.s:244    .data.SystemCoreClock:00000000 $d
+     /tmp/cc4P3OoS.s:19     .text.SystemInit:00000000 $t
+     /tmp/cc4P3OoS.s:25     .text.SystemInit:00000000 SystemInit
+     /tmp/cc4P3OoS.s:40     .text.SystemCoreClockUpdate:00000000 $t
+     /tmp/cc4P3OoS.s:46     .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+     /tmp/cc4P3OoS.s:219    .text.SystemCoreClockUpdate:00000098 $d
+     /tmp/cc4P3OoS.s:247    .data.SystemCoreClock:00000000 SystemCoreClock
+     /tmp/cc4P3OoS.s:239    .rodata.AHBPrescTable:00000000 AHBPrescTable
+     /tmp/cc4P3OoS.s:232    .rodata.APBPrescTable:00000000 APBPrescTable
+     /tmp/cc4P3OoS.s:229    .rodata.APBPrescTable:00000000 $d
+     /tmp/cc4P3OoS.s:236    .rodata.AHBPrescTable:00000000 $d
+     /tmp/cc4P3OoS.s:244    .data.SystemCoreClock:00000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_uidiv
