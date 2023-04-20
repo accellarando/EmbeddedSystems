@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc5Jy84T.s 			page 1
+ARM GAS  /tmp/ccQ6ihzj.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
   31:Src/main.c    **** /* USER CODE BEGIN PTD */
   32:Src/main.c    **** 
   33:Src/main.c    **** /* USER CODE END PTD */
-ARM GAS  /tmp/cc5Jy84T.s 			page 2
+ARM GAS  /tmp/ccQ6ihzj.s 			page 2
 
 
   34:Src/main.c    **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
   88:Src/main.c    ****     HAL_GPIO_Init(GPIOC, &gpio_led_init);
   89:Src/main.c    **** }
   90:Src/main.c    **** 
-ARM GAS  /tmp/cc5Jy84T.s 			page 3
+ARM GAS  /tmp/ccQ6ihzj.s 			page 3
 
 
   91:Src/main.c    **** /**
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  145:Src/main.c    **** 
  146:Src/main.c    **** 	//Enable the receive register not empty interrupt
  147:Src/main.c    **** 	USART3->CR1 |= USART_CR1_RXNEIE;
-ARM GAS  /tmp/cc5Jy84T.s 			page 4
+ARM GAS  /tmp/ccQ6ihzj.s 			page 4
 
 
  148:Src/main.c    **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  202:Src/main.c    **** }
  203:Src/main.c    **** 
  204:Src/main.c    **** void Log(){
-ARM GAS  /tmp/cc5Jy84T.s 			page 5
+ARM GAS  /tmp/ccQ6ihzj.s 			page 5
 
 
  205:Src/main.c    **** 	uint8_t* err = "Not yet implemented\n";
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  259:Src/main.c    **** 		case 'p':
  260:Src/main.c    **** 			part1 = proceed;
  261:Src/main.c    **** 			USART_SendString(part1);
-ARM GAS  /tmp/cc5Jy84T.s 			page 6
+ARM GAS  /tmp/ccQ6ihzj.s 			page 6
 
 
  262:Src/main.c    **** 			Proceed();
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  316:Src/main.c    **** 	//        }
  317:Src/main.c    **** 	//    }
  318:Src/main.c    **** }
-ARM GAS  /tmp/cc5Jy84T.s 			page 7
+ARM GAS  /tmp/ccQ6ihzj.s 			page 7
 
 
  319:Src/main.c    **** 
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  373:Src/main.c    ****         //__HAL_TIM_SET_COUNTER(&htim1, 0);
  374:Src/main.c    ****         //while(__HAL_TIM_GET_COUNTER(&htim1) < 10);
  375:Src/main.c    ****         while (counter < 10){
-ARM GAS  /tmp/cc5Jy84T.s 			page 8
+ARM GAS  /tmp/ccQ6ihzj.s 			page 8
 
 
  376:Src/main.c    ****             counter++;
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  430:Src/main.c    ****         while (!(HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_RIGHT)) && pMillis + 10 >  HAL_GetTick())
  431:Src/main.c    ****         {
  432:Src/main.c    ****          
-ARM GAS  /tmp/cc5Jy84T.s 			page 9
+ARM GAS  /tmp/ccQ6ihzj.s 			page 9
 
 
  433:Src/main.c    ****         }
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  487:Src/main.c    **** 	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
  488:Src/main.c    **** 	{
  489:Src/main.c    **** 		Error_Handler();
-ARM GAS  /tmp/cc5Jy84T.s 			page 10
+ARM GAS  /tmp/ccQ6ihzj.s 			page 10
 
 
  490:Src/main.c    **** 	}
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  544:Src/main.c    ****     Error_Handler();
  545:Src/main.c    ****   }
  546:Src/main.c    ****   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-ARM GAS  /tmp/cc5Jy84T.s 			page 11
+ARM GAS  /tmp/ccQ6ihzj.s 			page 11
 
 
  547:Src/main.c    ****   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
   35 0002 86B0     		sub	sp, sp, #24
   36              	.LCFI1:
   37              		.cfi_def_cfa_offset 32
-ARM GAS  /tmp/cc5Jy84T.s 			page 12
+ARM GAS  /tmp/ccQ6ihzj.s 			page 12
 
 
  592:Src/main.c    **** 	GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  606:Src/main.c    **** 	GPIO_InitStruct.Pull = GPIO_NOPULL;
   78              		.loc 1 606 2 is_stmt 1 view .LVU14
   79              		.loc 1 606 23 is_stmt 0 view .LVU15
-ARM GAS  /tmp/cc5Jy84T.s 			page 13
+ARM GAS  /tmp/ccQ6ihzj.s 			page 13
 
 
   80 0036 0023     		movs	r3, #0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  126              		.loc 1 83 22 is_stmt 0 view .LVU23
  127 0006 1422     		movs	r2, #20
  128 0008 0021     		movs	r1, #0
-ARM GAS  /tmp/cc5Jy84T.s 			page 14
+ARM GAS  /tmp/ccQ6ihzj.s 			page 14
 
 
  129 000a 01A8     		add	r0, sp, #4
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  178              		.loc 1 97 2 view .LVU30
   97:Src/main.c    **** 	__HAL_RCC_GPIOB_CLK_ENABLE();
  179              		.loc 1 97 2 view .LVU31
-ARM GAS  /tmp/cc5Jy84T.s 			page 15
+ARM GAS  /tmp/ccQ6ihzj.s 			page 15
 
 
  180 0004 364B     		ldr	r3, .L8
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  221 0034 5B69     		ldr	r3, [r3, #20]
  222 0036 0B40     		ands	r3, r1
  223 0038 0393     		str	r3, [sp, #12]
-ARM GAS  /tmp/cc5Jy84T.s 			page 16
+ARM GAS  /tmp/ccQ6ihzj.s 			page 16
 
 
   99:Src/main.c    **** 
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  269              	.LVL14:
  113:Src/main.c    **** 	HAL_GPIO_Init(motor_right_pins.dir_a.gpio, &motor_right_pins.dir_a.pin);
  270              		.loc 1 113 2 view .LVU54
-ARM GAS  /tmp/cc5Jy84T.s 			page 17
+ARM GAS  /tmp/ccQ6ihzj.s 			page 17
 
 
  271 0082 1A49     		ldr	r1, .L8+12
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  125:Src/main.c    **** }
  318              		.loc 1 125 2 view .LVU62
  319 00d2 2100     		movs	r1, r4
-ARM GAS  /tmp/cc5Jy84T.s 			page 18
+ARM GAS  /tmp/ccQ6ihzj.s 			page 18
 
 
  320 00d4 1C31     		adds	r1, r1, #28
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  371 000e D961     		str	r1, [r3, #28]
  132:Src/main.c    **** 	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
  372              		.loc 1 132 2 view .LVU68
-ARM GAS  /tmp/cc5Jy84T.s 			page 19
+ARM GAS  /tmp/ccQ6ihzj.s 			page 19
 
 
  373 0010 D969     		ldr	r1, [r3, #28]
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  144:Src/main.c    **** 
  412              		.loc 1 144 2 is_stmt 1 view .LVU84
  144:Src/main.c    **** 
-ARM GAS  /tmp/cc5Jy84T.s 			page 20
+ARM GAS  /tmp/ccQ6ihzj.s 			page 20
 
 
  413              		.loc 1 144 8 is_stmt 0 view .LVU85
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  460              	.LVL26:
  461              	.L14:
  159:Src/main.c    **** 		;
-ARM GAS  /tmp/cc5Jy84T.s 			page 21
+ARM GAS  /tmp/ccQ6ihzj.s 			page 21
 
 
  462              		.loc 1 159 8 discriminator 1 view .LVU95
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  172:Src/main.c    **** 		p_string++;
  509              		.loc 1 172 3 is_stmt 1 view .LVU105
  510 0006 FFF7FEFF 		bl	USART_SendChar
-ARM GAS  /tmp/cc5Jy84T.s 			page 22
+ARM GAS  /tmp/ccQ6ihzj.s 			page 22
 
 
  511              	.LVL29:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  557              		.cfi_def_cfa_offset 16
  182:Src/main.c    **** 	memset(command, 0, sizeof(command));
  558              		.loc 1 182 2 view .LVU115
-ARM GAS  /tmp/cc5Jy84T.s 			page 23
+ARM GAS  /tmp/ccQ6ihzj.s 			page 23
 
 
  182:Src/main.c    **** 	memset(command, 0, sizeof(command));
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  604              		.loc 1 188 27 is_stmt 1 view -0
  605              		.cfi_startproc
  606              		@ args = 0, pretend = 0, frame = 24
-ARM GAS  /tmp/cc5Jy84T.s 			page 24
+ARM GAS  /tmp/ccQ6ihzj.s 			page 24
 
 
  607              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  650 002e 0FD0     		beq	.L26
  194:Src/main.c    **** 			USART_SendString(err);
  651              		.loc 1 194 3 is_stmt 1 view .LVU134
-ARM GAS  /tmp/cc5Jy84T.s 			page 25
+ARM GAS  /tmp/ccQ6ihzj.s 			page 25
 
 
  194:Src/main.c    **** 			USART_SendString(err);
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  695 0068 00480040 		.word	1073760256
  696 006c 00000000 		.word	command
  697              		.cfi_endproc
-ARM GAS  /tmp/cc5Jy84T.s 			page 26
+ARM GAS  /tmp/ccQ6ihzj.s 			page 26
 
 
  698              	.LFE49:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  747              		.loc 1 209 15 is_stmt 1 view -0
  748              		.cfi_startproc
  749              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/cc5Jy84T.s 			page 27
+ARM GAS  /tmp/ccQ6ihzj.s 			page 27
 
 
  750              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  789              	.LC38:
  790 0050 5475726E 		.ascii	"Turning right \000"
  790      696E6720 
-ARM GAS  /tmp/cc5Jy84T.s 			page 28
+ARM GAS  /tmp/ccQ6ihzj.s 			page 28
 
 
  790      72696768 
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  219:Src/main.c    **** 
  830              		.loc 1 219 10 is_stmt 0 view .LVU160
  831 0008 21A9     		add	r1, sp, #132
-ARM GAS  /tmp/cc5Jy84T.s 			page 29
+ARM GAS  /tmp/ccQ6ihzj.s 			page 29
 
 
  832              	.LVL42:
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  876 004a C1CB     		ldmia	r3!, {r0, r6, r7}
  877 004c C1C2     		stmia	r2!, {r0, r6, r7}
  878 004e 03CB     		ldmia	r3!, {r0, r1}
-ARM GAS  /tmp/cc5Jy84T.s 			page 30
+ARM GAS  /tmp/ccQ6ihzj.s 			page 30
 
 
  879 0050 03C2     		stmia	r2!, {r0, r1}
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  920 0086 0F32     		adds	r2, r2, #15
  921 0088 02A8     		add	r0, sp, #8
  922 008a FFF7FEFF 		bl	memcpy
-ARM GAS  /tmp/cc5Jy84T.s 			page 31
+ARM GAS  /tmp/ccQ6ihzj.s 			page 31
 
 
  923              	.LVL44:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  972              		.loc 1 246 4 view .LVU188
  973              	.LVL47:
  247:Src/main.c    **** 			break;
-ARM GAS  /tmp/cc5Jy84T.s 			page 32
+ARM GAS  /tmp/ccQ6ihzj.s 			page 32
 
 
  974              		.loc 1 247 4 view .LVU189
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1015              	.LVL51:
  1016              	.L50:
  285:Src/main.c    **** 	}
-ARM GAS  /tmp/cc5Jy84T.s 			page 33
+ARM GAS  /tmp/ccQ6ihzj.s 			page 33
 
 
  1017              		.loc 1 285 19 view .LVU203
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  250:Src/main.c    **** 			motorcmd.dir = RIGHT;
  1059              		.loc 1 250 4 is_stmt 1 view .LVU216
  1060              	.LVL58:
-ARM GAS  /tmp/cc5Jy84T.s 			page 34
+ARM GAS  /tmp/ccQ6ihzj.s 			page 34
 
 
  251:Src/main.c    **** 			break;
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1100              	.LVL68:
  263:Src/main.c    **** 			return;
  1101              		.loc 1 263 4 view .LVU232
-ARM GAS  /tmp/cc5Jy84T.s 			page 35
+ARM GAS  /tmp/ccQ6ihzj.s 			page 35
 
 
  1102 012e FFF7FEFF 		bl	ClearCommand
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1145 0162 FFF7FEFF 		bl	ClearCommand
  1146              	.LVL75:
  280:Src/main.c    **** 	}
-ARM GAS  /tmp/cc5Jy84T.s 			page 36
+ARM GAS  /tmp/ccQ6ihzj.s 			page 36
 
 
  1147              		.loc 1 280 3 view .LVU244
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  622:Src/main.c    **** void Error_Handler(void)
  623:Src/main.c    **** {
  1194              		.loc 1 623 1 view -0
-ARM GAS  /tmp/cc5Jy84T.s 			page 37
+ARM GAS  /tmp/ccQ6ihzj.s 			page 37
 
 
  1195              		.cfi_startproc
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
   43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
   44:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
   45:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  /tmp/cc5Jy84T.s 			page 38
+ARM GAS  /tmp/ccQ6ihzj.s 			page 38
 
 
   46:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_INLINE
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
  101:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  102:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_READ
-ARM GAS  /tmp/cc5Jy84T.s 			page 39
+ARM GAS  /tmp/ccQ6ihzj.s 			page 39
 
 
  103:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  628:Src/main.c    **** 	{
  629:Src/main.c    **** 	}
  1217              		.loc 1 629 2 discriminator 1 view .LVU252
-ARM GAS  /tmp/cc5Jy84T.s 			page 40
+ARM GAS  /tmp/ccQ6ihzj.s 			page 40
 
 
  627:Src/main.c    **** 	while (1)
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1264              		.loc 1 521 34 is_stmt 0 view .LVU262
  1265 0022 2022     		movs	r2, #32
  1266 0024 0021     		movs	r1, #0
-ARM GAS  /tmp/cc5Jy84T.s 			page 41
+ARM GAS  /tmp/ccQ6ihzj.s 			page 41
 
 
  1267 0026 01A8     		add	r0, sp, #4
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1303              		.loc 1 537 3 is_stmt 1 view .LVU280
  537:Src/main.c    ****   if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
  1304              		.loc 1 537 34 is_stmt 0 view .LVU281
-ARM GAS  /tmp/cc5Jy84T.s 			page 42
+ARM GAS  /tmp/ccQ6ihzj.s 			page 42
 
 
  1305 004c 8023     		movs	r3, #128
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1344 007c 0993     		str	r3, [sp, #36]
  553:Src/main.c    ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
  1345              		.loc 1 553 3 is_stmt 1 view .LVU297
-ARM GAS  /tmp/cc5Jy84T.s 			page 43
+ARM GAS  /tmp/ccQ6ihzj.s 			page 43
 
 
  553:Src/main.c    ****   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1383 00a6 1ED1     		bne	.L75
  567:Src/main.c    ****   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
  1384              		.loc 1 567 3 is_stmt 1 view .LVU315
-ARM GAS  /tmp/cc5Jy84T.s 			page 44
+ARM GAS  /tmp/ccQ6ihzj.s 			page 44
 
 
  567:Src/main.c    ****   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1421              		.loc 1 583 1 is_stmt 0 view .LVU333
  1422 00ce 17B0     		add	sp, sp, #92
  1423              		@ sp needed
-ARM GAS  /tmp/cc5Jy84T.s 			page 45
+ARM GAS  /tmp/ccQ6ihzj.s 			page 45
 
 
  1424 00d0 00BD     		pop	{pc}
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1472              		.cfi_startproc
  1473              		@ args = 0, pretend = 0, frame = 72
  1474              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cc5Jy84T.s 			page 46
+ARM GAS  /tmp/ccQ6ihzj.s 			page 46
 
 
  1475 0000 00B5     		push	{lr}
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1515 002a 0028     		cmp	r0, #0
  1516 002c 0DD1     		bne	.L82
  494:Src/main.c    **** 		|RCC_CLOCKTYPE_PCLK1;
-ARM GAS  /tmp/cc5Jy84T.s 			page 47
+ARM GAS  /tmp/ccQ6ihzj.s 			page 47
 
 
  1517              		.loc 1 494 2 is_stmt 1 view .LVU356
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1559              		.section	.text.main,"ax",%progbits
  1560              		.align	1
  1561              		.global	main
-ARM GAS  /tmp/cc5Jy84T.s 			page 48
+ARM GAS  /tmp/ccQ6ihzj.s 			page 48
 
 
  1562              		.syntax unified
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
   12:Drivers/CMSIS/Include/core_cm0.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
   13:Drivers/CMSIS/Include/core_cm0.h ****  * not use this file except in compliance with the License.
   14:Drivers/CMSIS/Include/core_cm0.h ****  * You may obtain a copy of the License at
-ARM GAS  /tmp/cc5Jy84T.s 			page 49
+ARM GAS  /tmp/ccQ6ihzj.s 			page 49
 
 
   15:Drivers/CMSIS/Include/core_cm0.h ****  *
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
   69:Drivers/CMSIS/Include/core_cm0.h ****                                     __CM0_CMSIS_VERSION_SUB           )  /*!< \deprecated CMSIS HAL
   70:Drivers/CMSIS/Include/core_cm0.h **** 
   71:Drivers/CMSIS/Include/core_cm0.h **** #define __CORTEX_M                (0U)                                   /*!< Cortex-M Core */
-ARM GAS  /tmp/cc5Jy84T.s 			page 50
+ARM GAS  /tmp/ccQ6ihzj.s 			page 50
 
 
   72:Drivers/CMSIS/Include/core_cm0.h **** 
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  126:Drivers/CMSIS/Include/core_cm0.h **** #ifndef __CORE_CM0_H_DEPENDANT
  127:Drivers/CMSIS/Include/core_cm0.h **** #define __CORE_CM0_H_DEPENDANT
  128:Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/cc5Jy84T.s 			page 51
+ARM GAS  /tmp/ccQ6ihzj.s 			page 51
 
 
  129:Drivers/CMSIS/Include/core_cm0.h **** #ifdef __cplusplus
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  183:Drivers/CMSIS/Include/core_cm0.h ****  ******************************************************************************/
  184:Drivers/CMSIS/Include/core_cm0.h **** /**
  185:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup CMSIS_core_register Defines and Type Definitions
-ARM GAS  /tmp/cc5Jy84T.s 			page 52
+ARM GAS  /tmp/ccQ6ihzj.s 			page 52
 
 
  186:Drivers/CMSIS/Include/core_cm0.h ****   \brief Type definitions and defines for Cortex-M processor based devices.
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  240:Drivers/CMSIS/Include/core_cm0.h **** #define IPSR_ISR_Pos                        0U                                            /*!< IPSR
  241:Drivers/CMSIS/Include/core_cm0.h **** #define IPSR_ISR_Msk                       (0x1FFUL /*<< IPSR_ISR_Pos*/)                  /*!< IPSR
  242:Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/cc5Jy84T.s 			page 53
+ARM GAS  /tmp/ccQ6ihzj.s 			page 53
 
 
  243:Drivers/CMSIS/Include/core_cm0.h **** 
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  297:Drivers/CMSIS/Include/core_cm0.h **** /* CONTROL Register Definitions */
  298:Drivers/CMSIS/Include/core_cm0.h **** #define CONTROL_SPSEL_Pos                   1U                                            /*!< CONT
  299:Drivers/CMSIS/Include/core_cm0.h **** #define CONTROL_SPSEL_Msk                  (1UL << CONTROL_SPSEL_Pos)                     /*!< CONT
-ARM GAS  /tmp/cc5Jy84T.s 			page 54
+ARM GAS  /tmp/ccQ6ihzj.s 			page 54
 
 
  300:Drivers/CMSIS/Include/core_cm0.h **** 
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  354:Drivers/CMSIS/Include/core_cm0.h **** /* SCB CPUID Register Definitions */
  355:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_IMPLEMENTER_Pos          24U                                            /*!< SCB 
  356:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_IMPLEMENTER_Msk          (0xFFUL << SCB_CPUID_IMPLEMENTER_Pos)          /*!< SCB 
-ARM GAS  /tmp/cc5Jy84T.s 			page 55
+ARM GAS  /tmp/ccQ6ihzj.s 			page 55
 
 
  357:Drivers/CMSIS/Include/core_cm0.h **** 
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  411:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_VECTCLRACTIVE_Pos         1U                                            /*!< SCB 
  412:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_VECTCLRACTIVE_Msk        (1UL << SCB_AIRCR_VECTCLRACTIVE_Pos)           /*!< SCB 
  413:Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/cc5Jy84T.s 			page 56
+ARM GAS  /tmp/ccQ6ihzj.s 			page 56
 
 
  414:Drivers/CMSIS/Include/core_cm0.h **** /* SCB System Control Register Definitions */
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  468:Drivers/CMSIS/Include/core_cm0.h **** 
  469:Drivers/CMSIS/Include/core_cm0.h **** /* SysTick Reload Register Definitions */
  470:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_LOAD_RELOAD_Pos             0U                                            /*!< SysT
-ARM GAS  /tmp/cc5Jy84T.s 			page 57
+ARM GAS  /tmp/ccQ6ihzj.s 			page 57
 
 
  471:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_LOAD_RELOAD_Msk            (0xFFFFFFUL /*<< SysTick_LOAD_RELOAD_Pos*/)    /*!< SysT
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  525:Drivers/CMSIS/Include/core_cm0.h **** 
  526:Drivers/CMSIS/Include/core_cm0.h **** /**
  527:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup    CMSIS_core_register
-ARM GAS  /tmp/cc5Jy84T.s 			page 58
+ARM GAS  /tmp/ccQ6ihzj.s 			page 58
 
 
  528:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup   CMSIS_core_base     Core Definitions
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  582:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_ClearPendingIRQ        __NVIC_ClearPendingIRQ
  583:Drivers/CMSIS/Include/core_cm0.h **** /*#define NVIC_GetActive              __NVIC_GetActive             not available for Cortex-M0 */
  584:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_SetPriority            __NVIC_SetPriority
-ARM GAS  /tmp/cc5Jy84T.s 			page 59
+ARM GAS  /tmp/ccQ6ihzj.s 			page 59
 
 
  585:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_GetPriority            __NVIC_GetPriority
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1610              	.LBE20:
  1611              	.LBE19:
  357:Src/main.c    **** 
-ARM GAS  /tmp/cc5Jy84T.s 			page 60
+ARM GAS  /tmp/ccQ6ihzj.s 			page 60
 
 
  1612              		.loc 1 357 5 is_stmt 1 view .LVU382
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  679:Drivers/CMSIS/Include/core_cm0.h **** {
  680:Drivers/CMSIS/Include/core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
  681:Drivers/CMSIS/Include/core_cm0.h ****   {
-ARM GAS  /tmp/cc5Jy84T.s 			page 61
+ARM GAS  /tmp/ccQ6ihzj.s 			page 61
 
 
  682:Drivers/CMSIS/Include/core_cm0.h ****     return((uint32_t)(((NVIC->ISPR[0U] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL)
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  733:Drivers/CMSIS/Include/core_cm0.h ****   {
  734:Drivers/CMSIS/Include/core_cm0.h ****     NVIC->IP[_IP_IDX(IRQn)]  = ((uint32_t)(NVIC->IP[_IP_IDX(IRQn)]  & ~(0xFFUL << _BIT_SHIFT(IRQn))
  1618              		.loc 3 734 5 view .LVU385
-ARM GAS  /tmp/cc5Jy84T.s 			page 62
+ARM GAS  /tmp/ccQ6ihzj.s 			page 62
 
 
  1619              		.loc 3 734 52 is_stmt 0 view .LVU386
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1666 0060 2000     		movs	r0, r4
  1667 0062 FFF7FEFF 		bl	HAL_GPIO_WritePin
  1668              	.LVL112:
-ARM GAS  /tmp/cc5Jy84T.s 			page 63
+ARM GAS  /tmp/ccQ6ihzj.s 			page 63
 
 
  1669 0066 B8E0     		b	.L100
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1710 0096 1C68     		ldr	r4, [r3]
  1711 0098 0A34     		adds	r4, r4, #10
  385:Src/main.c    ****         {
-ARM GAS  /tmp/cc5Jy84T.s 			page 64
+ARM GAS  /tmp/ccQ6ihzj.s 			page 64
 
 
  1712              		.loc 1 385 82 discriminator 1 view .LVU411
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1752 00c8 534B     		ldr	r3, .L104+24
  1753 00ca 1C68     		ldr	r4, [r3]
  1754 00cc 3234     		adds	r4, r4, #50
-ARM GAS  /tmp/cc5Jy84T.s 			page 65
+ARM GAS  /tmp/ccQ6ihzj.s 			page 65
 
 
  395:Src/main.c    ****         {
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1795 00fc 8021     		movs	r1, #128
  1796 00fe 0122     		movs	r2, #1
  1797 0100 8901     		lsls	r1, r1, #6
-ARM GAS  /tmp/cc5Jy84T.s 			page 66
+ARM GAS  /tmp/ccQ6ihzj.s 			page 66
 
 
  1798 0102 4348     		ldr	r0, .L104+16
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1840              	.LVL131:
  426:Src/main.c    ****         pMillis = HAL_GetTick(); // used this to avoid infinite while loop  (for timeout)
  1841              		.loc 1 426 19 view .LVU452
-ARM GAS  /tmp/cc5Jy84T.s 			page 67
+ARM GAS  /tmp/ccQ6ihzj.s 			page 67
 
 
  1842 0130 80B2     		uxth	r0, r0
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1882 0160 1B88     		ldrh	r3, [r3]
  1883 0162 C01A     		subs	r0, r0, r3
  1884 0164 80B2     		uxth	r0, r0
-ARM GAS  /tmp/cc5Jy84T.s 			page 68
+ARM GAS  /tmp/ccQ6ihzj.s 			page 68
 
 
  435:Src/main.c    ****         
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1924 0192 204B     		ldr	r3, .L104+20
  1925 0194 1B88     		ldrh	r3, [r3]
  1926 0196 C01A     		subs	r0, r0, r3
-ARM GAS  /tmp/cc5Jy84T.s 			page 69
+ARM GAS  /tmp/ccQ6ihzj.s 			page 69
 
 
  1927 0198 80B2     		uxth	r0, r0
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  1966 01c6 1878     		ldrb	r0, [r3]
  1967 01c8 C0B2     		uxtb	r0, r0
  464:Src/main.c    **** 			}
-ARM GAS  /tmp/cc5Jy84T.s 			page 70
+ARM GAS  /tmp/ccQ6ihzj.s 			page 70
 
 
  1968              		.loc 1 464 39 view .LVU497
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  2010              	.L102:
  2011              	.LBB25:
  451:Src/main.c    ****             sprintf(strRight, "%u", rightDistance);
-ARM GAS  /tmp/cc5Jy84T.s 			page 71
+ARM GAS  /tmp/ccQ6ihzj.s 			page 71
 
 
  2012              		.loc 1 451 13 is_stmt 1 view .LVU510
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  2076 0000 0000     		.space	2
  2077              		.global	Value1
  2078              		.section	.bss.Value1,"aw",%nobits
-ARM GAS  /tmp/cc5Jy84T.s 			page 72
+ARM GAS  /tmp/ccQ6ihzj.s 			page 72
 
 
  2079              		.align	1
@@ -4302,82 +4302,82 @@ ARM GAS  /tmp/cc5Jy84T.s 			page 1
  2121              		.file 18 "/usr/arm-none-eabi/include/stdio.h"
  2122              		.file 19 "/usr/arm-none-eabi/include/string.h"
  2123              		.file 20 "<built-in>"
-ARM GAS  /tmp/cc5Jy84T.s 			page 73
+ARM GAS  /tmp/ccQ6ihzj.s 			page 73
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/cc5Jy84T.s:19     .text.MX_GPIO_Init:00000000 $t
-     /tmp/cc5Jy84T.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-     /tmp/cc5Jy84T.s:97     .text.MX_GPIO_Init:00000048 $d
-     /tmp/cc5Jy84T.s:102    .text.LED_Init:00000000 $t
-     /tmp/cc5Jy84T.s:108    .text.LED_Init:00000000 LED_Init
-     /tmp/cc5Jy84T.s:151    .text.LED_Init:00000024 $d
-     /tmp/cc5Jy84T.s:156    .text.GPIO_AF_Init:00000000 $t
-     /tmp/cc5Jy84T.s:162    .text.GPIO_AF_Init:00000000 GPIO_AF_Init
-     /tmp/cc5Jy84T.s:331    .text.GPIO_AF_Init:000000e0 $d
-     /tmp/cc5Jy84T.s:342    .text.USART_Init:00000000 $t
-     /tmp/cc5Jy84T.s:348    .text.USART_Init:00000000 USART_Init
-     /tmp/cc5Jy84T.s:440    .text.USART_Init:0000005c $d
-     /tmp/cc5Jy84T.s:447    .text.USART_SendChar:00000000 $t
-     /tmp/cc5Jy84T.s:453    .text.USART_SendChar:00000000 USART_SendChar
-     /tmp/cc5Jy84T.s:479    .text.USART_SendChar:00000010 $d
-     /tmp/cc5Jy84T.s:484    .text.USART_SendString:00000000 $t
-     /tmp/cc5Jy84T.s:490    .text.USART_SendString:00000000 USART_SendString
-     /tmp/cc5Jy84T.s:535    .rodata.ClearCommand.str1.4:00000000 $d
-     /tmp/cc5Jy84T.s:539    .text.ClearCommand:00000000 $t
-     /tmp/cc5Jy84T.s:545    .text.ClearCommand:00000000 ClearCommand
-     /tmp/cc5Jy84T.s:585    .text.ClearCommand:00000024 $d
-     /tmp/cc5Jy84T.s:2054   .bss.command:00000000 command
-     /tmp/cc5Jy84T.s:2047   .bss.incomingCommand:00000000 incomingCommand
-     /tmp/cc5Jy84T.s:592    .rodata.USART3_4_IRQHandler.str1.4:00000000 $d
-     /tmp/cc5Jy84T.s:596    .text.USART3_4_IRQHandler:00000000 $t
-     /tmp/cc5Jy84T.s:602    .text.USART3_4_IRQHandler:00000000 USART3_4_IRQHandler
-     /tmp/cc5Jy84T.s:693    .text.USART3_4_IRQHandler:00000060 $d
-     /tmp/cc5Jy84T.s:701    .rodata.Log.str1.4:00000000 $d
-     /tmp/cc5Jy84T.s:705    .text.Log:00000000 $t
-     /tmp/cc5Jy84T.s:711    .text.Log:00000000 Log
-     /tmp/cc5Jy84T.s:734    .text.Log:0000000c $d
-     /tmp/cc5Jy84T.s:739    .text.Proceed:00000000 $t
-     /tmp/cc5Jy84T.s:745    .text.Proceed:00000000 Proceed
-     /tmp/cc5Jy84T.s:768    .text.Proceed:0000000c $d
-     /tmp/cc5Jy84T.s:773    .rodata.ProcessCommand.str1.4:00000000 $d
-     /tmp/cc5Jy84T.s:798    .text.ProcessCommand:00000000 $t
-     /tmp/cc5Jy84T.s:804    .text.ProcessCommand:00000000 ProcessCommand
-     /tmp/cc5Jy84T.s:935    .rodata.ProcessCommand:00000000 $d
-     /tmp/cc5Jy84T.s:1152   .text.ProcessCommand:00000168 $d
-     /tmp/cc5Jy84T.s:1166   .text.GetDistance:00000000 $t
-     /tmp/cc5Jy84T.s:1172   .text.GetDistance:00000000 GetDistance
-     /tmp/cc5Jy84T.s:1186   .text.Error_Handler:00000000 $t
-     /tmp/cc5Jy84T.s:1192   .text.Error_Handler:00000000 Error_Handler
-     /tmp/cc5Jy84T.s:1224   .text.MX_TIM1_Init:00000000 $t
-     /tmp/cc5Jy84T.s:1229   .text.MX_TIM1_Init:00000000 MX_TIM1_Init
-     /tmp/cc5Jy84T.s:1456   .text.MX_TIM1_Init:000000f0 $d
-     /tmp/cc5Jy84T.s:2103   .bss.htim1:00000000 htim1
-     /tmp/cc5Jy84T.s:1463   .text.SystemClock_Config:00000000 $t
-     /tmp/cc5Jy84T.s:1469   .text.SystemClock_Config:00000000 SystemClock_Config
-     /tmp/cc5Jy84T.s:1556   .rodata.main.str1.4:00000000 $d
-     /tmp/cc5Jy84T.s:1560   .text.main:00000000 $t
-     /tmp/cc5Jy84T.s:1566   .text.main:00000000 main
-     /tmp/cc5Jy84T.s:2024   .text.main:00000200 $d
-     /tmp/cc5Jy84T.s:2089   .bss.startTime:00000000 startTime
-     /tmp/cc5Jy84T.s:2096   .bss.pMillis:00000000 pMillis
-ARM GAS  /tmp/cc5Jy84T.s 			page 74
+     /tmp/ccQ6ihzj.s:19     .text.MX_GPIO_Init:00000000 $t
+     /tmp/ccQ6ihzj.s:24     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+     /tmp/ccQ6ihzj.s:97     .text.MX_GPIO_Init:00000048 $d
+     /tmp/ccQ6ihzj.s:102    .text.LED_Init:00000000 $t
+     /tmp/ccQ6ihzj.s:108    .text.LED_Init:00000000 LED_Init
+     /tmp/ccQ6ihzj.s:151    .text.LED_Init:00000024 $d
+     /tmp/ccQ6ihzj.s:156    .text.GPIO_AF_Init:00000000 $t
+     /tmp/ccQ6ihzj.s:162    .text.GPIO_AF_Init:00000000 GPIO_AF_Init
+     /tmp/ccQ6ihzj.s:331    .text.GPIO_AF_Init:000000e0 $d
+     /tmp/ccQ6ihzj.s:342    .text.USART_Init:00000000 $t
+     /tmp/ccQ6ihzj.s:348    .text.USART_Init:00000000 USART_Init
+     /tmp/ccQ6ihzj.s:440    .text.USART_Init:0000005c $d
+     /tmp/ccQ6ihzj.s:447    .text.USART_SendChar:00000000 $t
+     /tmp/ccQ6ihzj.s:453    .text.USART_SendChar:00000000 USART_SendChar
+     /tmp/ccQ6ihzj.s:479    .text.USART_SendChar:00000010 $d
+     /tmp/ccQ6ihzj.s:484    .text.USART_SendString:00000000 $t
+     /tmp/ccQ6ihzj.s:490    .text.USART_SendString:00000000 USART_SendString
+     /tmp/ccQ6ihzj.s:535    .rodata.ClearCommand.str1.4:00000000 $d
+     /tmp/ccQ6ihzj.s:539    .text.ClearCommand:00000000 $t
+     /tmp/ccQ6ihzj.s:545    .text.ClearCommand:00000000 ClearCommand
+     /tmp/ccQ6ihzj.s:585    .text.ClearCommand:00000024 $d
+     /tmp/ccQ6ihzj.s:2054   .bss.command:00000000 command
+     /tmp/ccQ6ihzj.s:2047   .bss.incomingCommand:00000000 incomingCommand
+     /tmp/ccQ6ihzj.s:592    .rodata.USART3_4_IRQHandler.str1.4:00000000 $d
+     /tmp/ccQ6ihzj.s:596    .text.USART3_4_IRQHandler:00000000 $t
+     /tmp/ccQ6ihzj.s:602    .text.USART3_4_IRQHandler:00000000 USART3_4_IRQHandler
+     /tmp/ccQ6ihzj.s:693    .text.USART3_4_IRQHandler:00000060 $d
+     /tmp/ccQ6ihzj.s:701    .rodata.Log.str1.4:00000000 $d
+     /tmp/ccQ6ihzj.s:705    .text.Log:00000000 $t
+     /tmp/ccQ6ihzj.s:711    .text.Log:00000000 Log
+     /tmp/ccQ6ihzj.s:734    .text.Log:0000000c $d
+     /tmp/ccQ6ihzj.s:739    .text.Proceed:00000000 $t
+     /tmp/ccQ6ihzj.s:745    .text.Proceed:00000000 Proceed
+     /tmp/ccQ6ihzj.s:768    .text.Proceed:0000000c $d
+     /tmp/ccQ6ihzj.s:773    .rodata.ProcessCommand.str1.4:00000000 $d
+     /tmp/ccQ6ihzj.s:798    .text.ProcessCommand:00000000 $t
+     /tmp/ccQ6ihzj.s:804    .text.ProcessCommand:00000000 ProcessCommand
+     /tmp/ccQ6ihzj.s:935    .rodata.ProcessCommand:00000000 $d
+     /tmp/ccQ6ihzj.s:1152   .text.ProcessCommand:00000168 $d
+     /tmp/ccQ6ihzj.s:1166   .text.GetDistance:00000000 $t
+     /tmp/ccQ6ihzj.s:1172   .text.GetDistance:00000000 GetDistance
+     /tmp/ccQ6ihzj.s:1186   .text.Error_Handler:00000000 $t
+     /tmp/ccQ6ihzj.s:1192   .text.Error_Handler:00000000 Error_Handler
+     /tmp/ccQ6ihzj.s:1224   .text.MX_TIM1_Init:00000000 $t
+     /tmp/ccQ6ihzj.s:1229   .text.MX_TIM1_Init:00000000 MX_TIM1_Init
+     /tmp/ccQ6ihzj.s:1456   .text.MX_TIM1_Init:000000f0 $d
+     /tmp/ccQ6ihzj.s:2103   .bss.htim1:00000000 htim1
+     /tmp/ccQ6ihzj.s:1463   .text.SystemClock_Config:00000000 $t
+     /tmp/ccQ6ihzj.s:1469   .text.SystemClock_Config:00000000 SystemClock_Config
+     /tmp/ccQ6ihzj.s:1556   .rodata.main.str1.4:00000000 $d
+     /tmp/ccQ6ihzj.s:1560   .text.main:00000000 $t
+     /tmp/ccQ6ihzj.s:1566   .text.main:00000000 main
+     /tmp/ccQ6ihzj.s:2024   .text.main:00000200 $d
+     /tmp/ccQ6ihzj.s:2089   .bss.startTime:00000000 startTime
+     /tmp/ccQ6ihzj.s:2096   .bss.pMillis:00000000 pMillis
+ARM GAS  /tmp/ccQ6ihzj.s 			page 74
 
 
-     /tmp/cc5Jy84T.s:2082   .bss.Value1:00000000 Value1
-     /tmp/cc5Jy84T.s:2075   .bss.Value2:00000000 Value2
-     /tmp/cc5Jy84T.s:2068   .bss.leftDistance:00000000 leftDistance
-     /tmp/cc5Jy84T.s:2061   .bss.rightDistance:00000000 rightDistance
-     /tmp/cc5Jy84T.s:2048   .bss.incomingCommand:00000000 $d
-     /tmp/cc5Jy84T.s:2051   .bss.command:00000000 $d
-     /tmp/cc5Jy84T.s:2058   .bss.rightDistance:00000000 $d
-     /tmp/cc5Jy84T.s:2065   .bss.leftDistance:00000000 $d
-     /tmp/cc5Jy84T.s:2072   .bss.Value2:00000000 $d
-     /tmp/cc5Jy84T.s:2079   .bss.Value1:00000000 $d
-     /tmp/cc5Jy84T.s:2086   .bss.startTime:00000000 $d
-     /tmp/cc5Jy84T.s:2093   .bss.pMillis:00000000 $d
-     /tmp/cc5Jy84T.s:2100   .bss.htim1:00000000 $d
+     /tmp/ccQ6ihzj.s:2082   .bss.Value1:00000000 Value1
+     /tmp/ccQ6ihzj.s:2075   .bss.Value2:00000000 Value2
+     /tmp/ccQ6ihzj.s:2068   .bss.leftDistance:00000000 leftDistance
+     /tmp/ccQ6ihzj.s:2061   .bss.rightDistance:00000000 rightDistance
+     /tmp/ccQ6ihzj.s:2048   .bss.incomingCommand:00000000 $d
+     /tmp/ccQ6ihzj.s:2051   .bss.command:00000000 $d
+     /tmp/ccQ6ihzj.s:2058   .bss.rightDistance:00000000 $d
+     /tmp/ccQ6ihzj.s:2065   .bss.leftDistance:00000000 $d
+     /tmp/ccQ6ihzj.s:2072   .bss.Value2:00000000 $d
+     /tmp/ccQ6ihzj.s:2079   .bss.Value1:00000000 $d
+     /tmp/ccQ6ihzj.s:2086   .bss.startTime:00000000 $d
+     /tmp/ccQ6ihzj.s:2093   .bss.pMillis:00000000 $d
+     /tmp/ccQ6ihzj.s:2100   .bss.htim1:00000000 $d
 
 UNDEFINED SYMBOLS
 memset

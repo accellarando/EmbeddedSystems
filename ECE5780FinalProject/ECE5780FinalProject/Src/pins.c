@@ -13,7 +13,7 @@ uart_pins_t uart_pins = {
             .Pin = GPIO_PIN_5,
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = GPIO_AF1_USART3
         }
     },
@@ -23,7 +23,7 @@ uart_pins_t uart_pins = {
             .Pin = GPIO_PIN_4,
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = GPIO_AF1_USART3
         }
     }
@@ -37,7 +37,7 @@ motor_pins_t motor_left_pins = {
             .Pin = GPIO_PIN_4,
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = GPIO_AF4_TIM14
         }
     },
@@ -47,7 +47,7 @@ motor_pins_t motor_left_pins = {
             .Pin = GPIO_PIN_5,
             .Mode = GPIO_MODE_OUTPUT_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = 0
         }
     },
@@ -57,7 +57,7 @@ motor_pins_t motor_left_pins = {
             .Pin = GPIO_PIN_8,
             .Mode = GPIO_MODE_OUTPUT_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = 0
         }
     },
@@ -67,7 +67,7 @@ motor_pins_t motor_left_pins = {
             .Pin = GPIO_PIN_4,
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = GPIO_AF1_TIM3
         }
     },
@@ -77,7 +77,7 @@ motor_pins_t motor_left_pins = {
             .Pin = GPIO_PIN_5,
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = GPIO_AF1_TIM3
         }
     }
@@ -90,7 +90,7 @@ motor_pins_t motor_right_pins = {
             .Pin = GPIO_PIN_3,
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = GPIO_AF2_TIM2
         }
     },
@@ -100,7 +100,7 @@ motor_pins_t motor_right_pins = {
             .Pin = GPIO_PIN_2,
             .Mode = GPIO_MODE_OUTPUT_PP,
             .Pull = GPIO_NOPULL,
-			.Speed = GPIO_SPEED_FREQ_HIGH,
+			.Speed = GPIO_SPEED_FREQ_LOW,
 			.Alternate = 0
 		}
 	},
@@ -110,28 +110,28 @@ motor_pins_t motor_right_pins = {
             .Pin = GPIO_PIN_10,
             .Mode = GPIO_MODE_OUTPUT_PP,
             .Pull = GPIO_NOPULL,
-			.Speed = GPIO_SPEED_FREQ_HIGH,
+			.Speed = GPIO_SPEED_FREQ_LOW,
 			.Alternate = 0
 		}
 	},
 	.enc_a = {
-		.gpio = GPIOB,
+		.gpio = GPIOC,
 		.pin = {
-            .Pin = GPIO_PIN_14,
+            .Pin = GPIO_PIN_9,
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
-			.Speed = GPIO_SPEED_FREQ_HIGH,
-			.Alternate = GPIO_AF1_TIM15
+			.Speed = GPIO_SPEED_FREQ_LOW,
+			.Alternate = GPIO_AF0_TIM3
 		}
 	},
 	.enc_b = {
-		.gpio = GPIOB,
+		.gpio = GPIOC,
 		.pin = {
-            .Pin = GPIO_PIN_15,
+            .Pin = GPIO_PIN_9,
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
-			.Speed = GPIO_SPEED_FREQ_HIGH,
-			.Alternate = GPIO_AF1_TIM15
+			.Speed = GPIO_SPEED_FREQ_LOW,
+			.Alternate = GPIO_AF0_TIM3
 		}
 	}
 };
@@ -144,7 +144,7 @@ ultrasonic_pins_t ultrasonic_left_pins = {
             .Pin = GPIO_PIN_11,
             .Mode = GPIO_MODE_INPUT,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = 0
         }
     },
@@ -154,7 +154,7 @@ ultrasonic_pins_t ultrasonic_left_pins = {
             .Pin = GPIO_PIN_12,
             .Mode = GPIO_MODE_OUTPUT_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = 0
         }
     }
@@ -167,7 +167,7 @@ ultrasonic_pins_t ultrasonic_right_pins = {
             .Pin = GPIO_PIN_13,
             .Mode = GPIO_MODE_INPUT,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = 0
         }
     },
@@ -177,7 +177,7 @@ ultrasonic_pins_t ultrasonic_right_pins = {
             .Pin = GPIO_PIN_14,
             .Mode = GPIO_MODE_OUTPUT_PP,
             .Pull = GPIO_NOPULL,
-            .Speed = GPIO_SPEED_FREQ_HIGH,
+            .Speed = GPIO_SPEED_FREQ_LOW,
             .Alternate = 0
         }
     }

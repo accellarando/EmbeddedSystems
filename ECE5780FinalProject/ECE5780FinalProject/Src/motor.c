@@ -110,12 +110,18 @@ void set_Motor_Direction(Direction dir, motor_pins_t* pins){
 		case FORWARD:
 			HAL_GPIO_WritePin(pins->dir_a.gpio, pins->dir_a.pin.Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(pins->dir_b.gpio, pins->dir_b.pin.Pin, GPIO_PIN_RESET);
+			pwm_setDutyCycleL(100);
+			pwm_setDutyCycleR(100);
 			break;
 		case BACKWARD:
 			HAL_GPIO_WritePin(pins->dir_a.gpio, pins->dir_a.pin.Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(pins->dir_b.gpio, pins->dir_b.pin.Pin, GPIO_PIN_RESET);
+			pwm_setDutyCycleR(100);
+			pwm_setDutyCycleL(100);
 			break;
 		default:
+			pwm_setDutyCycleL(0);
+			pwm_setDutyCycleR(0);
 			;
 	}
 }
@@ -187,6 +193,7 @@ void set_Off(){
 
 uint8_t* MoveMotors(MotorCommand* cmd){
 	set_Off();
+	set_On();
 	uint8_t* err = "MoveMotors executed!\n";
 	switch(cmd->dir){
 		case FORWARD:
