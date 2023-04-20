@@ -182,7 +182,7 @@ void set_Left(){
 
 void set_Off(){
 	set_Motor_Direction(OFF, &motor_left_pins);
-	set_MotorDirection(OFF, &motor_right_pins);
+	set_Motor_Direction(OFF, &motor_right_pins);
 }
 
 uint8_t* MoveMotors(MotorCommand* cmd){
