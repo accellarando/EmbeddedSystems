@@ -19,6 +19,9 @@ extern volatile int8_t adc_value;      // ADC measured motor current
 extern volatile int16_t error;         // Speed error signal
 extern volatile uint8_t Kp;            // Proportional gain
 extern volatile uint8_t Ki;            // Integral gain
+									   //
+extern volatile uint8_t pwm_right;
+extern volatile uint8_t pwm_left;
 
 
 enum direction{

@@ -175,7 +175,7 @@ void USART_SendString(uint8_t* p_string) {
 	USART_SendChar(0);
 }
 
-volatile uint8_t command[2];
+volatile uint8_t command[3];
 volatile uint8_t incomingCommand = 0;
 
 void ClearCommand(){
@@ -192,8 +192,12 @@ void USART3_4_IRQHandler(){
 		;
 	if(command[0])
 		if(command[1]){
-			USART_SendString(err);
-			ClearCommand();
+			if(command[2]){
+				USART_SendString(err);
+				ClearCommand();
+			}
+			else
+				command[2] = USART3->RDR;
 		}
 		else
 			command[1] = USART3->RDR;
@@ -318,6 +322,29 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	//        }
 	//    }
 }
+
+/*
+void ProcessCommandPWM(uint8_t side, uint8_t amt){
+	MotorCommand motorcmd = {0};
+	motorcmd.dir = FORWARD;
+	motorcmd.amount = 9;
+	switch(side){
+		case 'l':
+			pwm_left = amt;
+			break;
+		case 'r':
+			pwm_right = amt;
+			break;
+		case 'x':
+			motorcmd.dir = OFF;
+			break;
+		default:
+			break;
+	}
+	MoveMotors(&motorcmd);
+	ClearCommand();
+}
+*/
 
 /*
 void Ultrasonic_Init(uint32_t pins)
@@ -458,7 +485,6 @@ int main(void)
             USART_SendString("\n");
 			*/
 	}
-
 		if(incomingCommand)
 		{
 			if(command[0] != 'w' &&
@@ -471,6 +497,15 @@ int main(void)
 				ProcessCommand(command[0], command[1]);
 			}
 		}
+		/*
+		if(incomingCommand){
+			if(command[2]){
+				uint8_t tens = command[1] - '0';
+				uint8_t huns = command[2] - '0';
+				ProcessCommandPWM(command[0], 10*tens + huns);
+			}
+		}
+		*/
 	 HAL_Delay(500);
 	}
 }

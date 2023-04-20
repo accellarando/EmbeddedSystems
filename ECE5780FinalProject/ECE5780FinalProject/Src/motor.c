@@ -122,6 +122,10 @@ void set_Motor_Direction(Direction dir, motor_pins_t* pins){
 	}
 }
 
+//Experimentation led to this 91 number for driving straight.
+volatile uint8_t pwm_right = 92;
+volatile uint8_t pwm_left = 100;
+
 void set_Forward(){
 	//left go forward
 	set_Motor_Direction(FORWARD, &motor_left_pins);
@@ -129,8 +133,8 @@ void set_Forward(){
 	//right go forward
 	set_Motor_Direction(FORWARD, &motor_right_pins);
 
-	pwm_setDutyCycleR(100);
-	pwm_setDutyCycleL(100);
+	pwm_setDutyCycleR(pwm_right);
+	pwm_setDutyCycleL(pwm_left);
 
 
 	/* the old way
@@ -147,8 +151,8 @@ void set_Backward(){
 
 	//right go backward
 	set_Motor_Direction(BACKWARD, &motor_right_pins);
-	pwm_setDutyCycleR(100);
-	pwm_setDutyCycleL(100);
+	pwm_setDutyCycleR(pwm_right);
+	pwm_setDutyCycleL(pwm_left);
 	/* the old way
 		GPIOA->ODR |= (1 << 8);
 		GPIOA->ODR &= ~(1 << 5);
@@ -163,8 +167,8 @@ void set_Right(){
 
 	//right go backward
 	set_Motor_Direction(BACKWARD, &motor_right_pins);
-	pwm_setDutyCycleR(100);
-	pwm_setDutyCycleL(100);
+	pwm_setDutyCycleR(pwm_right);
+	pwm_setDutyCycleL(pwm_left);
 	/* old way
 		GPIOA->ODR |= (1 << 5);
 		GPIOA->ODR &= ~(1 << 8);
@@ -180,8 +184,8 @@ void set_Left(){
 	//right go forward
 	set_Motor_Direction(FORWARD, &motor_right_pins);
 
-	pwm_setDutyCycleR(100);
-	pwm_setDutyCycleL(100);
+	pwm_setDutyCycleR(pwm_right);
+	pwm_setDutyCycleL(pwm_left);
 	/*
 		GPIOA->ODR |= (1 << 8);
 		GPIOA->ODR &= ~(1 << 5);
@@ -214,6 +218,10 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 		default:
 			err = "Invalid command to MoveMotors!\n";
 	}
+	//THIS IS BAD. if you send an x it won't stop motors until this delay finishes!
+	//Switch to a polling structure instead for final
+	HAL_Delay(10*cmd->amount); 
+	motors_Off();
 	return err;
 }
 
