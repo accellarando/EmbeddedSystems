@@ -42,7 +42,19 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-TIM_HandleTypeDef htim2;
+TIM_HandleTypeDef htim1;
+#define TRIG_PIN_LEFT GPIO_PIN_11
+#define TRIG_PIN_RIGHT GPIO_PIN_13
+#define TRIG_PORT GPIOB
+#define ECHO_PIN_LEFT GPIO_PIN_12
+#define ECHO_PIN_RIGHT GPIO_PIN_14
+#define ECHO_PORT GPIOB
+volatile uint32_t pMillis;
+volatile uint16_t startTime;
+volatile uint16_t Value1 = 0;
+volatile uint16_t Value2 = 0;
+volatile uint16_t leftDistance = 0;
+volatile uint16_t rightDistance = 0;
 
 /* USER CODE BEGIN PV */
 
@@ -51,7 +63,7 @@ TIM_HandleTypeDef htim2;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_TIM2_Init(void);
+static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -326,49 +338,128 @@ void GetDistance()
  */
 int main(void)
 {
-	HAL_Init();
-	SystemClock_Config();
+	HAL_Init();								// Initialize HAL
+    SystemClock_Config();
+    
+    //USART Initalizations
+    GPIO_AF_Init();
+    USART_Init();
 
-	//USART Initalizations
-	GPIO_AF_Init();
-	USART_Init();
-	LED_Init(LED_RED | LED_ORANGE | LED_GREEN | LED_BLUE);
+    motor_init();                           // Initialize motor code
+    
+    NVIC_EnableIRQ(USART3_4_IRQn);
+    NVIC_SetPriority(USART3_4_IRQn,1);
 
-	NVIC_EnableIRQ(USART3_4_IRQn);
-	NVIC_SetPriority(USART3_4_IRQn,1);
+    uint8_t prompt[] = "CMD> ";
+    
+    //PWM and Ultrasonic Initalizations
+    MX_GPIO_Init();
+    MX_TIM1_Init();
+    
+    HAL_TIM_Base_Start(&htim1);
+    HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_RESET);
+	
+	while (1) {
+        int32_t counter = 0;
+        HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_SET);  // pull the TRIG pin HIGH
+        
+        //__HAL_TIM_SET_COUNTER(&htim1, 0);
+        //while(__HAL_TIM_GET_COUNTER(&htim1) < 10);
+        while (counter < 10){
+            counter++;
+        }  // wait for 10 us
+        HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_RESET);  // pull the TRIG pin low
+        
+        
+        startTime = HAL_GetTick();
+        pMillis = HAL_GetTick(); // used this to avoid infinite while loop  (for timeout)
+        
+        // wait for the echo pin to go high
+        while (!(HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_LEFT)) && pMillis + 10 >  HAL_GetTick())
+        {
+         
+        }
+        //Value1 = __HAL_TIM_GET_COUNTER (&htim1);
+        Value1 = (HAL_GetTick() - startTime);
+        
 
-	uint8_t prompt[] = "CMD> ";
-	//TODO: Replace status with actual ultrsonic sensor data.
-	uint8_t* status;
-	uint8_t* distance;
+      pMillis = HAL_GetTick(); // used this to avoid infinite while loop (for timeout)
+      // wait for the echo pin to go low
+        while ((HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_LEFT)) && pMillis + 50 > HAL_GetTick())
+        {
+            
+        }
+      //Value2 = __HAL_TIM_GET_COUNTER (&htim1);
+        Value2 = (HAL_GetTick() - startTime);
 
-	//PWM Initalizations
-	MX_GPIO_Init();
-	MX_TIM2_Init();
-	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); //Initalized to GPIO pin PA5
+      //Distance = ((Value2-Value1)* 0.034)/2;
+        leftDistance = (Value2 - Value1);
+        if(leftDistance < 10)
+        {
+            char strLeft[32];
+            sprintf(strLeft, "%u", leftDistance);
+            USART_SendString("Left Ultrasonic: ");
+            USART_SendString(strLeft);
+            USART_SendString("\n");
+        }
+        
+        
+        
+        
+        
+        counter = 0;
+        HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_SET);  // pull the TRIG pin HIGH
+        
+        //__HAL_TIM_SET_COUNTER(&htim1, 0);
+        //while(__HAL_TIM_GET_COUNTER(&htim1) < 10);
+        while (counter < 10){
+            counter++;
+        }  // wait for 10 us
+        HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_RESET);  // pull the TRIG pin low
+        
+        
+        startTime = HAL_GetTick();
+        pMillis = HAL_GetTick(); // used this to avoid infinite while loop  (for timeout)
+        
+        // wait for the echo pin to go high
+        while (!(HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_RIGHT)) && pMillis + 10 >  HAL_GetTick())
+        {
+         
+        }
+        //Value1 = __HAL_TIM_GET_COUNTER (&htim1);
+        Value1 = (HAL_GetTick() - startTime);
+        
 
-	USART_SendString(prompt);
-	uint32_t count = 0;
-	while (1)
-	{
-		if(count > 1000000)
+      pMillis = HAL_GetTick(); // used this to avoid infinite while loop (for timeout)
+      // wait for the echo pin to go low
+        while ((HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_RIGHT)) && pMillis + 50 > HAL_GetTick())
+        {
+            
+        }
+      //Value2 = __HAL_TIM_GET_COUNTER (&htim1);
+        Value2 = (HAL_GetTick() - startTime);
+
+      //Distance = ((Value2-Value1)* 0.034)/2;
+        rightDistance = (Value2 - Value1);
+        if(rightDistance < 10)
+        {
+            char strRight[32];
+            sprintf(strRight, "%u", rightDistance);
+            USART_SendString("Right Ultrasonic: ");
+            USART_SendString(strRight);
+            USART_SendString("\n");
+	}
+
+		if(incomingCommand)
 		{
-			count = 0;
-			status = "Ultrasonic Distance: ";
-			USART_SendString(status);
-			distance = 5;
-			USART_SendChar(command[0]);
-		}
-		else
-			count++;
-
-
-		if(incomingCommand){
-			if(command[1]){
+			if(command[1])
+			{
 				ProcessCommand(command[0], command[1]);
 			}
 		}
 	}
+	 HAL_Delay(500);
 }
 
 /**
@@ -411,57 +502,77 @@ void SystemClock_Config(void)
  * @param None
  * @retval None
  */
-static void MX_TIM2_Init(void)
+static void MX_TIM1_Init(void)
 {
 
-	/* USER CODE BEGIN TIM2_Init 0 */
+  /* USER CODE BEGIN TIM1_Init 0 */
 
-	/* USER CODE END TIM2_Init 0 */
+  /* USER CODE END TIM1_Init 0 */
 
-	TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-	TIM_MasterConfigTypeDef sMasterConfig = {0};
-	TIM_OC_InitTypeDef sConfigOC = {0};
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_OC_InitTypeDef sConfigOC = {0};
+  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
 
-	/* USER CODE BEGIN TIM2_Init 1 */
+  /* USER CODE BEGIN TIM1_Init 1 */
 
-	/* USER CODE END TIM2_Init 1 */
-	htim2.Instance = TIM2;
-	htim2.Init.Prescaler = 0;
-	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim2.Init.Period = 65535;
-	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
-	if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-	if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-	if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sConfigOC.OCMode = TIM_OCMODE_PWM1;
-	sConfigOC.Pulse = 0;
-	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-	if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	/* USER CODE BEGIN TIM2_Init 2 */
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 0;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 65535;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = 0;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+  sBreakDeadTimeConfig.DeadTime = 0;
+  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM1_Init 2 */
 
-	/* USER CODE END TIM2_Init 2 */
-	HAL_TIM_MspPostInit(&htim2);
+  /* USER CODE END TIM1_Init 2 */
+  HAL_TIM_MspPostInit(&htim1);
 
 }
 
