@@ -38,23 +38,21 @@ void pwm_init(void) {
     GPIOA->AFR[0] &= 0xFFF0FFFF; // clear PA4 bits,
     GPIOA->AFR[0] |= (1 << 18);
 	
-		// Set PB3 to AF4,
-    GPIOB->AFR[0] &= 0xFFFF0FFF; // clear PA4 bits,
+		// Set PB3 to AF2,
+    GPIOB->AFR[0] &= 0xFFFF0FFF; // clear PB3 bits,
     GPIOB->AFR[0] |= (1 << 13);
 
-    // Set up a PA2, PA5 as GPIO output pins for motor direction control
-	GPIOA->MODER &= ~(3<<16);
-	GPIOA->MODER &= ~(3<<10);
-	GPIOA->MODER |= (1 << 16);
-    GPIOA->MODER |= (1 << 10);// | (1 << 4);
-
+    // Set up a PA5, PA8 as GPIO output pins for motor direction control
+    GPIOA->MODER &= 0xFFFCF3FF; // clear PA5, PA6 bits,
+    GPIOA->MODER |= (1 << 10) | (1 << 16);
+	
 		// Set up a PB2, PB10 as GPIO output pins for motor direction control
     GPIOB->MODER &= 0xFFCFFFCF; // clear PB2, PB10 bits,
     GPIOB->MODER |= (1 << 4) | (1 << 20);
    
     //Initialize one direction pin to high, the other low
-    GPIOA->ODR &= ~(1 << 5);
-    GPIOA->ODR |= (1 << 8);
+    GPIOA->ODR |= (1 << 5);
+    GPIOA->ODR &= ~(1 << 8);
 		GPIOB->ODR |= (1 << 10);
     GPIOB->ODR &= ~(1 << 2);
 
@@ -82,7 +80,7 @@ void pwm_init(void) {
     TIM2->CCER |= TIM_CCER_CC2E;           // Enable capture-compare channel 2
     TIM2->PSC = 1;                         // Run timer on 24Mhz
     TIM2->ARR = 1200;                      // PWM at 20kHz
-    TIM2->CCR1 = 0;                        // Start PWM at 0% duty cycle
+    TIM2->CCR2 = 0;                        // Start PWM at 0% duty cycle
     
     TIM2->CR1 |= TIM_CR1_CEN;              // Enable timer
 }
@@ -98,8 +96,8 @@ void pwm_setDutyCycleL(uint8_t duty) {
 // Set the duty cycle of the PWM Right, accepts (0-100)
 void pwm_setDutyCycleR(uint8_t duty) {
     if(duty <= 100) {
-        TIM2->CCR1 = ((uint32_t)duty*TIM2->ARR)/100;  // Use linear transform to produce CCR1 value
-        // (CCR1 == "pulse" parameter in PWM struct used by peripheral library)
+        TIM2->CCR2 = ((uint32_t)duty*TIM2->ARR)/100;  // Use linear transform to produce CCR1 value
+        // (CCR2 == "pulse" parameter in PWM struct used by peripheral library)
     }
 }
 
@@ -119,13 +117,13 @@ void set_Backward(){
 
 void set_Right(){
 		GPIOA->ODR |= (1 << 5);
-		GPIOA->ODR &= ~(1 << 6);
+		GPIOA->ODR &= ~(1 << 8);
 		GPIOB->ODR |= (1 << 2);
 		GPIOB->ODR &= ~(1 << 10);
 }
 
 void set_Left(){
-		GPIOA->ODR |= (1 << 6);
+		GPIOA->ODR |= (1 << 8);
 		GPIOA->ODR &= ~(1 << 5);
 		GPIOB->ODR |= (1 << 10);
 		GPIOB->ODR &= ~(1 << 2);
