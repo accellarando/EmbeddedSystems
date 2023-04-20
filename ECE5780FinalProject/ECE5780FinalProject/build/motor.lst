@@ -1,0 +1,2232 @@
+ARM GAS  /tmp/ccBdwhyA.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"motor.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Src/motor.c"
+  18              		.section	.text.pwm_init,"ax",%progbits
+  19              		.align	1
+  20              		.global	pwm_init
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	pwm_init:
+  26              	.LFB44:
+   1:Src/motor.c   **** /* ------------------------------------------------------------------------------------------------
+   2:Src/motor.c   ****  *  Motor Control and Initialization Functions
+   3:Src/motor.c   ****  * ------------------------------------------------------------------------------------------------
+   4:Src/motor.c   ****  */
+   5:Src/motor.c   **** #include "motor.h"
+   6:Src/motor.c   **** 
+   7:Src/motor.c   **** volatile int16_t error_integral = 0;    // Integrated error signal
+   8:Src/motor.c   **** volatile uint8_t duty_cycle = 0;    	// Output PWM duty cycle
+   9:Src/motor.c   **** volatile int16_t target_rpm = 0;    	// Desired speed target
+  10:Src/motor.c   **** volatile int16_t motorl_speed = 0;   	// Measured left motor speed
+  11:Src/motor.c   **** volatile int16_t motorr_speed = 0;   	// Measured left motor speed
+  12:Src/motor.c   **** volatile int8_t adc_value = 0;      	// ADC measured motor current
+  13:Src/motor.c   **** volatile int16_t error = 0;         	// Speed error signal
+  14:Src/motor.c   **** volatile uint8_t Kp = 1;            	// Proportional gain
+  15:Src/motor.c   **** volatile uint8_t Ki = 1;            	// Integral gain
+  16:Src/motor.c   **** 
+  17:Src/motor.c   **** // Sets up the entire motor drive system
+  18:Src/motor.c   **** void motor_init(void) {
+  19:Src/motor.c   ****     pwm_init();
+  20:Src/motor.c   ****     encoder_init();
+  21:Src/motor.c   ****     ADC_init();
+  22:Src/motor.c   **** }
+  23:Src/motor.c   **** 
+  24:Src/motor.c   **** // Sets up the PWM and direction signals to drive the H-Bridge
+  25:Src/motor.c   **** void pwm_init(void) {
+  27              		.loc 1 25 21 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 70B5     		push	{r4, r5, r6, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 16
+ARM GAS  /tmp/ccBdwhyA.s 			page 2
+
+
+  34              		.cfi_offset 4, -16
+  35              		.cfi_offset 5, -12
+  36              		.cfi_offset 6, -8
+  37              		.cfi_offset 14, -4
+  26:Src/motor.c   **** 	
+  27:Src/motor.c   **** 		RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+  38              		.loc 1 27 3 view .LVU1
+  39              		.loc 1 27 6 is_stmt 0 view .LVU2
+  40 0002 3F4C     		ldr	r4, .L2
+  41 0004 6369     		ldr	r3, [r4, #20]
+  42              		.loc 1 27 15 view .LVU3
+  43 0006 8021     		movs	r1, #128
+  44 0008 C902     		lsls	r1, r1, #11
+  45 000a 0B43     		orrs	r3, r1
+  46 000c 6361     		str	r3, [r4, #20]
+  28:Src/motor.c   **** 	
+  29:Src/motor.c   ****     // Set up pin PA4 for H-bridge PWM output (TIMER 14 CH1)
+  30:Src/motor.c   ****     GPIOA->MODER |= (1 << 9);
+  47              		.loc 1 30 5 is_stmt 1 view .LVU4
+  48              		.loc 1 30 10 is_stmt 0 view .LVU5
+  49 000e 9022     		movs	r2, #144
+  50 0010 D205     		lsls	r2, r2, #23
+  51 0012 1068     		ldr	r0, [r2]
+  52              		.loc 1 30 18 view .LVU6
+  53 0014 8023     		movs	r3, #128
+  54 0016 9B00     		lsls	r3, r3, #2
+  55 0018 0343     		orrs	r3, r0
+  56 001a 1360     		str	r3, [r2]
+  31:Src/motor.c   ****     GPIOA->MODER &= ~(1 << 8);
+  57              		.loc 1 31 5 is_stmt 1 view .LVU7
+  58              		.loc 1 31 10 is_stmt 0 view .LVU8
+  59 001c 1368     		ldr	r3, [r2]
+  60              		.loc 1 31 18 view .LVU9
+  61 001e 3948     		ldr	r0, .L2+4
+  62 0020 0340     		ands	r3, r0
+  63 0022 1360     		str	r3, [r2]
+  32:Src/motor.c   **** 	
+  33:Src/motor.c   **** 	  // Set up pin PB3 for H-bridge PWM output (TIMER 2 CH2)
+  34:Src/motor.c   ****     GPIOB->MODER |= (1 << 7);
+  64              		.loc 1 34 5 is_stmt 1 view .LVU10
+  65              		.loc 1 34 10 is_stmt 0 view .LVU11
+  66 0024 384B     		ldr	r3, .L2+8
+  67 0026 1D68     		ldr	r5, [r3]
+  68              		.loc 1 34 18 view .LVU12
+  69 0028 8026     		movs	r6, #128
+  70 002a 3543     		orrs	r5, r6
+  71 002c 1D60     		str	r5, [r3]
+  35:Src/motor.c   ****     GPIOB->MODER &= ~(1 << 6);
+  72              		.loc 1 35 5 is_stmt 1 view .LVU13
+  73              		.loc 1 35 10 is_stmt 0 view .LVU14
+  74 002e 1D68     		ldr	r5, [r3]
+  75              		.loc 1 35 18 view .LVU15
+  76 0030 403E     		subs	r6, r6, #64
+  77 0032 B543     		bics	r5, r6
+  78 0034 1D60     		str	r5, [r3]
+  36:Src/motor.c   **** 
+  37:Src/motor.c   ****     // Set PA4 to AF4,
+ARM GAS  /tmp/ccBdwhyA.s 			page 3
+
+
+  38:Src/motor.c   ****     GPIOA->AFR[0] &= 0xFFF0FFFF; // clear PA4 bits,
+  79              		.loc 1 38 5 is_stmt 1 view .LVU16
+  80              		.loc 1 38 15 is_stmt 0 view .LVU17
+  81 0036 156A     		ldr	r5, [r2, #32]
+  82              		.loc 1 38 19 view .LVU18
+  83 0038 344E     		ldr	r6, .L2+12
+  84 003a 3540     		ands	r5, r6
+  85 003c 1562     		str	r5, [r2, #32]
+  39:Src/motor.c   ****     GPIOA->AFR[0] |= (1 << 18);
+  86              		.loc 1 39 5 is_stmt 1 view .LVU19
+  87              		.loc 1 39 15 is_stmt 0 view .LVU20
+  88 003e 156A     		ldr	r5, [r2, #32]
+  89              		.loc 1 39 19 view .LVU21
+  90 0040 2943     		orrs	r1, r5
+  91 0042 1162     		str	r1, [r2, #32]
+  40:Src/motor.c   **** 	
+  41:Src/motor.c   **** 		// Set PB3 to AF2,
+  42:Src/motor.c   ****     GPIOB->AFR[0] &= 0xFFFF0FFF; // clear PB3 bits,
+  92              		.loc 1 42 5 is_stmt 1 view .LVU22
+  93              		.loc 1 42 15 is_stmt 0 view .LVU23
+  94 0044 196A     		ldr	r1, [r3, #32]
+  95              		.loc 1 42 19 view .LVU24
+  96 0046 324D     		ldr	r5, .L2+16
+  97 0048 2940     		ands	r1, r5
+  98 004a 1962     		str	r1, [r3, #32]
+  43:Src/motor.c   ****     GPIOB->AFR[0] |= (1 << 13);
+  99              		.loc 1 43 5 is_stmt 1 view .LVU25
+ 100              		.loc 1 43 15 is_stmt 0 view .LVU26
+ 101 004c 1D6A     		ldr	r5, [r3, #32]
+ 102              		.loc 1 43 19 view .LVU27
+ 103 004e 8021     		movs	r1, #128
+ 104 0050 8901     		lsls	r1, r1, #6
+ 105 0052 2943     		orrs	r1, r5
+ 106 0054 1962     		str	r1, [r3, #32]
+  44:Src/motor.c   **** 
+  45:Src/motor.c   ****     // Set up a PA5, PA8 as GPIO output pins for motor direction control
+  46:Src/motor.c   ****     GPIOA->MODER &= 0xFFFCF3FF; // clear PA5, PA6 bits,
+ 107              		.loc 1 46 5 is_stmt 1 view .LVU28
+ 108              		.loc 1 46 10 is_stmt 0 view .LVU29
+ 109 0056 1168     		ldr	r1, [r2]
+ 110              		.loc 1 46 18 view .LVU30
+ 111 0058 2E4D     		ldr	r5, .L2+20
+ 112 005a 2940     		ands	r1, r5
+ 113 005c 1160     		str	r1, [r2]
+  47:Src/motor.c   ****     GPIOA->MODER |= (1 << 10) | (1 << 16);
+ 114              		.loc 1 47 5 is_stmt 1 view .LVU31
+ 115              		.loc 1 47 10 is_stmt 0 view .LVU32
+ 116 005e 1568     		ldr	r5, [r2]
+ 117              		.loc 1 47 18 view .LVU33
+ 118 0060 8221     		movs	r1, #130
+ 119 0062 4902     		lsls	r1, r1, #9
+ 120 0064 2943     		orrs	r1, r5
+ 121 0066 1160     		str	r1, [r2]
+  48:Src/motor.c   **** 	
+  49:Src/motor.c   **** 		// Set up a PB2, PB10 as GPIO output pins for motor direction control
+  50:Src/motor.c   ****     GPIOB->MODER &= 0xFFCFFFCF; // clear PB2, PB10 bits,
+ 122              		.loc 1 50 5 is_stmt 1 view .LVU34
+ARM GAS  /tmp/ccBdwhyA.s 			page 4
+
+
+ 123              		.loc 1 50 10 is_stmt 0 view .LVU35
+ 124 0068 1968     		ldr	r1, [r3]
+ 125              		.loc 1 50 18 view .LVU36
+ 126 006a 2B4D     		ldr	r5, .L2+24
+ 127 006c 2940     		ands	r1, r5
+ 128 006e 1960     		str	r1, [r3]
+  51:Src/motor.c   ****     GPIOB->MODER |= (1 << 4) | (1 << 20);
+ 129              		.loc 1 51 5 is_stmt 1 view .LVU37
+ 130              		.loc 1 51 10 is_stmt 0 view .LVU38
+ 131 0070 1D68     		ldr	r5, [r3]
+ 132              		.loc 1 51 18 view .LVU39
+ 133 0072 2A49     		ldr	r1, .L2+28
+ 134 0074 2943     		orrs	r1, r5
+ 135 0076 1960     		str	r1, [r3]
+  52:Src/motor.c   ****    
+  53:Src/motor.c   ****     //Initialize one direction pin to high, the other low
+  54:Src/motor.c   ****     GPIOA->ODR |= (1 << 5);
+ 136              		.loc 1 54 5 is_stmt 1 view .LVU40
+ 137              		.loc 1 54 10 is_stmt 0 view .LVU41
+ 138 0078 5169     		ldr	r1, [r2, #20]
+ 139              		.loc 1 54 16 view .LVU42
+ 140 007a 2025     		movs	r5, #32
+ 141 007c 2943     		orrs	r1, r5
+ 142 007e 5161     		str	r1, [r2, #20]
+  55:Src/motor.c   ****     GPIOA->ODR &= ~(1 << 8);
+ 143              		.loc 1 55 5 is_stmt 1 view .LVU43
+ 144              		.loc 1 55 10 is_stmt 0 view .LVU44
+ 145 0080 5169     		ldr	r1, [r2, #20]
+ 146              		.loc 1 55 16 view .LVU45
+ 147 0082 0140     		ands	r1, r0
+ 148 0084 5161     		str	r1, [r2, #20]
+  56:Src/motor.c   **** 		GPIOB->ODR |= (1 << 10);
+ 149              		.loc 1 56 3 is_stmt 1 view .LVU46
+ 150              		.loc 1 56 8 is_stmt 0 view .LVU47
+ 151 0086 5969     		ldr	r1, [r3, #20]
+ 152              		.loc 1 56 14 view .LVU48
+ 153 0088 8022     		movs	r2, #128
+ 154 008a D200     		lsls	r2, r2, #3
+ 155 008c 0A43     		orrs	r2, r1
+ 156 008e 5A61     		str	r2, [r3, #20]
+  57:Src/motor.c   ****     GPIOB->ODR &= ~(1 << 2);
+ 157              		.loc 1 57 5 is_stmt 1 view .LVU49
+ 158              		.loc 1 57 10 is_stmt 0 view .LVU50
+ 159 0090 5A69     		ldr	r2, [r3, #20]
+ 160              		.loc 1 57 16 view .LVU51
+ 161 0092 0421     		movs	r1, #4
+ 162 0094 8A43     		bics	r2, r1
+ 163 0096 5A61     		str	r2, [r3, #20]
+  58:Src/motor.c   **** 
+  59:Src/motor.c   ****     // Set up PWM timer
+  60:Src/motor.c   ****     RCC->APB1ENR |= RCC_APB1ENR_TIM14EN;
+ 164              		.loc 1 60 5 is_stmt 1 view .LVU52
+ 165              		.loc 1 60 8 is_stmt 0 view .LVU53
+ 166 0098 E269     		ldr	r2, [r4, #28]
+ 167              		.loc 1 60 18 view .LVU54
+ 168 009a 8023     		movs	r3, #128
+ 169 009c 5B00     		lsls	r3, r3, #1
+ARM GAS  /tmp/ccBdwhyA.s 			page 5
+
+
+ 170 009e 1343     		orrs	r3, r2
+ 171 00a0 E361     		str	r3, [r4, #28]
+  61:Src/motor.c   ****     TIM14->CR1 = 0;                         // Clear control registers
+ 172              		.loc 1 61 5 is_stmt 1 view .LVU55
+ 173              		.loc 1 61 16 is_stmt 0 view .LVU56
+ 174 00a2 1F4A     		ldr	r2, .L2+32
+ 175 00a4 0021     		movs	r1, #0
+ 176 00a6 1160     		str	r1, [r2]
+  62:Src/motor.c   ****     TIM14->CCMR1 = 0;                       // (prevents having to manually clear bits)
+ 177              		.loc 1 62 5 is_stmt 1 view .LVU57
+ 178              		.loc 1 62 18 is_stmt 0 view .LVU58
+ 179 00a8 9161     		str	r1, [r2, #24]
+  63:Src/motor.c   ****     TIM14->CCER = 0;
+ 180              		.loc 1 63 5 is_stmt 1 view .LVU59
+ 181              		.loc 1 63 17 is_stmt 0 view .LVU60
+ 182 00aa 1162     		str	r1, [r2, #32]
+  64:Src/motor.c   **** 		
+  65:Src/motor.c   **** 		RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+ 183              		.loc 1 65 3 is_stmt 1 view .LVU61
+ 184              		.loc 1 65 6 is_stmt 0 view .LVU62
+ 185 00ac E369     		ldr	r3, [r4, #28]
+ 186              		.loc 1 65 16 view .LVU63
+ 187 00ae 0330     		adds	r0, r0, #3
+ 188 00b0 FF30     		adds	r0, r0, #255
+ 189 00b2 0343     		orrs	r3, r0
+ 190 00b4 E361     		str	r3, [r4, #28]
+  66:Src/motor.c   ****     TIM2->CR1 = 0;                         // Clear control registers
+ 191              		.loc 1 66 5 is_stmt 1 view .LVU64
+ 192              		.loc 1 66 15 is_stmt 0 view .LVU65
+ 193 00b6 8023     		movs	r3, #128
+ 194 00b8 DB05     		lsls	r3, r3, #23
+ 195 00ba 1960     		str	r1, [r3]
+  67:Src/motor.c   ****     TIM2->CCMR1 = 0;                       // (prevents having to manually clear bits)
+ 196              		.loc 1 67 5 is_stmt 1 view .LVU66
+ 197              		.loc 1 67 17 is_stmt 0 view .LVU67
+ 198 00bc 9961     		str	r1, [r3, #24]
+  68:Src/motor.c   ****     TIM2->CCER = 0;
+ 199              		.loc 1 68 5 is_stmt 1 view .LVU68
+ 200              		.loc 1 68 16 is_stmt 0 view .LVU69
+ 201 00be 1962     		str	r1, [r3, #32]
+  69:Src/motor.c   **** 
+  70:Src/motor.c   ****     // Set output-compare CH1 to PWM1 mode and enable CCR1 preload buffer
+  71:Src/motor.c   ****     TIM14->CCMR1 |= (TIM_CCMR1_OC1M_2 | TIM_CCMR1_OC1M_1 | TIM_CCMR1_OC1PE);
+ 202              		.loc 1 71 5 is_stmt 1 view .LVU70
+ 203              		.loc 1 71 10 is_stmt 0 view .LVU71
+ 204 00c0 9469     		ldr	r4, [r2, #24]
+ 205              		.loc 1 71 18 view .LVU72
+ 206 00c2 4835     		adds	r5, r5, #72
+ 207 00c4 2C43     		orrs	r4, r5
+ 208 00c6 9461     		str	r4, [r2, #24]
+  72:Src/motor.c   ****     TIM14->CCER |= TIM_CCER_CC1E;           // Enable capture-compare channel 1
+ 209              		.loc 1 72 5 is_stmt 1 view .LVU73
+ 210              		.loc 1 72 10 is_stmt 0 view .LVU74
+ 211 00c8 146A     		ldr	r4, [r2, #32]
+ 212              		.loc 1 72 17 view .LVU75
+ 213 00ca 0443     		orrs	r4, r0
+ 214 00cc 1462     		str	r4, [r2, #32]
+ARM GAS  /tmp/ccBdwhyA.s 			page 6
+
+
+  73:Src/motor.c   ****     TIM14->PSC = 1;                         // Run timer on 24Mhz
+ 215              		.loc 1 73 5 is_stmt 1 view .LVU76
+ 216              		.loc 1 73 16 is_stmt 0 view .LVU77
+ 217 00ce 9062     		str	r0, [r2, #40]
+  74:Src/motor.c   ****     TIM14->ARR = 1200;                      // PWM at 20kHz
+ 218              		.loc 1 74 5 is_stmt 1 view .LVU78
+ 219              		.loc 1 74 16 is_stmt 0 view .LVU79
+ 220 00d0 9625     		movs	r5, #150
+ 221 00d2 ED00     		lsls	r5, r5, #3
+ 222 00d4 D562     		str	r5, [r2, #44]
+  75:Src/motor.c   ****     TIM14->CCR1 = 0;                        // Start PWM at 0% duty cycle
+ 223              		.loc 1 75 5 is_stmt 1 view .LVU80
+ 224              		.loc 1 75 17 is_stmt 0 view .LVU81
+ 225 00d6 5163     		str	r1, [r2, #52]
+  76:Src/motor.c   ****     
+  77:Src/motor.c   ****     TIM14->CR1 |= TIM_CR1_CEN;              // Enable timer
+ 226              		.loc 1 77 5 is_stmt 1 view .LVU82
+ 227              		.loc 1 77 10 is_stmt 0 view .LVU83
+ 228 00d8 1468     		ldr	r4, [r2]
+ 229              		.loc 1 77 16 view .LVU84
+ 230 00da 0443     		orrs	r4, r0
+ 231 00dc 1460     		str	r4, [r2]
+  78:Src/motor.c   **** 		
+  79:Src/motor.c   **** 		TIM2->CCMR1 |= (TIM_CCMR1_OC2M_2 | TIM_CCMR1_OC2M_1 | TIM_CCMR1_OC2PE);
+ 232              		.loc 1 79 3 is_stmt 1 view .LVU85
+ 233              		.loc 1 79 7 is_stmt 0 view .LVU86
+ 234 00de 9C69     		ldr	r4, [r3, #24]
+ 235              		.loc 1 79 15 view .LVU87
+ 236 00e0 D022     		movs	r2, #208
+ 237 00e2 D201     		lsls	r2, r2, #7
+ 238 00e4 2243     		orrs	r2, r4
+ 239 00e6 9A61     		str	r2, [r3, #24]
+  80:Src/motor.c   ****     TIM2->CCER |= TIM_CCER_CC2E;           // Enable capture-compare channel 2
+ 240              		.loc 1 80 5 is_stmt 1 view .LVU88
+ 241              		.loc 1 80 9 is_stmt 0 view .LVU89
+ 242 00e8 1A6A     		ldr	r2, [r3, #32]
+ 243              		.loc 1 80 16 view .LVU90
+ 244 00ea 1024     		movs	r4, #16
+ 245 00ec 2243     		orrs	r2, r4
+ 246 00ee 1A62     		str	r2, [r3, #32]
+  81:Src/motor.c   ****     TIM2->PSC = 1;                         // Run timer on 24Mhz
+ 247              		.loc 1 81 5 is_stmt 1 view .LVU91
+ 248              		.loc 1 81 15 is_stmt 0 view .LVU92
+ 249 00f0 9862     		str	r0, [r3, #40]
+  82:Src/motor.c   ****     TIM2->ARR = 1200;                      // PWM at 20kHz
+ 250              		.loc 1 82 5 is_stmt 1 view .LVU93
+ 251              		.loc 1 82 15 is_stmt 0 view .LVU94
+ 252 00f2 DD62     		str	r5, [r3, #44]
+  83:Src/motor.c   ****     TIM2->CCR2 = 0;                        // Start PWM at 0% duty cycle
+ 253              		.loc 1 83 5 is_stmt 1 view .LVU95
+ 254              		.loc 1 83 16 is_stmt 0 view .LVU96
+ 255 00f4 9963     		str	r1, [r3, #56]
+  84:Src/motor.c   ****     
+  85:Src/motor.c   ****     TIM2->CR1 |= TIM_CR1_CEN;              // Enable timer
+ 256              		.loc 1 85 5 is_stmt 1 view .LVU97
+ 257              		.loc 1 85 9 is_stmt 0 view .LVU98
+ 258 00f6 1A68     		ldr	r2, [r3]
+ARM GAS  /tmp/ccBdwhyA.s 			page 7
+
+
+ 259              		.loc 1 85 15 view .LVU99
+ 260 00f8 0243     		orrs	r2, r0
+ 261 00fa 1A60     		str	r2, [r3]
+  86:Src/motor.c   **** }
+ 262              		.loc 1 86 1 view .LVU100
+ 263              		@ sp needed
+ 264 00fc 70BD     		pop	{r4, r5, r6, pc}
+ 265              	.L3:
+ 266 00fe C046     		.align	2
+ 267              	.L2:
+ 268 0100 00100240 		.word	1073876992
+ 269 0104 FFFEFFFF 		.word	-257
+ 270 0108 00040048 		.word	1207960576
+ 271 010c FFFFF0FF 		.word	-983041
+ 272 0110 FF0FFFFF 		.word	-61441
+ 273 0114 FFF3FCFF 		.word	-199681
+ 274 0118 CFFFCFFF 		.word	-3145777
+ 275 011c 10001000 		.word	1048592
+ 276 0120 00200040 		.word	1073750016
+ 277              		.cfi_endproc
+ 278              	.LFE44:
+ 280              		.global	__aeabi_uidiv
+ 281              		.section	.text.pwm_setDutyCycleL,"ax",%progbits
+ 282              		.align	1
+ 283              		.global	pwm_setDutyCycleL
+ 284              		.syntax unified
+ 285              		.code	16
+ 286              		.thumb_func
+ 288              	pwm_setDutyCycleL:
+ 289              	.LVL0:
+ 290              	.LFB45:
+  87:Src/motor.c   **** 
+  88:Src/motor.c   **** // Set the duty cycle of the PWM Left, accepts (0-100)
+  89:Src/motor.c   **** void pwm_setDutyCycleL(uint8_t duty) {
+ 291              		.loc 1 89 38 is_stmt 1 view -0
+ 292              		.cfi_startproc
+ 293              		@ args = 0, pretend = 0, frame = 0
+ 294              		@ frame_needed = 0, uses_anonymous_args = 0
+ 295              		.loc 1 89 38 is_stmt 0 view .LVU102
+ 296 0000 10B5     		push	{r4, lr}
+ 297              	.LCFI1:
+ 298              		.cfi_def_cfa_offset 8
+ 299              		.cfi_offset 4, -8
+ 300              		.cfi_offset 14, -4
+  90:Src/motor.c   ****     if(duty <= 100) {
+ 301              		.loc 1 90 5 is_stmt 1 view .LVU103
+ 302              		.loc 1 90 7 is_stmt 0 view .LVU104
+ 303 0002 6428     		cmp	r0, #100
+ 304 0004 06D8     		bhi	.L4
+  91:Src/motor.c   ****         TIM14->CCR1 = ((uint32_t)duty*TIM14->ARR)/100;  // Use linear transform to produce CCR1 val
+ 305              		.loc 1 91 9 is_stmt 1 view .LVU105
+ 306              		.loc 1 91 44 is_stmt 0 view .LVU106
+ 307 0006 044C     		ldr	r4, .L6
+ 308 0008 E36A     		ldr	r3, [r4, #44]
+ 309              		.loc 1 91 38 view .LVU107
+ 310 000a 5843     		muls	r0, r3
+ 311              	.LVL1:
+ARM GAS  /tmp/ccBdwhyA.s 			page 8
+
+
+ 312              		.loc 1 91 50 view .LVU108
+ 313 000c 6421     		movs	r1, #100
+ 314 000e FFF7FEFF 		bl	__aeabi_uidiv
+ 315              	.LVL2:
+ 316              		.loc 1 91 21 view .LVU109
+ 317 0012 6063     		str	r0, [r4, #52]
+ 318              	.L4:
+  92:Src/motor.c   ****         // (CCR1 == "pulse" parameter in PWM struct used by peripheral library)
+  93:Src/motor.c   ****     }
+  94:Src/motor.c   **** }
+ 319              		.loc 1 94 1 view .LVU110
+ 320              		@ sp needed
+ 321 0014 10BD     		pop	{r4, pc}
+ 322              	.L7:
+ 323 0016 C046     		.align	2
+ 324              	.L6:
+ 325 0018 00200040 		.word	1073750016
+ 326              		.cfi_endproc
+ 327              	.LFE45:
+ 329              		.section	.text.pwm_setDutyCycleR,"ax",%progbits
+ 330              		.align	1
+ 331              		.global	pwm_setDutyCycleR
+ 332              		.syntax unified
+ 333              		.code	16
+ 334              		.thumb_func
+ 336              	pwm_setDutyCycleR:
+ 337              	.LVL3:
+ 338              	.LFB46:
+  95:Src/motor.c   **** 
+  96:Src/motor.c   **** // Set the duty cycle of the PWM Right, accepts (0-100)
+  97:Src/motor.c   **** void pwm_setDutyCycleR(uint8_t duty) {
+ 339              		.loc 1 97 38 is_stmt 1 view -0
+ 340              		.cfi_startproc
+ 341              		@ args = 0, pretend = 0, frame = 0
+ 342              		@ frame_needed = 0, uses_anonymous_args = 0
+ 343              		.loc 1 97 38 is_stmt 0 view .LVU112
+ 344 0000 10B5     		push	{r4, lr}
+ 345              	.LCFI2:
+ 346              		.cfi_def_cfa_offset 8
+ 347              		.cfi_offset 4, -8
+ 348              		.cfi_offset 14, -4
+  98:Src/motor.c   ****     if(duty <= 100) {
+ 349              		.loc 1 98 5 is_stmt 1 view .LVU113
+ 350              		.loc 1 98 7 is_stmt 0 view .LVU114
+ 351 0002 6428     		cmp	r0, #100
+ 352 0004 07D8     		bhi	.L8
+  99:Src/motor.c   ****         TIM2->CCR2 = ((uint32_t)duty*TIM2->ARR)/100;  // Use linear transform to produce CCR1 value
+ 353              		.loc 1 99 9 is_stmt 1 view .LVU115
+ 354              		.loc 1 99 42 is_stmt 0 view .LVU116
+ 355 0006 8024     		movs	r4, #128
+ 356 0008 E405     		lsls	r4, r4, #23
+ 357 000a E36A     		ldr	r3, [r4, #44]
+ 358              		.loc 1 99 37 view .LVU117
+ 359 000c 5843     		muls	r0, r3
+ 360              	.LVL4:
+ 361              		.loc 1 99 48 view .LVU118
+ 362 000e 6421     		movs	r1, #100
+ARM GAS  /tmp/ccBdwhyA.s 			page 9
+
+
+ 363 0010 FFF7FEFF 		bl	__aeabi_uidiv
+ 364              	.LVL5:
+ 365              		.loc 1 99 20 view .LVU119
+ 366 0014 A063     		str	r0, [r4, #56]
+ 367              	.L8:
+ 100:Src/motor.c   ****         // (CCR2 == "pulse" parameter in PWM struct used by peripheral library)
+ 101:Src/motor.c   ****     }
+ 102:Src/motor.c   **** }
+ 368              		.loc 1 102 1 view .LVU120
+ 369              		@ sp needed
+ 370 0016 10BD     		pop	{r4, pc}
+ 371              		.cfi_endproc
+ 372              	.LFE46:
+ 374              		.section	.text.set_Forward,"ax",%progbits
+ 375              		.align	1
+ 376              		.global	set_Forward
+ 377              		.syntax unified
+ 378              		.code	16
+ 379              		.thumb_func
+ 381              	set_Forward:
+ 382              	.LFB47:
+ 103:Src/motor.c   **** 
+ 104:Src/motor.c   **** void set_Forward(){
+ 383              		.loc 1 104 19 is_stmt 1 view -0
+ 384              		.cfi_startproc
+ 385              		@ args = 0, pretend = 0, frame = 0
+ 386              		@ frame_needed = 0, uses_anonymous_args = 0
+ 387              		@ link register save eliminated.
+ 105:Src/motor.c   **** 		GPIOA->ODR |= (1 << 5);
+ 388              		.loc 1 105 3 view .LVU122
+ 389              		.loc 1 105 8 is_stmt 0 view .LVU123
+ 390 0000 9023     		movs	r3, #144
+ 391 0002 DB05     		lsls	r3, r3, #23
+ 392 0004 5A69     		ldr	r2, [r3, #20]
+ 393              		.loc 1 105 14 view .LVU124
+ 394 0006 2021     		movs	r1, #32
+ 395 0008 0A43     		orrs	r2, r1
+ 396 000a 5A61     		str	r2, [r3, #20]
+ 106:Src/motor.c   **** 		GPIOA->ODR &= ~(1 << 8);
+ 397              		.loc 1 106 3 is_stmt 1 view .LVU125
+ 398              		.loc 1 106 8 is_stmt 0 view .LVU126
+ 399 000c 5A69     		ldr	r2, [r3, #20]
+ 400              		.loc 1 106 14 view .LVU127
+ 401 000e 0749     		ldr	r1, .L11
+ 402 0010 0A40     		ands	r2, r1
+ 403 0012 5A61     		str	r2, [r3, #20]
+ 107:Src/motor.c   **** 		GPIOB->ODR |= (1 << 10);
+ 404              		.loc 1 107 3 is_stmt 1 view .LVU128
+ 405              		.loc 1 107 8 is_stmt 0 view .LVU129
+ 406 0014 064B     		ldr	r3, .L11+4
+ 407 0016 5969     		ldr	r1, [r3, #20]
+ 408              		.loc 1 107 14 view .LVU130
+ 409 0018 8022     		movs	r2, #128
+ 410 001a D200     		lsls	r2, r2, #3
+ 411 001c 0A43     		orrs	r2, r1
+ 412 001e 5A61     		str	r2, [r3, #20]
+ 108:Src/motor.c   **** 		GPIOB->ODR &= ~(1 << 2);
+ARM GAS  /tmp/ccBdwhyA.s 			page 10
+
+
+ 413              		.loc 1 108 3 is_stmt 1 view .LVU131
+ 414              		.loc 1 108 8 is_stmt 0 view .LVU132
+ 415 0020 5A69     		ldr	r2, [r3, #20]
+ 416              		.loc 1 108 14 view .LVU133
+ 417 0022 0421     		movs	r1, #4
+ 418 0024 8A43     		bics	r2, r1
+ 419 0026 5A61     		str	r2, [r3, #20]
+ 109:Src/motor.c   **** }
+ 420              		.loc 1 109 1 view .LVU134
+ 421              		@ sp needed
+ 422 0028 7047     		bx	lr
+ 423              	.L12:
+ 424 002a C046     		.align	2
+ 425              	.L11:
+ 426 002c FFFEFFFF 		.word	-257
+ 427 0030 00040048 		.word	1207960576
+ 428              		.cfi_endproc
+ 429              	.LFE47:
+ 431              		.section	.text.set_Backward,"ax",%progbits
+ 432              		.align	1
+ 433              		.global	set_Backward
+ 434              		.syntax unified
+ 435              		.code	16
+ 436              		.thumb_func
+ 438              	set_Backward:
+ 439              	.LFB48:
+ 110:Src/motor.c   **** 
+ 111:Src/motor.c   **** void set_Backward(){
+ 440              		.loc 1 111 20 is_stmt 1 view -0
+ 441              		.cfi_startproc
+ 442              		@ args = 0, pretend = 0, frame = 0
+ 443              		@ frame_needed = 0, uses_anonymous_args = 0
+ 444              		@ link register save eliminated.
+ 112:Src/motor.c   **** 		GPIOA->ODR |= (1 << 8);
+ 445              		.loc 1 112 3 view .LVU136
+ 446              		.loc 1 112 8 is_stmt 0 view .LVU137
+ 447 0000 9023     		movs	r3, #144
+ 448 0002 DB05     		lsls	r3, r3, #23
+ 449 0004 5969     		ldr	r1, [r3, #20]
+ 450              		.loc 1 112 14 view .LVU138
+ 451 0006 8022     		movs	r2, #128
+ 452 0008 5200     		lsls	r2, r2, #1
+ 453 000a 0A43     		orrs	r2, r1
+ 454 000c 5A61     		str	r2, [r3, #20]
+ 113:Src/motor.c   **** 		GPIOA->ODR &= ~(1 << 5);
+ 455              		.loc 1 113 3 is_stmt 1 view .LVU139
+ 456              		.loc 1 113 8 is_stmt 0 view .LVU140
+ 457 000e 5A69     		ldr	r2, [r3, #20]
+ 458              		.loc 1 113 14 view .LVU141
+ 459 0010 2021     		movs	r1, #32
+ 460 0012 8A43     		bics	r2, r1
+ 461 0014 5A61     		str	r2, [r3, #20]
+ 114:Src/motor.c   **** 		GPIOB->ODR |= (1 << 2);
+ 462              		.loc 1 114 3 is_stmt 1 view .LVU142
+ 463              		.loc 1 114 8 is_stmt 0 view .LVU143
+ 464 0016 054B     		ldr	r3, .L14
+ 465 0018 5A69     		ldr	r2, [r3, #20]
+ARM GAS  /tmp/ccBdwhyA.s 			page 11
+
+
+ 466              		.loc 1 114 14 view .LVU144
+ 467 001a 1C39     		subs	r1, r1, #28
+ 468 001c 0A43     		orrs	r2, r1
+ 469 001e 5A61     		str	r2, [r3, #20]
+ 115:Src/motor.c   **** 		GPIOB->ODR &= ~(1 << 10);
+ 470              		.loc 1 115 3 is_stmt 1 view .LVU145
+ 471              		.loc 1 115 8 is_stmt 0 view .LVU146
+ 472 0020 5A69     		ldr	r2, [r3, #20]
+ 473              		.loc 1 115 14 view .LVU147
+ 474 0022 0349     		ldr	r1, .L14+4
+ 475 0024 0A40     		ands	r2, r1
+ 476 0026 5A61     		str	r2, [r3, #20]
+ 116:Src/motor.c   **** }
+ 477              		.loc 1 116 1 view .LVU148
+ 478              		@ sp needed
+ 479 0028 7047     		bx	lr
+ 480              	.L15:
+ 481 002a C046     		.align	2
+ 482              	.L14:
+ 483 002c 00040048 		.word	1207960576
+ 484 0030 FFFBFFFF 		.word	-1025
+ 485              		.cfi_endproc
+ 486              	.LFE48:
+ 488              		.section	.text.set_Right,"ax",%progbits
+ 489              		.align	1
+ 490              		.global	set_Right
+ 491              		.syntax unified
+ 492              		.code	16
+ 493              		.thumb_func
+ 495              	set_Right:
+ 496              	.LFB49:
+ 117:Src/motor.c   **** 
+ 118:Src/motor.c   **** void set_Right(){
+ 497              		.loc 1 118 17 is_stmt 1 view -0
+ 498              		.cfi_startproc
+ 499              		@ args = 0, pretend = 0, frame = 0
+ 500              		@ frame_needed = 0, uses_anonymous_args = 0
+ 501              		@ link register save eliminated.
+ 119:Src/motor.c   **** 		GPIOA->ODR |= (1 << 5);
+ 502              		.loc 1 119 3 view .LVU150
+ 503              		.loc 1 119 8 is_stmt 0 view .LVU151
+ 504 0000 9023     		movs	r3, #144
+ 505 0002 DB05     		lsls	r3, r3, #23
+ 506 0004 5A69     		ldr	r2, [r3, #20]
+ 507              		.loc 1 119 14 view .LVU152
+ 508 0006 2021     		movs	r1, #32
+ 509 0008 0A43     		orrs	r2, r1
+ 510 000a 5A61     		str	r2, [r3, #20]
+ 120:Src/motor.c   **** 		GPIOA->ODR &= ~(1 << 8);
+ 511              		.loc 1 120 3 is_stmt 1 view .LVU153
+ 512              		.loc 1 120 8 is_stmt 0 view .LVU154
+ 513 000c 5A69     		ldr	r2, [r3, #20]
+ 514              		.loc 1 120 14 view .LVU155
+ 515 000e 0749     		ldr	r1, .L17
+ 516 0010 0A40     		ands	r2, r1
+ 517 0012 5A61     		str	r2, [r3, #20]
+ 121:Src/motor.c   **** 		GPIOB->ODR |= (1 << 2);
+ARM GAS  /tmp/ccBdwhyA.s 			page 12
+
+
+ 518              		.loc 1 121 3 is_stmt 1 view .LVU156
+ 519              		.loc 1 121 8 is_stmt 0 view .LVU157
+ 520 0014 064B     		ldr	r3, .L17+4
+ 521 0016 5A69     		ldr	r2, [r3, #20]
+ 522              		.loc 1 121 14 view .LVU158
+ 523 0018 0631     		adds	r1, r1, #6
+ 524 001a FF31     		adds	r1, r1, #255
+ 525 001c 0A43     		orrs	r2, r1
+ 526 001e 5A61     		str	r2, [r3, #20]
+ 122:Src/motor.c   **** 		GPIOB->ODR &= ~(1 << 10);
+ 527              		.loc 1 122 3 is_stmt 1 view .LVU159
+ 528              		.loc 1 122 8 is_stmt 0 view .LVU160
+ 529 0020 5A69     		ldr	r2, [r3, #20]
+ 530              		.loc 1 122 14 view .LVU161
+ 531 0022 0449     		ldr	r1, .L17+8
+ 532 0024 0A40     		ands	r2, r1
+ 533 0026 5A61     		str	r2, [r3, #20]
+ 123:Src/motor.c   **** }
+ 534              		.loc 1 123 1 view .LVU162
+ 535              		@ sp needed
+ 536 0028 7047     		bx	lr
+ 537              	.L18:
+ 538 002a C046     		.align	2
+ 539              	.L17:
+ 540 002c FFFEFFFF 		.word	-257
+ 541 0030 00040048 		.word	1207960576
+ 542 0034 FFFBFFFF 		.word	-1025
+ 543              		.cfi_endproc
+ 544              	.LFE49:
+ 546              		.section	.text.set_Left,"ax",%progbits
+ 547              		.align	1
+ 548              		.global	set_Left
+ 549              		.syntax unified
+ 550              		.code	16
+ 551              		.thumb_func
+ 553              	set_Left:
+ 554              	.LFB50:
+ 124:Src/motor.c   **** 
+ 125:Src/motor.c   **** void set_Left(){
+ 555              		.loc 1 125 16 is_stmt 1 view -0
+ 556              		.cfi_startproc
+ 557              		@ args = 0, pretend = 0, frame = 0
+ 558              		@ frame_needed = 0, uses_anonymous_args = 0
+ 559              		@ link register save eliminated.
+ 126:Src/motor.c   **** 		GPIOA->ODR |= (1 << 8);
+ 560              		.loc 1 126 3 view .LVU164
+ 561              		.loc 1 126 8 is_stmt 0 view .LVU165
+ 562 0000 9023     		movs	r3, #144
+ 563 0002 DB05     		lsls	r3, r3, #23
+ 564 0004 5969     		ldr	r1, [r3, #20]
+ 565              		.loc 1 126 14 view .LVU166
+ 566 0006 8022     		movs	r2, #128
+ 567 0008 5200     		lsls	r2, r2, #1
+ 568 000a 0A43     		orrs	r2, r1
+ 569 000c 5A61     		str	r2, [r3, #20]
+ 127:Src/motor.c   **** 		GPIOA->ODR &= ~(1 << 5);
+ 570              		.loc 1 127 3 is_stmt 1 view .LVU167
+ARM GAS  /tmp/ccBdwhyA.s 			page 13
+
+
+ 571              		.loc 1 127 8 is_stmt 0 view .LVU168
+ 572 000e 5A69     		ldr	r2, [r3, #20]
+ 573              		.loc 1 127 14 view .LVU169
+ 574 0010 2021     		movs	r1, #32
+ 575 0012 8A43     		bics	r2, r1
+ 576 0014 5A61     		str	r2, [r3, #20]
+ 128:Src/motor.c   **** 		GPIOB->ODR |= (1 << 10);
+ 577              		.loc 1 128 3 is_stmt 1 view .LVU170
+ 578              		.loc 1 128 8 is_stmt 0 view .LVU171
+ 579 0016 054B     		ldr	r3, .L20
+ 580 0018 5969     		ldr	r1, [r3, #20]
+ 581              		.loc 1 128 14 view .LVU172
+ 582 001a 8022     		movs	r2, #128
+ 583 001c D200     		lsls	r2, r2, #3
+ 584 001e 0A43     		orrs	r2, r1
+ 585 0020 5A61     		str	r2, [r3, #20]
+ 129:Src/motor.c   **** 		GPIOB->ODR &= ~(1 << 2);
+ 586              		.loc 1 129 3 is_stmt 1 view .LVU173
+ 587              		.loc 1 129 8 is_stmt 0 view .LVU174
+ 588 0022 5A69     		ldr	r2, [r3, #20]
+ 589              		.loc 1 129 14 view .LVU175
+ 590 0024 0421     		movs	r1, #4
+ 591 0026 8A43     		bics	r2, r1
+ 592 0028 5A61     		str	r2, [r3, #20]
+ 130:Src/motor.c   **** }
+ 593              		.loc 1 130 1 view .LVU176
+ 594              		@ sp needed
+ 595 002a 7047     		bx	lr
+ 596              	.L21:
+ 597              		.align	2
+ 598              	.L20:
+ 599 002c 00040048 		.word	1207960576
+ 600              		.cfi_endproc
+ 601              	.LFE50:
+ 603              		.section	.text.encoder_init,"ax",%progbits
+ 604              		.align	1
+ 605              		.global	encoder_init
+ 606              		.syntax unified
+ 607              		.code	16
+ 608              		.thumb_func
+ 610              	encoder_init:
+ 611              	.LFB51:
+ 131:Src/motor.c   **** 
+ 132:Src/motor.c   **** // Sets up encoder interface to read motor speed
+ 133:Src/motor.c   **** void encoder_init(void) {
+ 612              		.loc 1 133 25 is_stmt 1 view -0
+ 613              		.cfi_startproc
+ 614              		@ args = 0, pretend = 0, frame = 0
+ 615              		@ frame_needed = 0, uses_anonymous_args = 0
+ 616 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 617              	.LCFI3:
+ 618              		.cfi_def_cfa_offset 20
+ 619              		.cfi_offset 4, -20
+ 620              		.cfi_offset 5, -16
+ 621              		.cfi_offset 6, -12
+ 622              		.cfi_offset 7, -8
+ 623              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccBdwhyA.s 			page 14
+
+
+ 624 0002 C646     		mov	lr, r8
+ 625 0004 00B5     		push	{lr}
+ 626              	.LCFI4:
+ 627              		.cfi_def_cfa_offset 24
+ 628              		.cfi_offset 8, -24
+ 134:Src/motor.c   ****     
+ 135:Src/motor.c   ****     // Set up encoder input pins (TIMER 3 CH1 and CH2)
+ 136:Src/motor.c   ****     GPIOB->MODER &= ~(GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0);
+ 629              		.loc 1 136 5 view .LVU178
+ 630              		.loc 1 136 10 is_stmt 0 view .LVU179
+ 631 0006 394B     		ldr	r3, .L23
+ 632 0008 1A68     		ldr	r2, [r3]
+ 633              		.loc 1 136 18 view .LVU180
+ 634 000a 3949     		ldr	r1, .L23+4
+ 635 000c 0A40     		ands	r2, r1
+ 636 000e 1A60     		str	r2, [r3]
+ 137:Src/motor.c   ****     GPIOB->MODER |= (GPIO_MODER_MODER4_1 | GPIO_MODER_MODER5_1);
+ 637              		.loc 1 137 5 is_stmt 1 view .LVU181
+ 638              		.loc 1 137 10 is_stmt 0 view .LVU182
+ 639 0010 1968     		ldr	r1, [r3]
+ 640              		.loc 1 137 18 view .LVU183
+ 641 0012 A022     		movs	r2, #160
+ 642 0014 1201     		lsls	r2, r2, #4
+ 643 0016 0A43     		orrs	r2, r1
+ 644 0018 1A60     		str	r2, [r3]
+ 138:Src/motor.c   ****     GPIOB->AFR[0] |= ( (1 << 16) | (1 << 20) );
+ 645              		.loc 1 138 5 is_stmt 1 view .LVU184
+ 646              		.loc 1 138 15 is_stmt 0 view .LVU185
+ 647 001a 196A     		ldr	r1, [r3, #32]
+ 648              		.loc 1 138 19 view .LVU186
+ 649 001c 8822     		movs	r2, #136
+ 650 001e 5203     		lsls	r2, r2, #13
+ 651 0020 0A43     		orrs	r2, r1
+ 652 0022 1A62     		str	r2, [r3, #32]
+ 139:Src/motor.c   **** 		
+ 140:Src/motor.c   **** 		// Set up encoder input pins (TIMER 15 CH1 and CH2)
+ 141:Src/motor.c   **** 		GPIOB->MODER &= ~(GPIO_MODER_MODER14_0 | GPIO_MODER_MODER15_0);
+ 653              		.loc 1 141 3 is_stmt 1 view .LVU187
+ 654              		.loc 1 141 8 is_stmt 0 view .LVU188
+ 655 0024 1A68     		ldr	r2, [r3]
+ 656              		.loc 1 141 16 view .LVU189
+ 657 0026 3349     		ldr	r1, .L23+8
+ 658 0028 0A40     		ands	r2, r1
+ 659 002a 1A60     		str	r2, [r3]
+ 142:Src/motor.c   ****     GPIOB->MODER |= (GPIO_MODER_MODER14_1 | GPIO_MODER_MODER15_1);
+ 660              		.loc 1 142 5 is_stmt 1 view .LVU190
+ 661              		.loc 1 142 10 is_stmt 0 view .LVU191
+ 662 002c 1968     		ldr	r1, [r3]
+ 663              		.loc 1 142 18 view .LVU192
+ 664 002e A022     		movs	r2, #160
+ 665 0030 1206     		lsls	r2, r2, #24
+ 666 0032 0A43     		orrs	r2, r1
+ 667 0034 1A60     		str	r2, [r3]
+ 143:Src/motor.c   ****     GPIOB->AFR[1] |= ( (1 << 24) | (1 << 28) );
+ 668              		.loc 1 143 5 is_stmt 1 view .LVU193
+ 669              		.loc 1 143 15 is_stmt 0 view .LVU194
+ 670 0036 596A     		ldr	r1, [r3, #36]
+ARM GAS  /tmp/ccBdwhyA.s 			page 15
+
+
+ 671              		.loc 1 143 19 view .LVU195
+ 672 0038 8822     		movs	r2, #136
+ 673 003a 5205     		lsls	r2, r2, #21
+ 674 003c 0A43     		orrs	r2, r1
+ 675 003e 5A62     		str	r2, [r3, #36]
+ 144:Src/motor.c   **** 
+ 145:Src/motor.c   ****     // Set up encoder interface (TIM3 encoder input mode)
+ 146:Src/motor.c   ****     RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+ 676              		.loc 1 146 5 is_stmt 1 view .LVU196
+ 677              		.loc 1 146 8 is_stmt 0 view .LVU197
+ 678 0040 2D49     		ldr	r1, .L23+12
+ 679 0042 CB69     		ldr	r3, [r1, #28]
+ 680              		.loc 1 146 18 view .LVU198
+ 681 0044 0222     		movs	r2, #2
+ 682 0046 1343     		orrs	r3, r2
+ 683 0048 CB61     		str	r3, [r1, #28]
+ 147:Src/motor.c   ****     TIM3->CCMR1 = 0;
+ 684              		.loc 1 147 5 is_stmt 1 view .LVU199
+ 685              		.loc 1 147 17 is_stmt 0 view .LVU200
+ 686 004a 2C4B     		ldr	r3, .L23+16
+ 687 004c 0022     		movs	r2, #0
+ 688 004e 9A61     		str	r2, [r3, #24]
+ 148:Src/motor.c   ****     TIM3->CCER = 0;
+ 689              		.loc 1 148 5 is_stmt 1 view .LVU201
+ 690              		.loc 1 148 16 is_stmt 0 view .LVU202
+ 691 0050 1A62     		str	r2, [r3, #32]
+ 149:Src/motor.c   ****     TIM3->SMCR = 0;
+ 692              		.loc 1 149 5 is_stmt 1 view .LVU203
+ 693              		.loc 1 149 16 is_stmt 0 view .LVU204
+ 694 0052 9A60     		str	r2, [r3, #8]
+ 150:Src/motor.c   ****     TIM3->CR1 = 0;
+ 695              		.loc 1 150 5 is_stmt 1 view .LVU205
+ 696              		.loc 1 150 15 is_stmt 0 view .LVU206
+ 697 0054 1A60     		str	r2, [r3]
+ 151:Src/motor.c   **** 
+ 152:Src/motor.c   ****     TIM3->CCMR1 |= (TIM_CCMR1_CC1S_0 | TIM_CCMR1_CC2S_0);   // TI1FP1 and TI2FP2 signals connected 
+ 698              		.loc 1 152 5 is_stmt 1 view .LVU207
+ 699              		.loc 1 152 9 is_stmt 0 view .LVU208
+ 700 0056 9869     		ldr	r0, [r3, #24]
+ 701              		.loc 1 152 17 view .LVU209
+ 702 0058 0224     		movs	r4, #2
+ 703 005a FF34     		adds	r4, r4, #255
+ 704 005c A046     		mov	r8, r4
+ 705 005e 2043     		orrs	r0, r4
+ 706 0060 9861     		str	r0, [r3, #24]
+ 153:Src/motor.c   ****     TIM3->SMCR |= (TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0);        // Capture encoder on both rising and f
+ 707              		.loc 1 153 5 is_stmt 1 view .LVU210
+ 708              		.loc 1 153 9 is_stmt 0 view .LVU211
+ 709 0062 9868     		ldr	r0, [r3, #8]
+ 710              		.loc 1 153 16 view .LVU212
+ 711 0064 0327     		movs	r7, #3
+ 712 0066 3843     		orrs	r0, r7
+ 713 0068 9860     		str	r0, [r3, #8]
+ 154:Src/motor.c   ****     TIM3->ARR = 0xFFFF;                                     // Set ARR to top of timer (longest pos
+ 714              		.loc 1 154 5 is_stmt 1 view .LVU213
+ 715              		.loc 1 154 15 is_stmt 0 view .LVU214
+ 716 006a 254E     		ldr	r6, .L23+20
+ARM GAS  /tmp/ccBdwhyA.s 			page 16
+
+
+ 717 006c DE62     		str	r6, [r3, #44]
+ 155:Src/motor.c   ****     TIM3->CNT = 0x7FFF;                                     // Bias at midpoint to allow for negati
+ 718              		.loc 1 155 5 is_stmt 1 view .LVU215
+ 719              		.loc 1 155 15 is_stmt 0 view .LVU216
+ 720 006e 254D     		ldr	r5, .L23+24
+ 721 0070 5D62     		str	r5, [r3, #36]
+ 156:Src/motor.c   ****     // (Could also cast unsigned register to signed number to get negative numbers if it rotates ba
+ 157:Src/motor.c   ****     //  just another option, the mid-bias is a bit simpler to understand though.)
+ 158:Src/motor.c   ****     TIM3->CR1 |= TIM_CR1_CEN;                               // Enable timer
+ 722              		.loc 1 158 5 is_stmt 1 view .LVU217
+ 723              		.loc 1 158 9 is_stmt 0 view .LVU218
+ 724 0072 1868     		ldr	r0, [r3]
+ 725 0074 8446     		mov	ip, r0
+ 726              		.loc 1 158 15 view .LVU219
+ 727 0076 0120     		movs	r0, #1
+ 728 0078 6446     		mov	r4, ip
+ 729 007a 0443     		orrs	r4, r0
+ 730 007c 1C60     		str	r4, [r3]
+ 159:Src/motor.c   **** 		
+ 160:Src/motor.c   **** 		RCC->APB2ENR |= RCC_APB2ENR_TIM15EN;
+ 731              		.loc 1 160 3 is_stmt 1 view .LVU220
+ 732              		.loc 1 160 6 is_stmt 0 view .LVU221
+ 733 007e 8B69     		ldr	r3, [r1, #24]
+ 734 0080 9C46     		mov	ip, r3
+ 735              		.loc 1 160 16 view .LVU222
+ 736 0082 8023     		movs	r3, #128
+ 737 0084 5B02     		lsls	r3, r3, #9
+ 738 0086 6446     		mov	r4, ip
+ 739 0088 2343     		orrs	r3, r4
+ 740 008a 8B61     		str	r3, [r1, #24]
+ 161:Src/motor.c   ****     TIM15->CCMR1 = 0;
+ 741              		.loc 1 161 5 is_stmt 1 view .LVU223
+ 742              		.loc 1 161 18 is_stmt 0 view .LVU224
+ 743 008c 1E4B     		ldr	r3, .L23+28
+ 744 008e 9A61     		str	r2, [r3, #24]
+ 162:Src/motor.c   ****     TIM15->CCER = 0;
+ 745              		.loc 1 162 5 is_stmt 1 view .LVU225
+ 746              		.loc 1 162 17 is_stmt 0 view .LVU226
+ 747 0090 1A62     		str	r2, [r3, #32]
+ 163:Src/motor.c   ****     TIM15->SMCR = 0;
+ 748              		.loc 1 163 5 is_stmt 1 view .LVU227
+ 749              		.loc 1 163 17 is_stmt 0 view .LVU228
+ 750 0092 9A60     		str	r2, [r3, #8]
+ 164:Src/motor.c   ****     TIM15->CR1 = 0;
+ 751              		.loc 1 164 5 is_stmt 1 view .LVU229
+ 752              		.loc 1 164 16 is_stmt 0 view .LVU230
+ 753 0094 1A60     		str	r2, [r3]
+ 165:Src/motor.c   **** 
+ 166:Src/motor.c   ****     TIM15->CCMR1 |= (TIM_CCMR1_CC1S_0 | TIM_CCMR1_CC2S_0);   // TI1FP1 and TI2FP2 signals connected
+ 754              		.loc 1 166 5 is_stmt 1 view .LVU231
+ 755              		.loc 1 166 10 is_stmt 0 view .LVU232
+ 756 0096 9A69     		ldr	r2, [r3, #24]
+ 757              		.loc 1 166 18 view .LVU233
+ 758 0098 4446     		mov	r4, r8
+ 759 009a 1443     		orrs	r4, r2
+ 760 009c 9C61     		str	r4, [r3, #24]
+ 167:Src/motor.c   ****     TIM15->SMCR |= (TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0);        // Capture encoder on both rising and 
+ARM GAS  /tmp/ccBdwhyA.s 			page 17
+
+
+ 761              		.loc 1 167 5 is_stmt 1 view .LVU234
+ 762              		.loc 1 167 10 is_stmt 0 view .LVU235
+ 763 009e 9A68     		ldr	r2, [r3, #8]
+ 764              		.loc 1 167 17 view .LVU236
+ 765 00a0 3A43     		orrs	r2, r7
+ 766 00a2 9A60     		str	r2, [r3, #8]
+ 168:Src/motor.c   ****     TIM15->ARR = 0xFFFF;                                     // Set ARR to top of timer (longest po
+ 767              		.loc 1 168 5 is_stmt 1 view .LVU237
+ 768              		.loc 1 168 16 is_stmt 0 view .LVU238
+ 769 00a4 DE62     		str	r6, [r3, #44]
+ 169:Src/motor.c   ****     TIM15->CNT = 0x7FFF;                                     // Bias at midpoint to allow for negat
+ 770              		.loc 1 169 5 is_stmt 1 view .LVU239
+ 771              		.loc 1 169 16 is_stmt 0 view .LVU240
+ 772 00a6 5D62     		str	r5, [r3, #36]
+ 170:Src/motor.c   ****     // (Could also cast unsigned register to signed number to get negative numbers if it rotates ba
+ 171:Src/motor.c   ****     //  just another option, the mid-bias is a bit simpler to understand though.)
+ 172:Src/motor.c   ****     TIM15->CR1 |= TIM_CR1_CEN;     
+ 773              		.loc 1 172 5 is_stmt 1 view .LVU241
+ 774              		.loc 1 172 10 is_stmt 0 view .LVU242
+ 775 00a8 1A68     		ldr	r2, [r3]
+ 776              		.loc 1 172 16 view .LVU243
+ 777 00aa 0243     		orrs	r2, r0
+ 778 00ac 1A60     		str	r2, [r3]
+ 173:Src/motor.c   **** 
+ 174:Src/motor.c   ****     // Configure a second timer (TIM6) to fire an ISR on update event
+ 175:Src/motor.c   ****     // Used to periodically check and update speed variable
+ 176:Src/motor.c   ****     RCC->APB1ENR |= RCC_APB1ENR_TIM6EN;
+ 779              		.loc 1 176 5 is_stmt 1 view .LVU244
+ 780              		.loc 1 176 8 is_stmt 0 view .LVU245
+ 781 00ae CB69     		ldr	r3, [r1, #28]
+ 782              		.loc 1 176 18 view .LVU246
+ 783 00b0 1022     		movs	r2, #16
+ 784 00b2 1343     		orrs	r3, r2
+ 785 00b4 CB61     		str	r3, [r1, #28]
+ 177:Src/motor.c   ****     
+ 178:Src/motor.c   ****     // Select PSC and ARR values that give an appropriate interrupt rate
+ 179:Src/motor.c   ****     TIM6->PSC = 11;
+ 786              		.loc 1 179 5 is_stmt 1 view .LVU247
+ 787              		.loc 1 179 15 is_stmt 0 view .LVU248
+ 788 00b6 154B     		ldr	r3, .L23+32
+ 789 00b8 053A     		subs	r2, r2, #5
+ 790 00ba 9A62     		str	r2, [r3, #40]
+ 180:Src/motor.c   ****     TIM6->ARR = 30000;
+ 791              		.loc 1 180 5 is_stmt 1 view .LVU249
+ 792              		.loc 1 180 15 is_stmt 0 view .LVU250
+ 793 00bc 144A     		ldr	r2, .L23+36
+ 794 00be DA62     		str	r2, [r3, #44]
+ 181:Src/motor.c   ****     
+ 182:Src/motor.c   ****     TIM6->DIER |= TIM_DIER_UIE;             // Enable update event interrupt
+ 795              		.loc 1 182 5 is_stmt 1 view .LVU251
+ 796              		.loc 1 182 9 is_stmt 0 view .LVU252
+ 797 00c0 DA68     		ldr	r2, [r3, #12]
+ 798              		.loc 1 182 16 view .LVU253
+ 799 00c2 0243     		orrs	r2, r0
+ 800 00c4 DA60     		str	r2, [r3, #12]
+ 183:Src/motor.c   ****     TIM6->CR1 |= TIM_CR1_CEN;               // Enable Timer
+ 801              		.loc 1 183 5 is_stmt 1 view .LVU254
+ARM GAS  /tmp/ccBdwhyA.s 			page 18
+
+
+ 802              		.loc 1 183 9 is_stmt 0 view .LVU255
+ 803 00c6 1A68     		ldr	r2, [r3]
+ 804              		.loc 1 183 15 view .LVU256
+ 805 00c8 0243     		orrs	r2, r0
+ 806 00ca 1A60     		str	r2, [r3]
+ 184:Src/motor.c   **** 
+ 185:Src/motor.c   ****     NVIC_EnableIRQ(TIM6_DAC_IRQn);          // Enable interrupt in NVIC
+ 807              		.loc 1 185 5 is_stmt 1 view .LVU257
+ 808              	.LVL6:
+ 809              	.LBB6:
+ 810              	.LBI6:
+ 811              		.file 2 "Drivers/CMSIS/Include/core_cm0.h"
+   1:Drivers/CMSIS/Include/core_cm0.h **** /**************************************************************************//**
+   2:Drivers/CMSIS/Include/core_cm0.h ****  * @file     core_cm0.h
+   3:Drivers/CMSIS/Include/core_cm0.h ****  * @brief    CMSIS Cortex-M0 Core Peripheral Access Layer Header File
+   4:Drivers/CMSIS/Include/core_cm0.h ****  * @version  V5.0.5
+   5:Drivers/CMSIS/Include/core_cm0.h ****  * @date     28. May 2018
+   6:Drivers/CMSIS/Include/core_cm0.h ****  ******************************************************************************/
+   7:Drivers/CMSIS/Include/core_cm0.h **** /*
+   8:Drivers/CMSIS/Include/core_cm0.h ****  * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
+   9:Drivers/CMSIS/Include/core_cm0.h ****  *
+  10:Drivers/CMSIS/Include/core_cm0.h ****  * SPDX-License-Identifier: Apache-2.0
+  11:Drivers/CMSIS/Include/core_cm0.h ****  *
+  12:Drivers/CMSIS/Include/core_cm0.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  13:Drivers/CMSIS/Include/core_cm0.h ****  * not use this file except in compliance with the License.
+  14:Drivers/CMSIS/Include/core_cm0.h ****  * You may obtain a copy of the License at
+  15:Drivers/CMSIS/Include/core_cm0.h ****  *
+  16:Drivers/CMSIS/Include/core_cm0.h ****  * www.apache.org/licenses/LICENSE-2.0
+  17:Drivers/CMSIS/Include/core_cm0.h ****  *
+  18:Drivers/CMSIS/Include/core_cm0.h ****  * Unless required by applicable law or agreed to in writing, software
+  19:Drivers/CMSIS/Include/core_cm0.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  20:Drivers/CMSIS/Include/core_cm0.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  21:Drivers/CMSIS/Include/core_cm0.h ****  * See the License for the specific language governing permissions and
+  22:Drivers/CMSIS/Include/core_cm0.h ****  * limitations under the License.
+  23:Drivers/CMSIS/Include/core_cm0.h ****  */
+  24:Drivers/CMSIS/Include/core_cm0.h **** 
+  25:Drivers/CMSIS/Include/core_cm0.h **** #if   defined ( __ICCARM__ )
+  26:Drivers/CMSIS/Include/core_cm0.h ****   #pragma system_include         /* treat file as system include file for MISRA check */
+  27:Drivers/CMSIS/Include/core_cm0.h **** #elif defined (__clang__)
+  28:Drivers/CMSIS/Include/core_cm0.h ****   #pragma clang system_header   /* treat file as system include file */
+  29:Drivers/CMSIS/Include/core_cm0.h **** #endif
+  30:Drivers/CMSIS/Include/core_cm0.h **** 
+  31:Drivers/CMSIS/Include/core_cm0.h **** #ifndef __CORE_CM0_H_GENERIC
+  32:Drivers/CMSIS/Include/core_cm0.h **** #define __CORE_CM0_H_GENERIC
+  33:Drivers/CMSIS/Include/core_cm0.h **** 
+  34:Drivers/CMSIS/Include/core_cm0.h **** #include <stdint.h>
+  35:Drivers/CMSIS/Include/core_cm0.h **** 
+  36:Drivers/CMSIS/Include/core_cm0.h **** #ifdef __cplusplus
+  37:Drivers/CMSIS/Include/core_cm0.h ****  extern "C" {
+  38:Drivers/CMSIS/Include/core_cm0.h **** #endif
+  39:Drivers/CMSIS/Include/core_cm0.h **** 
+  40:Drivers/CMSIS/Include/core_cm0.h **** /**
+  41:Drivers/CMSIS/Include/core_cm0.h ****   \page CMSIS_MISRA_Exceptions  MISRA-C:2004 Compliance Exceptions
+  42:Drivers/CMSIS/Include/core_cm0.h ****   CMSIS violates the following MISRA-C:2004 rules:
+  43:Drivers/CMSIS/Include/core_cm0.h **** 
+  44:Drivers/CMSIS/Include/core_cm0.h ****    \li Required Rule 8.5, object/function definition in header file.<br>
+  45:Drivers/CMSIS/Include/core_cm0.h ****      Function definitions in header files are used to allow 'inlining'.
+ARM GAS  /tmp/ccBdwhyA.s 			page 19
+
+
+  46:Drivers/CMSIS/Include/core_cm0.h **** 
+  47:Drivers/CMSIS/Include/core_cm0.h ****    \li Required Rule 18.4, declaration of union type or object of union type: '{...}'.<br>
+  48:Drivers/CMSIS/Include/core_cm0.h ****      Unions are used for effective representation of core registers.
+  49:Drivers/CMSIS/Include/core_cm0.h **** 
+  50:Drivers/CMSIS/Include/core_cm0.h ****    \li Advisory Rule 19.7, Function-like macro defined.<br>
+  51:Drivers/CMSIS/Include/core_cm0.h ****      Function-like macros are used to allow more efficient code.
+  52:Drivers/CMSIS/Include/core_cm0.h ****  */
+  53:Drivers/CMSIS/Include/core_cm0.h **** 
+  54:Drivers/CMSIS/Include/core_cm0.h **** 
+  55:Drivers/CMSIS/Include/core_cm0.h **** /*******************************************************************************
+  56:Drivers/CMSIS/Include/core_cm0.h ****  *                 CMSIS definitions
+  57:Drivers/CMSIS/Include/core_cm0.h ****  ******************************************************************************/
+  58:Drivers/CMSIS/Include/core_cm0.h **** /**
+  59:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup Cortex_M0
+  60:Drivers/CMSIS/Include/core_cm0.h ****   @{
+  61:Drivers/CMSIS/Include/core_cm0.h ****  */
+  62:Drivers/CMSIS/Include/core_cm0.h **** 
+  63:Drivers/CMSIS/Include/core_cm0.h **** #include "cmsis_version.h"
+  64:Drivers/CMSIS/Include/core_cm0.h ****  
+  65:Drivers/CMSIS/Include/core_cm0.h **** /*  CMSIS CM0 definitions */
+  66:Drivers/CMSIS/Include/core_cm0.h **** #define __CM0_CMSIS_VERSION_MAIN  (__CM_CMSIS_VERSION_MAIN)              /*!< \deprecated [31:16] C
+  67:Drivers/CMSIS/Include/core_cm0.h **** #define __CM0_CMSIS_VERSION_SUB   (__CM_CMSIS_VERSION_SUB)               /*!< \deprecated [15:0]  C
+  68:Drivers/CMSIS/Include/core_cm0.h **** #define __CM0_CMSIS_VERSION       ((__CM0_CMSIS_VERSION_MAIN << 16U) | \
+  69:Drivers/CMSIS/Include/core_cm0.h ****                                     __CM0_CMSIS_VERSION_SUB           )  /*!< \deprecated CMSIS HAL
+  70:Drivers/CMSIS/Include/core_cm0.h **** 
+  71:Drivers/CMSIS/Include/core_cm0.h **** #define __CORTEX_M                (0U)                                   /*!< Cortex-M Core */
+  72:Drivers/CMSIS/Include/core_cm0.h **** 
+  73:Drivers/CMSIS/Include/core_cm0.h **** /** __FPU_USED indicates whether an FPU is used or not.
+  74:Drivers/CMSIS/Include/core_cm0.h ****     This core does not support an FPU at all
+  75:Drivers/CMSIS/Include/core_cm0.h **** */
+  76:Drivers/CMSIS/Include/core_cm0.h **** #define __FPU_USED       0U
+  77:Drivers/CMSIS/Include/core_cm0.h **** 
+  78:Drivers/CMSIS/Include/core_cm0.h **** #if defined ( __CC_ARM )
+  79:Drivers/CMSIS/Include/core_cm0.h ****   #if defined __TARGET_FPU_VFP
+  80:Drivers/CMSIS/Include/core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  81:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+  82:Drivers/CMSIS/Include/core_cm0.h **** 
+  83:Drivers/CMSIS/Include/core_cm0.h **** #elif defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+  84:Drivers/CMSIS/Include/core_cm0.h ****   #if defined __ARM_PCS_VFP
+  85:Drivers/CMSIS/Include/core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  86:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+  87:Drivers/CMSIS/Include/core_cm0.h **** 
+  88:Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __GNUC__ )
+  89:Drivers/CMSIS/Include/core_cm0.h ****   #if defined (__VFP_FP__) && !defined(__SOFTFP__)
+  90:Drivers/CMSIS/Include/core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  91:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+  92:Drivers/CMSIS/Include/core_cm0.h **** 
+  93:Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __ICCARM__ )
+  94:Drivers/CMSIS/Include/core_cm0.h ****   #if defined __ARMVFP__
+  95:Drivers/CMSIS/Include/core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  96:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+  97:Drivers/CMSIS/Include/core_cm0.h **** 
+  98:Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __TI_ARM__ )
+  99:Drivers/CMSIS/Include/core_cm0.h ****   #if defined __TI_VFP_SUPPORT__
+ 100:Drivers/CMSIS/Include/core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+ 101:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+ 102:Drivers/CMSIS/Include/core_cm0.h **** 
+ARM GAS  /tmp/ccBdwhyA.s 			page 20
+
+
+ 103:Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __TASKING__ )
+ 104:Drivers/CMSIS/Include/core_cm0.h ****   #if defined __FPU_VFP__
+ 105:Drivers/CMSIS/Include/core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+ 106:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+ 107:Drivers/CMSIS/Include/core_cm0.h **** 
+ 108:Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __CSMC__ )
+ 109:Drivers/CMSIS/Include/core_cm0.h ****   #if ( __CSMC__ & 0x400U)
+ 110:Drivers/CMSIS/Include/core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+ 111:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+ 112:Drivers/CMSIS/Include/core_cm0.h **** 
+ 113:Drivers/CMSIS/Include/core_cm0.h **** #endif
+ 114:Drivers/CMSIS/Include/core_cm0.h **** 
+ 115:Drivers/CMSIS/Include/core_cm0.h **** #include "cmsis_compiler.h"               /* CMSIS compiler specific defines */
+ 116:Drivers/CMSIS/Include/core_cm0.h **** 
+ 117:Drivers/CMSIS/Include/core_cm0.h **** 
+ 118:Drivers/CMSIS/Include/core_cm0.h **** #ifdef __cplusplus
+ 119:Drivers/CMSIS/Include/core_cm0.h **** }
+ 120:Drivers/CMSIS/Include/core_cm0.h **** #endif
+ 121:Drivers/CMSIS/Include/core_cm0.h **** 
+ 122:Drivers/CMSIS/Include/core_cm0.h **** #endif /* __CORE_CM0_H_GENERIC */
+ 123:Drivers/CMSIS/Include/core_cm0.h **** 
+ 124:Drivers/CMSIS/Include/core_cm0.h **** #ifndef __CMSIS_GENERIC
+ 125:Drivers/CMSIS/Include/core_cm0.h **** 
+ 126:Drivers/CMSIS/Include/core_cm0.h **** #ifndef __CORE_CM0_H_DEPENDANT
+ 127:Drivers/CMSIS/Include/core_cm0.h **** #define __CORE_CM0_H_DEPENDANT
+ 128:Drivers/CMSIS/Include/core_cm0.h **** 
+ 129:Drivers/CMSIS/Include/core_cm0.h **** #ifdef __cplusplus
+ 130:Drivers/CMSIS/Include/core_cm0.h ****  extern "C" {
+ 131:Drivers/CMSIS/Include/core_cm0.h **** #endif
+ 132:Drivers/CMSIS/Include/core_cm0.h **** 
+ 133:Drivers/CMSIS/Include/core_cm0.h **** /* check device defines and use defaults */
+ 134:Drivers/CMSIS/Include/core_cm0.h **** #if defined __CHECK_DEVICE_DEFINES
+ 135:Drivers/CMSIS/Include/core_cm0.h ****   #ifndef __CM0_REV
+ 136:Drivers/CMSIS/Include/core_cm0.h ****     #define __CM0_REV               0x0000U
+ 137:Drivers/CMSIS/Include/core_cm0.h ****     #warning "__CM0_REV not defined in device header file; using default!"
+ 138:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+ 139:Drivers/CMSIS/Include/core_cm0.h **** 
+ 140:Drivers/CMSIS/Include/core_cm0.h ****   #ifndef __NVIC_PRIO_BITS
+ 141:Drivers/CMSIS/Include/core_cm0.h ****     #define __NVIC_PRIO_BITS          2U
+ 142:Drivers/CMSIS/Include/core_cm0.h ****     #warning "__NVIC_PRIO_BITS not defined in device header file; using default!"
+ 143:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+ 144:Drivers/CMSIS/Include/core_cm0.h **** 
+ 145:Drivers/CMSIS/Include/core_cm0.h ****   #ifndef __Vendor_SysTickConfig
+ 146:Drivers/CMSIS/Include/core_cm0.h ****     #define __Vendor_SysTickConfig    0U
+ 147:Drivers/CMSIS/Include/core_cm0.h ****     #warning "__Vendor_SysTickConfig not defined in device header file; using default!"
+ 148:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+ 149:Drivers/CMSIS/Include/core_cm0.h **** #endif
+ 150:Drivers/CMSIS/Include/core_cm0.h **** 
+ 151:Drivers/CMSIS/Include/core_cm0.h **** /* IO definitions (access restrictions to peripheral registers) */
+ 152:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 153:Drivers/CMSIS/Include/core_cm0.h ****     \defgroup CMSIS_glob_defs CMSIS Global Defines
+ 154:Drivers/CMSIS/Include/core_cm0.h **** 
+ 155:Drivers/CMSIS/Include/core_cm0.h ****     <strong>IO Type Qualifiers</strong> are used
+ 156:Drivers/CMSIS/Include/core_cm0.h ****     \li to specify the access to peripheral variables.
+ 157:Drivers/CMSIS/Include/core_cm0.h ****     \li for automatic generation of peripheral register debug information.
+ 158:Drivers/CMSIS/Include/core_cm0.h **** */
+ 159:Drivers/CMSIS/Include/core_cm0.h **** #ifdef __cplusplus
+ARM GAS  /tmp/ccBdwhyA.s 			page 21
+
+
+ 160:Drivers/CMSIS/Include/core_cm0.h ****   #define   __I     volatile             /*!< Defines 'read only' permissions */
+ 161:Drivers/CMSIS/Include/core_cm0.h **** #else
+ 162:Drivers/CMSIS/Include/core_cm0.h ****   #define   __I     volatile const       /*!< Defines 'read only' permissions */
+ 163:Drivers/CMSIS/Include/core_cm0.h **** #endif
+ 164:Drivers/CMSIS/Include/core_cm0.h **** #define     __O     volatile             /*!< Defines 'write only' permissions */
+ 165:Drivers/CMSIS/Include/core_cm0.h **** #define     __IO    volatile             /*!< Defines 'read / write' permissions */
+ 166:Drivers/CMSIS/Include/core_cm0.h **** 
+ 167:Drivers/CMSIS/Include/core_cm0.h **** /* following defines should be used for structure members */
+ 168:Drivers/CMSIS/Include/core_cm0.h **** #define     __IM     volatile const      /*! Defines 'read only' structure member permissions */
+ 169:Drivers/CMSIS/Include/core_cm0.h **** #define     __OM     volatile            /*! Defines 'write only' structure member permissions */
+ 170:Drivers/CMSIS/Include/core_cm0.h **** #define     __IOM    volatile            /*! Defines 'read / write' structure member permissions */
+ 171:Drivers/CMSIS/Include/core_cm0.h **** 
+ 172:Drivers/CMSIS/Include/core_cm0.h **** /*@} end of group Cortex_M0 */
+ 173:Drivers/CMSIS/Include/core_cm0.h **** 
+ 174:Drivers/CMSIS/Include/core_cm0.h **** 
+ 175:Drivers/CMSIS/Include/core_cm0.h **** 
+ 176:Drivers/CMSIS/Include/core_cm0.h **** /*******************************************************************************
+ 177:Drivers/CMSIS/Include/core_cm0.h ****  *                 Register Abstraction
+ 178:Drivers/CMSIS/Include/core_cm0.h ****   Core Register contain:
+ 179:Drivers/CMSIS/Include/core_cm0.h ****   - Core Register
+ 180:Drivers/CMSIS/Include/core_cm0.h ****   - Core NVIC Register
+ 181:Drivers/CMSIS/Include/core_cm0.h ****   - Core SCB Register
+ 182:Drivers/CMSIS/Include/core_cm0.h ****   - Core SysTick Register
+ 183:Drivers/CMSIS/Include/core_cm0.h ****  ******************************************************************************/
+ 184:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 185:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup CMSIS_core_register Defines and Type Definitions
+ 186:Drivers/CMSIS/Include/core_cm0.h ****   \brief Type definitions and defines for Cortex-M processor based devices.
+ 187:Drivers/CMSIS/Include/core_cm0.h **** */
+ 188:Drivers/CMSIS/Include/core_cm0.h **** 
+ 189:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 190:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup    CMSIS_core_register
+ 191:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup   CMSIS_CORE  Status and Control Registers
+ 192:Drivers/CMSIS/Include/core_cm0.h ****   \brief      Core Register type definitions.
+ 193:Drivers/CMSIS/Include/core_cm0.h ****   @{
+ 194:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 195:Drivers/CMSIS/Include/core_cm0.h **** 
+ 196:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 197:Drivers/CMSIS/Include/core_cm0.h ****   \brief  Union type to access the Application Program Status Register (APSR).
+ 198:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 199:Drivers/CMSIS/Include/core_cm0.h **** typedef union
+ 200:Drivers/CMSIS/Include/core_cm0.h **** {
+ 201:Drivers/CMSIS/Include/core_cm0.h ****   struct
+ 202:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 203:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t _reserved0:28;              /*!< bit:  0..27  Reserved */
+ 204:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag */
+ 205:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t C:1;                        /*!< bit:     29  Carry condition code flag */
+ 206:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag */
+ 207:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t N:1;                        /*!< bit:     31  Negative condition code flag */
+ 208:Drivers/CMSIS/Include/core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 209:Drivers/CMSIS/Include/core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 210:Drivers/CMSIS/Include/core_cm0.h **** } APSR_Type;
+ 211:Drivers/CMSIS/Include/core_cm0.h **** 
+ 212:Drivers/CMSIS/Include/core_cm0.h **** /* APSR Register Definitions */
+ 213:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_N_Pos                         31U                                            /*!< APSR
+ 214:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_N_Msk                         (1UL << APSR_N_Pos)                            /*!< APSR
+ 215:Drivers/CMSIS/Include/core_cm0.h **** 
+ 216:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_Z_Pos                         30U                                            /*!< APSR
+ARM GAS  /tmp/ccBdwhyA.s 			page 22
+
+
+ 217:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_Z_Msk                         (1UL << APSR_Z_Pos)                            /*!< APSR
+ 218:Drivers/CMSIS/Include/core_cm0.h **** 
+ 219:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_C_Pos                         29U                                            /*!< APSR
+ 220:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_C_Msk                         (1UL << APSR_C_Pos)                            /*!< APSR
+ 221:Drivers/CMSIS/Include/core_cm0.h **** 
+ 222:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_V_Pos                         28U                                            /*!< APSR
+ 223:Drivers/CMSIS/Include/core_cm0.h **** #define APSR_V_Msk                         (1UL << APSR_V_Pos)                            /*!< APSR
+ 224:Drivers/CMSIS/Include/core_cm0.h **** 
+ 225:Drivers/CMSIS/Include/core_cm0.h **** 
+ 226:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 227:Drivers/CMSIS/Include/core_cm0.h ****   \brief  Union type to access the Interrupt Program Status Register (IPSR).
+ 228:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 229:Drivers/CMSIS/Include/core_cm0.h **** typedef union
+ 230:Drivers/CMSIS/Include/core_cm0.h **** {
+ 231:Drivers/CMSIS/Include/core_cm0.h ****   struct
+ 232:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 233:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number */
+ 234:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t _reserved0:23;              /*!< bit:  9..31  Reserved */
+ 235:Drivers/CMSIS/Include/core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 236:Drivers/CMSIS/Include/core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 237:Drivers/CMSIS/Include/core_cm0.h **** } IPSR_Type;
+ 238:Drivers/CMSIS/Include/core_cm0.h **** 
+ 239:Drivers/CMSIS/Include/core_cm0.h **** /* IPSR Register Definitions */
+ 240:Drivers/CMSIS/Include/core_cm0.h **** #define IPSR_ISR_Pos                        0U                                            /*!< IPSR
+ 241:Drivers/CMSIS/Include/core_cm0.h **** #define IPSR_ISR_Msk                       (0x1FFUL /*<< IPSR_ISR_Pos*/)                  /*!< IPSR
+ 242:Drivers/CMSIS/Include/core_cm0.h **** 
+ 243:Drivers/CMSIS/Include/core_cm0.h **** 
+ 244:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 245:Drivers/CMSIS/Include/core_cm0.h ****   \brief  Union type to access the Special-Purpose Program Status Registers (xPSR).
+ 246:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 247:Drivers/CMSIS/Include/core_cm0.h **** typedef union
+ 248:Drivers/CMSIS/Include/core_cm0.h **** {
+ 249:Drivers/CMSIS/Include/core_cm0.h ****   struct
+ 250:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 251:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t ISR:9;                      /*!< bit:  0.. 8  Exception number */
+ 252:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t _reserved0:15;              /*!< bit:  9..23  Reserved */
+ 253:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t T:1;                        /*!< bit:     24  Thumb bit        (read 0) */
+ 254:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t _reserved1:3;               /*!< bit: 25..27  Reserved */
+ 255:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag */
+ 256:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t C:1;                        /*!< bit:     29  Carry condition code flag */
+ 257:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t Z:1;                        /*!< bit:     30  Zero condition code flag */
+ 258:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t N:1;                        /*!< bit:     31  Negative condition code flag */
+ 259:Drivers/CMSIS/Include/core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 260:Drivers/CMSIS/Include/core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 261:Drivers/CMSIS/Include/core_cm0.h **** } xPSR_Type;
+ 262:Drivers/CMSIS/Include/core_cm0.h **** 
+ 263:Drivers/CMSIS/Include/core_cm0.h **** /* xPSR Register Definitions */
+ 264:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_N_Pos                         31U                                            /*!< xPSR
+ 265:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_N_Msk                         (1UL << xPSR_N_Pos)                            /*!< xPSR
+ 266:Drivers/CMSIS/Include/core_cm0.h **** 
+ 267:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_Z_Pos                         30U                                            /*!< xPSR
+ 268:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_Z_Msk                         (1UL << xPSR_Z_Pos)                            /*!< xPSR
+ 269:Drivers/CMSIS/Include/core_cm0.h **** 
+ 270:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_C_Pos                         29U                                            /*!< xPSR
+ 271:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_C_Msk                         (1UL << xPSR_C_Pos)                            /*!< xPSR
+ 272:Drivers/CMSIS/Include/core_cm0.h **** 
+ 273:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_V_Pos                         28U                                            /*!< xPSR
+ARM GAS  /tmp/ccBdwhyA.s 			page 23
+
+
+ 274:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_V_Msk                         (1UL << xPSR_V_Pos)                            /*!< xPSR
+ 275:Drivers/CMSIS/Include/core_cm0.h **** 
+ 276:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_T_Pos                         24U                                            /*!< xPSR
+ 277:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_T_Msk                         (1UL << xPSR_T_Pos)                            /*!< xPSR
+ 278:Drivers/CMSIS/Include/core_cm0.h **** 
+ 279:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_ISR_Pos                        0U                                            /*!< xPSR
+ 280:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_ISR_Msk                       (0x1FFUL /*<< xPSR_ISR_Pos*/)                  /*!< xPSR
+ 281:Drivers/CMSIS/Include/core_cm0.h **** 
+ 282:Drivers/CMSIS/Include/core_cm0.h **** 
+ 283:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 284:Drivers/CMSIS/Include/core_cm0.h ****   \brief  Union type to access the Control Registers (CONTROL).
+ 285:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 286:Drivers/CMSIS/Include/core_cm0.h **** typedef union
+ 287:Drivers/CMSIS/Include/core_cm0.h **** {
+ 288:Drivers/CMSIS/Include/core_cm0.h ****   struct
+ 289:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 290:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t _reserved0:1;               /*!< bit:      0  Reserved */
+ 291:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t SPSEL:1;                    /*!< bit:      1  Stack to be used */
+ 292:Drivers/CMSIS/Include/core_cm0.h ****     uint32_t _reserved1:30;              /*!< bit:  2..31  Reserved */
+ 293:Drivers/CMSIS/Include/core_cm0.h ****   } b;                                   /*!< Structure used for bit  access */
+ 294:Drivers/CMSIS/Include/core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
+ 295:Drivers/CMSIS/Include/core_cm0.h **** } CONTROL_Type;
+ 296:Drivers/CMSIS/Include/core_cm0.h **** 
+ 297:Drivers/CMSIS/Include/core_cm0.h **** /* CONTROL Register Definitions */
+ 298:Drivers/CMSIS/Include/core_cm0.h **** #define CONTROL_SPSEL_Pos                   1U                                            /*!< CONT
+ 299:Drivers/CMSIS/Include/core_cm0.h **** #define CONTROL_SPSEL_Msk                  (1UL << CONTROL_SPSEL_Pos)                     /*!< CONT
+ 300:Drivers/CMSIS/Include/core_cm0.h **** 
+ 301:Drivers/CMSIS/Include/core_cm0.h **** /*@} end of group CMSIS_CORE */
+ 302:Drivers/CMSIS/Include/core_cm0.h **** 
+ 303:Drivers/CMSIS/Include/core_cm0.h **** 
+ 304:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 305:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup    CMSIS_core_register
+ 306:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup   CMSIS_NVIC  Nested Vectored Interrupt Controller (NVIC)
+ 307:Drivers/CMSIS/Include/core_cm0.h ****   \brief      Type definitions for the NVIC Registers
+ 308:Drivers/CMSIS/Include/core_cm0.h ****   @{
+ 309:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 310:Drivers/CMSIS/Include/core_cm0.h **** 
+ 311:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 312:Drivers/CMSIS/Include/core_cm0.h ****   \brief  Structure type to access the Nested Vectored Interrupt Controller (NVIC).
+ 313:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 314:Drivers/CMSIS/Include/core_cm0.h **** typedef struct
+ 315:Drivers/CMSIS/Include/core_cm0.h **** {
+ 316:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t ISER[1U];               /*!< Offset: 0x000 (R/W)  Interrupt Set Enable Register */
+ 317:Drivers/CMSIS/Include/core_cm0.h ****         uint32_t RESERVED0[31U];
+ 318:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t ICER[1U];               /*!< Offset: 0x080 (R/W)  Interrupt Clear Enable Register 
+ 319:Drivers/CMSIS/Include/core_cm0.h ****         uint32_t RSERVED1[31U];
+ 320:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t ISPR[1U];               /*!< Offset: 0x100 (R/W)  Interrupt Set Pending Register *
+ 321:Drivers/CMSIS/Include/core_cm0.h ****         uint32_t RESERVED2[31U];
+ 322:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t ICPR[1U];               /*!< Offset: 0x180 (R/W)  Interrupt Clear Pending Register
+ 323:Drivers/CMSIS/Include/core_cm0.h ****         uint32_t RESERVED3[31U];
+ 324:Drivers/CMSIS/Include/core_cm0.h ****         uint32_t RESERVED4[64U];
+ 325:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t IP[8U];                 /*!< Offset: 0x300 (R/W)  Interrupt Priority Register */
+ 326:Drivers/CMSIS/Include/core_cm0.h **** }  NVIC_Type;
+ 327:Drivers/CMSIS/Include/core_cm0.h **** 
+ 328:Drivers/CMSIS/Include/core_cm0.h **** /*@} end of group CMSIS_NVIC */
+ 329:Drivers/CMSIS/Include/core_cm0.h **** 
+ 330:Drivers/CMSIS/Include/core_cm0.h **** 
+ARM GAS  /tmp/ccBdwhyA.s 			page 24
+
+
+ 331:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 332:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup  CMSIS_core_register
+ 333:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup CMSIS_SCB     System Control Block (SCB)
+ 334:Drivers/CMSIS/Include/core_cm0.h ****   \brief    Type definitions for the System Control Block Registers
+ 335:Drivers/CMSIS/Include/core_cm0.h ****   @{
+ 336:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 337:Drivers/CMSIS/Include/core_cm0.h **** 
+ 338:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 339:Drivers/CMSIS/Include/core_cm0.h ****   \brief  Structure type to access the System Control Block (SCB).
+ 340:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 341:Drivers/CMSIS/Include/core_cm0.h **** typedef struct
+ 342:Drivers/CMSIS/Include/core_cm0.h **** {
+ 343:Drivers/CMSIS/Include/core_cm0.h ****   __IM  uint32_t CPUID;                  /*!< Offset: 0x000 (R/ )  CPUID Base Register */
+ 344:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t ICSR;                   /*!< Offset: 0x004 (R/W)  Interrupt Control and State Regi
+ 345:Drivers/CMSIS/Include/core_cm0.h ****         uint32_t RESERVED0;
+ 346:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t AIRCR;                  /*!< Offset: 0x00C (R/W)  Application Interrupt and Reset 
+ 347:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t SCR;                    /*!< Offset: 0x010 (R/W)  System Control Register */
+ 348:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t CCR;                    /*!< Offset: 0x014 (R/W)  Configuration Control Register *
+ 349:Drivers/CMSIS/Include/core_cm0.h ****         uint32_t RESERVED1;
+ 350:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t SHP[2U];                /*!< Offset: 0x01C (R/W)  System Handlers Priority Registe
+ 351:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t SHCSR;                  /*!< Offset: 0x024 (R/W)  System Handler Control and State
+ 352:Drivers/CMSIS/Include/core_cm0.h **** } SCB_Type;
+ 353:Drivers/CMSIS/Include/core_cm0.h **** 
+ 354:Drivers/CMSIS/Include/core_cm0.h **** /* SCB CPUID Register Definitions */
+ 355:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_IMPLEMENTER_Pos          24U                                            /*!< SCB 
+ 356:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_IMPLEMENTER_Msk          (0xFFUL << SCB_CPUID_IMPLEMENTER_Pos)          /*!< SCB 
+ 357:Drivers/CMSIS/Include/core_cm0.h **** 
+ 358:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_VARIANT_Pos              20U                                            /*!< SCB 
+ 359:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_VARIANT_Msk              (0xFUL << SCB_CPUID_VARIANT_Pos)               /*!< SCB 
+ 360:Drivers/CMSIS/Include/core_cm0.h **** 
+ 361:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_ARCHITECTURE_Pos         16U                                            /*!< SCB 
+ 362:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_ARCHITECTURE_Msk         (0xFUL << SCB_CPUID_ARCHITECTURE_Pos)          /*!< SCB 
+ 363:Drivers/CMSIS/Include/core_cm0.h **** 
+ 364:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_PARTNO_Pos                4U                                            /*!< SCB 
+ 365:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_PARTNO_Msk               (0xFFFUL << SCB_CPUID_PARTNO_Pos)              /*!< SCB 
+ 366:Drivers/CMSIS/Include/core_cm0.h **** 
+ 367:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_REVISION_Pos              0U                                            /*!< SCB 
+ 368:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CPUID_REVISION_Msk             (0xFUL /*<< SCB_CPUID_REVISION_Pos*/)          /*!< SCB 
+ 369:Drivers/CMSIS/Include/core_cm0.h **** 
+ 370:Drivers/CMSIS/Include/core_cm0.h **** /* SCB Interrupt Control State Register Definitions */
+ 371:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_NMIPENDSET_Pos            31U                                            /*!< SCB 
+ 372:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_NMIPENDSET_Msk            (1UL << SCB_ICSR_NMIPENDSET_Pos)               /*!< SCB 
+ 373:Drivers/CMSIS/Include/core_cm0.h **** 
+ 374:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSVSET_Pos             28U                                            /*!< SCB 
+ 375:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSVSET_Msk             (1UL << SCB_ICSR_PENDSVSET_Pos)                /*!< SCB 
+ 376:Drivers/CMSIS/Include/core_cm0.h **** 
+ 377:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSVCLR_Pos             27U                                            /*!< SCB 
+ 378:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSVCLR_Msk             (1UL << SCB_ICSR_PENDSVCLR_Pos)                /*!< SCB 
+ 379:Drivers/CMSIS/Include/core_cm0.h **** 
+ 380:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSTSET_Pos             26U                                            /*!< SCB 
+ 381:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSTSET_Msk             (1UL << SCB_ICSR_PENDSTSET_Pos)                /*!< SCB 
+ 382:Drivers/CMSIS/Include/core_cm0.h **** 
+ 383:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSTCLR_Pos             25U                                            /*!< SCB 
+ 384:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSTCLR_Msk             (1UL << SCB_ICSR_PENDSTCLR_Pos)                /*!< SCB 
+ 385:Drivers/CMSIS/Include/core_cm0.h **** 
+ 386:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Pos            23U                                            /*!< SCB 
+ 387:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_ISRPREEMPT_Msk            (1UL << SCB_ICSR_ISRPREEMPT_Pos)               /*!< SCB 
+ARM GAS  /tmp/ccBdwhyA.s 			page 25
+
+
+ 388:Drivers/CMSIS/Include/core_cm0.h **** 
+ 389:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_ISRPENDING_Pos            22U                                            /*!< SCB 
+ 390:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_ISRPENDING_Msk            (1UL << SCB_ICSR_ISRPENDING_Pos)               /*!< SCB 
+ 391:Drivers/CMSIS/Include/core_cm0.h **** 
+ 392:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_VECTPENDING_Pos           12U                                            /*!< SCB 
+ 393:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_VECTPENDING_Msk           (0x1FFUL << SCB_ICSR_VECTPENDING_Pos)          /*!< SCB 
+ 394:Drivers/CMSIS/Include/core_cm0.h **** 
+ 395:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_VECTACTIVE_Pos             0U                                            /*!< SCB 
+ 396:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_VECTACTIVE_Msk            (0x1FFUL /*<< SCB_ICSR_VECTACTIVE_Pos*/)       /*!< SCB 
+ 397:Drivers/CMSIS/Include/core_cm0.h **** 
+ 398:Drivers/CMSIS/Include/core_cm0.h **** /* SCB Application Interrupt and Reset Control Register Definitions */
+ 399:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_VECTKEY_Pos              16U                                            /*!< SCB 
+ 400:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_VECTKEY_Msk              (0xFFFFUL << SCB_AIRCR_VECTKEY_Pos)            /*!< SCB 
+ 401:Drivers/CMSIS/Include/core_cm0.h **** 
+ 402:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_VECTKEYSTAT_Pos          16U                                            /*!< SCB 
+ 403:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_VECTKEYSTAT_Msk          (0xFFFFUL << SCB_AIRCR_VECTKEYSTAT_Pos)        /*!< SCB 
+ 404:Drivers/CMSIS/Include/core_cm0.h **** 
+ 405:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_ENDIANESS_Pos            15U                                            /*!< SCB 
+ 406:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_ENDIANESS_Msk            (1UL << SCB_AIRCR_ENDIANESS_Pos)               /*!< SCB 
+ 407:Drivers/CMSIS/Include/core_cm0.h **** 
+ 408:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_SYSRESETREQ_Pos           2U                                            /*!< SCB 
+ 409:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_SYSRESETREQ_Msk          (1UL << SCB_AIRCR_SYSRESETREQ_Pos)             /*!< SCB 
+ 410:Drivers/CMSIS/Include/core_cm0.h **** 
+ 411:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_VECTCLRACTIVE_Pos         1U                                            /*!< SCB 
+ 412:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_AIRCR_VECTCLRACTIVE_Msk        (1UL << SCB_AIRCR_VECTCLRACTIVE_Pos)           /*!< SCB 
+ 413:Drivers/CMSIS/Include/core_cm0.h **** 
+ 414:Drivers/CMSIS/Include/core_cm0.h **** /* SCB System Control Register Definitions */
+ 415:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_SCR_SEVONPEND_Pos               4U                                            /*!< SCB 
+ 416:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_SCR_SEVONPEND_Msk              (1UL << SCB_SCR_SEVONPEND_Pos)                 /*!< SCB 
+ 417:Drivers/CMSIS/Include/core_cm0.h **** 
+ 418:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_SCR_SLEEPDEEP_Pos               2U                                            /*!< SCB 
+ 419:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_SCR_SLEEPDEEP_Msk              (1UL << SCB_SCR_SLEEPDEEP_Pos)                 /*!< SCB 
+ 420:Drivers/CMSIS/Include/core_cm0.h **** 
+ 421:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_SCR_SLEEPONEXIT_Pos             1U                                            /*!< SCB 
+ 422:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_SCR_SLEEPONEXIT_Msk            (1UL << SCB_SCR_SLEEPONEXIT_Pos)               /*!< SCB 
+ 423:Drivers/CMSIS/Include/core_cm0.h **** 
+ 424:Drivers/CMSIS/Include/core_cm0.h **** /* SCB Configuration Control Register Definitions */
+ 425:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CCR_STKALIGN_Pos                9U                                            /*!< SCB 
+ 426:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CCR_STKALIGN_Msk               (1UL << SCB_CCR_STKALIGN_Pos)                  /*!< SCB 
+ 427:Drivers/CMSIS/Include/core_cm0.h **** 
+ 428:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CCR_UNALIGN_TRP_Pos             3U                                            /*!< SCB 
+ 429:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_CCR_UNALIGN_TRP_Msk            (1UL << SCB_CCR_UNALIGN_TRP_Pos)               /*!< SCB 
+ 430:Drivers/CMSIS/Include/core_cm0.h **** 
+ 431:Drivers/CMSIS/Include/core_cm0.h **** /* SCB System Handler Control and State Register Definitions */
+ 432:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_SHCSR_SVCALLPENDED_Pos         15U                                            /*!< SCB 
+ 433:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_SHCSR_SVCALLPENDED_Msk         (1UL << SCB_SHCSR_SVCALLPENDED_Pos)            /*!< SCB 
+ 434:Drivers/CMSIS/Include/core_cm0.h **** 
+ 435:Drivers/CMSIS/Include/core_cm0.h **** /*@} end of group CMSIS_SCB */
+ 436:Drivers/CMSIS/Include/core_cm0.h **** 
+ 437:Drivers/CMSIS/Include/core_cm0.h **** 
+ 438:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 439:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup  CMSIS_core_register
+ 440:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup CMSIS_SysTick     System Tick Timer (SysTick)
+ 441:Drivers/CMSIS/Include/core_cm0.h ****   \brief    Type definitions for the System Timer Registers.
+ 442:Drivers/CMSIS/Include/core_cm0.h ****   @{
+ 443:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 444:Drivers/CMSIS/Include/core_cm0.h **** 
+ARM GAS  /tmp/ccBdwhyA.s 			page 26
+
+
+ 445:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 446:Drivers/CMSIS/Include/core_cm0.h ****   \brief  Structure type to access the System Timer (SysTick).
+ 447:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 448:Drivers/CMSIS/Include/core_cm0.h **** typedef struct
+ 449:Drivers/CMSIS/Include/core_cm0.h **** {
+ 450:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t CTRL;                   /*!< Offset: 0x000 (R/W)  SysTick Control and Status Regis
+ 451:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t LOAD;                   /*!< Offset: 0x004 (R/W)  SysTick Reload Value Register */
+ 452:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t VAL;                    /*!< Offset: 0x008 (R/W)  SysTick Current Value Register *
+ 453:Drivers/CMSIS/Include/core_cm0.h ****   __IM  uint32_t CALIB;                  /*!< Offset: 0x00C (R/ )  SysTick Calibration Register */
+ 454:Drivers/CMSIS/Include/core_cm0.h **** } SysTick_Type;
+ 455:Drivers/CMSIS/Include/core_cm0.h **** 
+ 456:Drivers/CMSIS/Include/core_cm0.h **** /* SysTick Control / Status Register Definitions */
+ 457:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CTRL_COUNTFLAG_Pos         16U                                            /*!< SysT
+ 458:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CTRL_COUNTFLAG_Msk         (1UL << SysTick_CTRL_COUNTFLAG_Pos)            /*!< SysT
+ 459:Drivers/CMSIS/Include/core_cm0.h **** 
+ 460:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CTRL_CLKSOURCE_Pos          2U                                            /*!< SysT
+ 461:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CTRL_CLKSOURCE_Msk         (1UL << SysTick_CTRL_CLKSOURCE_Pos)            /*!< SysT
+ 462:Drivers/CMSIS/Include/core_cm0.h **** 
+ 463:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CTRL_TICKINT_Pos            1U                                            /*!< SysT
+ 464:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CTRL_TICKINT_Msk           (1UL << SysTick_CTRL_TICKINT_Pos)              /*!< SysT
+ 465:Drivers/CMSIS/Include/core_cm0.h **** 
+ 466:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CTRL_ENABLE_Pos             0U                                            /*!< SysT
+ 467:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CTRL_ENABLE_Msk            (1UL /*<< SysTick_CTRL_ENABLE_Pos*/)           /*!< SysT
+ 468:Drivers/CMSIS/Include/core_cm0.h **** 
+ 469:Drivers/CMSIS/Include/core_cm0.h **** /* SysTick Reload Register Definitions */
+ 470:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_LOAD_RELOAD_Pos             0U                                            /*!< SysT
+ 471:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_LOAD_RELOAD_Msk            (0xFFFFFFUL /*<< SysTick_LOAD_RELOAD_Pos*/)    /*!< SysT
+ 472:Drivers/CMSIS/Include/core_cm0.h **** 
+ 473:Drivers/CMSIS/Include/core_cm0.h **** /* SysTick Current Register Definitions */
+ 474:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_VAL_CURRENT_Pos             0U                                            /*!< SysT
+ 475:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_VAL_CURRENT_Msk            (0xFFFFFFUL /*<< SysTick_VAL_CURRENT_Pos*/)    /*!< SysT
+ 476:Drivers/CMSIS/Include/core_cm0.h **** 
+ 477:Drivers/CMSIS/Include/core_cm0.h **** /* SysTick Calibration Register Definitions */
+ 478:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CALIB_NOREF_Pos            31U                                            /*!< SysT
+ 479:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CALIB_NOREF_Msk            (1UL << SysTick_CALIB_NOREF_Pos)               /*!< SysT
+ 480:Drivers/CMSIS/Include/core_cm0.h **** 
+ 481:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CALIB_SKEW_Pos             30U                                            /*!< SysT
+ 482:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CALIB_SKEW_Msk             (1UL << SysTick_CALIB_SKEW_Pos)                /*!< SysT
+ 483:Drivers/CMSIS/Include/core_cm0.h **** 
+ 484:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CALIB_TENMS_Pos             0U                                            /*!< SysT
+ 485:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_CALIB_TENMS_Msk            (0xFFFFFFUL /*<< SysTick_CALIB_TENMS_Pos*/)    /*!< SysT
+ 486:Drivers/CMSIS/Include/core_cm0.h **** 
+ 487:Drivers/CMSIS/Include/core_cm0.h **** /*@} end of group CMSIS_SysTick */
+ 488:Drivers/CMSIS/Include/core_cm0.h **** 
+ 489:Drivers/CMSIS/Include/core_cm0.h **** 
+ 490:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 491:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup  CMSIS_core_register
+ 492:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup CMSIS_CoreDebug       Core Debug Registers (CoreDebug)
+ 493:Drivers/CMSIS/Include/core_cm0.h ****   \brief    Cortex-M0 Core Debug Registers (DCB registers, SHCSR, and DFSR) are only accessible ove
+ 494:Drivers/CMSIS/Include/core_cm0.h ****             Therefore they are not covered by the Cortex-M0 header file.
+ 495:Drivers/CMSIS/Include/core_cm0.h ****   @{
+ 496:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 497:Drivers/CMSIS/Include/core_cm0.h **** /*@} end of group CMSIS_CoreDebug */
+ 498:Drivers/CMSIS/Include/core_cm0.h **** 
+ 499:Drivers/CMSIS/Include/core_cm0.h **** 
+ 500:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 501:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup    CMSIS_core_register
+ARM GAS  /tmp/ccBdwhyA.s 			page 27
+
+
+ 502:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup   CMSIS_core_bitfield     Core register bit field macros
+ 503:Drivers/CMSIS/Include/core_cm0.h ****   \brief      Macros for use with bit field definitions (xxx_Pos, xxx_Msk).
+ 504:Drivers/CMSIS/Include/core_cm0.h ****   @{
+ 505:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 506:Drivers/CMSIS/Include/core_cm0.h **** 
+ 507:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 508:Drivers/CMSIS/Include/core_cm0.h ****   \brief   Mask and shift a bit field value for use in a register bit range.
+ 509:Drivers/CMSIS/Include/core_cm0.h ****   \param[in] field  Name of the register bit field.
+ 510:Drivers/CMSIS/Include/core_cm0.h ****   \param[in] value  Value of the bit field. This parameter is interpreted as an uint32_t type.
+ 511:Drivers/CMSIS/Include/core_cm0.h ****   \return           Masked and shifted value.
+ 512:Drivers/CMSIS/Include/core_cm0.h **** */
+ 513:Drivers/CMSIS/Include/core_cm0.h **** #define _VAL2FLD(field, value)    (((uint32_t)(value) << field ## _Pos) & field ## _Msk)
+ 514:Drivers/CMSIS/Include/core_cm0.h **** 
+ 515:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 516:Drivers/CMSIS/Include/core_cm0.h ****   \brief     Mask and shift a register value to extract a bit filed value.
+ 517:Drivers/CMSIS/Include/core_cm0.h ****   \param[in] field  Name of the register bit field.
+ 518:Drivers/CMSIS/Include/core_cm0.h ****   \param[in] value  Value of register. This parameter is interpreted as an uint32_t type.
+ 519:Drivers/CMSIS/Include/core_cm0.h ****   \return           Masked and shifted bit field value.
+ 520:Drivers/CMSIS/Include/core_cm0.h **** */
+ 521:Drivers/CMSIS/Include/core_cm0.h **** #define _FLD2VAL(field, value)    (((uint32_t)(value) & field ## _Msk) >> field ## _Pos)
+ 522:Drivers/CMSIS/Include/core_cm0.h **** 
+ 523:Drivers/CMSIS/Include/core_cm0.h **** /*@} end of group CMSIS_core_bitfield */
+ 524:Drivers/CMSIS/Include/core_cm0.h **** 
+ 525:Drivers/CMSIS/Include/core_cm0.h **** 
+ 526:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 527:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup    CMSIS_core_register
+ 528:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup   CMSIS_core_base     Core Definitions
+ 529:Drivers/CMSIS/Include/core_cm0.h ****   \brief      Definitions for base addresses, unions, and structures.
+ 530:Drivers/CMSIS/Include/core_cm0.h ****   @{
+ 531:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 532:Drivers/CMSIS/Include/core_cm0.h **** 
+ 533:Drivers/CMSIS/Include/core_cm0.h **** /* Memory mapping of Core Hardware */
+ 534:Drivers/CMSIS/Include/core_cm0.h **** #define SCS_BASE            (0xE000E000UL)                            /*!< System Control Space Bas
+ 535:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick_BASE        (SCS_BASE +  0x0010UL)                    /*!< SysTick Base Address */
+ 536:Drivers/CMSIS/Include/core_cm0.h **** #define NVIC_BASE           (SCS_BASE +  0x0100UL)                    /*!< NVIC Base Address */
+ 537:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_BASE            (SCS_BASE +  0x0D00UL)                    /*!< System Control Block Bas
+ 538:Drivers/CMSIS/Include/core_cm0.h **** 
+ 539:Drivers/CMSIS/Include/core_cm0.h **** #define SCB                 ((SCB_Type       *)     SCB_BASE      )   /*!< SCB configuration struct
+ 540:Drivers/CMSIS/Include/core_cm0.h **** #define SysTick             ((SysTick_Type   *)     SysTick_BASE  )   /*!< SysTick configuration st
+ 541:Drivers/CMSIS/Include/core_cm0.h **** #define NVIC                ((NVIC_Type      *)     NVIC_BASE     )   /*!< NVIC configuration struc
+ 542:Drivers/CMSIS/Include/core_cm0.h **** 
+ 543:Drivers/CMSIS/Include/core_cm0.h **** 
+ 544:Drivers/CMSIS/Include/core_cm0.h **** /*@} */
+ 545:Drivers/CMSIS/Include/core_cm0.h **** 
+ 546:Drivers/CMSIS/Include/core_cm0.h **** 
+ 547:Drivers/CMSIS/Include/core_cm0.h **** 
+ 548:Drivers/CMSIS/Include/core_cm0.h **** /*******************************************************************************
+ 549:Drivers/CMSIS/Include/core_cm0.h ****  *                Hardware Abstraction Layer
+ 550:Drivers/CMSIS/Include/core_cm0.h ****   Core Function Interface contains:
+ 551:Drivers/CMSIS/Include/core_cm0.h ****   - Core NVIC Functions
+ 552:Drivers/CMSIS/Include/core_cm0.h ****   - Core SysTick Functions
+ 553:Drivers/CMSIS/Include/core_cm0.h ****   - Core Register Access Functions
+ 554:Drivers/CMSIS/Include/core_cm0.h ****  ******************************************************************************/
+ 555:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 556:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup CMSIS_Core_FunctionInterface Functions and Instructions Reference
+ 557:Drivers/CMSIS/Include/core_cm0.h **** */
+ 558:Drivers/CMSIS/Include/core_cm0.h **** 
+ARM GAS  /tmp/ccBdwhyA.s 			page 28
+
+
+ 559:Drivers/CMSIS/Include/core_cm0.h **** 
+ 560:Drivers/CMSIS/Include/core_cm0.h **** 
+ 561:Drivers/CMSIS/Include/core_cm0.h **** /* ##########################   NVIC functions  #################################### */
+ 562:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 563:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup  CMSIS_Core_FunctionInterface
+ 564:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup CMSIS_Core_NVICFunctions NVIC Functions
+ 565:Drivers/CMSIS/Include/core_cm0.h ****   \brief    Functions that manage interrupts and exceptions via the NVIC.
+ 566:Drivers/CMSIS/Include/core_cm0.h ****   @{
+ 567:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 568:Drivers/CMSIS/Include/core_cm0.h **** 
+ 569:Drivers/CMSIS/Include/core_cm0.h **** #ifdef CMSIS_NVIC_VIRTUAL
+ 570:Drivers/CMSIS/Include/core_cm0.h ****   #ifndef CMSIS_NVIC_VIRTUAL_HEADER_FILE
+ 571:Drivers/CMSIS/Include/core_cm0.h ****     #define CMSIS_NVIC_VIRTUAL_HEADER_FILE "cmsis_nvic_virtual.h"
+ 572:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+ 573:Drivers/CMSIS/Include/core_cm0.h ****   #include CMSIS_NVIC_VIRTUAL_HEADER_FILE
+ 574:Drivers/CMSIS/Include/core_cm0.h **** #else
+ 575:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_SetPriorityGrouping    __NVIC_SetPriorityGrouping
+ 576:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_GetPriorityGrouping    __NVIC_GetPriorityGrouping
+ 577:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_EnableIRQ              __NVIC_EnableIRQ
+ 578:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_GetEnableIRQ           __NVIC_GetEnableIRQ
+ 579:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_DisableIRQ             __NVIC_DisableIRQ
+ 580:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_GetPendingIRQ          __NVIC_GetPendingIRQ
+ 581:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_SetPendingIRQ          __NVIC_SetPendingIRQ
+ 582:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_ClearPendingIRQ        __NVIC_ClearPendingIRQ
+ 583:Drivers/CMSIS/Include/core_cm0.h **** /*#define NVIC_GetActive              __NVIC_GetActive             not available for Cortex-M0 */
+ 584:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_SetPriority            __NVIC_SetPriority
+ 585:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_GetPriority            __NVIC_GetPriority
+ 586:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_SystemReset            __NVIC_SystemReset
+ 587:Drivers/CMSIS/Include/core_cm0.h **** #endif /* CMSIS_NVIC_VIRTUAL */
+ 588:Drivers/CMSIS/Include/core_cm0.h **** 
+ 589:Drivers/CMSIS/Include/core_cm0.h **** #ifdef CMSIS_VECTAB_VIRTUAL
+ 590:Drivers/CMSIS/Include/core_cm0.h ****   #ifndef CMSIS_VECTAB_VIRTUAL_HEADER_FILE
+ 591:Drivers/CMSIS/Include/core_cm0.h ****     #define CMSIS_VECTAB_VIRTUAL_HEADER_FILE "cmsis_vectab_virtual.h"
+ 592:Drivers/CMSIS/Include/core_cm0.h ****   #endif
+ 593:Drivers/CMSIS/Include/core_cm0.h ****   #include CMSIS_VECTAB_VIRTUAL_HEADER_FILE
+ 594:Drivers/CMSIS/Include/core_cm0.h **** #else
+ 595:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_SetVector              __NVIC_SetVector
+ 596:Drivers/CMSIS/Include/core_cm0.h ****   #define NVIC_GetVector              __NVIC_GetVector
+ 597:Drivers/CMSIS/Include/core_cm0.h **** #endif  /* (CMSIS_VECTAB_VIRTUAL) */
+ 598:Drivers/CMSIS/Include/core_cm0.h **** 
+ 599:Drivers/CMSIS/Include/core_cm0.h **** #define NVIC_USER_IRQ_OFFSET          16
+ 600:Drivers/CMSIS/Include/core_cm0.h **** 
+ 601:Drivers/CMSIS/Include/core_cm0.h **** 
+ 602:Drivers/CMSIS/Include/core_cm0.h **** /* The following EXC_RETURN values are saved the LR on exception entry */
+ 603:Drivers/CMSIS/Include/core_cm0.h **** #define EXC_RETURN_HANDLER         (0xFFFFFFF1UL)     /* return to Handler mode, uses MSP after ret
+ 604:Drivers/CMSIS/Include/core_cm0.h **** #define EXC_RETURN_THREAD_MSP      (0xFFFFFFF9UL)     /* return to Thread mode, uses MSP after retu
+ 605:Drivers/CMSIS/Include/core_cm0.h **** #define EXC_RETURN_THREAD_PSP      (0xFFFFFFFDUL)     /* return to Thread mode, uses PSP after retu
+ 606:Drivers/CMSIS/Include/core_cm0.h **** 
+ 607:Drivers/CMSIS/Include/core_cm0.h **** 
+ 608:Drivers/CMSIS/Include/core_cm0.h **** /* Interrupt Priorities are WORD accessible only under Armv6-M                  */
+ 609:Drivers/CMSIS/Include/core_cm0.h **** /* The following MACROS handle generation of the register offset and byte masks */
+ 610:Drivers/CMSIS/Include/core_cm0.h **** #define _BIT_SHIFT(IRQn)         (  ((((uint32_t)(int32_t)(IRQn))         )      &  0x03UL) * 8UL)
+ 611:Drivers/CMSIS/Include/core_cm0.h **** #define _SHP_IDX(IRQn)           ( (((((uint32_t)(int32_t)(IRQn)) & 0x0FUL)-8UL) >>    2UL)      )
+ 612:Drivers/CMSIS/Include/core_cm0.h **** #define _IP_IDX(IRQn)            (   (((uint32_t)(int32_t)(IRQn))                >>    2UL)      )
+ 613:Drivers/CMSIS/Include/core_cm0.h **** 
+ 614:Drivers/CMSIS/Include/core_cm0.h **** #define __NVIC_SetPriorityGrouping(X) (void)(X)
+ 615:Drivers/CMSIS/Include/core_cm0.h **** #define __NVIC_GetPriorityGrouping()  (0U)
+ARM GAS  /tmp/ccBdwhyA.s 			page 29
+
+
+ 616:Drivers/CMSIS/Include/core_cm0.h **** 
+ 617:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 618:Drivers/CMSIS/Include/core_cm0.h ****   \brief   Enable Interrupt
+ 619:Drivers/CMSIS/Include/core_cm0.h ****   \details Enables a device specific interrupt in the NVIC interrupt controller.
+ 620:Drivers/CMSIS/Include/core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 621:Drivers/CMSIS/Include/core_cm0.h ****   \note    IRQn must not be negative.
+ 622:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 623:Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
+ 812              		.loc 2 623 22 view .LVU258
+ 813              	.LBB7:
+ 624:Drivers/CMSIS/Include/core_cm0.h **** {
+ 625:Drivers/CMSIS/Include/core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 814              		.loc 2 625 3 view .LVU259
+ 626:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 627:Drivers/CMSIS/Include/core_cm0.h ****     NVIC->ISER[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 815              		.loc 2 627 5 view .LVU260
+ 816              		.loc 2 627 20 is_stmt 0 view .LVU261
+ 817 00cc 114B     		ldr	r3, .L23+40
+ 818 00ce 8022     		movs	r2, #128
+ 819 00d0 9202     		lsls	r2, r2, #10
+ 820 00d2 1A60     		str	r2, [r3]
+ 821              	.LVL7:
+ 822              		.loc 2 627 20 view .LVU262
+ 823              	.LBE7:
+ 824              	.LBE6:
+ 186:Src/motor.c   ****     NVIC_SetPriority(TIM6_DAC_IRQn,2);
+ 825              		.loc 1 186 5 is_stmt 1 view .LVU263
+ 826              	.LBB8:
+ 827              	.LBI8:
+ 628:Drivers/CMSIS/Include/core_cm0.h ****   }
+ 629:Drivers/CMSIS/Include/core_cm0.h **** }
+ 630:Drivers/CMSIS/Include/core_cm0.h **** 
+ 631:Drivers/CMSIS/Include/core_cm0.h **** 
+ 632:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 633:Drivers/CMSIS/Include/core_cm0.h ****   \brief   Get Interrupt Enable status
+ 634:Drivers/CMSIS/Include/core_cm0.h ****   \details Returns a device specific interrupt enable status from the NVIC interrupt controller.
+ 635:Drivers/CMSIS/Include/core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 636:Drivers/CMSIS/Include/core_cm0.h ****   \return             0  Interrupt is not enabled.
+ 637:Drivers/CMSIS/Include/core_cm0.h ****   \return             1  Interrupt is enabled.
+ 638:Drivers/CMSIS/Include/core_cm0.h ****   \note    IRQn must not be negative.
+ 639:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 640:Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
+ 641:Drivers/CMSIS/Include/core_cm0.h **** {
+ 642:Drivers/CMSIS/Include/core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 643:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 644:Drivers/CMSIS/Include/core_cm0.h ****     return((uint32_t)(((NVIC->ISER[0U] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL)
+ 645:Drivers/CMSIS/Include/core_cm0.h ****   }
+ 646:Drivers/CMSIS/Include/core_cm0.h ****   else
+ 647:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 648:Drivers/CMSIS/Include/core_cm0.h ****     return(0U);
+ 649:Drivers/CMSIS/Include/core_cm0.h ****   }
+ 650:Drivers/CMSIS/Include/core_cm0.h **** }
+ 651:Drivers/CMSIS/Include/core_cm0.h **** 
+ 652:Drivers/CMSIS/Include/core_cm0.h **** 
+ 653:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 654:Drivers/CMSIS/Include/core_cm0.h ****   \brief   Disable Interrupt
+ 655:Drivers/CMSIS/Include/core_cm0.h ****   \details Disables a device specific interrupt in the NVIC interrupt controller.
+ARM GAS  /tmp/ccBdwhyA.s 			page 30
+
+
+ 656:Drivers/CMSIS/Include/core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 657:Drivers/CMSIS/Include/core_cm0.h ****   \note    IRQn must not be negative.
+ 658:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 659:Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn)
+ 660:Drivers/CMSIS/Include/core_cm0.h **** {
+ 661:Drivers/CMSIS/Include/core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 662:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 663:Drivers/CMSIS/Include/core_cm0.h ****     NVIC->ICER[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 664:Drivers/CMSIS/Include/core_cm0.h ****     __DSB();
+ 665:Drivers/CMSIS/Include/core_cm0.h ****     __ISB();
+ 666:Drivers/CMSIS/Include/core_cm0.h ****   }
+ 667:Drivers/CMSIS/Include/core_cm0.h **** }
+ 668:Drivers/CMSIS/Include/core_cm0.h **** 
+ 669:Drivers/CMSIS/Include/core_cm0.h **** 
+ 670:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 671:Drivers/CMSIS/Include/core_cm0.h ****   \brief   Get Pending Interrupt
+ 672:Drivers/CMSIS/Include/core_cm0.h ****   \details Reads the NVIC pending register and returns the pending bit for the specified device spe
+ 673:Drivers/CMSIS/Include/core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 674:Drivers/CMSIS/Include/core_cm0.h ****   \return             0  Interrupt status is not pending.
+ 675:Drivers/CMSIS/Include/core_cm0.h ****   \return             1  Interrupt status is pending.
+ 676:Drivers/CMSIS/Include/core_cm0.h ****   \note    IRQn must not be negative.
+ 677:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 678:Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
+ 679:Drivers/CMSIS/Include/core_cm0.h **** {
+ 680:Drivers/CMSIS/Include/core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 681:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 682:Drivers/CMSIS/Include/core_cm0.h ****     return((uint32_t)(((NVIC->ISPR[0U] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL)
+ 683:Drivers/CMSIS/Include/core_cm0.h ****   }
+ 684:Drivers/CMSIS/Include/core_cm0.h ****   else
+ 685:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 686:Drivers/CMSIS/Include/core_cm0.h ****     return(0U);
+ 687:Drivers/CMSIS/Include/core_cm0.h ****   }
+ 688:Drivers/CMSIS/Include/core_cm0.h **** }
+ 689:Drivers/CMSIS/Include/core_cm0.h **** 
+ 690:Drivers/CMSIS/Include/core_cm0.h **** 
+ 691:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 692:Drivers/CMSIS/Include/core_cm0.h ****   \brief   Set Pending Interrupt
+ 693:Drivers/CMSIS/Include/core_cm0.h ****   \details Sets the pending bit of a device specific interrupt in the NVIC pending register.
+ 694:Drivers/CMSIS/Include/core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 695:Drivers/CMSIS/Include/core_cm0.h ****   \note    IRQn must not be negative.
+ 696:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 697:Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
+ 698:Drivers/CMSIS/Include/core_cm0.h **** {
+ 699:Drivers/CMSIS/Include/core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 700:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 701:Drivers/CMSIS/Include/core_cm0.h ****     NVIC->ISPR[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 702:Drivers/CMSIS/Include/core_cm0.h ****   }
+ 703:Drivers/CMSIS/Include/core_cm0.h **** }
+ 704:Drivers/CMSIS/Include/core_cm0.h **** 
+ 705:Drivers/CMSIS/Include/core_cm0.h **** 
+ 706:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 707:Drivers/CMSIS/Include/core_cm0.h ****   \brief   Clear Pending Interrupt
+ 708:Drivers/CMSIS/Include/core_cm0.h ****   \details Clears the pending bit of a device specific interrupt in the NVIC pending register.
+ 709:Drivers/CMSIS/Include/core_cm0.h ****   \param [in]      IRQn  Device specific interrupt number.
+ 710:Drivers/CMSIS/Include/core_cm0.h ****   \note    IRQn must not be negative.
+ 711:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 712:Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
+ARM GAS  /tmp/ccBdwhyA.s 			page 31
+
+
+ 713:Drivers/CMSIS/Include/core_cm0.h **** {
+ 714:Drivers/CMSIS/Include/core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 715:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 716:Drivers/CMSIS/Include/core_cm0.h ****     NVIC->ICPR[0U] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+ 717:Drivers/CMSIS/Include/core_cm0.h ****   }
+ 718:Drivers/CMSIS/Include/core_cm0.h **** }
+ 719:Drivers/CMSIS/Include/core_cm0.h **** 
+ 720:Drivers/CMSIS/Include/core_cm0.h **** 
+ 721:Drivers/CMSIS/Include/core_cm0.h **** /**
+ 722:Drivers/CMSIS/Include/core_cm0.h ****   \brief   Set Interrupt Priority
+ 723:Drivers/CMSIS/Include/core_cm0.h ****   \details Sets the priority of a device specific interrupt or a processor exception.
+ 724:Drivers/CMSIS/Include/core_cm0.h ****            The interrupt number can be positive to specify a device specific interrupt,
+ 725:Drivers/CMSIS/Include/core_cm0.h ****            or negative to specify a processor exception.
+ 726:Drivers/CMSIS/Include/core_cm0.h ****   \param [in]      IRQn  Interrupt number.
+ 727:Drivers/CMSIS/Include/core_cm0.h ****   \param [in]  priority  Priority to set.
+ 728:Drivers/CMSIS/Include/core_cm0.h ****   \note    The priority cannot be set for every processor exception.
+ 729:Drivers/CMSIS/Include/core_cm0.h ****  */
+ 730:Drivers/CMSIS/Include/core_cm0.h **** __STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+ 828              		.loc 2 730 22 view .LVU264
+ 829              	.LBB9:
+ 731:Drivers/CMSIS/Include/core_cm0.h **** {
+ 732:Drivers/CMSIS/Include/core_cm0.h ****   if ((int32_t)(IRQn) >= 0)
+ 830              		.loc 2 732 3 view .LVU265
+ 733:Drivers/CMSIS/Include/core_cm0.h ****   {
+ 734:Drivers/CMSIS/Include/core_cm0.h ****     NVIC->IP[_IP_IDX(IRQn)]  = ((uint32_t)(NVIC->IP[_IP_IDX(IRQn)]  & ~(0xFFUL << _BIT_SHIFT(IRQn))
+ 831              		.loc 2 734 5 view .LVU266
+ 832              		.loc 2 734 52 is_stmt 0 view .LVU267
+ 833 00d4 C420     		movs	r0, #196
+ 834 00d6 8000     		lsls	r0, r0, #2
+ 835 00d8 1958     		ldr	r1, [r3, r0]
+ 836              		.loc 2 734 33 view .LVU268
+ 837 00da 0F4A     		ldr	r2, .L23+44
+ 838 00dc 1140     		ands	r1, r2
+ 839              		.loc 2 734 102 view .LVU269
+ 840 00de 8022     		movs	r2, #128
+ 841 00e0 1202     		lsls	r2, r2, #8
+ 842 00e2 0A43     		orrs	r2, r1
+ 843              		.loc 2 734 30 view .LVU270
+ 844 00e4 1A50     		str	r2, [r3, r0]
+ 845              	.LVL8:
+ 846              		.loc 2 734 30 view .LVU271
+ 847              	.LBE9:
+ 848              	.LBE8:
+ 187:Src/motor.c   **** }
+ 849              		.loc 1 187 1 view .LVU272
+ 850              		@ sp needed
+ 851 00e6 80BC     		pop	{r7}
+ 852 00e8 B846     		mov	r8, r7
+ 853 00ea F0BD     		pop	{r4, r5, r6, r7, pc}
+ 854              	.L24:
+ 855              		.align	2
+ 856              	.L23:
+ 857 00ec 00040048 		.word	1207960576
+ 858 00f0 FFFAFFFF 		.word	-1281
+ 859 00f4 FFFFFFAF 		.word	-1342177281
+ 860 00f8 00100240 		.word	1073876992
+ 861 00fc 00040040 		.word	1073742848
+ARM GAS  /tmp/ccBdwhyA.s 			page 32
+
+
+ 862 0100 FFFF0000 		.word	65535
+ 863 0104 FF7F0000 		.word	32767
+ 864 0108 00400140 		.word	1073823744
+ 865 010c 00100040 		.word	1073745920
+ 866 0110 30750000 		.word	30000
+ 867 0114 00E100E0 		.word	-536813312
+ 868 0118 FF00FFFF 		.word	-65281
+ 869              		.cfi_endproc
+ 870              	.LFE51:
+ 872              		.section	.text.TIM6_DAC_IRQHandler,"ax",%progbits
+ 873              		.align	1
+ 874              		.global	TIM6_DAC_IRQHandler
+ 875              		.syntax unified
+ 876              		.code	16
+ 877              		.thumb_func
+ 879              	TIM6_DAC_IRQHandler:
+ 880              	.LFB52:
+ 188:Src/motor.c   **** 
+ 189:Src/motor.c   **** // Encoder interrupt to calculate motor speed, also manages PI controller
+ 190:Src/motor.c   **** void TIM6_DAC_IRQHandler(void) {
+ 881              		.loc 1 190 32 is_stmt 1 view -0
+ 882              		.cfi_startproc
+ 883              		@ args = 0, pretend = 0, frame = 0
+ 884              		@ frame_needed = 0, uses_anonymous_args = 0
+ 885              		@ link register save eliminated.
+ 191:Src/motor.c   ****     /* Calculate the motor speed in raw encoder counts
+ 192:Src/motor.c   ****      * Note the motor speed is signed! Motor can be run in reverse.
+ 193:Src/motor.c   ****      * Speed is measured by how far the counter moved from center point
+ 194:Src/motor.c   ****      */
+ 195:Src/motor.c   ****     motorl_speed = (TIM3->CNT - 0x7FFF);
+ 886              		.loc 1 195 5 view .LVU274
+ 887              		.loc 1 195 25 is_stmt 0 view .LVU275
+ 888 0000 0B4A     		ldr	r2, .L26
+ 889 0002 536A     		ldr	r3, [r2, #36]
+ 890              		.loc 1 195 31 view .LVU276
+ 891 0004 0B49     		ldr	r1, .L26+4
+ 892 0006 8C46     		mov	ip, r1
+ 893 0008 6344     		add	r3, r3, ip
+ 894 000a 1BB2     		sxth	r3, r3
+ 895              		.loc 1 195 18 view .LVU277
+ 896 000c 0A49     		ldr	r1, .L26+8
+ 897 000e 0B80     		strh	r3, [r1]
+ 196:Src/motor.c   ****     TIM3->CNT = 0x7FFF; // Reset back to center point
+ 898              		.loc 1 196 5 is_stmt 1 view .LVU278
+ 899              		.loc 1 196 15 is_stmt 0 view .LVU279
+ 900 0010 0A49     		ldr	r1, .L26+12
+ 901 0012 5162     		str	r1, [r2, #36]
+ 197:Src/motor.c   **** 	  motorr_speed = (TIM15->CNT - 0x7FFF);
+ 902              		.loc 1 197 4 is_stmt 1 view .LVU280
+ 903              		.loc 1 197 25 is_stmt 0 view .LVU281
+ 904 0014 0A4A     		ldr	r2, .L26+16
+ 905 0016 536A     		ldr	r3, [r2, #36]
+ 906              		.loc 1 197 31 view .LVU282
+ 907 0018 6344     		add	r3, r3, ip
+ 908 001a 1BB2     		sxth	r3, r3
+ 909              		.loc 1 197 17 view .LVU283
+ 910 001c 0948     		ldr	r0, .L26+20
+ARM GAS  /tmp/ccBdwhyA.s 			page 33
+
+
+ 911 001e 0380     		strh	r3, [r0]
+ 198:Src/motor.c   ****     TIM15->CNT = 0x7FFF; // Reset back to center point
+ 912              		.loc 1 198 5 is_stmt 1 view .LVU284
+ 913              		.loc 1 198 16 is_stmt 0 view .LVU285
+ 914 0020 5162     		str	r1, [r2, #36]
+ 199:Src/motor.c   ****     
+ 200:Src/motor.c   ****     // Call the PI update function
+ 201:Src/motor.c   ****     TIM6->SR &= ~TIM_SR_UIF;        // Acknowledge the interrupt
+ 915              		.loc 1 201 5 is_stmt 1 view .LVU286
+ 916              		.loc 1 201 9 is_stmt 0 view .LVU287
+ 917 0022 094A     		ldr	r2, .L26+24
+ 918 0024 1369     		ldr	r3, [r2, #16]
+ 919              		.loc 1 201 14 view .LVU288
+ 920 0026 0121     		movs	r1, #1
+ 921 0028 8B43     		bics	r3, r1
+ 922 002a 1361     		str	r3, [r2, #16]
+ 202:Src/motor.c   **** }
+ 923              		.loc 1 202 1 view .LVU289
+ 924              		@ sp needed
+ 925 002c 7047     		bx	lr
+ 926              	.L27:
+ 927 002e C046     		.align	2
+ 928              	.L26:
+ 929 0030 00040040 		.word	1073742848
+ 930 0034 0180FFFF 		.word	-32767
+ 931 0038 00000000 		.word	motorl_speed
+ 932 003c FF7F0000 		.word	32767
+ 933 0040 00400140 		.word	1073823744
+ 934 0044 00000000 		.word	motorr_speed
+ 935 0048 00100040 		.word	1073745920
+ 936              		.cfi_endproc
+ 937              	.LFE52:
+ 939              		.section	.text.ADC_init,"ax",%progbits
+ 940              		.align	1
+ 941              		.global	ADC_init
+ 942              		.syntax unified
+ 943              		.code	16
+ 944              		.thumb_func
+ 946              	ADC_init:
+ 947              	.LFB53:
+ 203:Src/motor.c   **** 
+ 204:Src/motor.c   **** void ADC_init(void) {
+ 948              		.loc 1 204 21 is_stmt 1 view -0
+ 949              		.cfi_startproc
+ 950              		@ args = 0, pretend = 0, frame = 0
+ 951              		@ frame_needed = 0, uses_anonymous_args = 0
+ 952              		@ link register save eliminated.
+ 205:Src/motor.c   **** 
+ 206:Src/motor.c   ****     // Configure PA1 for ADC input (used for current monitoring)
+ 207:Src/motor.c   ****     GPIOA->MODER |= (GPIO_MODER_MODER1_0 | GPIO_MODER_MODER1_1);
+ 953              		.loc 1 207 5 view .LVU291
+ 954              		.loc 1 207 10 is_stmt 0 view .LVU292
+ 955 0000 9022     		movs	r2, #144
+ 956 0002 D205     		lsls	r2, r2, #23
+ 957 0004 1368     		ldr	r3, [r2]
+ 958              		.loc 1 207 18 view .LVU293
+ 959 0006 0C21     		movs	r1, #12
+ARM GAS  /tmp/ccBdwhyA.s 			page 34
+
+
+ 960 0008 0B43     		orrs	r3, r1
+ 961 000a 1360     		str	r3, [r2]
+ 208:Src/motor.c   **** 
+ 209:Src/motor.c   ****     // Configure ADC to 8-bit continuous-run mode, (asynchronous clock mode)
+ 210:Src/motor.c   ****     RCC->APB2ENR |= RCC_APB2ENR_ADCEN;
+ 962              		.loc 1 210 5 is_stmt 1 view .LVU294
+ 963              		.loc 1 210 8 is_stmt 0 view .LVU295
+ 964 000c 154A     		ldr	r2, .L32
+ 965 000e 9169     		ldr	r1, [r2, #24]
+ 966              		.loc 1 210 18 view .LVU296
+ 967 0010 8023     		movs	r3, #128
+ 968 0012 9B00     		lsls	r3, r3, #2
+ 969 0014 0B43     		orrs	r3, r1
+ 970 0016 9361     		str	r3, [r2, #24]
+ 211:Src/motor.c   **** 
+ 212:Src/motor.c   ****     ADC1->CFGR1 = 0;                        // Default resolution is 12-bit (RES[1:0] = 00 --> 12-b
+ 971              		.loc 1 212 5 is_stmt 1 view .LVU297
+ 972              		.loc 1 212 17 is_stmt 0 view .LVU298
+ 973 0018 134B     		ldr	r3, .L32+4
+ 974 001a 0021     		movs	r1, #0
+ 975 001c D960     		str	r1, [r3, #12]
+ 213:Src/motor.c   ****     ADC1->CFGR1 |= ADC_CFGR1_CONT;          // Set to continuous mode
+ 976              		.loc 1 213 5 is_stmt 1 view .LVU299
+ 977              		.loc 1 213 9 is_stmt 0 view .LVU300
+ 978 001e D868     		ldr	r0, [r3, #12]
+ 979              		.loc 1 213 17 view .LVU301
+ 980 0020 8022     		movs	r2, #128
+ 981 0022 9201     		lsls	r2, r2, #6
+ 982 0024 0243     		orrs	r2, r0
+ 983 0026 DA60     		str	r2, [r3, #12]
+ 214:Src/motor.c   ****     ADC1->CHSELR |= ADC_CHSELR_CHSEL1;      // Enable channel 1
+ 984              		.loc 1 214 5 is_stmt 1 view .LVU302
+ 985              		.loc 1 214 9 is_stmt 0 view .LVU303
+ 986 0028 9A6A     		ldr	r2, [r3, #40]
+ 987              		.loc 1 214 18 view .LVU304
+ 988 002a 0220     		movs	r0, #2
+ 989 002c 0243     		orrs	r2, r0
+ 990 002e 9A62     		str	r2, [r3, #40]
+ 215:Src/motor.c   **** 
+ 216:Src/motor.c   ****     ADC1->CR = 0;
+ 991              		.loc 1 216 5 is_stmt 1 view .LVU305
+ 992              		.loc 1 216 14 is_stmt 0 view .LVU306
+ 993 0030 9960     		str	r1, [r3, #8]
+ 217:Src/motor.c   ****     ADC1->CR |= ADC_CR_ADCAL;               // Perform self calibration
+ 994              		.loc 1 217 5 is_stmt 1 view .LVU307
+ 995              		.loc 1 217 9 is_stmt 0 view .LVU308
+ 996 0032 9968     		ldr	r1, [r3, #8]
+ 997              		.loc 1 217 14 view .LVU309
+ 998 0034 8022     		movs	r2, #128
+ 999 0036 1206     		lsls	r2, r2, #24
+ 1000 0038 0A43     		orrs	r2, r1
+ 1001 003a 9A60     		str	r2, [r3, #8]
+ 218:Src/motor.c   ****     while(ADC1->CR & ADC_CR_ADCAL);         // Delay until calibration is complete
+ 1002              		.loc 1 218 5 is_stmt 1 view .LVU310
+ 1003              	.L29:
+ 1004              		.loc 1 218 11 discriminator 1 view .LVU311
+ 1005              		.loc 1 218 15 is_stmt 0 discriminator 1 view .LVU312
+ARM GAS  /tmp/ccBdwhyA.s 			page 35
+
+
+ 1006 003c 0A4B     		ldr	r3, .L32+4
+ 1007 003e 9B68     		ldr	r3, [r3, #8]
+ 1008              		.loc 1 218 11 discriminator 1 view .LVU313
+ 1009 0040 002B     		cmp	r3, #0
+ 1010 0042 FBDB     		blt	.L29
+ 219:Src/motor.c   **** 
+ 220:Src/motor.c   ****     ADC1->CR |= ADC_CR_ADEN;                // Enable ADC
+ 1011              		.loc 1 220 5 is_stmt 1 view .LVU314
+ 1012              		.loc 1 220 9 is_stmt 0 view .LVU315
+ 1013 0044 084A     		ldr	r2, .L32+4
+ 1014 0046 9368     		ldr	r3, [r2, #8]
+ 1015              		.loc 1 220 14 view .LVU316
+ 1016 0048 0121     		movs	r1, #1
+ 1017 004a 0B43     		orrs	r3, r1
+ 1018 004c 9360     		str	r3, [r2, #8]
+ 221:Src/motor.c   ****     while(!(ADC1->ISR & ADC_ISR_ADRDY));    // Wait until ADC ready
+ 1019              		.loc 1 221 5 is_stmt 1 view .LVU317
+ 1020              	.L30:
+ 1021              		.loc 1 221 11 discriminator 1 view .LVU318
+ 1022              		.loc 1 221 17 is_stmt 0 discriminator 1 view .LVU319
+ 1023 004e 064B     		ldr	r3, .L32+4
+ 1024 0050 1B68     		ldr	r3, [r3]
+ 1025              		.loc 1 221 11 discriminator 1 view .LVU320
+ 1026 0052 DB07     		lsls	r3, r3, #31
+ 1027 0054 FBD5     		bpl	.L30
+ 222:Src/motor.c   ****     ADC1->CR |= ADC_CR_ADSTART;             // Signal conversion start
+ 1028              		.loc 1 222 5 is_stmt 1 view .LVU321
+ 1029              		.loc 1 222 9 is_stmt 0 view .LVU322
+ 1030 0056 044A     		ldr	r2, .L32+4
+ 1031 0058 9368     		ldr	r3, [r2, #8]
+ 1032              		.loc 1 222 14 view .LVU323
+ 1033 005a 0421     		movs	r1, #4
+ 1034 005c 0B43     		orrs	r3, r1
+ 1035 005e 9360     		str	r3, [r2, #8]
+ 223:Src/motor.c   **** }
+ 1036              		.loc 1 223 1 view .LVU324
+ 1037              		@ sp needed
+ 1038 0060 7047     		bx	lr
+ 1039              	.L33:
+ 1040 0062 C046     		.align	2
+ 1041              	.L32:
+ 1042 0064 00100240 		.word	1073876992
+ 1043 0068 00240140 		.word	1073816576
+ 1044              		.cfi_endproc
+ 1045              	.LFE53:
+ 1047              		.section	.text.motor_init,"ax",%progbits
+ 1048              		.align	1
+ 1049              		.global	motor_init
+ 1050              		.syntax unified
+ 1051              		.code	16
+ 1052              		.thumb_func
+ 1054              	motor_init:
+ 1055              	.LFB43:
+  18:Src/motor.c   ****     pwm_init();
+ 1056              		.loc 1 18 23 is_stmt 1 view -0
+ 1057              		.cfi_startproc
+ 1058              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccBdwhyA.s 			page 36
+
+
+ 1059              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1060 0000 10B5     		push	{r4, lr}
+ 1061              	.LCFI5:
+ 1062              		.cfi_def_cfa_offset 8
+ 1063              		.cfi_offset 4, -8
+ 1064              		.cfi_offset 14, -4
+  19:Src/motor.c   ****     encoder_init();
+ 1065              		.loc 1 19 5 view .LVU326
+ 1066 0002 FFF7FEFF 		bl	pwm_init
+ 1067              	.LVL9:
+  20:Src/motor.c   ****     ADC_init();
+ 1068              		.loc 1 20 5 view .LVU327
+ 1069 0006 FFF7FEFF 		bl	encoder_init
+ 1070              	.LVL10:
+  21:Src/motor.c   **** }
+ 1071              		.loc 1 21 5 view .LVU328
+ 1072 000a FFF7FEFF 		bl	ADC_init
+ 1073              	.LVL11:
+  22:Src/motor.c   **** 
+ 1074              		.loc 1 22 1 is_stmt 0 view .LVU329
+ 1075              		@ sp needed
+ 1076 000e 10BD     		pop	{r4, pc}
+ 1077              		.cfi_endproc
+ 1078              	.LFE43:
+ 1080              		.global	Ki
+ 1081              		.section	.data.Ki,"aw"
+ 1084              	Ki:
+ 1085 0000 01       		.byte	1
+ 1086              		.global	Kp
+ 1087              		.section	.data.Kp,"aw"
+ 1090              	Kp:
+ 1091 0000 01       		.byte	1
+ 1092              		.global	error
+ 1093              		.section	.bss.error,"aw",%nobits
+ 1094              		.align	1
+ 1097              	error:
+ 1098 0000 0000     		.space	2
+ 1099              		.global	adc_value
+ 1100              		.section	.bss.adc_value,"aw",%nobits
+ 1103              	adc_value:
+ 1104 0000 00       		.space	1
+ 1105              		.global	motorr_speed
+ 1106              		.section	.bss.motorr_speed,"aw",%nobits
+ 1107              		.align	1
+ 1110              	motorr_speed:
+ 1111 0000 0000     		.space	2
+ 1112              		.global	motorl_speed
+ 1113              		.section	.bss.motorl_speed,"aw",%nobits
+ 1114              		.align	1
+ 1117              	motorl_speed:
+ 1118 0000 0000     		.space	2
+ 1119              		.global	target_rpm
+ 1120              		.section	.bss.target_rpm,"aw",%nobits
+ 1121              		.align	1
+ 1124              	target_rpm:
+ 1125 0000 0000     		.space	2
+ 1126              		.global	duty_cycle
+ARM GAS  /tmp/ccBdwhyA.s 			page 37
+
+
+ 1127              		.section	.bss.duty_cycle,"aw",%nobits
+ 1130              	duty_cycle:
+ 1131 0000 00       		.space	1
+ 1132              		.global	error_integral
+ 1133              		.section	.bss.error_integral,"aw",%nobits
+ 1134              		.align	1
+ 1137              	error_integral:
+ 1138 0000 0000     		.space	2
+ 1139              		.text
+ 1140              	.Letext0:
+ 1141              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1142              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
+ 1143              		.file 5 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1144              		.file 6 "Inc/motor.h"
+ARM GAS  /tmp/ccBdwhyA.s 			page 38
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 motor.c
+     /tmp/ccBdwhyA.s:19     .text.pwm_init:00000000 $t
+     /tmp/ccBdwhyA.s:25     .text.pwm_init:00000000 pwm_init
+     /tmp/ccBdwhyA.s:268    .text.pwm_init:00000100 $d
+     /tmp/ccBdwhyA.s:282    .text.pwm_setDutyCycleL:00000000 $t
+     /tmp/ccBdwhyA.s:288    .text.pwm_setDutyCycleL:00000000 pwm_setDutyCycleL
+     /tmp/ccBdwhyA.s:325    .text.pwm_setDutyCycleL:00000018 $d
+     /tmp/ccBdwhyA.s:330    .text.pwm_setDutyCycleR:00000000 $t
+     /tmp/ccBdwhyA.s:336    .text.pwm_setDutyCycleR:00000000 pwm_setDutyCycleR
+     /tmp/ccBdwhyA.s:375    .text.set_Forward:00000000 $t
+     /tmp/ccBdwhyA.s:381    .text.set_Forward:00000000 set_Forward
+     /tmp/ccBdwhyA.s:426    .text.set_Forward:0000002c $d
+     /tmp/ccBdwhyA.s:432    .text.set_Backward:00000000 $t
+     /tmp/ccBdwhyA.s:438    .text.set_Backward:00000000 set_Backward
+     /tmp/ccBdwhyA.s:483    .text.set_Backward:0000002c $d
+     /tmp/ccBdwhyA.s:489    .text.set_Right:00000000 $t
+     /tmp/ccBdwhyA.s:495    .text.set_Right:00000000 set_Right
+     /tmp/ccBdwhyA.s:540    .text.set_Right:0000002c $d
+     /tmp/ccBdwhyA.s:547    .text.set_Left:00000000 $t
+     /tmp/ccBdwhyA.s:553    .text.set_Left:00000000 set_Left
+     /tmp/ccBdwhyA.s:599    .text.set_Left:0000002c $d
+     /tmp/ccBdwhyA.s:604    .text.encoder_init:00000000 $t
+     /tmp/ccBdwhyA.s:610    .text.encoder_init:00000000 encoder_init
+     /tmp/ccBdwhyA.s:857    .text.encoder_init:000000ec $d
+     /tmp/ccBdwhyA.s:873    .text.TIM6_DAC_IRQHandler:00000000 $t
+     /tmp/ccBdwhyA.s:879    .text.TIM6_DAC_IRQHandler:00000000 TIM6_DAC_IRQHandler
+     /tmp/ccBdwhyA.s:929    .text.TIM6_DAC_IRQHandler:00000030 $d
+     /tmp/ccBdwhyA.s:1117   .bss.motorl_speed:00000000 motorl_speed
+     /tmp/ccBdwhyA.s:1110   .bss.motorr_speed:00000000 motorr_speed
+     /tmp/ccBdwhyA.s:940    .text.ADC_init:00000000 $t
+     /tmp/ccBdwhyA.s:946    .text.ADC_init:00000000 ADC_init
+     /tmp/ccBdwhyA.s:1042   .text.ADC_init:00000064 $d
+     /tmp/ccBdwhyA.s:1048   .text.motor_init:00000000 $t
+     /tmp/ccBdwhyA.s:1054   .text.motor_init:00000000 motor_init
+     /tmp/ccBdwhyA.s:1084   .data.Ki:00000000 Ki
+     /tmp/ccBdwhyA.s:1090   .data.Kp:00000000 Kp
+     /tmp/ccBdwhyA.s:1097   .bss.error:00000000 error
+     /tmp/ccBdwhyA.s:1094   .bss.error:00000000 $d
+     /tmp/ccBdwhyA.s:1103   .bss.adc_value:00000000 adc_value
+     /tmp/ccBdwhyA.s:1104   .bss.adc_value:00000000 $d
+     /tmp/ccBdwhyA.s:1107   .bss.motorr_speed:00000000 $d
+     /tmp/ccBdwhyA.s:1114   .bss.motorl_speed:00000000 $d
+     /tmp/ccBdwhyA.s:1124   .bss.target_rpm:00000000 target_rpm
+     /tmp/ccBdwhyA.s:1121   .bss.target_rpm:00000000 $d
+     /tmp/ccBdwhyA.s:1130   .bss.duty_cycle:00000000 duty_cycle
+     /tmp/ccBdwhyA.s:1131   .bss.duty_cycle:00000000 $d
+     /tmp/ccBdwhyA.s:1137   .bss.error_integral:00000000 error_integral
+     /tmp/ccBdwhyA.s:1134   .bss.error_integral:00000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_uidiv

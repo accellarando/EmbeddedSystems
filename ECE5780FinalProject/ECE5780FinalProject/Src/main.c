@@ -201,6 +201,16 @@ void USART3_4_IRQHandler(){
 		command[0] = USART3->RDR;
 }
 
+void Log(){
+	uint8_t* err = "Not yet implemented\n";
+	USART_SendString(err);
+}
+
+void Proceed(){
+	uint8_t* err = "Not yet implemented\n";
+	USART_SendString(err);
+}
+
 void ProcessCommand(uint8_t direction, uint8_t distance){
 	uint32_t left_motor_pin;
 	uint32_t right_motor_pin;
@@ -211,6 +221,8 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	uint8_t forward[] = "Moving forward ";
 	uint8_t left[] = "Turning left ";
 	uint8_t right[] = "Turning right ";
+	uint8_t log[] = "Logging sensor data\n";
+	uint8_t proceed[] = "Entering autonomous mode...\n";
 
 	if(direction != 'w' && direction != 'a' && direction != 'd'){
 		USART_SendString(err);
@@ -218,33 +230,59 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 		return;
 	}
 
+	MotorCommand motorcmd = {0};
+
 	uint8_t* part1;
-	uint8_t part2[3];
+	uint8_t part2[15];
+	memcpy(part2, 0, 15);
 
 	switch(direction){
 		case 'w':
 			part1 = forward;
+			motorcmd.dir = FORWARD;
 			break;
 		case 'a':
 			part1 = left;
+			motorcmd.dir = LEFT;
 			break;
 		case 'd':
 			part1 = right;
+			motorcmd.dir = RIGHT;
 			break;
+		case 'l':
+			part1 = log;
+			USART_SendString(part1);
+			Log();
+			ClearCommand();
+			return;
+		case 'p':
+			part1 = proceed;
+			USART_SendString(part1);
+			Proceed();
+			ClearCommand();
+			return;
 		default:
 			USART_SendString(err);
 			ClearCommand();
 	}
 
-	if(distance < '1' || distance > '9'){
+	//these are for "vector commands" only:
+	
+	if(distance == '0' && direction == 'w'){
+		sprintf(part2, "indefinitely\n");
+		motorcmd.amount = 0;
+	}
+	else if(distance < '1' || distance > '9'){
 		USART_SendString(err);
 		ClearCommand();
 		return;
 	}
+	else{
+		uint8_t dist = (distance - '0') * 20;
+		sprintf(part2, "%d\n", dist);
+		motorcmd.amount = dist;
+	}
 
-
-	uint8_t dist = (distance - '0') * 20;
-	sprintf(part2, "%d\n", dist);
 
 	USART_SendString(part1);
 	USART_SendString(part2);
@@ -252,6 +290,8 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	TIM2->CCR1 = CH1_DC;
 	HAL_Delay(1000);
 	TIM2->CCR1 = 0;
+
+	MoveMotors(&motorcmd);
 
 	ClearCommand();
 
