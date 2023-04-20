@@ -223,12 +223,7 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	uint8_t right[] = "Turning right ";
 	uint8_t log[] = "Logging sensor data\n";
 	uint8_t proceed[] = "Entering autonomous mode...\n";
-
-	if(direction != 'w' && direction != 'a' && direction != 'd'){
-		USART_SendString(err);
-		ClearCommand();
-		return;
-	}
+	uint8_t stop[] = "Stopping all motors!\n";
 
 	MotorCommand motorcmd = {0};
 
@@ -261,6 +256,13 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 			USART_SendString(part1);
 			Proceed();
 			ClearCommand();
+			return;
+		case 'x':
+			part1 = stop;
+			USART_SendString(part1);
+			motorcmd.dir = OFF;
+			ClearCommand();
+			MoveMotors(&motorcmd);
 			return;
 		default:
 			USART_SendString(err);
@@ -459,6 +461,11 @@ int main(void)
 
 		if(incomingCommand)
 		{
+			if(command[0] != 'w' &&
+					command[0] != 'a' &&
+					command[0] != 'd'){
+				ProcessCommand(command[0], NULL);
+			}
 			if(command[1])
 			{
 				ProcessCommand(command[0], command[1]);

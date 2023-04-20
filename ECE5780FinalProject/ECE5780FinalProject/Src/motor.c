@@ -4,17 +4,21 @@
  */
 #include "motor.h"
 
+volatile int16_t error_integral = 0;    // Integrated error signal
+volatile uint8_t duty_cycle = 0;    	// Output PWM duty cycle
+volatile int16_t target_rpm = 0;    	// Desired speed target
 volatile int16_t motorl_speed = 0;   	// Measured left motor speed
-volatile int16_t motorr_speed = 0;   	// Measured right motor speed
-volatile float motorl_dist = 0;   	// Measured left motor distance
-volatile float motorr_dist = 0;   	// Measured right motor distance
-volatile float motorl_target = 0;   	// Target left motor distance
-volatile float motorr_target = 0;   	// Target right motor distance
+volatile int16_t motorr_speed = 0;   	// Measured left motor speed
+volatile int8_t adc_value = 0;      	// ADC measured motor current
+volatile int16_t error = 0;         	// Speed error signal
+volatile uint8_t Kp = 1;            	// Proportional gain
+volatile uint8_t Ki = 1;            	// Integral gain
 
 // Sets up the entire motor drive system
 void motor_init(void) {
     pwm_init();
     encoder_init();
+    ADC_init();
 }
 
 // Sets up the PWM and direction signals to drive the H-Bridge
@@ -22,6 +26,7 @@ void pwm_init(void) {
 	//RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 	
     // Set up pin PA4 for H-bridge PWM output (TIMER 14 CH1)
+	/*
     GPIOA->MODER |= (1 << 9);
     GPIOA->MODER &= ~(1 << 8);
 	
@@ -44,13 +49,14 @@ void pwm_init(void) {
 		// Set up a PB2, PB10 as GPIO output pins for motor direction control
     GPIOB->MODER &= 0xFFCFFFCF; // clear PB2, PB10 bits,
     GPIOB->MODER |= (1 << 4) | (1 << 20);
+	*/
    
     //Initialize one direction pin to high, the other low
-		HAL_GPIO_WritePin(motor_left_pins.dir_a.gpio, motor_left_pins.dir_a.pin.Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(motor_left_pins.dir_b.gpio, motor_left_pins.dir_b.pin.Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(motor_left_pins.dir_a.gpio, motor_left_pins.dir_a.pin.Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(motor_left_pins.dir_b.gpio, motor_left_pins.dir_b.pin.Pin, GPIO_PIN_RESET);
 
-		HAL_GPIO_WritePin(motor_right_pins.dir_a.gpio, motor_right_pins.dir_a.pin.Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(motor_right_pins.dir_b.gpio, motor_right_pins.dir_b.pin.Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(motor_right_pins.dir_a.gpio, motor_right_pins.dir_a.pin.Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(motor_right_pins.dir_b.gpio, motor_right_pins.dir_b.pin.Pin, GPIO_PIN_RESET);
 
     // Set up PWM timer
     RCC->APB1ENR |= RCC_APB1ENR_TIM14EN;
@@ -106,18 +112,12 @@ void set_Motor_Direction(Direction dir, motor_pins_t* pins){
 		case FORWARD:
 			HAL_GPIO_WritePin(pins->dir_a.gpio, pins->dir_a.pin.Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(pins->dir_b.gpio, pins->dir_b.pin.Pin, GPIO_PIN_RESET);
-			pwm_setDutyCycleL(100);
-			pwm_setDutyCycleR(100);
 			break;
 		case BACKWARD:
-			HAL_GPIO_WritePin(pins->dir_a.gpio, pins->dir_a.pin.Pin, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(pins->dir_b.gpio, pins->dir_b.pin.Pin, GPIO_PIN_RESET);
-			pwm_setDutyCycleR(100);
-			pwm_setDutyCycleL(100);
+			HAL_GPIO_WritePin(pins->dir_a.gpio, pins->dir_a.pin.Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(pins->dir_b.gpio, pins->dir_b.pin.Pin, GPIO_PIN_SET);
 			break;
 		default:
-			pwm_setDutyCycleL(0);
-			pwm_setDutyCycleR(0);
 			;
 	}
 }
@@ -128,6 +128,10 @@ void set_Forward(){
 
 	//right go forward
 	set_Motor_Direction(FORWARD, &motor_right_pins);
+
+	pwm_setDutyCycleR(100);
+	pwm_setDutyCycleL(100);
+
 
 	/* the old way
 		GPIOA->ODR |= (1 << 5);
@@ -143,7 +147,8 @@ void set_Backward(){
 
 	//right go backward
 	set_Motor_Direction(BACKWARD, &motor_right_pins);
-
+	pwm_setDutyCycleR(100);
+	pwm_setDutyCycleL(100);
 	/* the old way
 		GPIOA->ODR |= (1 << 8);
 		GPIOA->ODR &= ~(1 << 5);
@@ -158,7 +163,8 @@ void set_Right(){
 
 	//right go backward
 	set_Motor_Direction(BACKWARD, &motor_right_pins);
-
+	pwm_setDutyCycleR(100);
+	pwm_setDutyCycleL(100);
 	/* old way
 		GPIOA->ODR |= (1 << 5);
 		GPIOA->ODR &= ~(1 << 8);
@@ -173,7 +179,9 @@ void set_Left(){
 	
 	//right go forward
 	set_Motor_Direction(FORWARD, &motor_right_pins);
-	
+
+	pwm_setDutyCycleR(100);
+	pwm_setDutyCycleL(100);
 	/*
 		GPIOA->ODR |= (1 << 8);
 		GPIOA->ODR &= ~(1 << 5);
@@ -182,36 +190,26 @@ void set_Left(){
 	*/
 }
 
-void set_Off(){
-	set_Motor_Direction(OFF, &motor_left_pins);
-	set_Motor_Direction(OFF, &motor_right_pins);
+void motors_Off(){
+	pwm_setDutyCycleR(0);
+	pwm_setDutyCycleL(0);
 }
 
 uint8_t* MoveMotors(MotorCommand* cmd){
-	set_Off();
-	set_On();
+	motors_Off();
 	uint8_t* err = "MoveMotors executed!\n";
 	switch(cmd->dir){
 		case FORWARD:
 			set_Forward();
-		  motorl_target = cmd->amount;
-			motorr_target = -cmd->amount;
-			motorl_dist = 0;
-			motorr_dist = 0;
 			break;
 		case LEFT:
 			set_Left();
-			motorl_target = -cmd->amount * 0.0872665;
-			motorr_target = -cmd->amount * 0.0872665;
-			motorl_dist = 0;
-			motorr_dist = 0;
 			break;
 		case RIGHT:
 			set_Right();
-			motorl_target = cmd->amount * 0.0872665;
-			motorr_target = cmd->amount * 0.0872665;
-			motorl_dist = 0;
-			motorr_dist = 0;
+			break;
+		case OFF:
+			motors_Off();
 			break;
 		default:
 			err = "Invalid command to MoveMotors!\n";
@@ -284,13 +282,30 @@ void TIM6_DAC_IRQHandler(void) {
      */
     motorl_speed = (TIM3->CNT - 0x7FFF);
     TIM3->CNT = 0x7FFF; // Reset back to center point
-		motorl_dist = motorl_speed/5;
 	  motorr_speed = (TIM15->CNT - 0x7FFF);
     TIM15->CNT = 0x7FFF; // Reset back to center point
-	  motorr_dist = motorr_speed/5;
-		
-		
     
     // Call the PI update function
     TIM6->SR &= ~TIM_SR_UIF;        // Acknowledge the interrupt
+}
+
+void ADC_init(void) {
+
+    // Configure PA1 for ADC input (used for current monitoring)
+    GPIOA->MODER |= (GPIO_MODER_MODER1_0 | GPIO_MODER_MODER1_1);
+
+    // Configure ADC to 8-bit continuous-run mode, (asynchronous clock mode)
+    RCC->APB2ENR |= RCC_APB2ENR_ADCEN;
+
+    ADC1->CFGR1 = 0;                        // Default resolution is 12-bit (RES[1:0] = 00 --> 12-bit)
+    ADC1->CFGR1 |= ADC_CFGR1_CONT;          // Set to continuous mode
+    ADC1->CHSELR |= ADC_CHSELR_CHSEL1;      // Enable channel 1
+
+    ADC1->CR = 0;
+    ADC1->CR |= ADC_CR_ADCAL;               // Perform self calibration
+    while(ADC1->CR & ADC_CR_ADCAL);         // Delay until calibration is complete
+
+    ADC1->CR |= ADC_CR_ADEN;                // Enable ADC
+    while(!(ADC1->ISR & ADC_ISR_ADRDY));    // Wait until ADC ready
+    ADC1->CR |= ADC_CR_ADSTART;             // Signal conversion start
 }
