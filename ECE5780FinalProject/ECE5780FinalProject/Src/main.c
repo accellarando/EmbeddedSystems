@@ -234,7 +234,8 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 
 	uint8_t* part1;
 	uint8_t part2[15];
-	memcpy(part2, 0, 15);
+	uint8_t zero = 0;
+	memcpy(part2, &zero, 15);
 
 	switch(direction){
 		case 'w':
@@ -264,6 +265,7 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 		default:
 			USART_SendString(err);
 			ClearCommand();
+			return;
 	}
 
 	//these are for "vector commands" only:
@@ -291,7 +293,8 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	HAL_Delay(1000);
 	TIM2->CCR1 = 0;
 
-	MoveMotors(&motorcmd);
+	uint8_t* result = MoveMotors(&motorcmd);
+	USART_SendString(result);
 
 	ClearCommand();
 

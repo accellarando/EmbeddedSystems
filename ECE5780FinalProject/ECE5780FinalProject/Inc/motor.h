@@ -24,7 +24,9 @@ extern volatile uint8_t Ki;            // Integral gain
 enum direction{
 	FORWARD,
 	LEFT,
-	RIGHT
+	RIGHT,
+	BACKWARD,
+	OFF
 };
 typedef enum direction Direction;
 
@@ -54,7 +56,7 @@ void set_Right();
 // PI control code is called within a timer interrupt
 void PI_update(void);
 
-void MoveMotors(MotorCommand* cmd);
+uint8_t* MoveMotors(MotorCommand* cmd);
 
 
 /* -------------------------------------------------------------------------------------------------------------

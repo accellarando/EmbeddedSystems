@@ -23,8 +23,7 @@ void motor_init(void) {
 
 // Sets up the PWM and direction signals to drive the H-Bridge
 void pwm_init(void) {
-	
-		RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+	//RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 	
     // Set up pin PA4 for H-bridge PWM output (TIMER 14 CH1)
     GPIOA->MODER |= (1 << 9);
@@ -51,10 +50,11 @@ void pwm_init(void) {
     GPIOB->MODER |= (1 << 4) | (1 << 20);
    
     //Initialize one direction pin to high, the other low
-    GPIOA->ODR |= (1 << 5);
-    GPIOA->ODR &= ~(1 << 8);
-		GPIOB->ODR |= (1 << 10);
-    GPIOB->ODR &= ~(1 << 2);
+	HAL_GPIO_WritePin(motor_left_pins.dir_a.gpio, motor_left_pins.dir_a.pin.Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(motor_left_pins.dir_b.gpio, motor_left_pins.dir_b.pin.Pin, GPIO_PIN_RESET);
+
+	HAL_GPIO_WritePin(motor_right_pins.dir_a.gpio, motor_right_pins.dir_a.pin.Pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(motor_right_pins.dir_b.gpio, motor_right_pins.dir_b.pin.Pin, GPIO_PIN_RESET);
 
     // Set up PWM timer
     RCC->APB1ENR |= RCC_APB1ENR_TIM14EN;
@@ -101,36 +101,107 @@ void pwm_setDutyCycleR(uint8_t duty) {
     }
 }
 
+/*
+ * This sets an individual motor's direction.
+ * Note: use MoveMotors to change multiple motor values, eg to turn.
+ */
+void set_Motor_Direction(Direction dir, motor_pins_t* pins){
+	switch(dir){
+		case FORWARD:
+			HAL_GPIO_WritePin(pins->dir_a.gpio, pins->dir_a.pin.Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(pins->dir_b.gpio, pins->dir_b.pin.Pin, GPIO_PIN_RESET);
+			break;
+		case BACKWARD:
+			HAL_GPIO_WritePin(pins->dir_a.gpio, pins->dir_a.pin.Pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(pins->dir_b.gpio, pins->dir_b.pin.Pin, GPIO_PIN_RESET);
+			break;
+		default:
+			;
+	}
+}
+
 void set_Forward(){
+	//left go forward
+	set_Motor_Direction(FORWARD, &motor_left_pins);
+
+	//right go forward
+	set_Motor_Direction(FORWARD, &motor_right_pins);
+
+	/* the old way
 		GPIOA->ODR |= (1 << 5);
 		GPIOA->ODR &= ~(1 << 8);
 		GPIOB->ODR |= (1 << 10);
 		GPIOB->ODR &= ~(1 << 2);
+	*/
 }
 
 void set_Backward(){
+	//left go backward
+	set_Motor_Direction(BACKWARD, &motor_left_pins);
+
+	//right go backward
+	set_Motor_Direction(BACKWARD, &motor_right_pins);
+
+	/* the old way
 		GPIOA->ODR |= (1 << 8);
 		GPIOA->ODR &= ~(1 << 5);
 		GPIOB->ODR |= (1 << 2);
 		GPIOB->ODR &= ~(1 << 10);
+	*/
 }
 
 void set_Right(){
+	//left go forward
+	set_Motor_Direction(FORWARD, &motor_left_pins);
+
+	//right go backward
+	set_Motor_Direction(BACKWARD, &motor_right_pins);
+
+	/* old way
 		GPIOA->ODR |= (1 << 5);
 		GPIOA->ODR &= ~(1 << 8);
 		GPIOB->ODR |= (1 << 2);
 		GPIOB->ODR &= ~(1 << 10);
+	*/
 }
 
 void set_Left(){
+	//left go backward
+	set_Motor_Direction(BACKWARD, &motor_left_pins);
+	
+	//right go forward
+	set_Motor_Direction(FORWARD, &motor_right_pins);
+	
+	/*
 		GPIOA->ODR |= (1 << 8);
 		GPIOA->ODR &= ~(1 << 5);
 		GPIOB->ODR |= (1 << 10);
 		GPIOB->ODR &= ~(1 << 2);
+	*/
 }
 
-void MoveMotors(MotorCommand* cmd){
+void set_Off(){
+	set_Motor_Direction(OFF, &motor_left_pins);
+	set_MotorDirection(OFF, &motor_right_pins);
+}
 
+uint8_t* MoveMotors(MotorCommand* cmd){
+	set_Off();
+	uint8_t* err = "MoveMotors executed!\n";
+	switch(cmd->dir){
+		case FORWARD:
+			set_Forward();
+			break;
+		case LEFT:
+			set_Left();
+			break;
+		case RIGHT:
+			set_Right();
+			break;
+		default:
+			err = "Invalid command to MoveMotors!\n";
+	}
+	return err;
 }
 
 // Sets up encoder interface to read motor speed

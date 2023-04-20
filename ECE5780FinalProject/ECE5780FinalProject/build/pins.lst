@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccCRte1R.s 			page 1
+ARM GAS  /tmp/ccYrHzjH.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccCRte1R.s 			page 1
   61 0004 08000000 		.word	8
   62 0008 02000000 		.word	2
   63 000c 00000000 		.word	0
-ARM GAS  /tmp/ccCRte1R.s 			page 2
+ARM GAS  /tmp/ccYrHzjH.s 			page 2
 
 
   64 0010 03000000 		.word	3
@@ -104,7 +104,7 @@ ARM GAS  /tmp/ccCRte1R.s 			page 1
  106 0028 03000000 		.word	3
  107 002c 00000000 		.word	0
  108 0030 00000048 		.word	1207959552
- 109 0034 40000000 		.word	64
+ 109 0034 00010000 		.word	256
  110 0038 01000000 		.word	1
  111 003c 00000000 		.word	0
  112 0040 03000000 		.word	3
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccCRte1R.s 			page 1
  120 0060 00040048 		.word	1207960576
  121 0064 20000000 		.word	32
  122 0068 02000000 		.word	2
-ARM GAS  /tmp/ccCRte1R.s 			page 3
+ARM GAS  /tmp/ccYrHzjH.s 			page 3
 
 
  123 006c 00000000 		.word	0
@@ -147,20 +147,20 @@ ARM GAS  /tmp/ccCRte1R.s 			page 1
  148              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
  149              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
  150              		.file 6 "Inc/pins.h"
-ARM GAS  /tmp/ccCRte1R.s 			page 4
+ARM GAS  /tmp/ccYrHzjH.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 pins.c
-     /tmp/ccCRte1R.s:23     .data.ultrasonic_right_pins:00000000 ultrasonic_right_pins
-     /tmp/ccCRte1R.s:20     .data.ultrasonic_right_pins:00000000 $d
-     /tmp/ccCRte1R.s:41     .data.ultrasonic_left_pins:00000000 ultrasonic_left_pins
-     /tmp/ccCRte1R.s:38     .data.ultrasonic_left_pins:00000000 $d
-     /tmp/ccCRte1R.s:59     .data.motor_right_pins:00000000 motor_right_pins
-     /tmp/ccCRte1R.s:56     .data.motor_right_pins:00000000 $d
-     /tmp/ccCRte1R.s:95     .data.motor_left_pins:00000000 motor_left_pins
-     /tmp/ccCRte1R.s:92     .data.motor_left_pins:00000000 $d
-     /tmp/ccCRte1R.s:131    .data.uart_pins:00000000 uart_pins
-     /tmp/ccCRte1R.s:128    .data.uart_pins:00000000 $d
+     /tmp/ccYrHzjH.s:23     .data.ultrasonic_right_pins:00000000 ultrasonic_right_pins
+     /tmp/ccYrHzjH.s:20     .data.ultrasonic_right_pins:00000000 $d
+     /tmp/ccYrHzjH.s:41     .data.ultrasonic_left_pins:00000000 ultrasonic_left_pins
+     /tmp/ccYrHzjH.s:38     .data.ultrasonic_left_pins:00000000 $d
+     /tmp/ccYrHzjH.s:59     .data.motor_right_pins:00000000 motor_right_pins
+     /tmp/ccYrHzjH.s:56     .data.motor_right_pins:00000000 $d
+     /tmp/ccYrHzjH.s:95     .data.motor_left_pins:00000000 motor_left_pins
+     /tmp/ccYrHzjH.s:92     .data.motor_left_pins:00000000 $d
+     /tmp/ccYrHzjH.s:131    .data.uart_pins:00000000 uart_pins
+     /tmp/ccYrHzjH.s:128    .data.uart_pins:00000000 $d
 
 NO UNDEFINED SYMBOLS
