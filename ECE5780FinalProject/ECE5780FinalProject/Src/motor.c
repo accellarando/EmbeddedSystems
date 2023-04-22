@@ -229,6 +229,7 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 void encoder_init(void) {
     
     // Set up encoder input pins (TIMER 3 CH1 and CH2)
+	/*
     GPIOB->MODER &= ~(GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0);
     GPIOB->MODER |= (GPIO_MODER_MODER4_1 | GPIO_MODER_MODER5_1);
     GPIOB->AFR[0] |= ( (1 << 16) | (1 << 20) );
@@ -237,6 +238,7 @@ void encoder_init(void) {
 		GPIOB->MODER &= ~(GPIO_MODER_MODER14_0 | GPIO_MODER_MODER15_0);
     GPIOB->MODER |= (GPIO_MODER_MODER14_1 | GPIO_MODER_MODER15_1);
     GPIOB->AFR[1] |= ( (1 << 24) | (1 << 28) );
+	*/
 
     // Set up encoder interface (TIM3 encoder input mode)
     RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
@@ -251,21 +253,16 @@ void encoder_init(void) {
     TIM3->CNT = 0x7FFF;                                     // Bias at midpoint to allow for negative rotation
     // (Could also cast unsigned register to signed number to get negative numbers if it rotates backwards past zero
     //  just another option, the mid-bias is a bit simpler to understand though.)
-    TIM3->CR1 |= TIM_CR1_CEN;                               // Enable timer
+    /* TIM3->CR1 |= TIM_CR1_CEN;                               // Enable timer */
 		
-		RCC->APB2ENR |= RCC_APB2ENR_TIM15EN;
-    TIM15->CCMR1 = 0;
-    TIM15->CCER = 0;
-    TIM15->SMCR = 0;
-    TIM15->CR1 = 0;
 
-    TIM15->CCMR1 |= (TIM_CCMR1_CC1S_0 | TIM_CCMR1_CC2S_0);   // TI1FP1 and TI2FP2 signals connected to CH1 and CH2
-    TIM15->SMCR |= (TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0);        // Capture encoder on both rising and falling edges
-    TIM15->ARR = 0xFFFF;                                     // Set ARR to top of timer (longest possible period)
-    TIM15->CNT = 0x7FFF;                                     // Bias at midpoint to allow for negative rotation
+    TIM3->CCMR1 |= (TIM_CCMR1_CC3S_0 | TIM_CCMR1_CC4S_0);   // TI1FP1 and TI2FP2 signals connected to CH3 and CH4
+    TIM3->SMCR |= (TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0);        // Capture encoder on both rising and falling edges
+    TIM3->ARR = 0xFFFF;                                     // Set ARR to top of timer (longest possible period)
+    TIM3->CNT = 0x7FFF;                                     // Bias at midpoint to allow for negative rotation
     // (Could also cast unsigned register to signed number to get negative numbers if it rotates backwards past zero
     //  just another option, the mid-bias is a bit simpler to understand though.)
-    TIM15->CR1 |= TIM_CR1_CEN;     
+    TIM3->CR1 |= TIM_CR1_CEN;     
 
     // Configure a second timer (TIM6) to fire an ISR on update event
     // Used to periodically check and update speed variable
