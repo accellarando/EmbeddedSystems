@@ -392,9 +392,9 @@ int main(void)
 
 	//PWM and Ultrasonic Initalizations
 	MX_GPIO_Init();
-	MX_TIM1_Init();
+	/* MX_TIM1_Init(); */
 
-	HAL_TIM_Base_Start(&htim1);
+	/* HAL_TIM_Base_Start(&htim1); */
 	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_RESET);
 

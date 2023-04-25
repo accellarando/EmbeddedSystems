@@ -3,6 +3,8 @@
  * -------------------------------------------------------------------------------------------------------------
  */
 #include "motor.h"
+#include "main.h"
+#include <math.h>
 
 volatile int16_t motorl_speed = 0;   	// Measured left motor speed
 volatile int16_t motorr_speed = 0;   	// Measured left motor speed
@@ -11,6 +13,9 @@ volatile float current_dist = 0;
 volatile float absolute_dist = 0;
 volatile float heading = 0;
 volatile bool turning = false;
+
+#define max(a,b) ((a>b) ? a : b)
+#define min(a,b) ((a>b) ? b : a)
 
 // Sets up the entire motor drive system
 void motor_init(void) {
@@ -218,6 +223,7 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 			set_Right();
 			break;
 		case OFF:
+			target_dist = 1;
 			motors_Off();
 			break;
 		default:
@@ -225,9 +231,9 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 	}
 	//THIS IS BAD. if you send an x it won't stop motors until this delay finishes!
 	//Switch to a polling structure instead for final
-	while(get_distance() < target_dist)
-		;
-	motors_Off();
+	/* while(get_distance() < target_dist) */
+	/* 	; */
+	/* motors_Off(); */
 	return err;
 }
 
@@ -248,6 +254,7 @@ void encoder_init(void) {
 
     // Set up encoder interface (TIM3 encoder input mode)
     RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
     TIM3->CCMR1 = 0;
     TIM3->CCER = 0;
     TIM3->SMCR = 0;
@@ -259,16 +266,19 @@ void encoder_init(void) {
     TIM3->CNT = 0x7FFF;                                     // Bias at midpoint to allow for negative rotation
     // (Could also cast unsigned register to signed number to get negative numbers if it rotates backwards past zero
     //  just another option, the mid-bias is a bit simpler to understand though.)
-    /* TIM3->CR1 |= TIM_CR1_CEN;                               // Enable timer */
+    TIM3->CR1 |= TIM_CR1_CEN;                               // Enable timer
 		
-
-    TIM3->CCMR2 |= (TIM_CCMR1_CC1S_0 | TIM_CCMR1_CC2S_0);   // TI1FP1 and TI2FP2 signals connected to CH3 and CH4
-    TIM3->SMCR |= (TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0);        // Capture encoder on both rising and falling edges
-    TIM3->ARR = 0xFFFF;                                     // Set ARR to top of timer (longest possible period)
-    TIM3->CNT = 0x7FFF;                                     // Bias at midpoint to allow for negative rotation
+	TIM1->CCMR1 = 0;
+    TIM1->CCER = 0;
+    TIM1->SMCR = 0;
+    TIM1->CR1 = 0;
+    TIM1->CCMR1 |= (TIM_CCMR1_CC1S_0 | TIM_CCMR1_CC2S_0);   // TI1FP1 and TI2FP2 signals connected to CH1 and CH2
+    TIM1->SMCR |= (TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0);        // Capture encoder on both rising and falling edges
+    TIM1->ARR = 0xFFFF;                                     // Set ARR to top of timer (longest possible period)
+    TIM1->CNT = 0x7FFF;                                     // Bias at midpoint to allow for negative rotation
     // (Could also cast unsigned register to signed number to get negative numbers if it rotates backwards past zero
     //  just another option, the mid-bias is a bit simpler to understand though.)
-    TIM3->CR1 |= TIM_CR1_CEN;     
+    TIM1->CR1 |= TIM_CR1_CEN;     
 
     // Configure a second timer (TIM6) to fire an ISR on update event
     // Used to periodically check and update speed variable
@@ -291,22 +301,38 @@ void TIM6_DAC_IRQHandler(void) {
      * Note the motor speed is signed! Motor can be run in reverse.
      * Speed is measured by how far the counter moved from center point
      */
+	uint8_t usart_buffer[32];
     motorl_speed = (TIM3->CNT - 0x7FFF);
+	/* sprintf(usart_buffer, "motorl: %d\n", motorl_speed); */
+	/* USART_SendString(usart_buffer); */
     TIM3->CNT = 0x7FFF; // Reset back to center point
 	motorr_speed = (TIM1->CNT - 0x7FFF);
     TIM1->CNT = 0x7FFF; // Reset back to center point
 	
-	if(abs(motorl_speed)>10){
+	if(abs(motorl_speed)>50){
 		float ratio = ((float) abs(motorl_speed))/ ((float) motorr_speed);
-		pwm_right = (int)(pwm_right * ratio);
+		pwm_right = min((int)(pwm_right * ratio), 100);
+		pwm_setDutyCycleR(pwm_right);
+		sprintf(usart_buffer, "pwm_right: %d\n", pwm_right);
+		USART_SendString(usart_buffer);
+		sprintf(usart_buffer, "motorr: %d\n", motorr_speed);
+		USART_SendString(usart_buffer);
 	}
 	
 	if(target_dist > 0){
 		current_dist += (float)abs(motorl_speed)/70;
+		sprintf(usart_buffer, "current_dist: %d\n", (int)current_dist);
+		USART_SendString(usart_buffer);
 		if ((uint8_t)current_dist >= target_dist){
+			USART_SendString("Hit target\n");
 			motors_Off();
+			motorl_speed = (TIM3->CNT - 0x7FFF);
+			TIM3->CNT = 0x7FFF; // Reset back to center point
+			motorr_speed = (TIM1->CNT - 0x7FFF);
+			TIM1->CNT = 0x7FFF; // Reset back to center point
+			pwm_right = 100;
 			if(!turning){
-				absolute_dist += current_dist * (float)sin((double)heading);
+				absolute_dist += current_dist * (float)cos((double)heading);
 			}
 			target_dist = 0;
 			current_dist = 0;

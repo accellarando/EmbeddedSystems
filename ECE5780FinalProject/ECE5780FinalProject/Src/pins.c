@@ -121,7 +121,7 @@ motor_pins_t motor_right_pins = {
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
 			.Speed = GPIO_SPEED_FREQ_LOW,
-			.Alternate = GPIO_AF0_TIM3
+			.Alternate = GPIO_AF2_TIM1
 		}
 	},
 	.enc_b = {
@@ -131,7 +131,7 @@ motor_pins_t motor_right_pins = {
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
 			.Speed = GPIO_SPEED_FREQ_LOW,
-			.Alternate = GPIO_AF0_TIM3
+			.Alternate = GPIO_AF2_TIM1
 		}
 	}
 };

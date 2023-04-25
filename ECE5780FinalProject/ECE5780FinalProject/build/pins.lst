@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccd6D3jO.s 			page 1
+ARM GAS  /tmp/ccqTDYFV.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccd6D3jO.s 			page 1
   61 0004 08000000 		.word	8
   62 0008 02000000 		.word	2
   63 000c 00000000 		.word	0
-ARM GAS  /tmp/ccd6D3jO.s 			page 2
+ARM GAS  /tmp/ccqTDYFV.s 			page 2
 
 
   64 0010 00000000 		.word	0
@@ -75,18 +75,18 @@ ARM GAS  /tmp/ccd6D3jO.s 			page 1
   75 003c 00000000 		.word	0
   76 0040 00000000 		.word	0
   77 0044 00000000 		.word	0
-  78 0048 00080048 		.word	1207961600
-  79 004c 00020000 		.word	512
+  78 0048 00000048 		.word	1207959552
+  79 004c 00010000 		.word	256
   80 0050 02000000 		.word	2
   81 0054 00000000 		.word	0
   82 0058 00000000 		.word	0
-  83 005c 00000000 		.word	0
-  84 0060 00080048 		.word	1207961600
+  83 005c 02000000 		.word	2
+  84 0060 00000048 		.word	1207959552
   85 0064 00020000 		.word	512
   86 0068 02000000 		.word	2
   87 006c 00000000 		.word	0
   88 0070 00000000 		.word	0
-  89 0074 00000000 		.word	0
+  89 0074 02000000 		.word	2
   90              		.global	motor_left_pins
   91              		.section	.data.motor_left_pins,"aw"
   92              		.align	2
@@ -103,8 +103,8 @@ ARM GAS  /tmp/ccd6D3jO.s 			page 1
  105 0024 00000000 		.word	0
  106 0028 00000000 		.word	0
  107 002c 00000000 		.word	0
- 108 0030 00000048 		.word	1207959552
- 109 0034 00010000 		.word	256
+ 108 0030 00080048 		.word	1207961600
+ 109 0034 00020000 		.word	512
  110 0038 01000000 		.word	1
  111 003c 00000000 		.word	0
  112 0040 00000000 		.word	0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccd6D3jO.s 			page 1
  120 0060 00040048 		.word	1207960576
  121 0064 20000000 		.word	32
  122 0068 02000000 		.word	2
-ARM GAS  /tmp/ccd6D3jO.s 			page 3
+ARM GAS  /tmp/ccqTDYFV.s 			page 3
 
 
  123 006c 00000000 		.word	0
@@ -147,20 +147,20 @@ ARM GAS  /tmp/ccd6D3jO.s 			page 1
  148              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h"
  149              		.file 5 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
  150              		.file 6 "Inc/pins.h"
-ARM GAS  /tmp/ccd6D3jO.s 			page 4
+ARM GAS  /tmp/ccqTDYFV.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 pins.c
-     /tmp/ccd6D3jO.s:23     .data.ultrasonic_right_pins:00000000 ultrasonic_right_pins
-     /tmp/ccd6D3jO.s:20     .data.ultrasonic_right_pins:00000000 $d
-     /tmp/ccd6D3jO.s:41     .data.ultrasonic_left_pins:00000000 ultrasonic_left_pins
-     /tmp/ccd6D3jO.s:38     .data.ultrasonic_left_pins:00000000 $d
-     /tmp/ccd6D3jO.s:59     .data.motor_right_pins:00000000 motor_right_pins
-     /tmp/ccd6D3jO.s:56     .data.motor_right_pins:00000000 $d
-     /tmp/ccd6D3jO.s:95     .data.motor_left_pins:00000000 motor_left_pins
-     /tmp/ccd6D3jO.s:92     .data.motor_left_pins:00000000 $d
-     /tmp/ccd6D3jO.s:131    .data.uart_pins:00000000 uart_pins
-     /tmp/ccd6D3jO.s:128    .data.uart_pins:00000000 $d
+     /tmp/ccqTDYFV.s:23     .data.ultrasonic_right_pins:00000000 ultrasonic_right_pins
+     /tmp/ccqTDYFV.s:20     .data.ultrasonic_right_pins:00000000 $d
+     /tmp/ccqTDYFV.s:41     .data.ultrasonic_left_pins:00000000 ultrasonic_left_pins
+     /tmp/ccqTDYFV.s:38     .data.ultrasonic_left_pins:00000000 $d
+     /tmp/ccqTDYFV.s:59     .data.motor_right_pins:00000000 motor_right_pins
+     /tmp/ccqTDYFV.s:56     .data.motor_right_pins:00000000 $d
+     /tmp/ccqTDYFV.s:95     .data.motor_left_pins:00000000 motor_left_pins
+     /tmp/ccqTDYFV.s:92     .data.motor_left_pins:00000000 $d
+     /tmp/ccqTDYFV.s:131    .data.uart_pins:00000000 uart_pins
+     /tmp/ccqTDYFV.s:128    .data.uart_pins:00000000 $d
 
 NO UNDEFINED SYMBOLS

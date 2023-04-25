@@ -22,7 +22,8 @@ build/motor.o: Src/motor.c Inc/motor.h \
  Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr.h \
  Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h \
  Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h \
- Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h Inc/pins.h
+ Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h Inc/pins.h \
+ Inc/main.h
 Inc/motor.h:
 Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h:
 Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h:
@@ -51,3 +52,4 @@ Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pwr_ex.h:
 Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h:
 Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h:
 Inc/pins.h:
+Inc/main.h:
