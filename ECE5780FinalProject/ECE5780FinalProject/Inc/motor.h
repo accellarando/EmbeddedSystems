@@ -6,17 +6,19 @@
 #include <stdlib.h>
 #include "stm32f0xx.h"
 #include "pins.h"
+#include <stdbool.h>
+#include <math.h>
 
 /* -------------------------------------------------------------------------------------------------------------
  *  Global Variable and Type Declarations
  *  -------------------------------------------------------------------------------------------------------------
  */
 extern volatile int16_t motor_speed;   // Measured motor speed
-extern volatile uint8_t target_dist = 0;
-extern volatile float current_dist = 0;
-extern volatile float absolute_dist = 0;
-extern volatile float heading = 0;
-extern volatile bool turning = false;
+extern volatile uint8_t target_dist;
+extern volatile float current_dist;
+extern volatile float absolute_dist;
+extern volatile float heading;
+extern volatile bool turning;
 									   //
 extern volatile uint8_t pwm_right;
 extern volatile uint8_t pwm_left;

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccKUjuNa.s 			page 1
+ARM GAS  /tmp/ccr5TVAt.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
   30:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *           + TIM OCRef clear configuration
   31:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *           + TIM External Clock configuration
   32:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   @verbatim
-ARM GAS  /tmp/ccKUjuNa.s 			page 2
+ARM GAS  /tmp/ccr5TVAt.s 			page 2
 
 
   33:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   ==============================================================================
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
   87:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****            (++) Time Base : HAL_TIM_Base_Start(), HAL_TIM_Base_Start_DMA(), HAL_TIM_Base_Start_IT()
   88:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****            (++) Input Capture :  HAL_TIM_IC_Start(), HAL_TIM_IC_Start_DMA(), HAL_TIM_IC_Start_IT()
   89:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****            (++) Output Compare : HAL_TIM_OC_Start(), HAL_TIM_OC_Start_DMA(), HAL_TIM_OC_Start_IT()
-ARM GAS  /tmp/ccKUjuNa.s 			page 3
+ARM GAS  /tmp/ccr5TVAt.s 			page 3
 
 
   90:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****            (++) PWM generation : HAL_TIM_PWM_Start(), HAL_TIM_PWM_Start_DMA(), HAL_TIM_PWM_Start_IT
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  144:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     (+) BreakCallback                     : TIM Break Callback.
  145:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  146:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   [..]
-ARM GAS  /tmp/ccKUjuNa.s 			page 4
+ARM GAS  /tmp/ccr5TVAt.s 			page 4
 
 
  147:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** By default, after the Init and when the state is HAL_TIM_STATE_RESET
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  201:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** /* Private macro -------------------------------------------------------------*/
  202:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** /* Private variables ---------------------------------------------------------*/
  203:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** /* Private function prototypes -----------------------------------------------*/
-ARM GAS  /tmp/ccKUjuNa.s 			page 5
+ARM GAS  /tmp/ccr5TVAt.s 			page 5
 
 
  204:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** /** @addtogroup TIM_Private_Functions
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  258:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @note   Switching from Center Aligned counter mode to Edge counter mode (or reverse)
  259:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *         requires a timer reset to avoid unexpected direction
  260:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *         due to DIR bit readonly in center aligned mode.
-ARM GAS  /tmp/ccKUjuNa.s 			page 6
+ARM GAS  /tmp/ccr5TVAt.s 			page 6
 
 
  261:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *         Ex: call @ref HAL_TIM_Base_DeInit() before HAL_TIM_Base_Init()
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  315:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @retval HAL status
  316:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
  317:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** HAL_StatusTypeDef HAL_TIM_Base_DeInit(TIM_HandleTypeDef *htim)
-ARM GAS  /tmp/ccKUjuNa.s 			page 7
+ARM GAS  /tmp/ccr5TVAt.s 			page 7
 
 
  318:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  372:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  373:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* NOTE : This function should not be modified, when the callback is needed,
  374:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****             the HAL_TIM_Base_MspDeInit could be implemented in the user file
-ARM GAS  /tmp/ccKUjuNa.s 			page 8
+ARM GAS  /tmp/ccr5TVAt.s 			page 8
 
 
  375:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****    */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  429:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
  430:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  431:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** /**
-ARM GAS  /tmp/ccKUjuNa.s 			page 9
+ARM GAS  /tmp/ccr5TVAt.s 			page 9
 
 
  432:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @brief  Starts the TIM Base generation in interrupt mode.
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  486:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  487:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
  488:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_DMA_INSTANCE(htim->Instance));
-ARM GAS  /tmp/ccKUjuNa.s 			page 10
+ARM GAS  /tmp/ccr5TVAt.s 			page 10
 
 
  489:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  543:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
  544:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
  545:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_DMA_INSTANCE(htim->Instance));
-ARM GAS  /tmp/ccKUjuNa.s 			page 11
+ARM GAS  /tmp/ccr5TVAt.s 			page 11
 
 
  546:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  600:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (htim == NULL)
  601:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  602:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     return HAL_ERROR;
-ARM GAS  /tmp/ccKUjuNa.s 			page 12
+ARM GAS  /tmp/ccr5TVAt.s 			page 12
 
 
  603:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  657:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   __HAL_TIM_DISABLE(htim);
  658:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  659:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #if (USE_HAL_TIM_REGISTER_CALLBACKS == 1)
-ARM GAS  /tmp/ccKUjuNa.s 			page 13
+ARM GAS  /tmp/ccr5TVAt.s 			page 13
 
 
  660:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (htim->OC_MspDeInitCallback == NULL)
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  714:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          This parameter can be one of the following values:
  715:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_CHANNEL_1: TIM Channel 1 selected
  716:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_CHANNEL_2: TIM Channel 2 selected
-ARM GAS  /tmp/ccKUjuNa.s 			page 14
+ARM GAS  /tmp/ccr5TVAt.s 			page 14
 
 
  717:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_CHANNEL_3: TIM Channel 3 selected
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  771:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  772:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  773:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Disable the Peripheral */
-ARM GAS  /tmp/ccKUjuNa.s 			page 15
+ARM GAS  /tmp/ccr5TVAt.s 			page 15
 
 
  774:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   __HAL_TIM_DISABLE(htim);
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  828:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     default:
  829:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
  830:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
-ARM GAS  /tmp/ccKUjuNa.s 			page 16
+ARM GAS  /tmp/ccr5TVAt.s 			page 16
 
 
  831:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  885:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
  886:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Disable the TIM Capture/Compare 3 interrupt */
  887:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       __HAL_TIM_DISABLE_IT(htim, TIM_IT_CC3);
-ARM GAS  /tmp/ccKUjuNa.s 			page 17
+ARM GAS  /tmp/ccr5TVAt.s 			page 17
 
 
  888:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  942:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   else if (htim->State == HAL_TIM_STATE_READY)
  943:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  944:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     if ((pData == NULL) && (Length > 0U))
-ARM GAS  /tmp/ccKUjuNa.s 			page 18
+ARM GAS  /tmp/ccr5TVAt.s 			page 18
 
 
  945:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  999:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 1000:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_CHANNEL_3:
 1001:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
-ARM GAS  /tmp/ccKUjuNa.s 			page 19
+ARM GAS  /tmp/ccr5TVAt.s 			page 19
 
 
 1002:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Set the DMA compare callbacks */
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1056:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
 1057:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 1058:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Return function status */
-ARM GAS  /tmp/ccKUjuNa.s 			page 20
+ARM GAS  /tmp/ccr5TVAt.s 			page 20
 
 
 1059:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   return HAL_OK;
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1113:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
 1114:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
 1115:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 21
+ARM GAS  /tmp/ccr5TVAt.s 			page 21
 
 
 1116:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Disable the Output compare channel */
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1170:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** HAL_StatusTypeDef HAL_TIM_PWM_Init(TIM_HandleTypeDef *htim)
 1171:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
 1172:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the TIM handle allocation */
-ARM GAS  /tmp/ccKUjuNa.s 			page 22
+ARM GAS  /tmp/ccr5TVAt.s 			page 22
 
 
 1173:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (htim == NULL)
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1227:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   htim->State = HAL_TIM_STATE_BUSY;
 1228:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 1229:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Disable the TIM Peripheral Clock */
-ARM GAS  /tmp/ccKUjuNa.s 			page 23
+ARM GAS  /tmp/ccr5TVAt.s 			page 23
 
 
 1230:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   __HAL_TIM_DISABLE(htim);
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1284:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @brief  Starts the PWM signal generation.
 1285:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  htim TIM handle
 1286:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  Channel TIM Channels to be enabled
-ARM GAS  /tmp/ccKUjuNa.s 			page 24
+ARM GAS  /tmp/ccr5TVAt.s 			page 24
 
 
 1287:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          This parameter can be one of the following values:
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1341:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
 1342:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     /* Disable the Main Output */
 1343:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     __HAL_TIM_MOE_DISABLE(htim);
-ARM GAS  /tmp/ccKUjuNa.s 			page 25
+ARM GAS  /tmp/ccr5TVAt.s 			page 25
 
 
 1344:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1398:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Enable the TIM Capture/Compare 4 interrupt */
 1399:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       __HAL_TIM_ENABLE_IT(htim, TIM_IT_CC4);
 1400:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
-ARM GAS  /tmp/ccKUjuNa.s 			page 26
+ARM GAS  /tmp/ccr5TVAt.s 			page 26
 
 
 1401:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1455:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       __HAL_TIM_DISABLE_IT(htim, TIM_IT_CC2);
 1456:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
 1457:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
-ARM GAS  /tmp/ccKUjuNa.s 			page 27
+ARM GAS  /tmp/ccr5TVAt.s 			page 27
 
 
 1458:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1512:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 1513:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (htim->State == HAL_TIM_STATE_BUSY)
 1514:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
-ARM GAS  /tmp/ccKUjuNa.s 			page 28
+ARM GAS  /tmp/ccr5TVAt.s 			page 28
 
 
 1515:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     return HAL_BUSY;
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1569:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Enable the TIM Capture/Compare 2 DMA request */
 1570:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       __HAL_TIM_ENABLE_DMA(htim, TIM_DMA_CC2);
 1571:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
-ARM GAS  /tmp/ccKUjuNa.s 			page 29
+ARM GAS  /tmp/ccr5TVAt.s 			page 29
 
 
 1572:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1626:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpsmcr = htim->Instance->SMCR & TIM_SMCR_SMS;
 1627:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
 1628:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
-ARM GAS  /tmp/ccKUjuNa.s 			page 30
+ARM GAS  /tmp/ccr5TVAt.s 			page 30
 
 
 1629:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     __HAL_TIM_ENABLE(htim);
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1683:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
 1684:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
 1685:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 31
+ARM GAS  /tmp/ccr5TVAt.s 			page 31
 
 
 1686:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     default:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1740:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *         Ex: call @ref HAL_TIM_IC_DeInit() before HAL_TIM_IC_Init()
 1741:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  htim TIM Input Capture handle
 1742:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @retval HAL status
-ARM GAS  /tmp/ccKUjuNa.s 			page 32
+ARM GAS  /tmp/ccr5TVAt.s 			page 32
 
 
 1743:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1797:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
 1798:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
 1799:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_INSTANCE(htim->Instance));
-ARM GAS  /tmp/ccKUjuNa.s 			page 33
+ARM GAS  /tmp/ccr5TVAt.s 			page 33
 
 
 1800:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1854:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****    */
 1855:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
 1856:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 34
+ARM GAS  /tmp/ccr5TVAt.s 			page 34
 
 
 1857:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** /**
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1911:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Return function status */
 1912:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   return HAL_OK;
 1913:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
-ARM GAS  /tmp/ccKUjuNa.s 			page 35
+ARM GAS  /tmp/ccr5TVAt.s 			page 35
 
 
 1914:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1968:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 1969:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Enable the Peripheral, except in trigger mode where enable is automatically done with trigger 
 1970:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpsmcr = htim->Instance->SMCR & TIM_SMCR_SMS;
-ARM GAS  /tmp/ccKUjuNa.s 			page 36
+ARM GAS  /tmp/ccr5TVAt.s 			page 36
 
 
 1971:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2025:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 2026:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     default:
 2027:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
-ARM GAS  /tmp/ccKUjuNa.s 			page 37
+ARM GAS  /tmp/ccr5TVAt.s 			page 37
 
 
 2028:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2082:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
 2083:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_CHANNEL_1:
 2084:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
-ARM GAS  /tmp/ccKUjuNa.s 			page 38
+ARM GAS  /tmp/ccr5TVAt.s 			page 38
 
 
 2085:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Set the DMA capture callbacks */
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2139:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 2140:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_CHANNEL_4:
 2141:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
-ARM GAS  /tmp/ccKUjuNa.s 			page 39
+ARM GAS  /tmp/ccr5TVAt.s 			page 39
 
 
 2142:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Set the DMA capture callbacks */
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2196:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_CHANNEL_1:
 2197:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
 2198:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Disable the TIM Capture/Compare 1 DMA request */
-ARM GAS  /tmp/ccKUjuNa.s 			page 40
+ARM GAS  /tmp/ccr5TVAt.s 			page 40
 
 
 2199:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       __HAL_TIM_DISABLE_DMA(htim, TIM_DMA_CC1);
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2253:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                         ##### TIM One Pulse functions #####
 2254:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   ==============================================================================
 2255:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   [..]
-ARM GAS  /tmp/ccKUjuNa.s 			page 41
+ARM GAS  /tmp/ccr5TVAt.s 			page 41
 
 
 2256:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     This section provides functions allowing to:
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2310:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
 2311:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     /* Init the low level hardware : GPIO, CLOCK, NVIC */
 2312:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     htim->OnePulse_MspInitCallback(htim);
-ARM GAS  /tmp/ccKUjuNa.s 			page 42
+ARM GAS  /tmp/ccr5TVAt.s 			page 42
 
 
 2313:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #else
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2367:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Release Lock */
 2368:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   __HAL_UNLOCK(htim);
 2369:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 43
+ARM GAS  /tmp/ccr5TVAt.s 			page 43
 
 
 2370:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   return HAL_OK;
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2424:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     (the counter starts in response to a stimulus and generate a pulse */
 2425:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 2426:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   TIM_CCxChannelCmd(htim->Instance, TIM_CHANNEL_1, TIM_CCx_ENABLE);
-ARM GAS  /tmp/ccKUjuNa.s 			page 44
+ARM GAS  /tmp/ccr5TVAt.s 			page 44
 
 
 2427:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   TIM_CCxChannelCmd(htim->Instance, TIM_CHANNEL_2, TIM_CCx_ENABLE);
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2481:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_CHANNEL_2: TIM Channel 2 selected
 2482:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @retval HAL status
 2483:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
-ARM GAS  /tmp/ccKUjuNa.s 			page 45
+ARM GAS  /tmp/ccr5TVAt.s 			page 45
 
 
 2484:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** HAL_StatusTypeDef HAL_TIM_OnePulse_Start_IT(TIM_HandleTypeDef *htim, uint32_t OutputChannel)
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2538:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   (in the OPM Mode the two possible channels that can be used are TIM_CHANNEL_1 and TIM_CHANNEL_2)
 2539:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if TIM_CHANNEL_1 is used as output, the TIM_CHANNEL_2 will be used as input and
 2540:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if TIM_CHANNEL_1 is used as input, the TIM_CHANNEL_2 will be used as output
-ARM GAS  /tmp/ccKUjuNa.s 			page 46
+ARM GAS  /tmp/ccr5TVAt.s 			page 46
 
 
 2541:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   in all combinations, the TIM_CHANNEL_1 and TIM_CHANNEL_2 should be disabled together */
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2595:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
 2596:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** HAL_StatusTypeDef HAL_TIM_Encoder_Init(TIM_HandleTypeDef *htim,  TIM_Encoder_InitTypeDef *sConfig)
 2597:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
-ARM GAS  /tmp/ccKUjuNa.s 			page 47
+ARM GAS  /tmp/ccr5TVAt.s 			page 47
 
 
 2598:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   uint32_t tmpsmcr;
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2652:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 2653:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Get the TIMx SMCR register value */
 2654:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpsmcr = htim->Instance->SMCR;
-ARM GAS  /tmp/ccKUjuNa.s 			page 48
+ARM GAS  /tmp/ccr5TVAt.s 			page 48
 
 
 2655:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2709:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   __HAL_TIM_DISABLE(htim);
 2710:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 2711:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #if (USE_HAL_TIM_REGISTER_CALLBACKS == 1)
-ARM GAS  /tmp/ccKUjuNa.s 			page 49
+ARM GAS  /tmp/ccr5TVAt.s 			page 49
 
 
 2712:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (htim->Encoder_MspDeInitCallback == NULL)
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2766:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          This parameter can be one of the following values:
 2767:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_CHANNEL_1: TIM Channel 1 selected
 2768:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_CHANNEL_2: TIM Channel 2 selected
-ARM GAS  /tmp/ccKUjuNa.s 			page 50
+ARM GAS  /tmp/ccr5TVAt.s 			page 50
 
 
 2769:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_CHANNEL_ALL: TIM Channel 1 and TIM Channel 2 are selected
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2823:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   switch (Channel)
 2824:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
 2825:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_CHANNEL_1:
-ARM GAS  /tmp/ccKUjuNa.s 			page 51
+ARM GAS  /tmp/ccr5TVAt.s 			page 51
 
 
 2826:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2880:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       TIM_CCxChannelCmd(htim->Instance, TIM_CHANNEL_2, TIM_CCx_ENABLE);
 2881:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       __HAL_TIM_ENABLE_IT(htim, TIM_IT_CC2);
 2882:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
-ARM GAS  /tmp/ccKUjuNa.s 			page 52
+ARM GAS  /tmp/ccr5TVAt.s 			page 52
 
 
 2883:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2937:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 2938:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     /* Disable the capture compare Interrupts 1 and 2 */
 2939:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     __HAL_TIM_DISABLE_IT(htim, TIM_IT_CC1);
-ARM GAS  /tmp/ccKUjuNa.s 			page 53
+ARM GAS  /tmp/ccr5TVAt.s 			page 53
 
 
 2940:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     __HAL_TIM_DISABLE_IT(htim, TIM_IT_CC2);
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2994:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_CHANNEL_1:
 2995:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
 2996:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Set the DMA capture callbacks */
-ARM GAS  /tmp/ccKUjuNa.s 			page 54
+ARM GAS  /tmp/ccr5TVAt.s 			page 54
 
 
 2997:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->hdma[TIM_DMA_ID_CC1]->XferCpltCallback = TIM_DMACaptureCplt;
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3051:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 3052:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Enable the DMA channel */
 3053:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       if (HAL_DMA_Start_IT(htim->hdma[TIM_DMA_ID_CC1], (uint32_t)&htim->Instance->CCR1, (uint32_t)p
-ARM GAS  /tmp/ccKUjuNa.s 			page 55
+ARM GAS  /tmp/ccr5TVAt.s 			page 55
 
 
 3054:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       {
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3108:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (Channel == TIM_CHANNEL_1)
 3109:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
 3110:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     TIM_CCxChannelCmd(htim->Instance, TIM_CHANNEL_1, TIM_CCx_DISABLE);
-ARM GAS  /tmp/ccKUjuNa.s 			page 56
+ARM GAS  /tmp/ccr5TVAt.s 			page 56
 
 
 3111:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3165:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @retval None
 3166:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
 3167:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** void HAL_TIM_IRQHandler(TIM_HandleTypeDef *htim)
-ARM GAS  /tmp/ccKUjuNa.s 			page 57
+ARM GAS  /tmp/ccr5TVAt.s 			page 57
 
 
 3168:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3222:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->OC_DelayElapsedCallback(htim);
 3223:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->PWM_PulseFinishedCallback(htim);
 3224:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #else
-ARM GAS  /tmp/ccKUjuNa.s 			page 58
+ARM GAS  /tmp/ccr5TVAt.s 			page 58
 
 
 3225:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         HAL_TIM_OC_DelayElapsedCallback(htim);
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3279:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       else
 3280:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       {
 3281:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #if (USE_HAL_TIM_REGISTER_CALLBACKS == 1)
-ARM GAS  /tmp/ccKUjuNa.s 			page 59
+ARM GAS  /tmp/ccr5TVAt.s 			page 59
 
 
 3282:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->OC_DelayElapsedCallback(htim);
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3336:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       __HAL_TIM_CLEAR_IT(htim, TIM_FLAG_COM);
 3337:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #if (USE_HAL_TIM_REGISTER_CALLBACKS == 1)
 3338:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->CommutationCallback(htim);
-ARM GAS  /tmp/ccKUjuNa.s 			page 60
+ARM GAS  /tmp/ccr5TVAt.s 			page 60
 
 
 3339:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #else
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3393:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 3394:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   htim->State = HAL_TIM_STATE_BUSY;
 3395:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 61
+ARM GAS  /tmp/ccr5TVAt.s 			page 61
 
 
 3396:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   switch (Channel)
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3450:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @brief  Initializes the TIM Input Capture Channels according to the specified
 3451:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *         parameters in the TIM_IC_InitTypeDef.
 3452:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  htim TIM IC handle
-ARM GAS  /tmp/ccKUjuNa.s 			page 62
+ARM GAS  /tmp/ccr5TVAt.s 			page 62
 
 
 3453:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  sConfig TIM Input Capture configuration structure
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3507:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
 3508:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     /* TI3 Configuration */
 3509:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     assert_param(IS_TIM_CC3_INSTANCE(htim->Instance));
-ARM GAS  /tmp/ccKUjuNa.s 			page 63
+ARM GAS  /tmp/ccr5TVAt.s 			page 63
 
 
 3510:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3564:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_CHANNELS(Channel));
 3565:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_PWM_MODE(sConfig->OCMode));
 3566:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_OC_POLARITY(sConfig->OCPolarity));
-ARM GAS  /tmp/ccKUjuNa.s 			page 64
+ARM GAS  /tmp/ccr5TVAt.s 			page 64
 
 
 3567:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_FAST_STATE(sConfig->OCFastMode));
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3621:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Configure the Output Fast mode */
 3622:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->Instance->CCMR2 &= ~TIM_CCMR2_OC3FE;
 3623:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->Instance->CCMR2 |= sConfig->OCFastMode;
-ARM GAS  /tmp/ccKUjuNa.s 			page 65
+ARM GAS  /tmp/ccr5TVAt.s 			page 65
 
 
 3624:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3678:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 3679:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
 3680:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_OPM_CHANNELS(OutputChannel));
-ARM GAS  /tmp/ccKUjuNa.s 			page 66
+ARM GAS  /tmp/ccr5TVAt.s 			page 66
 
 
 3681:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_OPM_CHANNELS(InputChannel));
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3735:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->Instance->SMCR &= ~TIM_SMCR_SMS;
 3736:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->Instance->SMCR |= TIM_SLAVEMODE_TRIGGER;
 3737:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         break;
-ARM GAS  /tmp/ccKUjuNa.s 			page 67
+ARM GAS  /tmp/ccr5TVAt.s 			page 67
 
 
 3738:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       }
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3792:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_DMABASE_RCR
 3793:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_DMABASE_CCR1
 3794:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_DMABASE_CCR2
-ARM GAS  /tmp/ccKUjuNa.s 			page 68
+ARM GAS  /tmp/ccr5TVAt.s 			page 68
 
 
 3795:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_DMABASE_CCR3
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3849:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_DMA_CC4: TIM Capture Compare 4 DMA source
 3850:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_DMA_COM: TIM Commutation DMA source
 3851:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_DMA_TRIGGER: TIM Trigger DMA source
-ARM GAS  /tmp/ccKUjuNa.s 			page 69
+ARM GAS  /tmp/ccr5TVAt.s 			page 69
 
 
 3852:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  BurstBuffer The Buffer address.
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3906:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
 3907:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
 3908:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_DMA_CC1:
-ARM GAS  /tmp/ccKUjuNa.s 			page 70
+ARM GAS  /tmp/ccr5TVAt.s 			page 70
 
 
 3909:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3963:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->hdma[TIM_DMA_ID_CC4]->XferHalfCpltCallback = TIM_DMADelayPulseHalfCplt;
 3964:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 3965:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Set the DMA error callback */
-ARM GAS  /tmp/ccKUjuNa.s 			page 71
+ARM GAS  /tmp/ccr5TVAt.s 			page 71
 
 
 3966:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->hdma[TIM_DMA_ID_CC4]->XferErrorCallback = TIM_DMAError ;
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4020:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 4021:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Return function status */
 4022:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   return HAL_OK;
-ARM GAS  /tmp/ccKUjuNa.s 			page 72
+ARM GAS  /tmp/ccr5TVAt.s 			page 72
 
 
 4023:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4077:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
 4078:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 4079:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (HAL_OK == status)
-ARM GAS  /tmp/ccKUjuNa.s 			page 73
+ARM GAS  /tmp/ccr5TVAt.s 			page 73
 
 
 4080:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4134:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** /**
 4135:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @brief  Configure the DMA Burst to transfer Data from the TIM peripheral to the memory
 4136:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  htim TIM handle
-ARM GAS  /tmp/ccKUjuNa.s 			page 74
+ARM GAS  /tmp/ccr5TVAt.s 			page 74
 
 
 4137:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  BurstBaseAddress TIM Base address from where the DMA  will start the Data read
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4191:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
 4192:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       return HAL_ERROR;
 4193:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
-ARM GAS  /tmp/ccKUjuNa.s 			page 75
+ARM GAS  /tmp/ccr5TVAt.s 			page 75
 
 
 4194:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     else
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4248:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Enable the DMA channel */
 4249:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       if (HAL_DMA_Start_IT(htim->hdma[TIM_DMA_ID_CC2], (uint32_t)&htim->Instance->DMAR, (uint32_t)B
 4250:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                            DataLength) != HAL_OK)
-ARM GAS  /tmp/ccKUjuNa.s 			page 76
+ARM GAS  /tmp/ccr5TVAt.s 			page 76
 
 
 4251:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       {
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4305:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
 4306:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
 4307:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_DMA_TRIGGER:
-ARM GAS  /tmp/ccKUjuNa.s 			page 77
+ARM GAS  /tmp/ccr5TVAt.s 			page 77
 
 
 4308:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4362:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       status = HAL_DMA_Abort_IT(htim->hdma[TIM_DMA_ID_CC1]);
 4363:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
 4364:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
-ARM GAS  /tmp/ccKUjuNa.s 			page 78
+ARM GAS  /tmp/ccr5TVAt.s 			page 78
 
 
 4365:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_DMA_CC2:
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4419:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @note   TIM_EVENTSOURCE_BREAK are relevant only for timer instances
 4420:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *         supporting a break input.
 4421:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @retval HAL status
-ARM GAS  /tmp/ccKUjuNa.s 			page 79
+ARM GAS  /tmp/ccr5TVAt.s 			page 79
 
 
 4422:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4476:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_CLEARINPUTSOURCE_NONE:
 4477:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
 4478:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Clear the OCREF clear selection bit and the the ETR Bits */
-ARM GAS  /tmp/ccKUjuNa.s 			page 80
+ARM GAS  /tmp/ccr5TVAt.s 			page 80
 
 
 4479:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       CLEAR_BIT(htim->Instance->SMCR, (TIM_SMCR_OCCS | TIM_SMCR_ETF | TIM_SMCR_ETPS | TIM_SMCR_ECE 
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4533:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
 4534:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_CHANNEL_2:
 4535:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
-ARM GAS  /tmp/ccKUjuNa.s 			page 81
+ARM GAS  /tmp/ccr5TVAt.s 			page 81
 
 
 4536:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       if (sClearInputConfig->ClearInputState != (uint32_t)DISABLE)
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4590:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  sClockSourceConfig pointer to a TIM_ClockConfigTypeDef structure that
 4591:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *         contains the clock source information for the TIM peripheral.
 4592:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @retval HAL status
-ARM GAS  /tmp/ccKUjuNa.s 			page 82
+ARM GAS  /tmp/ccr5TVAt.s 			page 82
 
 
 4593:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4647:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       assert_param(IS_TIM_CLOCKSOURCE_ETRMODE2_INSTANCE(htim->Instance));
 4648:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 4649:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Check ETR input conditioning related parameters */
-ARM GAS  /tmp/ccKUjuNa.s 			page 83
+ARM GAS  /tmp/ccr5TVAt.s 			page 83
 
 
 4650:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       assert_param(IS_TIM_CLOCKPRESCALER(sClockSourceConfig->ClockPrescaler));
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4704:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 4705:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       TIM_TI1_ConfigInputStage(htim->Instance,
 4706:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                                sClockSourceConfig->ClockPolarity,
-ARM GAS  /tmp/ccKUjuNa.s 			page 84
+ARM GAS  /tmp/ccr5TVAt.s 			page 84
 
 
 4707:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                                sClockSourceConfig->ClockFilter);
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4761:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpcr2 |= TI1_Selection;
 4762:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 4763:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Write to TIMxCR2 */
-ARM GAS  /tmp/ccKUjuNa.s 			page 85
+ARM GAS  /tmp/ccr5TVAt.s 			page 85
 
 
 4764:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   htim->Instance->CR2 = tmpcr2;
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4818:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** HAL_StatusTypeDef HAL_TIM_SlaveConfigSynchro_IT(TIM_HandleTypeDef *htim,
 4819:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                                                 TIM_SlaveConfigTypeDef *sSlaveConfig)
 4820:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
-ARM GAS  /tmp/ccKUjuNa.s 			page 86
+ARM GAS  /tmp/ccr5TVAt.s 			page 86
 
 
 4821:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4875:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
 4876:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
 4877:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     case TIM_CHANNEL_2:
-ARM GAS  /tmp/ccKUjuNa.s 			page 87
+ARM GAS  /tmp/ccr5TVAt.s 			page 87
 
 
 4878:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4932:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****    (+) TIM Input capture callback
 4933:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****    (+) TIM Trigger callback
 4934:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****    (+) TIM Error callback
-ARM GAS  /tmp/ccKUjuNa.s 			page 88
+ARM GAS  /tmp/ccr5TVAt.s 			page 88
 
 
 4935:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4989:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
 4990:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** __weak void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 4991:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
-ARM GAS  /tmp/ccKUjuNa.s 			page 89
+ARM GAS  /tmp/ccr5TVAt.s 			page 89
 
 
 4992:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Prevent unused argument(s) compilation warning */
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5046:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @brief  Hall Trigger detection callback in non-blocking mode
 5047:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  htim TIM handle
 5048:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @retval None
-ARM GAS  /tmp/ccKUjuNa.s 			page 90
+ARM GAS  /tmp/ccr5TVAt.s 			page 90
 
 
 5049:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5103:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          @arg @ref HAL_TIM_PWM_MSPDEINIT_CB_ID PWM MspDeInit Callback ID
 5104:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          @arg @ref HAL_TIM_ONE_PULSE_MSPINIT_CB_ID One Pulse MspInit Callback ID
 5105:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          @arg @ref HAL_TIM_ONE_PULSE_MSPDEINIT_CB_ID One Pulse MspDeInit Callback ID
-ARM GAS  /tmp/ccKUjuNa.s 			page 91
+ARM GAS  /tmp/ccr5TVAt.s 			page 91
 
 
 5106:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          @arg @ref HAL_TIM_ENCODER_MSPINIT_CB_ID Encoder MspInit Callback ID
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5160:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         break;
 5161:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 5162:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       case HAL_TIM_OC_MSPDEINIT_CB_ID :
-ARM GAS  /tmp/ccKUjuNa.s 			page 92
+ARM GAS  /tmp/ccr5TVAt.s 			page 92
 
 
 5163:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->OC_MspDeInitCallback                 = pCallback;
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5217:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 5218:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       case HAL_TIM_IC_CAPTURE_HALF_CB_ID :
 5219:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->IC_CaptureHalfCpltCallback           = pCallback;
-ARM GAS  /tmp/ccKUjuNa.s 			page 93
+ARM GAS  /tmp/ccr5TVAt.s 			page 93
 
 
 5220:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         break;
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5274:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         break;
 5275:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 5276:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       case HAL_TIM_OC_MSPINIT_CB_ID :
-ARM GAS  /tmp/ccKUjuNa.s 			page 94
+ARM GAS  /tmp/ccr5TVAt.s 			page 94
 
 
 5277:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->OC_MspInitCallback           = pCallback;
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5331:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   return status;
 5332:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
 5333:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 95
+ARM GAS  /tmp/ccr5TVAt.s 			page 95
 
 
 5334:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** /**
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5388:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       case HAL_TIM_IC_MSPINIT_CB_ID :
 5389:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->IC_MspInitCallback                = HAL_TIM_IC_MspInit;                        /* Leg
 5390:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         break;
-ARM GAS  /tmp/ccKUjuNa.s 			page 96
+ARM GAS  /tmp/ccr5TVAt.s 			page 96
 
 
 5391:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5445:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->TriggerCallback                   = HAL_TIM_TriggerCallback;                   /* Leg
 5446:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         break;
 5447:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 97
+ARM GAS  /tmp/ccr5TVAt.s 			page 97
 
 
 5448:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       case HAL_TIM_TRIGGER_HALF_CB_ID :
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5502:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       case HAL_TIM_BASE_MSPDEINIT_CB_ID :
 5503:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->Base_MspDeInitCallback       = HAL_TIM_Base_MspDeInit;            /* Legacy weak Base
 5504:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         break;
-ARM GAS  /tmp/ccKUjuNa.s 			page 98
+ARM GAS  /tmp/ccr5TVAt.s 			page 98
 
 
 5505:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5559:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
 5560:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   else
 5561:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
-ARM GAS  /tmp/ccKUjuNa.s 			page 99
+ARM GAS  /tmp/ccr5TVAt.s 			page 99
 
 
 5562:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     /* Return error status */
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5616:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
 5617:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** HAL_TIM_StateTypeDef HAL_TIM_PWM_GetState(TIM_HandleTypeDef *htim)
 5618:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
-ARM GAS  /tmp/ccKUjuNa.s 			page 100
+ARM GAS  /tmp/ccr5TVAt.s 			page 100
 
 
 5619:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   return htim->State;
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5673:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   htim->State = HAL_TIM_STATE_READY;
 5674:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 5675:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #if (USE_HAL_TIM_REGISTER_CALLBACKS == 1)
-ARM GAS  /tmp/ccKUjuNa.s 			page 101
+ARM GAS  /tmp/ccr5TVAt.s 			page 101
 
 
 5676:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   htim->ErrorCallback(htim);
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5730:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   TIM_HandleTypeDef *htim = (TIM_HandleTypeDef *)((DMA_HandleTypeDef *)hdma)->Parent;
 5731:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 5732:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   htim->State = HAL_TIM_STATE_READY;
-ARM GAS  /tmp/ccKUjuNa.s 			page 102
+ARM GAS  /tmp/ccr5TVAt.s 			page 102
 
 
 5733:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5787:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   else if (hdma == htim->hdma[TIM_DMA_ID_CC4])
 5788:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
 5789:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     htim->Channel = HAL_TIM_ACTIVE_CHANNEL_4;
-ARM GAS  /tmp/ccKUjuNa.s 			page 103
+ARM GAS  /tmp/ccr5TVAt.s 			page 103
 
 
 5790:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5844:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
 5845:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 5846:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** /**
-ARM GAS  /tmp/ccKUjuNa.s 			page 104
+ARM GAS  /tmp/ccr5TVAt.s 			page 104
 
 
 5847:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @brief  TIM DMA Period Elapse complete callback.
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5901:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @brief  TIM DMA Trigger half complete callback.
 5902:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  hdma pointer to DMA handle.
 5903:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @retval None
-ARM GAS  /tmp/ccKUjuNa.s 			page 105
+ARM GAS  /tmp/ccr5TVAt.s 			page 105
 
 
 5904:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5958:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     TIMx->RCR = Structure->RepetitionCounter;
 5959:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
 5960:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 106
+ARM GAS  /tmp/ccr5TVAt.s 			page 106
 
 
 5961:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Generate an update event to reload the Prescaler
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5986:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Get the TIMx CCMR1 register value */
 5987:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpccmrx = TIMx->CCMR1;
   56              		.loc 1 5987 3 is_stmt 1 view .LVU12
-ARM GAS  /tmp/ccKUjuNa.s 			page 107
+ARM GAS  /tmp/ccr5TVAt.s 			page 107
 
 
   57              		.loc 1 5987 12 is_stmt 0 view .LVU13
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
   98 0034 A842     		cmp	r0, r5
   99 0036 06D1     		bne	.L3
  100              	.L2:
-ARM GAS  /tmp/ccKUjuNa.s 			page 108
+ARM GAS  /tmp/ccr5TVAt.s 			page 108
 
 
 6001:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6015:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     /* Check parameters */
 6016:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     assert_param(IS_TIM_OCNIDLE_STATE(OC_Config->OCNIdleState));
  141              		.loc 1 6016 5 is_stmt 1 view .LVU44
-ARM GAS  /tmp/ccKUjuNa.s 			page 109
+ARM GAS  /tmp/ccr5TVAt.s 			page 109
 
 
 6017:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     assert_param(IS_TIM_OCIDLE_STATE(OC_Config->OCIdleState));
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6038:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   TIMx->CCER = tmpccer;
  175              		.loc 1 6038 3 is_stmt 1 view .LVU62
  176              		.loc 1 6038 14 is_stmt 0 view .LVU63
-ARM GAS  /tmp/ccKUjuNa.s 			page 110
+ARM GAS  /tmp/ccr5TVAt.s 			page 110
 
 
  177 0072 0362     		str	r3, [r0, #32]
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6069:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpccmrx |= (OC_Config->OCMode << 8U);
 6070:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 6071:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Reset the Output Polarity level */
-ARM GAS  /tmp/ccKUjuNa.s 			page 111
+ARM GAS  /tmp/ccr5TVAt.s 			page 111
 
 
 6072:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpccer &= ~TIM_CCER_CC2P;
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  204              		.cfi_startproc
  205              		@ args = 0, pretend = 0, frame = 0
  206              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccKUjuNa.s 			page 112
+ARM GAS  /tmp/ccr5TVAt.s 			page 112
 
 
  207              		.loc 1 6124 1 is_stmt 0 view .LVU67
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6144:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpccmrx |= OC_Config->OCMode;
  242              		.loc 1 6144 3 is_stmt 1 view .LVU83
  243              		.loc 1 6144 24 is_stmt 0 view .LVU84
-ARM GAS  /tmp/ccKUjuNa.s 			page 113
+ARM GAS  /tmp/ccr5TVAt.s 			page 113
 
 
  244 0014 0D68     		ldr	r5, [r1]
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  279 003a 06E0     		b	.L10
  280              	.L12:
 6153:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 114
+ARM GAS  /tmp/ccr5TVAt.s 			page 114
 
 
  281              		.loc 1 6153 5 is_stmt 1 view .LVU98
@@ -6838,7 +6838,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  317              	.LVL31:
 6174:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     /* Set the Output N Idle state */
 6175:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     tmpcr2 |= (OC_Config->OCNIdleState << 4U);
-ARM GAS  /tmp/ccKUjuNa.s 			page 115
+ARM GAS  /tmp/ccr5TVAt.s 			page 115
 
 
  318              		.loc 1 6175 5 is_stmt 1 view .LVU117
@@ -6898,7 +6898,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  358 0088 FFCFFFFF 		.word	-12289
  359              		.cfi_endproc
  360              	.LFE144:
-ARM GAS  /tmp/ccKUjuNa.s 			page 116
+ARM GAS  /tmp/ccr5TVAt.s 			page 116
 
 
  362              		.section	.text.TIM_OC4_SetConfig,"ax",%progbits
@@ -6958,7 +6958,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  397              		.loc 1 6209 10 is_stmt 0 view .LVU143
  398 000c 4368     		ldr	r3, [r0, #4]
  399              	.LVL37:
-ARM GAS  /tmp/ccKUjuNa.s 			page 117
+ARM GAS  /tmp/ccr5TVAt.s 			page 117
 
 
 6210:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -7018,7 +7018,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  437 002a 0E4C     		ldr	r4, .L18+16
  438 002c A042     		cmp	r0, r4
  439 002e 05D0     		beq	.L16
-ARM GAS  /tmp/ccKUjuNa.s 			page 118
+ARM GAS  /tmp/ccr5TVAt.s 			page 118
 
 
  440              		.loc 1 6226 7 discriminator 2 view .LVU162
@@ -7078,7 +7078,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  475 004c 0364     		str	r3, [r0, #64]
 6246:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 6247:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Write to TIMx CCER */
-ARM GAS  /tmp/ccKUjuNa.s 			page 119
+ARM GAS  /tmp/ccr5TVAt.s 			page 119
 
 
 6248:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   TIMx->CCER = tmpccer;
@@ -7138,7 +7138,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6273:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpsmcr &= ~TIM_SMCR_SMS;
 6274:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Set the slave mode */
 6275:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpsmcr |= sSlaveConfig->SlaveMode;
-ARM GAS  /tmp/ccKUjuNa.s 			page 120
+ARM GAS  /tmp/ccr5TVAt.s 			page 120
 
 
 6276:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -7198,7 +7198,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6330:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 6331:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Configure TI1 Filter and Polarity */
 6332:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       TIM_TI1_ConfigInputStage(htim->Instance,
-ARM GAS  /tmp/ccKUjuNa.s 			page 121
+ARM GAS  /tmp/ccr5TVAt.s 			page 121
 
 
 6333:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                                sSlaveConfig->TriggerPolarity,
@@ -7258,7 +7258,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6387:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
 6388:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** void TIM_TI1_SetConfig(TIM_TypeDef *TIMx, uint32_t TIM_ICPolarity, uint32_t TIM_ICSelection,
 6389:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                        uint32_t TIM_ICFilter)
-ARM GAS  /tmp/ccKUjuNa.s 			page 122
+ARM GAS  /tmp/ccr5TVAt.s 			page 122
 
 
 6390:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** {
@@ -7318,7 +7318,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  514              		.cfi_def_cfa_offset 12
  515              		.cfi_offset 4, -12
  516              		.cfi_offset 5, -8
-ARM GAS  /tmp/ccKUjuNa.s 			page 123
+ARM GAS  /tmp/ccr5TVAt.s 			page 123
 
 
  517              		.cfi_offset 14, -4
@@ -7378,7 +7378,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6452:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 6453:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Write to TIMx CCMR1 and CCER registers */
 6454:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   TIMx->CCMR1 = tmpccmr1;
-ARM GAS  /tmp/ccKUjuNa.s 			page 124
+ARM GAS  /tmp/ccr5TVAt.s 			page 124
 
 
  556              		.loc 1 6454 3 is_stmt 1 view .LVU202
@@ -7438,7 +7438,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  586              		.cfi_offset 5, -12
  587              		.cfi_offset 6, -8
  588              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccKUjuNa.s 			page 125
+ARM GAS  /tmp/ccr5TVAt.s 			page 125
 
 
 6481:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   uint32_t tmpccmr1;
@@ -7498,7 +7498,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  628 001c 1B0C     		lsrs	r3, r3, #16
  629              		.loc 1 6495 12 view .LVU228
  630 001e 1343     		orrs	r3, r2
-ARM GAS  /tmp/ccKUjuNa.s 			page 126
+ARM GAS  /tmp/ccr5TVAt.s 			page 126
 
 
  631              	.LVL63:
@@ -7558,7 +7558,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6511:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_ICPOLARITY_RISING
 6512:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_ICPOLARITY_FALLING
 6513:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_ICPOLARITY_BOTHEDGE
-ARM GAS  /tmp/ccKUjuNa.s 			page 127
+ARM GAS  /tmp/ccr5TVAt.s 			page 127
 
 
 6514:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  TIM_ICFilter Specifies the Input Capture Filter.
@@ -7618,7 +7618,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  709              		.loc 1 6530 12 view .LVU255
  710 0014 2243     		orrs	r2, r4
  711              	.LVL72:
-ARM GAS  /tmp/ccKUjuNa.s 			page 128
+ARM GAS  /tmp/ccr5TVAt.s 			page 128
 
 
 6531:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -7678,7 +7678,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6550:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          This parameter can be one of the following values:
 6551:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_ICSELECTION_DIRECTTI: TIM Input 3 is selected to be connected to IC3.
 6552:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_ICSELECTION_INDIRECTTI: TIM Input 3 is selected to be connected to IC4.
-ARM GAS  /tmp/ccKUjuNa.s 			page 129
+ARM GAS  /tmp/ccr5TVAt.s 			page 129
 
 
 6553:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_ICSELECTION_TRC: TIM Input 3 is selected to be connected to TRC.
@@ -7738,7 +7738,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  782              	.LVL79:
 6574:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpccmr2 |= TIM_ICSelection;
  783              		.loc 1 6574 3 is_stmt 1 view .LVU279
-ARM GAS  /tmp/ccKUjuNa.s 			page 130
+ARM GAS  /tmp/ccr5TVAt.s 			page 130
 
 
  784              		.loc 1 6574 12 is_stmt 0 view .LVU280
@@ -7798,7 +7798,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  826 0030 0162     		str	r1, [r0, #32]
 6587:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
  827              		.loc 1 6587 1 view .LVU299
-ARM GAS  /tmp/ccKUjuNa.s 			page 131
+ARM GAS  /tmp/ccr5TVAt.s 			page 131
 
 
  828              		@ sp needed
@@ -7858,7 +7858,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  859              		.loc 1 6612 3 is_stmt 1 view .LVU302
 6613:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   uint32_t tmpccer;
  860              		.loc 1 6613 3 view .LVU303
-ARM GAS  /tmp/ccKUjuNa.s 			page 132
+ARM GAS  /tmp/ccr5TVAt.s 			page 132
 
 
 6614:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -7918,7 +7918,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6627:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
 6628:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Select the Polarity and set the CC4E Bit */
 6629:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpccer &= ~(TIM_CCER_CC4P | TIM_CCER_CC4NP);
-ARM GAS  /tmp/ccKUjuNa.s 			page 133
+ARM GAS  /tmp/ccr5TVAt.s 			page 133
 
 
  902              		.loc 1 6629 3 is_stmt 1 view .LVU322
@@ -7978,7 +7978,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6642:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_TS_ITR0: Internal Trigger 0
 6643:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_TS_ITR1: Internal Trigger 1
 6644:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_TS_ITR2: Internal Trigger 2
-ARM GAS  /tmp/ccKUjuNa.s 			page 134
+ARM GAS  /tmp/ccr5TVAt.s 			page 134
 
 
 6645:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *            @arg TIM_TS_ITR3: Internal Trigger 3
@@ -8038,7 +8038,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  981              		.weak	HAL_TIM_Base_MspInit
  982              		.syntax unified
  983              		.code	16
-ARM GAS  /tmp/ccKUjuNa.s 			page 135
+ARM GAS  /tmp/ccr5TVAt.s 			page 135
 
 
  984              		.thumb_func
@@ -8098,7 +8098,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1036              		@ frame_needed = 0, uses_anonymous_args = 0
  318:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
  1037              		.loc 1 318 1 is_stmt 0 view .LVU353
-ARM GAS  /tmp/ccKUjuNa.s 			page 136
+ARM GAS  /tmp/ccr5TVAt.s 			page 136
 
 
  1038 0000 10B5     		push	{r4, lr}
@@ -8158,7 +8158,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  343:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  1080              		.loc 1 343 3 is_stmt 1 discriminator 5 view .LVU366
  343:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 137
+ARM GAS  /tmp/ccr5TVAt.s 			page 137
 
 
  1081              		.loc 1 343 3 discriminator 5 view .LVU367
@@ -8218,7 +8218,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1125              		.loc 1 395 27 view .LVU379
  1126 0008 9168     		ldr	r1, [r2, #8]
  395:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
-ARM GAS  /tmp/ccKUjuNa.s 			page 138
+ARM GAS  /tmp/ccr5TVAt.s 			page 138
 
 
  1127              		.loc 1 395 11 view .LVU380
@@ -8278,7 +8278,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1171              		.loc 1 414 1 is_stmt 1 view -0
  1172              		.cfi_startproc
  1173              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccKUjuNa.s 			page 139
+ARM GAS  /tmp/ccr5TVAt.s 			page 139
 
 
  1174              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -8338,7 +8338,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1215              	.L44:
  1216 002c 11110000 		.word	4369
  1217 0030 44040000 		.word	1092
-ARM GAS  /tmp/ccKUjuNa.s 			page 140
+ARM GAS  /tmp/ccr5TVAt.s 			page 140
 
 
  1218              		.cfi_endproc
@@ -8398,7 +8398,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1262              	.LVL121:
  450:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  1263              		.loc 1 450 5 view .LVU418
-ARM GAS  /tmp/ccKUjuNa.s 			page 141
+ARM GAS  /tmp/ccr5TVAt.s 			page 141
 
 
  1264 001a 0B43     		orrs	r3, r1
@@ -8458,7 +8458,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  470:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  1311              		.loc 1 470 3 discriminator 3 view .LVU428
  1312 001c 1A68     		ldr	r2, [r3]
-ARM GAS  /tmp/ccKUjuNa.s 			page 142
+ARM GAS  /tmp/ccr5TVAt.s 			page 142
 
 
  1313 001e 0121     		movs	r1, #1
@@ -8518,7 +8518,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  490:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  1360              		.loc 1 490 11 is_stmt 0 view .LVU438
  1361 0006 3D20     		movs	r0, #61
-ARM GAS  /tmp/ccKUjuNa.s 			page 143
+ARM GAS  /tmp/ccr5TVAt.s 			page 143
 
 
  1362              	.LVL126:
@@ -8578,7 +8578,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  512:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  1400              		.loc 1 512 55 view .LVU455
  1401 002c 1148     		ldr	r0, .L58+4
-ARM GAS  /tmp/ccKUjuNa.s 			page 144
+ARM GAS  /tmp/ccr5TVAt.s 			page 144
 
 
  1402 002e D062     		str	r0, [r2, #44]
@@ -8638,7 +8638,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  530:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  1441              		.loc 1 530 5 is_stmt 1 view .LVU471
  1442 005c 1368     		ldr	r3, [r2]
-ARM GAS  /tmp/ccKUjuNa.s 			page 145
+ARM GAS  /tmp/ccr5TVAt.s 			page 145
 
 
  1443              	.LVL130:
@@ -8698,7 +8698,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1491              		.loc 1 543 1 is_stmt 0 view .LVU479
  1492 0000 10B5     		push	{r4, lr}
  1493              	.LCFI10:
-ARM GAS  /tmp/ccKUjuNa.s 			page 146
+ARM GAS  /tmp/ccr5TVAt.s 			page 146
 
 
  1494              		.cfi_def_cfa_offset 8
@@ -8758,7 +8758,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  559:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
  1536              		.loc 1 559 3 is_stmt 1 discriminator 5 view .LVU492
  560:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 147
+ARM GAS  /tmp/ccr5TVAt.s 			page 147
 
 
  1537              		.loc 1 560 1 is_stmt 0 discriminator 5 view .LVU493
@@ -8818,7 +8818,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1589              		.loc 1 703 3 view .LVU499
  708:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  1590              		.loc 1 708 1 is_stmt 0 view .LVU500
-ARM GAS  /tmp/ccKUjuNa.s 			page 148
+ARM GAS  /tmp/ccr5TVAt.s 			page 148
 
 
  1591              		@ sp needed
@@ -8878,7 +8878,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1638 0020 8A43     		bics	r2, r1
  1639 0022 1A60     		str	r2, [r3]
  1640              	.L67:
-ARM GAS  /tmp/ccKUjuNa.s 			page 149
+ARM GAS  /tmp/ccr5TVAt.s 			page 149
 
 
  657:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -8938,7 +8938,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1685              		@ args = 0, pretend = 0, frame = 0
  1686              		@ frame_needed = 0, uses_anonymous_args = 0
  1687              		@ link register save eliminated.
-ARM GAS  /tmp/ccKUjuNa.s 			page 150
+ARM GAS  /tmp/ccr5TVAt.s 			page 150
 
 
 1261:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -8998,7 +8998,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1738              		.loc 1 1225 3 is_stmt 1 view .LVU529
 1227:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  1739              		.loc 1 1227 3 view .LVU530
-ARM GAS  /tmp/ccKUjuNa.s 			page 151
+ARM GAS  /tmp/ccr5TVAt.s 			page 151
 
 
 1227:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -9058,7 +9058,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1251:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  1780              		.loc 1 1251 1 is_stmt 0 discriminator 5 view .LVU545
  1781 0034 0020     		movs	r0, #0
-ARM GAS  /tmp/ccKUjuNa.s 			page 152
+ARM GAS  /tmp/ccr5TVAt.s 			page 152
 
 
  1782              		@ sp needed
@@ -9118,7 +9118,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  1833              		@ sp needed
  1834 0000 7047     		bx	lr
  1835              		.cfi_endproc
-ARM GAS  /tmp/ccKUjuNa.s 			page 153
+ARM GAS  /tmp/ccr5TVAt.s 			page 153
 
 
  1836              	.LFE73:
@@ -9178,7 +9178,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1804:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  1883              		.loc 1 1804 3 discriminator 5 view .LVU562
 1815:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #endif /* USE_HAL_TIM_REGISTER_CALLBACKS */
-ARM GAS  /tmp/ccKUjuNa.s 			page 154
+ARM GAS  /tmp/ccr5TVAt.s 			page 154
 
 
  1884              		.loc 1 1815 3 discriminator 5 view .LVU563
@@ -9238,7 +9238,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2381:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  1930              		.loc 1 2381 3 view .LVU574
 2386:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 155
+ARM GAS  /tmp/ccr5TVAt.s 			page 155
 
 
  1931              		.loc 1 2386 1 is_stmt 0 view .LVU575
@@ -9298,7 +9298,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2347:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  1982              		.loc 1 2347 15 is_stmt 0 view .LVU583
  1983 0004 3D23     		movs	r3, #61
-ARM GAS  /tmp/ccKUjuNa.s 			page 156
+ARM GAS  /tmp/ccr5TVAt.s 			page 156
 
 
  1984 0006 0222     		movs	r2, #2
@@ -9358,7 +9358,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2024              		@ sp needed
  2025              	.LVL163:
 2371:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 157
+ARM GAS  /tmp/ccr5TVAt.s 			page 157
 
 
  2026              		.loc 1 2371 1 discriminator 5 view .LVU598
@@ -9418,7 +9418,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2078              	.LFE91:
  2080              		.section	.text.HAL_TIM_Encoder_DeInit,"ax",%progbits
  2081              		.align	1
-ARM GAS  /tmp/ccKUjuNa.s 			page 158
+ARM GAS  /tmp/ccr5TVAt.s 			page 158
 
 
  2082              		.global	HAL_TIM_Encoder_DeInit
@@ -9478,7 +9478,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2126              		.loc 1 2720 3 discriminator 5 view .LVU615
  2127 0024 2000     		movs	r0, r4
  2128              	.LVL167:
-ARM GAS  /tmp/ccKUjuNa.s 			page 159
+ARM GAS  /tmp/ccr5TVAt.s 			page 159
 
 
 2720:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #endif /* USE_HAL_TIM_REGISTER_CALLBACKS */
@@ -9538,7 +9538,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2174              		.cfi_def_cfa_offset 16
  2175              		.cfi_offset 4, -16
  2176              		.cfi_offset 5, -12
-ARM GAS  /tmp/ccKUjuNa.s 			page 160
+ARM GAS  /tmp/ccr5TVAt.s 			page 160
 
 
  2177              		.cfi_offset 6, -8
@@ -9598,7 +9598,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2217              	.LCB1805:
  2218 0028 48D8     		bhi	.L99
  2219 002a 8023     		movs	r3, #128
-ARM GAS  /tmp/ccKUjuNa.s 			page 161
+ARM GAS  /tmp/ccr5TVAt.s 			page 161
 
 
  2220 002c 9B00     		lsls	r3, r3, #2
@@ -9658,7 +9658,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3938:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       }
  2260              		.loc 1 3938 16 view .LVU655
  2261 005e 0120     		movs	r0, #1
-ARM GAS  /tmp/ccKUjuNa.s 			page 162
+ARM GAS  /tmp/ccr5TVAt.s 			page 162
 
 
  2262 0060 2BE0     		b	.L95
@@ -9718,7 +9718,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2303 0088 DA62     		str	r2, [r3, #44]
 3898:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  2304              		.loc 1 3898 7 is_stmt 1 view .LVU669
-ARM GAS  /tmp/ccKUjuNa.s 			page 163
+ARM GAS  /tmp/ccr5TVAt.s 			page 163
 
 
 3898:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -9778,7 +9778,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4022:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
  2345              		.loc 1 4022 3 is_stmt 1 view .LVU684
 4022:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
-ARM GAS  /tmp/ccKUjuNa.s 			page 164
+ARM GAS  /tmp/ccr5TVAt.s 			page 164
 
 
  2346              		.loc 1 4022 10 is_stmt 0 view .LVU685
@@ -9838,7 +9838,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2386 00de 2268     		ldr	r2, [r4]
 4004:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       {
  2387              		.loc 1 4004 38 view .LVU700
-ARM GAS  /tmp/ccKUjuNa.s 			page 165
+ARM GAS  /tmp/ccr5TVAt.s 			page 165
 
 
  2388 00e0 4C32     		adds	r2, r2, #76
@@ -9898,7 +9898,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2427 010c 2268     		ldr	r2, [r4]
 3970:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       {
  2428              		.loc 1 3970 38 view .LVU716
-ARM GAS  /tmp/ccKUjuNa.s 			page 166
+ARM GAS  /tmp/ccr5TVAt.s 			page 166
 
 
  2429 010e 4C32     		adds	r2, r2, #76
@@ -9958,7 +9958,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2467 0136 606A     		ldr	r0, [r4, #36]
  2468 0138 059B     		ldr	r3, [sp, #20]
  2469 013a FFF7FEFF 		bl	HAL_DMA_Start_IT
-ARM GAS  /tmp/ccKUjuNa.s 			page 167
+ARM GAS  /tmp/ccr5TVAt.s 			page 167
 
 
  2470              	.LVL189:
@@ -10018,7 +10018,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2508 0164 0028     		cmp	r0, #0
  2509 0166 9CD0     		beq	.L103
 3955:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       }
-ARM GAS  /tmp/ccKUjuNa.s 			page 168
+ARM GAS  /tmp/ccr5TVAt.s 			page 168
 
 
  2510              		.loc 1 3955 16 view .LVU749
@@ -10078,7 +10078,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2549 0190 0120     		movs	r0, #1
  2550 0192 92E7     		b	.L95
  2551              	.L117:
-ARM GAS  /tmp/ccKUjuNa.s 			page 169
+ARM GAS  /tmp/ccr5TVAt.s 			page 169
 
 
 3904:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       }
@@ -10138,7 +10138,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2602 0010 FFF7FEFF 		bl	HAL_TIM_DMABurst_MultiWriteStart
  2603              	.LVL195:
 3818:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 170
+ARM GAS  /tmp/ccr5TVAt.s 			page 170
 
 
  2604              		.loc 1 3818 1 view .LVU771
@@ -10198,7 +10198,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2653              		.loc 1 4052 16 is_stmt 0 view .LVU778
  2654 0020 806A     		ldr	r0, [r0, #40]
  2655              	.LVL198:
-ARM GAS  /tmp/ccKUjuNa.s 			page 171
+ARM GAS  /tmp/ccr5TVAt.s 			page 171
 
 
 4052:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
@@ -10258,7 +10258,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2697              	.L135:
 4038:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  2698              		.loc 1 4038 3 view .LVU792
-ARM GAS  /tmp/ccKUjuNa.s 			page 172
+ARM GAS  /tmp/ccr5TVAt.s 			page 172
 
 
  2699 0044 0020     		movs	r0, #0
@@ -10318,7 +10318,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2741              		.loc 1 4038 3 is_stmt 0 view .LVU804
  2742 0070 0020     		movs	r0, #0
  2743              	.LVL215:
-ARM GAS  /tmp/ccKUjuNa.s 			page 173
+ARM GAS  /tmp/ccr5TVAt.s 			page 173
 
 
 4038:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
@@ -10378,7 +10378,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2786              		.code	16
  2787              		.thumb_func
  2789              	HAL_TIM_DMABurst_MultiReadStart:
-ARM GAS  /tmp/ccKUjuNa.s 			page 174
+ARM GAS  /tmp/ccr5TVAt.s 			page 174
 
 
  2790              	.LVL225:
@@ -10438,7 +10438,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2830              		.loc 1 4188 11 view .LVU831
  2831 001a 012B     		cmp	r3, #1
  2832 001c 21D0     		beq	.L158
-ARM GAS  /tmp/ccKUjuNa.s 			page 175
+ARM GAS  /tmp/ccr5TVAt.s 			page 175
 
 
  2833              	.LVL229:
@@ -10498,7 +10498,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2874 004e 2168     		ldr	r1, [r4]
 4249:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                            DataLength) != HAL_OK)
  2875              		.loc 1 4249 66 view .LVU845
-ARM GAS  /tmp/ccKUjuNa.s 			page 176
+ARM GAS  /tmp/ccr5TVAt.s 			page 176
 
 
  2876 0050 4C31     		adds	r1, r1, #76
@@ -10558,7 +10558,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2918              		.loc 1 4208 17 is_stmt 0 view .LVU857
  2919 007e 236A     		ldr	r3, [r4, #32]
 4208:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->hdma[TIM_DMA_ID_UPDATE]->XferHalfCpltCallback = TIM_DMAPeriodElapsedHalfCplt;
-ARM GAS  /tmp/ccKUjuNa.s 			page 177
+ARM GAS  /tmp/ccr5TVAt.s 			page 177
 
 
  2920              		.loc 1 4208 55 view .LVU858
@@ -10618,7 +10618,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  2959 00a8 9664     		str	r6, [r2, #72]
 4332:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  2960              		.loc 1 4332 3 is_stmt 1 view .LVU874
-ARM GAS  /tmp/ccKUjuNa.s 			page 178
+ARM GAS  /tmp/ccr5TVAt.s 			page 178
 
 
  2961 00aa 2268     		ldr	r2, [r4]
@@ -10678,7 +10678,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3002 00d6 D962     		str	r1, [r3, #44]
 4314:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  3003              		.loc 1 4314 7 is_stmt 1 view .LVU888
-ARM GAS  /tmp/ccKUjuNa.s 			page 179
+ARM GAS  /tmp/ccr5TVAt.s 			page 179
 
 
 4314:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -10738,7 +10738,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3043 0104 D962     		str	r1, [r3, #44]
 4280:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  3044              		.loc 1 4280 7 is_stmt 1 view .LVU904
-ARM GAS  /tmp/ccKUjuNa.s 			page 180
+ARM GAS  /tmp/ccr5TVAt.s 			page 180
 
 
 4280:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -10798,7 +10798,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4229:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  3083              		.loc 1 4229 53 view .LVU921
  3084 012e 1C49     		ldr	r1, .L163+8
-ARM GAS  /tmp/ccKUjuNa.s 			page 181
+ARM GAS  /tmp/ccr5TVAt.s 			page 181
 
 
  3085 0130 1963     		str	r1, [r3, #48]
@@ -10858,7 +10858,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4266:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                            DataLength) != HAL_OK)
  3123              		.loc 1 4266 71 is_stmt 0 view .LVU938
  3124 0158 2168     		ldr	r1, [r4]
-ARM GAS  /tmp/ccKUjuNa.s 			page 182
+ARM GAS  /tmp/ccr5TVAt.s 			page 182
 
 
 4266:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                            DataLength) != HAL_OK)
@@ -10918,7 +10918,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4300:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                            DataLength) != HAL_OK)
  3163              		.loc 1 4300 11 view .LVU955
  3164 0182 606B     		ldr	r0, [r4, #52]
-ARM GAS  /tmp/ccKUjuNa.s 			page 183
+ARM GAS  /tmp/ccr5TVAt.s 			page 183
 
 
  3165 0184 059B     		ldr	r3, [sp, #20]
@@ -10978,7 +10978,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3216              	.LCFI22:
  3217              		.cfi_def_cfa_offset 16
 4130:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                                          ((BurstLength) >> 8U) + 1U);
-ARM GAS  /tmp/ccKUjuNa.s 			page 184
+ARM GAS  /tmp/ccr5TVAt.s 			page 184
 
 
  3218              		.loc 1 4130 3 is_stmt 1 view .LVU961
@@ -11038,7 +11038,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3266 000a 9942     		cmp	r1, r3
  3267 000c 36D0     		beq	.L167
  3268 000e 1BD8     		bhi	.L168
-ARM GAS  /tmp/ccKUjuNa.s 			page 185
+ARM GAS  /tmp/ccr5TVAt.s 			page 185
 
 
  3269 0010 8023     		movs	r3, #128
@@ -11098,7 +11098,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3311 003e A343     		bics	r3, r4
  3312 0040 D360     		str	r3, [r2, #12]
  3313              	.L177:
-ARM GAS  /tmp/ccKUjuNa.s 			page 186
+ARM GAS  /tmp/ccr5TVAt.s 			page 186
 
 
 4401:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
@@ -11158,7 +11158,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4377:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
  3356              		.loc 1 4377 16 is_stmt 0 view .LVU994
  3357 0068 006B     		ldr	r0, [r0, #48]
-ARM GAS  /tmp/ccKUjuNa.s 			page 187
+ARM GAS  /tmp/ccr5TVAt.s 			page 187
 
 
  3358              	.LVL267:
@@ -11218,7 +11218,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3398              	.LVL278:
 4382:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
  3399              		.loc 1 4382 16 view .LVU1009
-ARM GAS  /tmp/ccKUjuNa.s 			page 188
+ARM GAS  /tmp/ccr5TVAt.s 			page 188
 
 
  3400 0086 FFF7FEFF 		bl	HAL_DMA_Abort_IT
@@ -11278,7 +11278,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3445 0014 8554     		strb	r5, [r0, r2]
 4437:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  3446              		.loc 1 4437 3 is_stmt 1 discriminator 2 view .LVU1021
-ARM GAS  /tmp/ccKUjuNa.s 			page 189
+ARM GAS  /tmp/ccr5TVAt.s 			page 189
 
 
 4437:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -11338,7 +11338,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3490              		@ frame_needed = 0, uses_anonymous_args = 0
  3491              		@ link register save eliminated.
 4748:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 190
+ARM GAS  /tmp/ccr5TVAt.s 			page 190
 
 
  3492              		.loc 1 4748 3 view .LVU1035
@@ -11398,7 +11398,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3533              		.loc 1 4862 1 is_stmt 1 view -0
  3534              		.cfi_startproc
  3535              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccKUjuNa.s 			page 191
+ARM GAS  /tmp/ccr5TVAt.s 			page 191
 
 
  3536              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -11458,7 +11458,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3575              		.loc 1 4907 7 is_stmt 1 view .LVU1065
 4914:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
  3576              		.loc 1 4914 3 view .LVU1066
-ARM GAS  /tmp/ccKUjuNa.s 			page 192
+ARM GAS  /tmp/ccr5TVAt.s 			page 192
 
 
 4914:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
@@ -11518,7 +11518,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3620              	HAL_TIM_PeriodElapsedCallback:
  3621              	.LVL301:
  3622              	.LFB116:
-ARM GAS  /tmp/ccKUjuNa.s 			page 193
+ARM GAS  /tmp/ccr5TVAt.s 			page 193
 
 
 4946:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Prevent unused argument(s) compilation warning */
@@ -11578,7 +11578,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3668 000e 10BD     		pop	{r4, pc}
  3669              		.cfi_endproc
  3670              	.LFE137:
-ARM GAS  /tmp/ccKUjuNa.s 			page 194
+ARM GAS  /tmp/ccr5TVAt.s 			page 194
 
 
  3672              		.section	.text.HAL_TIM_PeriodElapsedHalfCpltCallback,"ax",%progbits
@@ -11638,7 +11638,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3720 0006 0122     		movs	r2, #1
  3721 0008 C254     		strb	r2, [r0, r3]
 5878:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #endif /* USE_HAL_TIM_REGISTER_CALLBACKS */
-ARM GAS  /tmp/ccKUjuNa.s 			page 195
+ARM GAS  /tmp/ccr5TVAt.s 			page 195
 
 
  3722              		.loc 1 5878 3 is_stmt 1 view .LVU1100
@@ -11698,7 +11698,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3773              	.LFE119:
  3775              		.section	.text.TIM_DMACaptureCplt,"ax",%progbits
  3776              		.align	1
-ARM GAS  /tmp/ccKUjuNa.s 			page 196
+ARM GAS  /tmp/ccr5TVAt.s 			page 196
 
 
  3777              		.global	TIM_DMACaptureCplt
@@ -11758,7 +11758,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3818 0016 E36A     		ldr	r3, [r4, #44]
 5783:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  3819              		.loc 1 5783 11 view .LVU1122
-ARM GAS  /tmp/ccKUjuNa.s 			page 197
+ARM GAS  /tmp/ccr5TVAt.s 			page 197
 
 
  3820 0018 8342     		cmp	r3, r0
@@ -11818,7 +11818,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3858              		.loc 1 5781 19 is_stmt 0 view .LVU1138
  3859 0038 0223     		movs	r3, #2
  3860 003a 2377     		strb	r3, [r4, #28]
-ARM GAS  /tmp/ccKUjuNa.s 			page 198
+ARM GAS  /tmp/ccr5TVAt.s 			page 198
 
 
  3861 003c F6E7     		b	.L203
@@ -11878,7 +11878,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3912              		.cfi_offset 14, -4
 5812:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  3913              		.loc 1 5812 3 is_stmt 1 view .LVU1146
-ARM GAS  /tmp/ccKUjuNa.s 			page 199
+ARM GAS  /tmp/ccr5TVAt.s 			page 199
 
 
 5812:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -11938,7 +11938,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3951              	.L215:
 5818:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  3952              		.loc 1 5818 5 is_stmt 1 view .LVU1164
-ARM GAS  /tmp/ccKUjuNa.s 			page 200
+ARM GAS  /tmp/ccr5TVAt.s 			page 200
 
 
 5818:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
@@ -11998,7 +11998,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  3997              	.LVL324:
  3998              	.LFB121:
 5021:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Prevent unused argument(s) compilation warning */
-ARM GAS  /tmp/ccKUjuNa.s 			page 201
+ARM GAS  /tmp/ccr5TVAt.s 			page 201
 
 
  3999              		.loc 1 5021 1 is_stmt 1 view -0
@@ -12058,7 +12058,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4044 000c 8342     		cmp	r3, r0
  4045 000e 0BD0     		beq	.L224
 5697:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
-ARM GAS  /tmp/ccKUjuNa.s 			page 202
+ARM GAS  /tmp/ccr5TVAt.s 			page 202
 
 
  4046              		.loc 1 5697 8 is_stmt 1 view .LVU1189
@@ -12118,7 +12118,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4083              		.loc 1 5720 17 is_stmt 0 view .LVU1206
  4084 0032 0023     		movs	r3, #0
  4085 0034 2377     		strb	r3, [r4, #28]
-ARM GAS  /tmp/ccKUjuNa.s 			page 203
+ARM GAS  /tmp/ccr5TVAt.s 			page 203
 
 
 5721:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -12178,7 +12178,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4134              		.thumb_func
  4136              	TIM_DMADelayPulseHalfCplt:
  4137              	.LVL332:
-ARM GAS  /tmp/ccKUjuNa.s 			page 204
+ARM GAS  /tmp/ccr5TVAt.s 			page 204
 
 
  4138              	.LFB134:
@@ -12238,7 +12238,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4176              		.loc 1 5746 8 is_stmt 1 view .LVU1231
 5746:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  4177              		.loc 1 5746 30 is_stmt 0 view .LVU1232
-ARM GAS  /tmp/ccKUjuNa.s 			page 205
+ARM GAS  /tmp/ccr5TVAt.s 			page 205
 
 
  4178 001c 236B     		ldr	r3, [r4, #48]
@@ -12298,7 +12298,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4217              		.loc 1 5744 5 is_stmt 1 view .LVU1247
 5744:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  4218              		.loc 1 5744 19 is_stmt 0 view .LVU1248
-ARM GAS  /tmp/ccKUjuNa.s 			page 206
+ARM GAS  /tmp/ccr5TVAt.s 			page 206
 
 
  4219 003e 0423     		movs	r3, #4
@@ -12358,7 +12358,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4270 0004 0268     		ldr	r2, [r0]
  4271 0006 1369     		ldr	r3, [r2, #16]
 3170:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
-ARM GAS  /tmp/ccKUjuNa.s 			page 207
+ARM GAS  /tmp/ccr5TVAt.s 			page 207
 
 
  4272              		.loc 1 3170 6 view .LVU1256
@@ -12418,7 +12418,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4310              		.loc 1 3203 6 view .LVU1272
  4311 0030 5B07     		lsls	r3, r3, #29
  4312 0032 12D5     		bpl	.L241
-ARM GAS  /tmp/ccKUjuNa.s 			page 208
+ARM GAS  /tmp/ccr5TVAt.s 			page 208
 
 
 3205:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
@@ -12478,7 +12478,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4351 005c 1369     		ldr	r3, [r2, #16]
 3233:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  4352              		.loc 1 3233 6 view .LVU1289
-ARM GAS  /tmp/ccKUjuNa.s 			page 209
+ARM GAS  /tmp/ccr5TVAt.s 			page 209
 
 
  4353 005e 1B07     		lsls	r3, r3, #28
@@ -12538,7 +12538,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4391              		.loc 1 3263 6 view .LVU1305
  4392 0088 DB06     		lsls	r3, r3, #27
  4393 008a 12D5     		bpl	.L247
-ARM GAS  /tmp/ccKUjuNa.s 			page 210
+ARM GAS  /tmp/ccr5TVAt.s 			page 210
 
 
 3265:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
@@ -12598,7 +12598,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4432 00b4 1369     		ldr	r3, [r2, #16]
 3293:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  4433              		.loc 1 3293 6 view .LVU1322
-ARM GAS  /tmp/ccKUjuNa.s 			page 211
+ARM GAS  /tmp/ccr5TVAt.s 			page 211
 
 
  4434 00b6 DB07     		lsls	r3, r3, #31
@@ -12658,7 +12658,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3332:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  4472              		.loc 1 3332 7 is_stmt 0 view .LVU1339
  4473 00dc 2268     		ldr	r2, [r4]
-ARM GAS  /tmp/ccKUjuNa.s 			page 212
+ARM GAS  /tmp/ccr5TVAt.s 			page 212
 
 
  4474 00de 1369     		ldr	r3, [r2, #16]
@@ -12718,7 +12718,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4516 010c 2000     		movs	r0, r4
  4517 010e FFF7FEFF 		bl	HAL_TIM_PWM_PulseFinishedCallback
  4518              	.LVL351:
-ARM GAS  /tmp/ccKUjuNa.s 			page 213
+ARM GAS  /tmp/ccr5TVAt.s 			page 213
 
 
  4519 0112 B5E7     		b	.L246
@@ -12778,7 +12778,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4564 0150 1361     		str	r3, [r2, #16]
 3340:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** #endif /* USE_HAL_TIM_REGISTER_CALLBACKS */
  4565              		.loc 1 3340 7 view .LVU1361
-ARM GAS  /tmp/ccKUjuNa.s 			page 214
+ARM GAS  /tmp/ccr5TVAt.s 			page 214
 
 
  4566 0152 2000     		movs	r0, r4
@@ -12838,7 +12838,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4614              		.syntax unified
  4615              		.code	16
  4616              		.thumb_func
-ARM GAS  /tmp/ccKUjuNa.s 			page 215
+ARM GAS  /tmp/ccr5TVAt.s 			page 215
 
 
  4618              	HAL_TIM_TriggerHalfCpltCallback:
@@ -12898,7 +12898,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5916:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  4664              		.loc 1 5916 1 is_stmt 0 view .LVU1381
  4665              		@ sp needed
-ARM GAS  /tmp/ccKUjuNa.s 			page 216
+ARM GAS  /tmp/ccr5TVAt.s 			page 216
 
 
  4666 000e 10BD     		pop	{r4, pc}
@@ -12958,7 +12958,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4716              		.loc 1 5673 3 is_stmt 1 view .LVU1389
 5673:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  4717              		.loc 1 5673 15 is_stmt 0 view .LVU1390
-ARM GAS  /tmp/ccKUjuNa.s 			page 217
+ARM GAS  /tmp/ccr5TVAt.s 			page 217
 
 
  4718 0004 3D23     		movs	r3, #61
@@ -13018,7 +13018,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4768              		.loc 1 5608 1 is_stmt 1 view -0
  4769              		.cfi_startproc
  4770              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccKUjuNa.s 			page 218
+ARM GAS  /tmp/ccr5TVAt.s 			page 218
 
 
  4771              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -13078,7 +13078,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4819              		.thumb_func
  4821              	HAL_TIM_IC_GetState:
  4822              	.LVL375:
-ARM GAS  /tmp/ccKUjuNa.s 			page 219
+ARM GAS  /tmp/ccr5TVAt.s 			page 219
 
 
  4823              	.LFB129:
@@ -13138,7 +13138,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4870              		.section	.text.HAL_TIM_Encoder_GetState,"ax",%progbits
  4871              		.align	1
  4872              		.global	HAL_TIM_Encoder_GetState
-ARM GAS  /tmp/ccKUjuNa.s 			page 220
+ARM GAS  /tmp/ccr5TVAt.s 			page 220
 
 
  4873              		.syntax unified
@@ -13198,7 +13198,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4919              		.loc 1 5930 6 is_stmt 0 view .LVU1428
  4920 0002 214A     		ldr	r2, .L292
  4921 0004 9042     		cmp	r0, r2
-ARM GAS  /tmp/ccKUjuNa.s 			page 221
+ARM GAS  /tmp/ccr5TVAt.s 			page 221
 
 
  4922 0006 06D0     		beq	.L286
@@ -13258,7 +13258,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  4963              		.loc 1 5937 7 discriminator 4 view .LVU1441
  4964 0038 164A     		ldr	r2, .L292+12
  4965 003a 9042     		cmp	r0, r2
-ARM GAS  /tmp/ccKUjuNa.s 			page 222
+ARM GAS  /tmp/ccr5TVAt.s 			page 222
 
 
  4966 003c 05D0     		beq	.L288
@@ -13318,7 +13318,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 5953:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  5006              		.loc 1 5953 3 is_stmt 1 view .LVU1456
 5953:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 223
+ARM GAS  /tmp/ccr5TVAt.s 			page 223
 
 
  5007              		.loc 1 5953 24 is_stmt 0 view .LVU1457
@@ -13378,7 +13378,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5049 0098 00440140 		.word	1073824768
  5050 009c 00480140 		.word	1073825792
  5051 00a0 FFFCFFFF 		.word	-769
-ARM GAS  /tmp/ccKUjuNa.s 			page 224
+ARM GAS  /tmp/ccr5TVAt.s 			page 224
 
 
  5052              		.cfi_endproc
@@ -13438,7 +13438,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5095              		.loc 1 301 15 is_stmt 0 view .LVU1482
  5096 000e 3D25     		movs	r5, #61
  5097 0010 0223     		movs	r3, #2
-ARM GAS  /tmp/ccKUjuNa.s 			page 225
+ARM GAS  /tmp/ccr5TVAt.s 			page 225
 
 
  5098 0012 6355     		strb	r3, [r4, r5]
@@ -13498,7 +13498,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5140              		.align	1
  5141              		.global	HAL_TIM_OC_Init
  5142              		.syntax unified
-ARM GAS  /tmp/ccKUjuNa.s 			page 226
+ARM GAS  /tmp/ccr5TVAt.s 			page 226
 
 
  5143              		.code	16
@@ -13558,7 +13558,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5184 0014 2100     		movs	r1, r4
  5185 0016 01C9     		ldmia	r1!, {r0}
  5186 0018 FFF7FEFF 		bl	TIM_Base_SetConfig
-ARM GAS  /tmp/ccKUjuNa.s 			page 227
+ARM GAS  /tmp/ccr5TVAt.s 			page 227
 
 
  5187              	.LVL401:
@@ -13618,7 +13618,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5231              	.LVL407:
  5232              	.LFB60:
 1171:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the TIM handle allocation */
-ARM GAS  /tmp/ccKUjuNa.s 			page 228
+ARM GAS  /tmp/ccr5TVAt.s 			page 228
 
 
  5233              		.loc 1 1171 1 is_stmt 1 view -0
@@ -13678,7 +13678,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1212:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  5273              		.loc 1 1212 15 is_stmt 0 view .LVU1537
  5274 001c 0123     		movs	r3, #1
-ARM GAS  /tmp/ccKUjuNa.s 			page 229
+ARM GAS  /tmp/ccr5TVAt.s 			page 229
 
 
  5275 001e 6355     		strb	r3, [r4, r5]
@@ -13738,7 +13738,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5320              		@ frame_needed = 0, uses_anonymous_args = 0
 1745:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the TIM handle allocation */
  5321              		.loc 1 1745 1 is_stmt 0 view .LVU1549
-ARM GAS  /tmp/ccKUjuNa.s 			page 230
+ARM GAS  /tmp/ccr5TVAt.s 			page 230
 
 
  5322 0000 70B5     		push	{r4, r5, r6, lr}
@@ -13798,7 +13798,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1788:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
  5361              		.loc 1 1788 10 is_stmt 0 view .LVU1565
  5362 0020 0020     		movs	r0, #0
-ARM GAS  /tmp/ccKUjuNa.s 			page 231
+ARM GAS  /tmp/ccr5TVAt.s 			page 231
 
 
  5363              	.L310:
@@ -13858,7 +13858,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5409              		.cfi_offset 4, -16
  5410              		.cfi_offset 5, -12
  5411              		.cfi_offset 6, -8
-ARM GAS  /tmp/ccKUjuNa.s 			page 232
+ARM GAS  /tmp/ccr5TVAt.s 			page 232
 
 
  5412              		.cfi_offset 14, -4
@@ -13918,7 +13918,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5449 0024 0821     		movs	r1, #8
  5450 0026 8B43     		bics	r3, r1
  5451 0028 1360     		str	r3, [r2]
-ARM GAS  /tmp/ccKUjuNa.s 			page 233
+ARM GAS  /tmp/ccr5TVAt.s 			page 233
 
 
 2329:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -13978,7 +13978,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2288:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  5491              		.loc 1 2288 12 view .LVU1608
  5492 0048 F6E7     		b	.L315
-ARM GAS  /tmp/ccKUjuNa.s 			page 234
+ARM GAS  /tmp/ccr5TVAt.s 			page 234
 
 
  5493              		.cfi_endproc
@@ -14038,7 +14038,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5537              		.loc 1 2613 3 view .LVU1620
 2614:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_IC_SELECTION(sConfig->IC2Selection));
  5538              		.loc 1 2614 3 view .LVU1621
-ARM GAS  /tmp/ccKUjuNa.s 			page 235
+ARM GAS  /tmp/ccr5TVAt.s 			page 235
 
 
 2615:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_ENCODERINPUT_POLARITY(sConfig->IC1Polarity));
@@ -14098,7 +14098,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2654:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  5575              		.loc 1 2654 17 is_stmt 0 view .LVU1640
  5576 002e 2168     		ldr	r1, [r4]
-ARM GAS  /tmp/ccKUjuNa.s 			page 236
+ARM GAS  /tmp/ccr5TVAt.s 			page 236
 
 
 2654:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -14158,7 +14158,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2671:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpccmr1 |= sConfig->IC1Prescaler | (sConfig->IC2Prescaler << 8U);
  5614              		.loc 1 2671 3 view .LVU1658
 2671:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   tmpccmr1 |= sConfig->IC1Prescaler | (sConfig->IC2Prescaler << 8U);
-ARM GAS  /tmp/ccKUjuNa.s 			page 237
+ARM GAS  /tmp/ccr5TVAt.s 			page 237
 
 
  5615              		.loc 1 2671 12 is_stmt 0 view .LVU1659
@@ -14218,7 +14218,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2678:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  5652              		.loc 1 2678 21 is_stmt 0 view .LVU1677
  5653 0068 6A68     		ldr	r2, [r5, #4]
-ARM GAS  /tmp/ccKUjuNa.s 			page 238
+ARM GAS  /tmp/ccr5TVAt.s 			page 238
 
 
 2678:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -14278,7 +14278,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5691              	.LVL451:
 2693:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  5692              		.loc 1 2693 1 view .LVU1695
-ARM GAS  /tmp/ccKUjuNa.s 			page 239
+ARM GAS  /tmp/ccr5TVAt.s 			page 239
 
 
  5693 0084 80BC     		pop	{r7}
@@ -14338,7 +14338,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5741              		.cfi_def_cfa_offset 16
  5742              		.cfi_offset 4, -16
  5743              		.cfi_offset 5, -12
-ARM GAS  /tmp/ccKUjuNa.s 			page 240
+ARM GAS  /tmp/ccr5TVAt.s 			page 240
 
 
  5744              		.cfi_offset 6, -8
@@ -14398,7 +14398,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5779              		.loc 1 6069 12 view .LVU1722
  5780 0018 1D43     		orrs	r5, r3
  5781              	.LVL461:
-ARM GAS  /tmp/ccKUjuNa.s 			page 241
+ARM GAS  /tmp/ccr5TVAt.s 			page 241
 
 
 6072:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Set the Output Compare Polarity */
@@ -14458,7 +14458,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6081:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     /* Set the Output N Polarity */
  5821              		.loc 1 6081 13 view .LVU1738
  5822 0042 1E00     		movs	r6, r3
-ARM GAS  /tmp/ccKUjuNa.s 			page 242
+ARM GAS  /tmp/ccr5TVAt.s 			page 242
 
 
  5823              	.LVL465:
@@ -14518,7 +14518,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6101:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  5859              		.loc 1 6101 40 view .LVU1757
  5860 005a A400     		lsls	r4, r4, #2
-ARM GAS  /tmp/ccKUjuNa.s 			page 243
+ARM GAS  /tmp/ccr5TVAt.s 			page 243
 
 
 6101:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
@@ -14578,7 +14578,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5905              	.LVL474:
  5906              	.LFB99:
 3385:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
-ARM GAS  /tmp/ccKUjuNa.s 			page 244
+ARM GAS  /tmp/ccr5TVAt.s 			page 244
 
 
  5907              		.loc 1 3385 1 is_stmt 1 view -0
@@ -14638,7 +14638,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3411:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  5948              		.loc 1 3411 7 is_stmt 1 view .LVU1784
 3414:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
-ARM GAS  /tmp/ccKUjuNa.s 			page 245
+ARM GAS  /tmp/ccr5TVAt.s 			page 245
 
 
  5949              		.loc 1 3414 7 view .LVU1785
@@ -14698,7 +14698,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  5988              		.loc 1 3446 10 is_stmt 0 view .LVU1800
  5989 004c 0020     		movs	r0, #0
  5990              	.L334:
-ARM GAS  /tmp/ccKUjuNa.s 			page 246
+ARM GAS  /tmp/ccr5TVAt.s 			page 246
 
 
 3447:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -14758,7 +14758,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6038 0004 0D00     		movs	r5, r1
 3564:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_PWM_MODE(sConfig->OCMode));
  6039              		.loc 1 3564 3 is_stmt 1 view .LVU1810
-ARM GAS  /tmp/ccKUjuNa.s 			page 247
+ARM GAS  /tmp/ccr5TVAt.s 			page 247
 
 
 3565:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_OC_POLARITY(sConfig->OCPolarity));
@@ -14818,7 +14818,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6078              		.loc 1 3602 7 is_stmt 1 view .LVU1826
 3602:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  6079              		.loc 1 3602 11 is_stmt 0 view .LVU1827
-ARM GAS  /tmp/ccKUjuNa.s 			page 248
+ARM GAS  /tmp/ccr5TVAt.s 			page 248
 
 
  6080 0030 2268     		ldr	r2, [r4]
@@ -14878,7 +14878,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6118 0058 0068     		ldr	r0, [r0]
  6119              	.LVL491:
 3633:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 249
+ARM GAS  /tmp/ccr5TVAt.s 			page 249
 
 
  6120              		.loc 1 3633 7 is_stmt 0 view .LVU1844
@@ -14938,7 +14938,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3579:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  6159              		.loc 1 3579 7 view .LVU1860
 3582:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 250
+ARM GAS  /tmp/ccr5TVAt.s 			page 250
 
 
  6160              		.loc 1 3582 7 view .LVU1861
@@ -14998,7 +14998,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3648:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  6198              		.loc 1 3648 15 is_stmt 0 view .LVU1878
  6199 00aa 3D23     		movs	r3, #61
-ARM GAS  /tmp/ccKUjuNa.s 			page 251
+ARM GAS  /tmp/ccr5TVAt.s 			page 251
 
 
  6200 00ac 0122     		movs	r2, #1
@@ -15058,7 +15058,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6238              		.loc 1 3622 11 is_stmt 0 view .LVU1894
  6239 00cc 2268     		ldr	r2, [r4]
 3622:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->Instance->CCMR2 |= sConfig->OCFastMode;
-ARM GAS  /tmp/ccKUjuNa.s 			page 252
+ARM GAS  /tmp/ccr5TVAt.s 			page 252
 
 
  6240              		.loc 1 3622 21 view .LVU1895
@@ -15118,7 +15118,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6390:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   uint32_t tmpccmr1;
  6286              		.loc 1 6390 1 is_stmt 0 view .LVU1906
  6287 0000 70B5     		push	{r4, r5, r6, lr}
-ARM GAS  /tmp/ccKUjuNa.s 			page 253
+ARM GAS  /tmp/ccr5TVAt.s 			page 253
 
 
  6288              	.LCFI45:
@@ -15178,7 +15178,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6328 0026 A842     		cmp	r0, r5
  6329 0028 02D0     		beq	.L354
 6407:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
-ARM GAS  /tmp/ccKUjuNa.s 			page 254
+ARM GAS  /tmp/ccr5TVAt.s 			page 254
 
 
  6330              		.loc 1 6407 5 is_stmt 1 view .LVU1921
@@ -15238,7 +15238,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6416:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  6369              		.loc 1 6416 3 is_stmt 1 view .LVU1937
 6416:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 255
+ARM GAS  /tmp/ccr5TVAt.s 			page 255
 
 
  6370              		.loc 1 6416 30 is_stmt 0 view .LVU1938
@@ -15298,7 +15298,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6417 0002 0400     		movs	r4, r0
  6418 0004 0D00     		movs	r5, r1
 3465:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_IC_POLARITY(sConfig->ICPolarity));
-ARM GAS  /tmp/ccKUjuNa.s 			page 256
+ARM GAS  /tmp/ccr5TVAt.s 			page 256
 
 
  6419              		.loc 1 3465 3 is_stmt 1 view .LVU1948
@@ -15358,7 +15358,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 3527:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                       sConfig->ICPolarity,
  6455              		.loc 1 3527 5 view .LVU1967
  6456 0026 EB68     		ldr	r3, [r5, #12]
-ARM GAS  /tmp/ccKUjuNa.s 			page 257
+ARM GAS  /tmp/ccr5TVAt.s 			page 257
 
 
  6457 0028 6A68     		ldr	r2, [r5, #4]
@@ -15418,7 +15418,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6495 004e 013B     		subs	r3, r3, #1
  6496 0050 0022     		movs	r2, #0
  6497 0052 E254     		strb	r2, [r4, r3]
-ARM GAS  /tmp/ccKUjuNa.s 			page 258
+ARM GAS  /tmp/ccr5TVAt.s 			page 258
 
 
 3541:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -15478,7 +15478,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6536              		.loc 1 3488 37 view .LVU1999
  6537 0072 A968     		ldr	r1, [r5, #8]
 3488:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
-ARM GAS  /tmp/ccKUjuNa.s 			page 259
+ARM GAS  /tmp/ccr5TVAt.s 			page 259
 
 
  6538              		.loc 1 3488 27 view .LVU2000
@@ -15538,7 +15538,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6578              	.LVL530:
  6579              	.L367:
 3509:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 260
+ARM GAS  /tmp/ccr5TVAt.s 			page 260
 
 
  6580              		.loc 1 3509 5 is_stmt 1 view .LVU2015
@@ -15598,7 +15598,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6620              		.align	2
  6621              	.L368:
  6622 00c4 FFF3FFFF 		.word	-3073
-ARM GAS  /tmp/ccKUjuNa.s 			page 261
+ARM GAS  /tmp/ccr5TVAt.s 			page 261
 
 
  6623              		.cfi_endproc
@@ -15658,7 +15658,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6669 0014 012B     		cmp	r3, #1
  6670 0016 00D1     		bne	.LCB5667
  6671 0018 6EE0     		b	.L379	@long jump
-ARM GAS  /tmp/ccKUjuNa.s 			page 262
+ARM GAS  /tmp/ccr5TVAt.s 			page 262
 
 
  6672              	.LCB5667:
@@ -15718,7 +15718,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6707 0036 2B69     		ldr	r3, [r5, #16]
 3695:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     temp1.OCNIdleState = sConfig->OCNIdleState;
  6708              		.loc 1 3695 23 discriminator 2 view .LVU2059
-ARM GAS  /tmp/ccKUjuNa.s 			page 263
+ARM GAS  /tmp/ccr5TVAt.s 			page 263
 
 
  6709 0038 0693     		str	r3, [sp, #24]
@@ -15778,7 +15778,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6749              	.LVL542:
 3773:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  6750              		.loc 1 3773 1 view .LVU2074
-ARM GAS  /tmp/ccKUjuNa.s 			page 264
+ARM GAS  /tmp/ccr5TVAt.s 			page 264
 
 
  6751 005e 70BD     		pop	{r4, r5, r6, pc}
@@ -15838,7 +15838,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6791 0084 0C21     		movs	r1, #12
  6792 0086 8B43     		bics	r3, r1
  6793 0088 9361     		str	r3, [r2, #24]
-ARM GAS  /tmp/ccKUjuNa.s 			page 265
+ARM GAS  /tmp/ccr5TVAt.s 			page 265
 
 
 3731:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->Instance->SMCR |= TIM_TS_TI1FP1;
@@ -15898,7 +15898,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6831 00b2 CCE7     		b	.L377
  6832              	.L376:
 3741:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 266
+ARM GAS  /tmp/ccr5TVAt.s 			page 266
 
 
  6833              		.loc 1 3741 9 view .LVU2106
@@ -15958,7 +15958,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6871              		.loc 1 3754 23 view .LVU2122
  6872 00e0 9368     		ldr	r3, [r2, #8]
 3754:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****         htim->Instance->SMCR |= TIM_SLAVEMODE_TRIGGER;
-ARM GAS  /tmp/ccKUjuNa.s 			page 267
+ARM GAS  /tmp/ccr5TVAt.s 			page 267
 
 
  6873              		.loc 1 3754 30 view .LVU2123
@@ -16018,7 +16018,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6666:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @brief  Configures the TIMx External Trigger (ETR).
 6667:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  TIMx to select the TIM peripheral
 6668:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  TIM_ExtTRGPrescaler The external Trigger Prescaler.
-ARM GAS  /tmp/ccKUjuNa.s 			page 268
+ARM GAS  /tmp/ccr5TVAt.s 			page 268
 
 
 6669:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          This parameter can be one of the following values:
@@ -16078,7 +16078,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6948              		.loc 1 6693 11 view .LVU2144
  6949 000e 2343     		orrs	r3, r4
  6950              	.LVL559:
-ARM GAS  /tmp/ccKUjuNa.s 			page 269
+ARM GAS  /tmp/ccr5TVAt.s 			page 269
 
 
 6694:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -16138,7 +16138,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  6997 0010 7CE0     		b	.L401	@long jump
  6998              	.LCB5954:
 4470:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 270
+ARM GAS  /tmp/ccr5TVAt.s 			page 270
 
 
  6999              		.loc 1 4470 3 discriminator 2 view .LVU2154
@@ -16198,7 +16198,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7040 0042 9169     		ldr	r1, [r2, #24]
  7041 0044 8023     		movs	r3, #128
  7042 0046 1B02     		lsls	r3, r3, #8
-ARM GAS  /tmp/ccKUjuNa.s 			page 271
+ARM GAS  /tmp/ccr5TVAt.s 			page 271
 
 
  7043 0048 0B43     		orrs	r3, r1
@@ -16258,7 +16258,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7083              		.loc 1 4499 21 is_stmt 0 view .LVU2181
  7084 006c 3D23     		movs	r3, #61
  7085 006e 0122     		movs	r2, #1
-ARM GAS  /tmp/ccKUjuNa.s 			page 272
+ARM GAS  /tmp/ccr5TVAt.s 			page 272
 
 
  7086 0070 C254     		strb	r2, [r0, r3]
@@ -16318,7 +16318,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7126 009a 31D0     		beq	.L400
 4567:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       }
  7127              		.loc 1 4567 9 is_stmt 1 view .LVU2196
-ARM GAS  /tmp/ccKUjuNa.s 			page 273
+ARM GAS  /tmp/ccr5TVAt.s 			page 273
 
 
  7128 009c 2268     		ldr	r2, [r4]
@@ -16378,7 +16378,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7169              		.loc 1 4585 1 view .LVU2209
  7170 00c8 70BD     		pop	{r4, r5, r6, pc}
  7171              	.LVL576:
-ARM GAS  /tmp/ccKUjuNa.s 			page 274
+ARM GAS  /tmp/ccr5TVAt.s 			page 274
 
 
  7172              	.L397:
@@ -16438,7 +16438,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7218              	.LVL577:
  7219              	.L401:
 4470:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 275
+ARM GAS  /tmp/ccr5TVAt.s 			page 275
 
 
  7220              		.loc 1 4470 3 is_stmt 0 view .LVU2218
@@ -16498,7 +16498,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4601:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  7267              		.loc 1 4601 15 is_stmt 0 discriminator 2 view .LVU2228
  7268 0012 0133     		adds	r3, r3, #1
-ARM GAS  /tmp/ccKUjuNa.s 			page 276
+ARM GAS  /tmp/ccr5TVAt.s 			page 276
 
 
  7269 0014 0132     		adds	r2, r2, #1
@@ -16558,7 +16558,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4673:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                                sClockSourceConfig->ClockPolarity,
  7306              		.loc 1 4673 7 view .LVU2246
  7307 0034 CA68     		ldr	r2, [r1, #12]
-ARM GAS  /tmp/ccKUjuNa.s 			page 277
+ARM GAS  /tmp/ccr5TVAt.s 			page 277
 
 
  7308              	.LVL584:
@@ -16618,7 +16618,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7349              		@ sp needed
  7350              	.LVL590:
 4732:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 278
+ARM GAS  /tmp/ccr5TVAt.s 			page 278
 
 
  7351              		.loc 1 4732 1 view .LVU2260
@@ -16678,7 +16678,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7392 0086 2068     		ldr	r0, [r4]
  7393 0088 FFF7FEFF 		bl	TIM_ETR_SetConfig
  7394              	.LVL597:
-ARM GAS  /tmp/ccKUjuNa.s 			page 279
+ARM GAS  /tmp/ccr5TVAt.s 			page 279
 
 
 4660:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
@@ -16738,7 +16738,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7432 00aa 7721     		movs	r1, #119
  7433 00ac 0B43     		orrs	r3, r1
  7434              	.LVL603:
-ARM GAS  /tmp/ccKUjuNa.s 			page 280
+ARM GAS  /tmp/ccr5TVAt.s 			page 280
 
 
 4640:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
@@ -16798,7 +16798,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4705:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                                sClockSourceConfig->ClockPolarity,
  7473              		.loc 1 4705 7 view .LVU2307
  7474 00ca 2068     		ldr	r0, [r4]
-ARM GAS  /tmp/ccKUjuNa.s 			page 281
+ARM GAS  /tmp/ccr5TVAt.s 			page 281
 
 
  7475 00cc FFF7FEFF 		bl	TIM_TI1_ConfigInputStage
@@ -16858,7 +16858,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6265:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  7522              		.loc 1 6265 3 view .LVU2317
 6265:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 282
+ARM GAS  /tmp/ccr5TVAt.s 			page 282
 
 
  7523              		.loc 1 6265 17 is_stmt 0 view .LVU2318
@@ -16918,7 +16918,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7561 0020 402B     		cmp	r3, #64
  7562 0022 14D0     		beq	.L425
  7563 0024 502B     		cmp	r3, #80
-ARM GAS  /tmp/ccKUjuNa.s 			page 283
+ARM GAS  /tmp/ccr5TVAt.s 			page 283
 
 
  7564 0026 06D1     		bne	.L430
@@ -16978,7 +16978,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7601 0040 8A68     		ldr	r2, [r1, #8]
  7602 0042 C968     		ldr	r1, [r1, #12]
  7603              	.LVL629:
-ARM GAS  /tmp/ccKUjuNa.s 			page 284
+ARM GAS  /tmp/ccr5TVAt.s 			page 284
 
 
 6291:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                         sSlaveConfig->TriggerPrescaler,
@@ -17038,7 +17038,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7640              		.loc 1 6312 7 is_stmt 1 view .LVU2369
 6312:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  7641              		.loc 1 6312 22 is_stmt 0 view .LVU2370
-ARM GAS  /tmp/ccKUjuNa.s 			page 285
+ARM GAS  /tmp/ccr5TVAt.s 			page 285
 
 
  7642 0060 0468     		ldr	r4, [r0]
@@ -17098,7 +17098,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6343:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  7679              		.loc 1 6343 7 view .LVU2388
 6346:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****                                sSlaveConfig->TriggerPolarity,
-ARM GAS  /tmp/ccKUjuNa.s 			page 286
+ARM GAS  /tmp/ccr5TVAt.s 			page 286
 
 
  7680              		.loc 1 6346 7 view .LVU2389
@@ -17158,7 +17158,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7726              		@ args = 0, pretend = 0, frame = 0
  7727              		@ frame_needed = 0, uses_anonymous_args = 0
 4779:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
-ARM GAS  /tmp/ccKUjuNa.s 			page 287
+ARM GAS  /tmp/ccr5TVAt.s 			page 287
 
 
  7728              		.loc 1 4779 1 is_stmt 0 view .LVU2400
@@ -17218,7 +17218,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7768 002a 2268     		ldr	r2, [r4]
  7769 002c D368     		ldr	r3, [r2, #12]
  7770 002e 0A49     		ldr	r1, .L436
-ARM GAS  /tmp/ccKUjuNa.s 			page 288
+ARM GAS  /tmp/ccr5TVAt.s 			page 288
 
 
  7771 0030 0B40     		ands	r3, r1
@@ -17278,7 +17278,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 4785:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  7810              		.loc 1 4785 3 view .LVU2430
  7811 0052 0220     		movs	r0, #2
-ARM GAS  /tmp/ccKUjuNa.s 			page 289
+ARM GAS  /tmp/ccr5TVAt.s 			page 289
 
 
  7812              	.LVL654:
@@ -17338,7 +17338,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7857              		.loc 1 4828 3 discriminator 2 view .LVU2441
 4828:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  7858              		.loc 1 4828 15 is_stmt 0 discriminator 2 view .LVU2442
-ARM GAS  /tmp/ccKUjuNa.s 			page 290
+ARM GAS  /tmp/ccr5TVAt.s 			page 290
 
 
  7859 0012 0133     		adds	r3, r3, #1
@@ -17398,7 +17398,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7900              	.L442:
 4832:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     __HAL_UNLOCK(htim);
  7901              		.loc 1 4832 5 is_stmt 1 view .LVU2456
-ARM GAS  /tmp/ccKUjuNa.s 			page 291
+ARM GAS  /tmp/ccr5TVAt.s 			page 291
 
 
 4832:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     __HAL_UNLOCK(htim);
@@ -17458,7 +17458,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 6708:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @param  ChannelState specifies the TIM Channel CCxE bit new state.
 6709:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   *          This parameter can be: TIM_CCx_ENABLE or TIM_CCx_DISABLE.
 6710:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   * @retval None
-ARM GAS  /tmp/ccKUjuNa.s 			page 292
+ARM GAS  /tmp/ccr5TVAt.s 			page 292
 
 
 6711:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   */
@@ -17518,7 +17518,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  7977              		.loc 1 6727 1 view .LVU2480
  7978              		@ sp needed
  7979              	.LVL665:
-ARM GAS  /tmp/ccKUjuNa.s 			page 293
+ARM GAS  /tmp/ccr5TVAt.s 			page 293
 
 
  7980              		.loc 1 6727 1 view .LVU2481
@@ -17578,7 +17578,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8026 001a 0D4A     		ldr	r2, .L450+8
  8027 001c 9342     		cmp	r3, r2
  8028 001e 02D0     		beq	.L447
-ARM GAS  /tmp/ccKUjuNa.s 			page 294
+ARM GAS  /tmp/ccr5TVAt.s 			page 294
 
 
  731:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
@@ -17638,7 +17638,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8069              		.loc 1 746 1 view .LVU2505
  8070 0046 10BD     		pop	{r4, pc}
  8071              	.L451:
-ARM GAS  /tmp/ccKUjuNa.s 			page 295
+ARM GAS  /tmp/ccr5TVAt.s 			page 295
 
 
  8072              		.align	2
@@ -17698,7 +17698,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  767:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  8120              		.loc 1 767 7 discriminator 4 view .LVU2514
  8121 001a 134A     		ldr	r2, .L456+8
-ARM GAS  /tmp/ccKUjuNa.s 			page 296
+ARM GAS  /tmp/ccr5TVAt.s 			page 296
 
 
  8122 001c 9342     		cmp	r3, r2
@@ -17758,7 +17758,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  770:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  8164              		.loc 1 770 5 discriminator 1 view .LVU2527
  8165 004c 196A     		ldr	r1, [r3, #32]
-ARM GAS  /tmp/ccKUjuNa.s 			page 297
+ARM GAS  /tmp/ccr5TVAt.s 			page 297
 
 
  8166 004e 094A     		ldr	r2, .L456+20
@@ -17818,7 +17818,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8216 000c 0FD0     		beq	.L461
  8217 000e 0429     		cmp	r1, #4
  8218 0010 12D1     		bne	.L463
-ARM GAS  /tmp/ccKUjuNa.s 			page 298
+ARM GAS  /tmp/ccr5TVAt.s 			page 298
 
 
  810:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
@@ -17878,7 +17878,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8261              		.loc 1 835 3 view .LVU2545
  835:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  8262              		.loc 1 835 7 is_stmt 0 view .LVU2546
-ARM GAS  /tmp/ccKUjuNa.s 			page 299
+ARM GAS  /tmp/ccr5TVAt.s 			page 299
 
 
  8263 0040 2368     		ldr	r3, [r4]
@@ -17938,7 +17938,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8305              	.LVL687:
  845:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  8306              		.loc 1 845 5 view .LVU2559
-ARM GAS  /tmp/ccKUjuNa.s 			page 300
+ARM GAS  /tmp/ccr5TVAt.s 			page 300
 
 
  8307 0074 0B43     		orrs	r3, r1
@@ -17998,7 +17998,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8355              	.LCFI59:
  8356              		.cfi_def_cfa_offset 8
  8357              		.cfi_offset 4, -8
-ARM GAS  /tmp/ccKUjuNa.s 			page 301
+ARM GAS  /tmp/ccr5TVAt.s 			page 301
 
 
  8358              		.cfi_offset 14, -4
@@ -18058,7 +18058,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8401              		.loc 1 873 7 is_stmt 0 view .LVU2578
  8402 0034 8343     		bics	r3, r0
  8403 0036 D360     		str	r3, [r2, #12]
-ARM GAS  /tmp/ccKUjuNa.s 			page 302
+ARM GAS  /tmp/ccr5TVAt.s 			page 302
 
 
  874:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
@@ -18118,7 +18118,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8446 0070 8A43     		bics	r2, r1
  8447 0072 1A60     		str	r2, [r3]
  8448              	.L479:
-ARM GAS  /tmp/ccKUjuNa.s 			page 303
+ARM GAS  /tmp/ccr5TVAt.s 			page 303
 
 
  912:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -18178,7 +18178,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8492 00a4 00400140 		.word	1073823744
  8493 00a8 00440140 		.word	1073824768
  8494 00ac 00480140 		.word	1073825792
-ARM GAS  /tmp/ccKUjuNa.s 			page 304
+ARM GAS  /tmp/ccr5TVAt.s 			page 304
 
 
  8495 00b0 11110000 		.word	4369
@@ -18238,7 +18238,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8541 0012 3D22     		movs	r2, #61
  8542              	.LVL705:
  942:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
-ARM GAS  /tmp/ccKUjuNa.s 			page 305
+ARM GAS  /tmp/ccr5TVAt.s 			page 305
 
 
  8543              		.loc 1 942 16 view .LVU2612
@@ -18298,7 +18298,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8582              		.loc 1 990 83 view .LVU2627
  8583 0040 3832     		adds	r2, r2, #56
  990:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       {
-ARM GAS  /tmp/ccKUjuNa.s 			page 306
+ARM GAS  /tmp/ccr5TVAt.s 			page 306
 
 
  8584              		.loc 1 990 11 view .LVU2628
@@ -18358,7 +18358,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1022:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->hdma[TIM_DMA_ID_CC4]->XferHalfCpltCallback = TIM_DMADelayPulseHalfCplt;
  8627              		.loc 1 1022 52 view .LVU2640
  8628 0074 3748     		ldr	r0, .L501
-ARM GAS  /tmp/ccKUjuNa.s 			page 307
+ARM GAS  /tmp/ccr5TVAt.s 			page 307
 
 
  8629 0076 9062     		str	r0, [r2, #40]
@@ -18418,7 +18418,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  963:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->hdma[TIM_DMA_ID_CC1]->XferHalfCpltCallback = TIM_DMADelayPulseHalfCplt;
  8668              		.loc 1 963 52 view .LVU2656
  8669 00a2 2C48     		ldr	r0, .L501
-ARM GAS  /tmp/ccKUjuNa.s 			page 308
+ARM GAS  /tmp/ccr5TVAt.s 			page 308
 
 
  8670 00a4 9062     		str	r0, [r2, #40]
@@ -18478,7 +18478,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1045:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  8710              		.loc 1 1045 3 view .LVU2671
 1045:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
-ARM GAS  /tmp/ccKUjuNa.s 			page 309
+ARM GAS  /tmp/ccr5TVAt.s 			page 309
 
 
  8711              		.loc 1 1045 7 is_stmt 0 view .LVU2672
@@ -18538,7 +18538,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8753 0108 0121     		movs	r1, #1
  8754              	.LVL714:
 1055:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
-ARM GAS  /tmp/ccKUjuNa.s 			page 310
+ARM GAS  /tmp/ccr5TVAt.s 			page 310
 
 
  8755              		.loc 1 1055 5 view .LVU2685
@@ -18598,7 +18598,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8793              		.loc 1 1010 11 view .LVU2701
  8794 0128 E06A     		ldr	r0, [r4, #44]
  8795 012a FFF7FEFF 		bl	HAL_DMA_Start_IT
-ARM GAS  /tmp/ccKUjuNa.s 			page 311
+ARM GAS  /tmp/ccr5TVAt.s 			page 311
 
 
  8796              	.LVL719:
@@ -18658,7 +18658,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8843              		.section	.text.HAL_TIM_OC_Stop_DMA,"ax",%progbits
  8844              		.align	1
  8845              		.global	HAL_TIM_OC_Stop_DMA
-ARM GAS  /tmp/ccKUjuNa.s 			page 312
+ARM GAS  /tmp/ccr5TVAt.s 			page 312
 
 
  8846              		.syntax unified
@@ -18718,7 +18718,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8891              		.loc 1 1093 7 is_stmt 1 view .LVU2719
  8892 0024 12E0     		b	.L508
  8893              	.LVL725:
-ARM GAS  /tmp/ccKUjuNa.s 			page 313
+ARM GAS  /tmp/ccr5TVAt.s 			page 313
 
 
  8894              	.L505:
@@ -18778,7 +18778,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8934              		.loc 1 1117 3 view .LVU2733
  8935 004c 2868     		ldr	r0, [r5]
  8936 004e 0022     		movs	r2, #0
-ARM GAS  /tmp/ccKUjuNa.s 			page 314
+ARM GAS  /tmp/ccr5TVAt.s 			page 314
 
 
  8937 0050 2100     		movs	r1, r4
@@ -18838,7 +18838,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  8979              		.loc 1 1129 3 discriminator 5 view .LVU2745
 1129:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  8980              		.loc 1 1129 15 is_stmt 0 discriminator 5 view .LVU2746
-ARM GAS  /tmp/ccKUjuNa.s 			page 315
+ARM GAS  /tmp/ccr5TVAt.s 			page 315
 
 
  8981 008a 3D23     		movs	r3, #61
@@ -18898,7 +18898,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1122:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  9023              		.loc 1 1122 5 discriminator 3 view .LVU2759
  9024 00b6 5A6C     		ldr	r2, [r3, #68]
-ARM GAS  /tmp/ccKUjuNa.s 			page 316
+ARM GAS  /tmp/ccr5TVAt.s 			page 316
 
 
  9025 00b8 0B49     		ldr	r1, .L513+40
@@ -18958,7 +18958,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9075              	.LVL742:
 1304:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  9076              		.loc 1 1304 3 is_stmt 1 view .LVU2766
-ARM GAS  /tmp/ccKUjuNa.s 			page 317
+ARM GAS  /tmp/ccr5TVAt.s 			page 317
 
 
 1304:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
@@ -19018,7 +19018,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9118              		.loc 1 1314 5 is_stmt 0 view .LVU2779
  9119 003e 0121     		movs	r1, #1
  9120              	.LVL745:
-ARM GAS  /tmp/ccKUjuNa.s 			page 318
+ARM GAS  /tmp/ccr5TVAt.s 			page 318
 
 
 1314:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
@@ -19078,7 +19078,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9168 0006 0022     		movs	r2, #0
  9169 0008 FFF7FEFF 		bl	TIM_CCxChannelCmd
  9170              	.LVL749:
-ARM GAS  /tmp/ccKUjuNa.s 			page 319
+ARM GAS  /tmp/ccr5TVAt.s 			page 319
 
 
 1340:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
@@ -19138,7 +19138,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9212 0040 3D23     		movs	r3, #61
  9213 0042 0122     		movs	r2, #1
  9214 0044 E254     		strb	r2, [r4, r3]
-ARM GAS  /tmp/ccKUjuNa.s 			page 320
+ARM GAS  /tmp/ccr5TVAt.s 			page 320
 
 
 1353:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
@@ -19198,7 +19198,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1368:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   uint32_t tmpsmcr;
  9264              		.loc 1 1368 1 view -0
  9265              		.cfi_startproc
-ARM GAS  /tmp/ccKUjuNa.s 			page 321
+ARM GAS  /tmp/ccr5TVAt.s 			page 321
 
 
  9266              		@ args = 0, pretend = 0, frame = 0
@@ -19258,7 +19258,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9309 002c 04E0     		b	.L532
  9310              	.LVL756:
  9311              	.L530:
-ARM GAS  /tmp/ccKUjuNa.s 			page 322
+ARM GAS  /tmp/ccr5TVAt.s 			page 322
 
 
 1378:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
@@ -19318,7 +19318,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9354              		.loc 1 1417 17 is_stmt 0 view .LVU2832
  9355 0064 2268     		ldr	r2, [r4]
 1417:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
-ARM GAS  /tmp/ccKUjuNa.s 			page 323
+ARM GAS  /tmp/ccr5TVAt.s 			page 323
 
 
  9356              		.loc 1 1417 27 view .LVU2833
@@ -19378,7 +19378,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9398 0088 002C0140 		.word	1073818624
  9399 008c 00400140 		.word	1073823744
  9400 0090 00440140 		.word	1073824768
-ARM GAS  /tmp/ccKUjuNa.s 			page 324
+ARM GAS  /tmp/ccr5TVAt.s 			page 324
 
 
  9401 0094 00480140 		.word	1073825792
@@ -19438,7 +19438,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9449 0020 0AD1     		bne	.L544
 1469:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
  9450              		.loc 1 1469 7 is_stmt 1 view .LVU2854
-ARM GAS  /tmp/ccKUjuNa.s 			page 325
+ARM GAS  /tmp/ccr5TVAt.s 			page 325
 
 
  9451 0022 0268     		ldr	r2, [r0]
@@ -19498,7 +19498,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9494 0058 14D0     		beq	.L546
  9495              	.L547:
 1483:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
-ARM GAS  /tmp/ccKUjuNa.s 			page 326
+ARM GAS  /tmp/ccr5TVAt.s 			page 326
 
 
  9496              		.loc 1 1483 5 is_stmt 1 discriminator 5 view .LVU2866
@@ -19558,7 +19558,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1483:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
  9538              		.loc 1 1483 5 view .LVU2879
  9539 0084 196A     		ldr	r1, [r3, #32]
-ARM GAS  /tmp/ccKUjuNa.s 			page 327
+ARM GAS  /tmp/ccr5TVAt.s 			page 327
 
 
  9540 0086 0A4A     		ldr	r2, .L549+16
@@ -19618,7 +19618,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9592              	.LVL777:
 1508:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  9593              		.loc 1 1508 3 is_stmt 1 view .LVU2884
-ARM GAS  /tmp/ccKUjuNa.s 			page 328
+ARM GAS  /tmp/ccr5TVAt.s 			page 328
 
 
 1511:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
@@ -19678,7 +19678,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9633              		.loc 1 1559 7 is_stmt 1 view .LVU2899
 1559:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  9634              		.loc 1 1559 17 is_stmt 0 view .LVU2900
-ARM GAS  /tmp/ccKUjuNa.s 			page 329
+ARM GAS  /tmp/ccr5TVAt.s 			page 329
 
 
  9635 0032 A26A     		ldr	r2, [r4, #40]
@@ -19738,7 +19738,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9675              		.loc 1 1525 7 is_stmt 1 view .LVU2914
 1525:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
  9676              		.loc 1 1525 19 is_stmt 0 view .LVU2915
-ARM GAS  /tmp/ccKUjuNa.s 			page 330
+ARM GAS  /tmp/ccr5TVAt.s 			page 330
 
 
  9677 0060 3D22     		movs	r2, #61
@@ -19798,7 +19798,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9716              	.LVL782:
 1603:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       {
  9717              		.loc 1 1603 10 view .LVU2931
-ARM GAS  /tmp/ccKUjuNa.s 			page 331
+ARM GAS  /tmp/ccr5TVAt.s 			page 331
 
 
  9718 008e 0028     		cmp	r0, #0
@@ -19858,7 +19858,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9757              	.LVL784:
 1545:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       {
  9758              		.loc 1 1545 10 view .LVU2947
-ARM GAS  /tmp/ccKUjuNa.s 			page 332
+ARM GAS  /tmp/ccr5TVAt.s 			page 332
 
 
  9759 00bc 0028     		cmp	r0, #0
@@ -19918,7 +19918,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1626:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
  9803              		.loc 1 1626 17 is_stmt 0 view .LVU2958
  9804 00fa 2268     		ldr	r2, [r4]
-ARM GAS  /tmp/ccKUjuNa.s 			page 333
+ARM GAS  /tmp/ccr5TVAt.s 			page 333
 
 
 1626:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
@@ -19978,7 +19978,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9844 0118 E26A     		ldr	r2, [r4, #44]
 1578:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  9845              		.loc 1 1578 56 view .LVU2974
-ARM GAS  /tmp/ccKUjuNa.s 			page 334
+ARM GAS  /tmp/ccr5TVAt.s 			page 334
 
 
  9846 011a 0F48     		ldr	r0, .L570+4
@@ -20038,7 +20038,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9887              	.L566:
 1605:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       }
  9888              		.loc 1 1605 16 view .LVU2988
-ARM GAS  /tmp/ccKUjuNa.s 			page 335
+ARM GAS  /tmp/ccr5TVAt.s 			page 335
 
 
  9889 014c 0120     		movs	r0, #1
@@ -20098,7 +20098,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9940 0010 0429     		cmp	r1, #4
  9941 0012 1BD1     		bne	.L577
 1665:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       (void)HAL_DMA_Abort_IT(htim->hdma[TIM_DMA_ID_CC2]);
-ARM GAS  /tmp/ccKUjuNa.s 			page 336
+ARM GAS  /tmp/ccr5TVAt.s 			page 336
 
 
  9942              		.loc 1 1665 7 view .LVU2994
@@ -20158,7 +20158,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  9983              		.loc 1 1657 7 view .LVU3007
  9984 003c 0268     		ldr	r2, [r0]
  9985 003e D368     		ldr	r3, [r2, #12]
-ARM GAS  /tmp/ccKUjuNa.s 			page 337
+ARM GAS  /tmp/ccr5TVAt.s 			page 337
 
 
  9986 0040 2149     		ldr	r1, .L582+8
@@ -20218,7 +20218,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 1700:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  10027              		.loc 1 1700 3 discriminator 5 view .LVU3021
  10028 0070 2B68     		ldr	r3, [r5]
-ARM GAS  /tmp/ccKUjuNa.s 			page 338
+ARM GAS  /tmp/ccr5TVAt.s 			page 338
 
 
  10029 0072 196A     		ldr	r1, [r3, #32]
@@ -20278,7 +20278,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10071              	.LVL812:
 1674:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
  10072              		.loc 1 1674 13 view .LVU3034
-ARM GAS  /tmp/ccKUjuNa.s 			page 339
+ARM GAS  /tmp/ccr5TVAt.s 			page 339
 
 
  10073 00a0 FFF7FEFF 		bl	HAL_DMA_Abort_IT
@@ -20338,7 +20338,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10123              		.cfi_startproc
  10124              		@ args = 0, pretend = 0, frame = 0
  10125              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccKUjuNa.s 			page 340
+ARM GAS  /tmp/ccr5TVAt.s 			page 340
 
 
 1869:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   uint32_t tmpsmcr;
@@ -20398,7 +20398,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10165              		.loc 1 1886 3 is_stmt 1 view .LVU3055
 1887:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  10166              		.loc 1 1887 1 is_stmt 0 view .LVU3056
-ARM GAS  /tmp/ccKUjuNa.s 			page 341
+ARM GAS  /tmp/ccr5TVAt.s 			page 341
 
 
  10167 0020 0020     		movs	r0, #0
@@ -20458,7 +20458,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10214 001a 1142     		tst	r1, r2
  10215 001c 03D1     		bne	.L587
 1909:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 342
+ARM GAS  /tmp/ccr5TVAt.s 			page 342
 
 
  10216              		.loc 1 1909 3 discriminator 3 view .LVU3066
@@ -20518,7 +20518,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10263 0006 27D0     		beq	.L591
  10264 0008 09D8     		bhi	.L592
  10265 000a 0029     		cmp	r1, #0
-ARM GAS  /tmp/ccKUjuNa.s 			page 343
+ARM GAS  /tmp/ccr5TVAt.s 			page 343
 
 
  10266 000c 0FD0     		beq	.L593
@@ -20578,7 +20578,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10309 003c FFF7FEFF 		bl	TIM_CCxChannelCmd
  10310              	.LVL831:
 1970:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   if (!IS_TIM_SLAVEMODE_TRIGGER_ENABLED(tmpsmcr))
-ARM GAS  /tmp/ccKUjuNa.s 			page 344
+ARM GAS  /tmp/ccr5TVAt.s 			page 344
 
 
  10311              		.loc 1 1970 3 view .LVU3087
@@ -20638,7 +20638,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10351              		.loc 1 1953 7 is_stmt 1 view .LVU3101
  10352 0062 E9E7     		b	.L595
  10353              		.cfi_endproc
-ARM GAS  /tmp/ccKUjuNa.s 			page 345
+ARM GAS  /tmp/ccr5TVAt.s 			page 345
 
 
  10354              	.LFE76:
@@ -20698,7 +20698,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10401              		.loc 1 2022 7 is_stmt 1 view .LVU3110
  10402 0022 0268     		ldr	r2, [r0]
  10403 0024 D368     		ldr	r3, [r2, #12]
-ARM GAS  /tmp/ccKUjuNa.s 			page 346
+ARM GAS  /tmp/ccr5TVAt.s 			page 346
 
 
  10404 0026 1020     		movs	r0, #16
@@ -20758,7 +20758,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2037:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** }
  10447              		.loc 1 2037 3 discriminator 5 view .LVU3122
 2038:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 347
+ARM GAS  /tmp/ccr5TVAt.s 			page 347
 
 
  10448              		.loc 1 2038 1 is_stmt 0 discriminator 5 view .LVU3123
@@ -20818,7 +20818,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2055:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  10498              		.loc 1 2055 3 is_stmt 1 view .LVU3130
 2058:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   assert_param(IS_TIM_DMA_CC_INSTANCE(htim->Instance));
-ARM GAS  /tmp/ccKUjuNa.s 			page 348
+ARM GAS  /tmp/ccr5TVAt.s 			page 348
 
 
  10499              		.loc 1 2058 3 view .LVU3131
@@ -20878,7 +20878,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10538 002e A16A     		ldr	r1, [r4, #40]
 2106:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  10539              		.loc 1 2106 56 view .LVU3147
-ARM GAS  /tmp/ccKUjuNa.s 			page 349
+ARM GAS  /tmp/ccr5TVAt.s 			page 349
 
 
  10540 0030 3F48     		ldr	r0, .L625+4
@@ -20938,7 +20938,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10580 005e 6054     		strb	r0, [r4, r1]
  10581 0060 DBE7     		b	.L610
  10582              	.L624:
-ARM GAS  /tmp/ccKUjuNa.s 			page 350
+ARM GAS  /tmp/ccr5TVAt.s 			page 350
 
 
 2067:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     {
@@ -20998,7 +20998,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2155:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
  10621              		.loc 1 2155 7 is_stmt 1 view .LVU3178
  10622 008c 2268     		ldr	r2, [r4]
-ARM GAS  /tmp/ccKUjuNa.s 			page 351
+ARM GAS  /tmp/ccr5TVAt.s 			page 351
 
 
  10623 008e D168     		ldr	r1, [r2, #12]
@@ -21058,7 +21058,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2098:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
  10662              		.loc 1 2098 7 is_stmt 1 view .LVU3194
  10663 00ba 2268     		ldr	r2, [r4]
-ARM GAS  /tmp/ccKUjuNa.s 			page 352
+ARM GAS  /tmp/ccr5TVAt.s 			page 352
 
 
  10664 00bc D168     		ldr	r1, [r2, #12]
@@ -21118,7 +21118,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10705              	.LVL861:
  10706              	.LVL862:
 2175:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 353
+ARM GAS  /tmp/ccr5TVAt.s 			page 353
 
 
  10707              		.loc 1 2175 1 view .LVU3208
@@ -21178,7 +21178,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10746 0110 0B43     		orrs	r3, r1
  10747 0112 D360     		str	r3, [r2, #12]
 2137:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
-ARM GAS  /tmp/ccKUjuNa.s 			page 354
+ARM GAS  /tmp/ccr5TVAt.s 			page 354
 
 
  10748              		.loc 1 2137 7 view .LVU3224
@@ -21238,7 +21238,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10797              		.cfi_def_cfa_offset 16
  10798              		.cfi_offset 4, -16
  10799              		.cfi_offset 5, -12
-ARM GAS  /tmp/ccKUjuNa.s 			page 355
+ARM GAS  /tmp/ccr5TVAt.s 			page 355
 
 
  10800              		.cfi_offset 6, -8
@@ -21298,7 +21298,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10842 0030 0B40     		ands	r3, r1
  10843 0032 D360     		str	r3, [r2, #12]
 2224:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
-ARM GAS  /tmp/ccKUjuNa.s 			page 356
+ARM GAS  /tmp/ccr5TVAt.s 			page 356
 
 
  10844              		.loc 1 2224 7 is_stmt 1 view .LVU3244
@@ -21358,7 +21358,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10885              		.loc 1 2236 3 discriminator 1 view .LVU3257
  10886 0060 196A     		ldr	r1, [r3, #32]
  10887 0062 0E4A     		ldr	r2, .L635+16
-ARM GAS  /tmp/ccKUjuNa.s 			page 357
+ARM GAS  /tmp/ccr5TVAt.s 			page 357
 
 
  10888 0064 1142     		tst	r1, r2
@@ -21418,7 +21418,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  10929              	.L636:
  10930              		.align	2
  10931              	.L635:
-ARM GAS  /tmp/ccKUjuNa.s 			page 358
+ARM GAS  /tmp/ccr5TVAt.s 			page 358
 
 
  10932 008c FFFBFFFF 		.word	-1025
@@ -21478,7 +21478,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2429:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  10980              		.loc 1 2429 7 is_stmt 0 view .LVU3279
  10981 0018 2368     		ldr	r3, [r4]
-ARM GAS  /tmp/ccKUjuNa.s 			page 359
+ARM GAS  /tmp/ccr5TVAt.s 			page 359
 
 
  10982 001a 094A     		ldr	r2, .L640
@@ -21538,7 +21538,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11031              	.LFB85:
 2449:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Prevent unused argument(s) compilation warning */
  11032              		.loc 1 2449 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccKUjuNa.s 			page 360
+ARM GAS  /tmp/ccr5TVAt.s 			page 360
 
 
  11033              		.cfi_startproc
@@ -21598,7 +21598,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11076 002e 9342     		cmp	r3, r2
  11077 0030 0ED0     		beq	.L643
  11078              	.L644:
-ARM GAS  /tmp/ccKUjuNa.s 			page 361
+ARM GAS  /tmp/ccr5TVAt.s 			page 361
 
 
 2465:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   }
@@ -21658,7 +21658,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11120 0060 5A6C     		ldr	r2, [r3, #68]
  11121 0062 0849     		ldr	r1, .L646+24
  11122 0064 0A40     		ands	r2, r1
-ARM GAS  /tmp/ccKUjuNa.s 			page 362
+ARM GAS  /tmp/ccr5TVAt.s 			page 362
 
 
  11123 0066 5A64     		str	r2, [r3, #68]
@@ -21718,7 +21718,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11173 0016 D360     		str	r3, [r2, #12]
 2504:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   TIM_CCxChannelCmd(htim->Instance, TIM_CHANNEL_2, TIM_CCx_ENABLE);
  11174              		.loc 1 2504 3 view .LVU3318
-ARM GAS  /tmp/ccKUjuNa.s 			page 363
+ARM GAS  /tmp/ccr5TVAt.s 			page 363
 
 
  11175 0018 0068     		ldr	r0, [r0]
@@ -21778,7 +21778,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2515:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
  11219              		.loc 1 2515 1 view .LVU3329
  11220 0052 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccKUjuNa.s 			page 364
+ARM GAS  /tmp/ccr5TVAt.s 			page 364
 
 
  11221              	.L652:
@@ -21838,7 +21838,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
 2542:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   TIM_CCxChannelCmd(htim->Instance, TIM_CHANNEL_2, TIM_CCx_DISABLE);
  11270              		.loc 1 2542 3 is_stmt 0 view .LVU3337
  11271 001a 0022     		movs	r2, #0
-ARM GAS  /tmp/ccKUjuNa.s 			page 365
+ARM GAS  /tmp/ccr5TVAt.s 			page 365
 
 
  11272 001c 0021     		movs	r1, #0
@@ -21898,7 +21898,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11315 005a 0121     		movs	r1, #1
  11316 005c 8A43     		bics	r2, r1
  11317 005e 1A60     		str	r2, [r3]
-ARM GAS  /tmp/ccKUjuNa.s 			page 366
+ARM GAS  /tmp/ccr5TVAt.s 			page 366
 
 
  11318              	.L656:
@@ -21958,7 +21958,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11366              	HAL_TIM_Encoder_Start:
  11367              	.LVL911:
  11368              	.LFB92:
-ARM GAS  /tmp/ccKUjuNa.s 			page 367
+ARM GAS  /tmp/ccr5TVAt.s 			page 367
 
 
 2773:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
@@ -22018,7 +22018,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11412              	.LVL918:
 2782:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       break;
  11413              		.loc 1 2782 7 view .LVU3368
-ARM GAS  /tmp/ccKUjuNa.s 			page 368
+ARM GAS  /tmp/ccr5TVAt.s 			page 368
 
 
  11414 0028 FFF7FEFF 		bl	TIM_CCxChannelCmd
@@ -22078,7 +22078,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11460              		@ args = 0, pretend = 0, frame = 0
  11461              		@ frame_needed = 0, uses_anonymous_args = 0
 2817:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
-ARM GAS  /tmp/ccKUjuNa.s 			page 369
+ARM GAS  /tmp/ccr5TVAt.s 			page 369
 
 
  11462              		.loc 1 2817 1 is_stmt 0 view .LVU3379
@@ -22138,7 +22138,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11505              		.loc 1 2828 7 is_stmt 1 view .LVU3390
  11506              	.L669:
 2846:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 370
+ARM GAS  /tmp/ccr5TVAt.s 			page 370
 
 
  11507              		.loc 1 2846 3 view .LVU3391
@@ -22198,7 +22198,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11550 0058 11110000 		.word	4369
  11551 005c 44040000 		.word	1092
  11552              		.cfi_endproc
-ARM GAS  /tmp/ccKUjuNa.s 			page 371
+ARM GAS  /tmp/ccr5TVAt.s 			page 371
 
 
  11553              	.LFE93:
@@ -22258,7 +22258,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11600 0022 D368     		ldr	r3, [r2, #12]
  11601 0024 0221     		movs	r1, #2
  11602 0026 0B43     		orrs	r3, r1
-ARM GAS  /tmp/ccKUjuNa.s 			page 372
+ARM GAS  /tmp/ccr5TVAt.s 			page 372
 
 
  11603 0028 D360     		str	r3, [r2, #12]
@@ -22318,7 +22318,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11646              	.L676:
 2880:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       __HAL_TIM_ENABLE_IT(htim, TIM_IT_CC2);
  11647              		.loc 1 2880 7 is_stmt 1 view .LVU3423
-ARM GAS  /tmp/ccKUjuNa.s 			page 373
+ARM GAS  /tmp/ccr5TVAt.s 			page 373
 
 
  11648 0058 0068     		ldr	r0, [r0]
@@ -22378,7 +22378,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11694              		.loc 1 2926 8 is_stmt 1 view .LVU3433
 2926:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
  11695              		.loc 1 2926 11 is_stmt 0 view .LVU3434
-ARM GAS  /tmp/ccKUjuNa.s 			page 374
+ARM GAS  /tmp/ccr5TVAt.s 			page 374
 
 
  11696 0008 0429     		cmp	r1, #4
@@ -22438,7 +22438,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11740 0046 1A68     		ldr	r2, [r3]
  11741 0048 0121     		movs	r1, #1
  11742 004a 8A43     		bics	r2, r1
-ARM GAS  /tmp/ccKUjuNa.s 			page 375
+ARM GAS  /tmp/ccr5TVAt.s 			page 375
 
 
  11743 004c 1A60     		str	r2, [r3]
@@ -22498,7 +22498,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11785 0076 D368     		ldr	r3, [r2, #12]
  11786 0078 0421     		movs	r1, #4
  11787 007a 8B43     		bics	r3, r1
-ARM GAS  /tmp/ccKUjuNa.s 			page 376
+ARM GAS  /tmp/ccr5TVAt.s 			page 376
 
 
  11788 007c D360     		str	r3, [r2, #12]
@@ -22558,7 +22558,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11836              		.loc 1 2972 6 view .LVU3464
  11837 0010 022B     		cmp	r3, #2
  11838 0012 0BD0     		beq	.L690
-ARM GAS  /tmp/ccKUjuNa.s 			page 377
+ARM GAS  /tmp/ccr5TVAt.s 			page 377
 
 
 2976:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   {
@@ -22618,7 +22618,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11881              	.LVL973:
 2984:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
  11882              		.loc 1 2984 19 view .LVU3477
-ARM GAS  /tmp/ccKUjuNa.s 			page 378
+ARM GAS  /tmp/ccr5TVAt.s 			page 378
 
 
  11883 003c E054     		strb	r0, [r4, r3]
@@ -22678,7 +22678,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11922              	.LVL977:
 3004:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       {
  11923              		.loc 1 3004 11 view .LVU3493
-ARM GAS  /tmp/ccKUjuNa.s 			page 379
+ARM GAS  /tmp/ccr5TVAt.s 			page 379
 
 
  11924 0064 051E     		subs	r5, r0, #0
@@ -22738,7 +22738,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  11965              		.loc 1 3023 56 view .LVU3506
  11966 0096 334A     		ldr	r2, .L707+4
  11967 0098 DA62     		str	r2, [r3, #44]
-ARM GAS  /tmp/ccKUjuNa.s 			page 380
+ARM GAS  /tmp/ccr5TVAt.s 			page 380
 
 
 3026:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       /* Enable the DMA channel */
@@ -22798,7 +22798,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  12010 00d2 FFF7FEFF 		bl	TIM_CCxChannelCmd
  12011              	.LVL983:
 3040:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     }
-ARM GAS  /tmp/ccKUjuNa.s 			page 381
+ARM GAS  /tmp/ccr5TVAt.s 			page 381
 
 
  12012              		.loc 1 3040 7 view .LVU3519
@@ -22858,7 +22858,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  12050 00fa 0125     		movs	r5, #1
  12051 00fc 96E7     		b	.L690
  12052              	.L705:
-ARM GAS  /tmp/ccKUjuNa.s 			page 382
+ARM GAS  /tmp/ccr5TVAt.s 			page 382
 
 
 3059:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****       htim->hdma[TIM_DMA_ID_CC2]->XferHalfCpltCallback = TIM_DMACaptureHalfCplt;
@@ -22918,7 +22918,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  12091 0128 1368     		ldr	r3, [r2]
  12092 012a 0121     		movs	r1, #1
  12093 012c 0B43     		orrs	r3, r1
-ARM GAS  /tmp/ccKUjuNa.s 			page 383
+ARM GAS  /tmp/ccr5TVAt.s 			page 383
 
 
  12094 012e 1360     		str	r3, [r2]
@@ -22978,7 +22978,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  12144              		@ args = 0, pretend = 0, frame = 0
  12145              		@ frame_needed = 0, uses_anonymous_args = 0
 3102:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****   /* Check the parameters */
-ARM GAS  /tmp/ccKUjuNa.s 			page 384
+ARM GAS  /tmp/ccr5TVAt.s 			page 384
 
 
  12146              		.loc 1 3102 1 is_stmt 0 view .LVU3558
@@ -23038,7 +23038,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  12189 0032 D360     		str	r3, [r2, #12]
 3132:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     (void)HAL_DMA_Abort_IT(htim->hdma[TIM_DMA_ID_CC2]);
  12190              		.loc 1 3132 5 view .LVU3570
-ARM GAS  /tmp/ccKUjuNa.s 			page 385
+ARM GAS  /tmp/ccr5TVAt.s 			page 385
 
 
 3132:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c ****     (void)HAL_DMA_Abort_IT(htim->hdma[TIM_DMA_ID_CC2]);
@@ -23098,7 +23098,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  12232              	.LVL998:
  12233              	.L714:
 3110:Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c **** 
-ARM GAS  /tmp/ccKUjuNa.s 			page 386
+ARM GAS  /tmp/ccr5TVAt.s 			page 386
 
 
  12234              		.loc 1 3110 5 is_stmt 1 view .LVU3584
@@ -23158,7 +23158,7 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  12279 00a0 11110000 		.word	4369
  12280 00a4 44040000 		.word	1092
  12281              		.cfi_endproc
-ARM GAS  /tmp/ccKUjuNa.s 			page 387
+ARM GAS  /tmp/ccr5TVAt.s 			page 387
 
 
  12282              	.LFE97:
@@ -23172,313 +23172,313 @@ ARM GAS  /tmp/ccKUjuNa.s 			page 1
  12291              		.file 7 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
  12292              		.file 8 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
  12293              		.file 9 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h"
-ARM GAS  /tmp/ccKUjuNa.s 			page 388
+ARM GAS  /tmp/ccr5TVAt.s 			page 388
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f0xx_hal_tim.c
-     /tmp/ccKUjuNa.s:19     .text.TIM_OC1_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:24     .text.TIM_OC1_SetConfig:00000000 TIM_OC1_SetConfig
-     /tmp/ccKUjuNa.s:186    .text.TIM_OC1_SetConfig:00000078 $d
-     /tmp/ccKUjuNa.s:195    .text.TIM_OC3_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:200    .text.TIM_OC3_SetConfig:00000000 TIM_OC3_SetConfig
-     /tmp/ccKUjuNa.s:350    .text.TIM_OC3_SetConfig:00000068 $d
-     /tmp/ccKUjuNa.s:363    .text.TIM_OC4_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:368    .text.TIM_OC4_SetConfig:00000000 TIM_OC4_SetConfig
-     /tmp/ccKUjuNa.s:487    .text.TIM_OC4_SetConfig:00000054 $d
-     /tmp/ccKUjuNa.s:499    .text.TIM_TI1_ConfigInputStage:00000000 $t
-     /tmp/ccKUjuNa.s:504    .text.TIM_TI1_ConfigInputStage:00000000 TIM_TI1_ConfigInputStage
-     /tmp/ccKUjuNa.s:569    .text.TIM_TI2_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:574    .text.TIM_TI2_SetConfig:00000000 TIM_TI2_SetConfig
-     /tmp/ccKUjuNa.s:658    .text.TIM_TI2_SetConfig:00000030 $d
-     /tmp/ccKUjuNa.s:664    .text.TIM_TI2_ConfigInputStage:00000000 $t
-     /tmp/ccKUjuNa.s:669    .text.TIM_TI2_ConfigInputStage:00000000 TIM_TI2_ConfigInputStage
-     /tmp/ccKUjuNa.s:736    .text.TIM_TI2_ConfigInputStage:00000024 $d
-     /tmp/ccKUjuNa.s:741    .text.TIM_TI3_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:746    .text.TIM_TI3_SetConfig:00000000 TIM_TI3_SetConfig
-     /tmp/ccKUjuNa.s:833    .text.TIM_TI3_SetConfig:00000034 $d
-     /tmp/ccKUjuNa.s:839    .text.TIM_TI4_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:844    .text.TIM_TI4_SetConfig:00000000 TIM_TI4_SetConfig
-     /tmp/ccKUjuNa.s:930    .text.TIM_TI4_SetConfig:00000034 $d
-     /tmp/ccKUjuNa.s:938    .text.TIM_ITRx_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:943    .text.TIM_ITRx_SetConfig:00000000 TIM_ITRx_SetConfig
-     /tmp/ccKUjuNa.s:980    .text.HAL_TIM_Base_MspInit:00000000 $t
-     /tmp/ccKUjuNa.s:986    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
-     /tmp/ccKUjuNa.s:1002   .text.HAL_TIM_Base_MspDeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1008   .text.HAL_TIM_Base_MspDeInit:00000000 HAL_TIM_Base_MspDeInit
-     /tmp/ccKUjuNa.s:1024   .text.HAL_TIM_Base_DeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1030   .text.HAL_TIM_Base_DeInit:00000000 HAL_TIM_Base_DeInit
-     /tmp/ccKUjuNa.s:1095   .text.HAL_TIM_Base_DeInit:00000038 $d
-     /tmp/ccKUjuNa.s:1101   .text.HAL_TIM_Base_Start:00000000 $t
-     /tmp/ccKUjuNa.s:1107   .text.HAL_TIM_Base_Start:00000000 HAL_TIM_Base_Start
-     /tmp/ccKUjuNa.s:1162   .text.HAL_TIM_Base_Stop:00000000 $t
-     /tmp/ccKUjuNa.s:1168   .text.HAL_TIM_Base_Stop:00000000 HAL_TIM_Base_Stop
-     /tmp/ccKUjuNa.s:1216   .text.HAL_TIM_Base_Stop:0000002c $d
-     /tmp/ccKUjuNa.s:1222   .text.HAL_TIM_Base_Start_IT:00000000 $t
-     /tmp/ccKUjuNa.s:1228   .text.HAL_TIM_Base_Start_IT:00000000 HAL_TIM_Base_Start_IT
-     /tmp/ccKUjuNa.s:1278   .text.HAL_TIM_Base_Stop_IT:00000000 $t
-     /tmp/ccKUjuNa.s:1284   .text.HAL_TIM_Base_Stop_IT:00000000 HAL_TIM_Base_Stop_IT
-     /tmp/ccKUjuNa.s:1328   .text.HAL_TIM_Base_Stop_IT:00000028 $d
-     /tmp/ccKUjuNa.s:1334   .text.HAL_TIM_Base_Start_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:1340   .text.HAL_TIM_Base_Start_DMA:00000000 HAL_TIM_Base_Start_DMA
-     /tmp/ccKUjuNa.s:1471   .text.HAL_TIM_Base_Start_DMA:00000070 $d
-     /tmp/ccKUjuNa.s:3641   .text.TIM_DMAPeriodElapsedCplt:00000000 TIM_DMAPeriodElapsedCplt
-     /tmp/ccKUjuNa.s:3700   .text.TIM_DMAPeriodElapsedHalfCplt:00000000 TIM_DMAPeriodElapsedHalfCplt
-     /tmp/ccKUjuNa.s:4699   .text.TIM_DMAError:00000000 TIM_DMAError
-     /tmp/ccKUjuNa.s:1478   .text.HAL_TIM_Base_Stop_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:1484   .text.HAL_TIM_Base_Stop_DMA:00000000 HAL_TIM_Base_Stop_DMA
-     /tmp/ccKUjuNa.s:1546   .text.HAL_TIM_Base_Stop_DMA:00000038 $d
-     /tmp/ccKUjuNa.s:1553   .text.HAL_TIM_OC_MspInit:00000000 $t
-     /tmp/ccKUjuNa.s:1559   .text.HAL_TIM_OC_MspInit:00000000 HAL_TIM_OC_MspInit
-     /tmp/ccKUjuNa.s:1575   .text.HAL_TIM_OC_MspDeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1581   .text.HAL_TIM_OC_MspDeInit:00000000 HAL_TIM_OC_MspDeInit
-ARM GAS  /tmp/ccKUjuNa.s 			page 389
+     /tmp/ccr5TVAt.s:19     .text.TIM_OC1_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:24     .text.TIM_OC1_SetConfig:00000000 TIM_OC1_SetConfig
+     /tmp/ccr5TVAt.s:186    .text.TIM_OC1_SetConfig:00000078 $d
+     /tmp/ccr5TVAt.s:195    .text.TIM_OC3_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:200    .text.TIM_OC3_SetConfig:00000000 TIM_OC3_SetConfig
+     /tmp/ccr5TVAt.s:350    .text.TIM_OC3_SetConfig:00000068 $d
+     /tmp/ccr5TVAt.s:363    .text.TIM_OC4_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:368    .text.TIM_OC4_SetConfig:00000000 TIM_OC4_SetConfig
+     /tmp/ccr5TVAt.s:487    .text.TIM_OC4_SetConfig:00000054 $d
+     /tmp/ccr5TVAt.s:499    .text.TIM_TI1_ConfigInputStage:00000000 $t
+     /tmp/ccr5TVAt.s:504    .text.TIM_TI1_ConfigInputStage:00000000 TIM_TI1_ConfigInputStage
+     /tmp/ccr5TVAt.s:569    .text.TIM_TI2_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:574    .text.TIM_TI2_SetConfig:00000000 TIM_TI2_SetConfig
+     /tmp/ccr5TVAt.s:658    .text.TIM_TI2_SetConfig:00000030 $d
+     /tmp/ccr5TVAt.s:664    .text.TIM_TI2_ConfigInputStage:00000000 $t
+     /tmp/ccr5TVAt.s:669    .text.TIM_TI2_ConfigInputStage:00000000 TIM_TI2_ConfigInputStage
+     /tmp/ccr5TVAt.s:736    .text.TIM_TI2_ConfigInputStage:00000024 $d
+     /tmp/ccr5TVAt.s:741    .text.TIM_TI3_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:746    .text.TIM_TI3_SetConfig:00000000 TIM_TI3_SetConfig
+     /tmp/ccr5TVAt.s:833    .text.TIM_TI3_SetConfig:00000034 $d
+     /tmp/ccr5TVAt.s:839    .text.TIM_TI4_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:844    .text.TIM_TI4_SetConfig:00000000 TIM_TI4_SetConfig
+     /tmp/ccr5TVAt.s:930    .text.TIM_TI4_SetConfig:00000034 $d
+     /tmp/ccr5TVAt.s:938    .text.TIM_ITRx_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:943    .text.TIM_ITRx_SetConfig:00000000 TIM_ITRx_SetConfig
+     /tmp/ccr5TVAt.s:980    .text.HAL_TIM_Base_MspInit:00000000 $t
+     /tmp/ccr5TVAt.s:986    .text.HAL_TIM_Base_MspInit:00000000 HAL_TIM_Base_MspInit
+     /tmp/ccr5TVAt.s:1002   .text.HAL_TIM_Base_MspDeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1008   .text.HAL_TIM_Base_MspDeInit:00000000 HAL_TIM_Base_MspDeInit
+     /tmp/ccr5TVAt.s:1024   .text.HAL_TIM_Base_DeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1030   .text.HAL_TIM_Base_DeInit:00000000 HAL_TIM_Base_DeInit
+     /tmp/ccr5TVAt.s:1095   .text.HAL_TIM_Base_DeInit:00000038 $d
+     /tmp/ccr5TVAt.s:1101   .text.HAL_TIM_Base_Start:00000000 $t
+     /tmp/ccr5TVAt.s:1107   .text.HAL_TIM_Base_Start:00000000 HAL_TIM_Base_Start
+     /tmp/ccr5TVAt.s:1162   .text.HAL_TIM_Base_Stop:00000000 $t
+     /tmp/ccr5TVAt.s:1168   .text.HAL_TIM_Base_Stop:00000000 HAL_TIM_Base_Stop
+     /tmp/ccr5TVAt.s:1216   .text.HAL_TIM_Base_Stop:0000002c $d
+     /tmp/ccr5TVAt.s:1222   .text.HAL_TIM_Base_Start_IT:00000000 $t
+     /tmp/ccr5TVAt.s:1228   .text.HAL_TIM_Base_Start_IT:00000000 HAL_TIM_Base_Start_IT
+     /tmp/ccr5TVAt.s:1278   .text.HAL_TIM_Base_Stop_IT:00000000 $t
+     /tmp/ccr5TVAt.s:1284   .text.HAL_TIM_Base_Stop_IT:00000000 HAL_TIM_Base_Stop_IT
+     /tmp/ccr5TVAt.s:1328   .text.HAL_TIM_Base_Stop_IT:00000028 $d
+     /tmp/ccr5TVAt.s:1334   .text.HAL_TIM_Base_Start_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:1340   .text.HAL_TIM_Base_Start_DMA:00000000 HAL_TIM_Base_Start_DMA
+     /tmp/ccr5TVAt.s:1471   .text.HAL_TIM_Base_Start_DMA:00000070 $d
+     /tmp/ccr5TVAt.s:3641   .text.TIM_DMAPeriodElapsedCplt:00000000 TIM_DMAPeriodElapsedCplt
+     /tmp/ccr5TVAt.s:3700   .text.TIM_DMAPeriodElapsedHalfCplt:00000000 TIM_DMAPeriodElapsedHalfCplt
+     /tmp/ccr5TVAt.s:4699   .text.TIM_DMAError:00000000 TIM_DMAError
+     /tmp/ccr5TVAt.s:1478   .text.HAL_TIM_Base_Stop_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:1484   .text.HAL_TIM_Base_Stop_DMA:00000000 HAL_TIM_Base_Stop_DMA
+     /tmp/ccr5TVAt.s:1546   .text.HAL_TIM_Base_Stop_DMA:00000038 $d
+     /tmp/ccr5TVAt.s:1553   .text.HAL_TIM_OC_MspInit:00000000 $t
+     /tmp/ccr5TVAt.s:1559   .text.HAL_TIM_OC_MspInit:00000000 HAL_TIM_OC_MspInit
+     /tmp/ccr5TVAt.s:1575   .text.HAL_TIM_OC_MspDeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1581   .text.HAL_TIM_OC_MspDeInit:00000000 HAL_TIM_OC_MspDeInit
+ARM GAS  /tmp/ccr5TVAt.s 			page 389
 
 
-     /tmp/ccKUjuNa.s:1597   .text.HAL_TIM_OC_DeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1603   .text.HAL_TIM_OC_DeInit:00000000 HAL_TIM_OC_DeInit
-     /tmp/ccKUjuNa.s:1668   .text.HAL_TIM_OC_DeInit:00000038 $d
-     /tmp/ccKUjuNa.s:1674   .text.HAL_TIM_PWM_MspInit:00000000 $t
-     /tmp/ccKUjuNa.s:1680   .text.HAL_TIM_PWM_MspInit:00000000 HAL_TIM_PWM_MspInit
-     /tmp/ccKUjuNa.s:1696   .text.HAL_TIM_PWM_MspDeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1702   .text.HAL_TIM_PWM_MspDeInit:00000000 HAL_TIM_PWM_MspDeInit
-     /tmp/ccKUjuNa.s:1718   .text.HAL_TIM_PWM_DeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1724   .text.HAL_TIM_PWM_DeInit:00000000 HAL_TIM_PWM_DeInit
-     /tmp/ccKUjuNa.s:1789   .text.HAL_TIM_PWM_DeInit:00000038 $d
-     /tmp/ccKUjuNa.s:1795   .text.HAL_TIM_IC_MspInit:00000000 $t
-     /tmp/ccKUjuNa.s:1801   .text.HAL_TIM_IC_MspInit:00000000 HAL_TIM_IC_MspInit
-     /tmp/ccKUjuNa.s:1817   .text.HAL_TIM_IC_MspDeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1823   .text.HAL_TIM_IC_MspDeInit:00000000 HAL_TIM_IC_MspDeInit
-     /tmp/ccKUjuNa.s:1839   .text.HAL_TIM_IC_DeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1845   .text.HAL_TIM_IC_DeInit:00000000 HAL_TIM_IC_DeInit
-     /tmp/ccKUjuNa.s:1910   .text.HAL_TIM_IC_DeInit:00000038 $d
-     /tmp/ccKUjuNa.s:1916   .text.HAL_TIM_OnePulse_MspInit:00000000 $t
-     /tmp/ccKUjuNa.s:1922   .text.HAL_TIM_OnePulse_MspInit:00000000 HAL_TIM_OnePulse_MspInit
-     /tmp/ccKUjuNa.s:1938   .text.HAL_TIM_OnePulse_MspDeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1944   .text.HAL_TIM_OnePulse_MspDeInit:00000000 HAL_TIM_OnePulse_MspDeInit
-     /tmp/ccKUjuNa.s:1960   .text.HAL_TIM_OnePulse_DeInit:00000000 $t
-     /tmp/ccKUjuNa.s:1966   .text.HAL_TIM_OnePulse_DeInit:00000000 HAL_TIM_OnePulse_DeInit
-     /tmp/ccKUjuNa.s:2031   .text.HAL_TIM_OnePulse_DeInit:00000038 $d
-     /tmp/ccKUjuNa.s:2037   .text.HAL_TIM_Encoder_MspInit:00000000 $t
-     /tmp/ccKUjuNa.s:2043   .text.HAL_TIM_Encoder_MspInit:00000000 HAL_TIM_Encoder_MspInit
-     /tmp/ccKUjuNa.s:2059   .text.HAL_TIM_Encoder_MspDeInit:00000000 $t
-     /tmp/ccKUjuNa.s:2065   .text.HAL_TIM_Encoder_MspDeInit:00000000 HAL_TIM_Encoder_MspDeInit
-     /tmp/ccKUjuNa.s:2081   .text.HAL_TIM_Encoder_DeInit:00000000 $t
-     /tmp/ccKUjuNa.s:2087   .text.HAL_TIM_Encoder_DeInit:00000000 HAL_TIM_Encoder_DeInit
-     /tmp/ccKUjuNa.s:2152   .text.HAL_TIM_Encoder_DeInit:00000038 $d
-     /tmp/ccKUjuNa.s:2158   .text.HAL_TIM_DMABurst_MultiWriteStart:00000000 $t
-     /tmp/ccKUjuNa.s:2164   .text.HAL_TIM_DMABurst_MultiWriteStart:00000000 HAL_TIM_DMABurst_MultiWriteStart
-     /tmp/ccKUjuNa.s:2558   .text.HAL_TIM_DMABurst_MultiWriteStart:00000198 $d
-     /tmp/ccKUjuNa.s:4018   .text.TIM_DMADelayPulseCplt:00000000 TIM_DMADelayPulseCplt
-     /tmp/ccKUjuNa.s:4136   .text.TIM_DMADelayPulseHalfCplt:00000000 TIM_DMADelayPulseHalfCplt
-     /tmp/ccKUjuNa.s:4580   .text.TIM_DMATriggerCplt:00000000 TIM_DMATriggerCplt
-     /tmp/ccKUjuNa.s:4639   .text.TIM_DMATriggerHalfCplt:00000000 TIM_DMATriggerHalfCplt
-     /tmp/ccKUjuNa.s:2571   .text.HAL_TIM_DMABurst_WriteStart:00000000 $t
-     /tmp/ccKUjuNa.s:2577   .text.HAL_TIM_DMABurst_WriteStart:00000000 HAL_TIM_DMABurst_WriteStart
-     /tmp/ccKUjuNa.s:2612   .text.HAL_TIM_DMABurst_WriteStop:00000000 $t
-     /tmp/ccKUjuNa.s:2618   .text.HAL_TIM_DMABurst_WriteStop:00000000 HAL_TIM_DMABurst_WriteStop
-     /tmp/ccKUjuNa.s:2783   .text.HAL_TIM_DMABurst_MultiReadStart:00000000 $t
-     /tmp/ccKUjuNa.s:2789   .text.HAL_TIM_DMABurst_MultiReadStart:00000000 HAL_TIM_DMABurst_MultiReadStart
-     /tmp/ccKUjuNa.s:3183   .text.HAL_TIM_DMABurst_MultiReadStart:00000198 $d
-     /tmp/ccKUjuNa.s:3782   .text.TIM_DMACaptureCplt:00000000 TIM_DMACaptureCplt
-     /tmp/ccKUjuNa.s:3900   .text.TIM_DMACaptureHalfCplt:00000000 TIM_DMACaptureHalfCplt
-     /tmp/ccKUjuNa.s:3196   .text.HAL_TIM_DMABurst_ReadStart:00000000 $t
-     /tmp/ccKUjuNa.s:3202   .text.HAL_TIM_DMABurst_ReadStart:00000000 HAL_TIM_DMABurst_ReadStart
-     /tmp/ccKUjuNa.s:3237   .text.HAL_TIM_DMABurst_ReadStop:00000000 $t
-     /tmp/ccKUjuNa.s:3243   .text.HAL_TIM_DMABurst_ReadStop:00000000 HAL_TIM_DMABurst_ReadStop
-     /tmp/ccKUjuNa.s:3408   .text.HAL_TIM_GenerateEvent:00000000 $t
-     /tmp/ccKUjuNa.s:3414   .text.HAL_TIM_GenerateEvent:00000000 HAL_TIM_GenerateEvent
-     /tmp/ccKUjuNa.s:3478   .text.HAL_TIM_ConfigTI1Input:00000000 $t
-     /tmp/ccKUjuNa.s:3484   .text.HAL_TIM_ConfigTI1Input:00000000 HAL_TIM_ConfigTI1Input
-     /tmp/ccKUjuNa.s:3524   .text.HAL_TIM_ReadCapturedValue:00000000 $t
-     /tmp/ccKUjuNa.s:3530   .text.HAL_TIM_ReadCapturedValue:00000000 HAL_TIM_ReadCapturedValue
-ARM GAS  /tmp/ccKUjuNa.s 			page 390
+     /tmp/ccr5TVAt.s:1597   .text.HAL_TIM_OC_DeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1603   .text.HAL_TIM_OC_DeInit:00000000 HAL_TIM_OC_DeInit
+     /tmp/ccr5TVAt.s:1668   .text.HAL_TIM_OC_DeInit:00000038 $d
+     /tmp/ccr5TVAt.s:1674   .text.HAL_TIM_PWM_MspInit:00000000 $t
+     /tmp/ccr5TVAt.s:1680   .text.HAL_TIM_PWM_MspInit:00000000 HAL_TIM_PWM_MspInit
+     /tmp/ccr5TVAt.s:1696   .text.HAL_TIM_PWM_MspDeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1702   .text.HAL_TIM_PWM_MspDeInit:00000000 HAL_TIM_PWM_MspDeInit
+     /tmp/ccr5TVAt.s:1718   .text.HAL_TIM_PWM_DeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1724   .text.HAL_TIM_PWM_DeInit:00000000 HAL_TIM_PWM_DeInit
+     /tmp/ccr5TVAt.s:1789   .text.HAL_TIM_PWM_DeInit:00000038 $d
+     /tmp/ccr5TVAt.s:1795   .text.HAL_TIM_IC_MspInit:00000000 $t
+     /tmp/ccr5TVAt.s:1801   .text.HAL_TIM_IC_MspInit:00000000 HAL_TIM_IC_MspInit
+     /tmp/ccr5TVAt.s:1817   .text.HAL_TIM_IC_MspDeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1823   .text.HAL_TIM_IC_MspDeInit:00000000 HAL_TIM_IC_MspDeInit
+     /tmp/ccr5TVAt.s:1839   .text.HAL_TIM_IC_DeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1845   .text.HAL_TIM_IC_DeInit:00000000 HAL_TIM_IC_DeInit
+     /tmp/ccr5TVAt.s:1910   .text.HAL_TIM_IC_DeInit:00000038 $d
+     /tmp/ccr5TVAt.s:1916   .text.HAL_TIM_OnePulse_MspInit:00000000 $t
+     /tmp/ccr5TVAt.s:1922   .text.HAL_TIM_OnePulse_MspInit:00000000 HAL_TIM_OnePulse_MspInit
+     /tmp/ccr5TVAt.s:1938   .text.HAL_TIM_OnePulse_MspDeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1944   .text.HAL_TIM_OnePulse_MspDeInit:00000000 HAL_TIM_OnePulse_MspDeInit
+     /tmp/ccr5TVAt.s:1960   .text.HAL_TIM_OnePulse_DeInit:00000000 $t
+     /tmp/ccr5TVAt.s:1966   .text.HAL_TIM_OnePulse_DeInit:00000000 HAL_TIM_OnePulse_DeInit
+     /tmp/ccr5TVAt.s:2031   .text.HAL_TIM_OnePulse_DeInit:00000038 $d
+     /tmp/ccr5TVAt.s:2037   .text.HAL_TIM_Encoder_MspInit:00000000 $t
+     /tmp/ccr5TVAt.s:2043   .text.HAL_TIM_Encoder_MspInit:00000000 HAL_TIM_Encoder_MspInit
+     /tmp/ccr5TVAt.s:2059   .text.HAL_TIM_Encoder_MspDeInit:00000000 $t
+     /tmp/ccr5TVAt.s:2065   .text.HAL_TIM_Encoder_MspDeInit:00000000 HAL_TIM_Encoder_MspDeInit
+     /tmp/ccr5TVAt.s:2081   .text.HAL_TIM_Encoder_DeInit:00000000 $t
+     /tmp/ccr5TVAt.s:2087   .text.HAL_TIM_Encoder_DeInit:00000000 HAL_TIM_Encoder_DeInit
+     /tmp/ccr5TVAt.s:2152   .text.HAL_TIM_Encoder_DeInit:00000038 $d
+     /tmp/ccr5TVAt.s:2158   .text.HAL_TIM_DMABurst_MultiWriteStart:00000000 $t
+     /tmp/ccr5TVAt.s:2164   .text.HAL_TIM_DMABurst_MultiWriteStart:00000000 HAL_TIM_DMABurst_MultiWriteStart
+     /tmp/ccr5TVAt.s:2558   .text.HAL_TIM_DMABurst_MultiWriteStart:00000198 $d
+     /tmp/ccr5TVAt.s:4018   .text.TIM_DMADelayPulseCplt:00000000 TIM_DMADelayPulseCplt
+     /tmp/ccr5TVAt.s:4136   .text.TIM_DMADelayPulseHalfCplt:00000000 TIM_DMADelayPulseHalfCplt
+     /tmp/ccr5TVAt.s:4580   .text.TIM_DMATriggerCplt:00000000 TIM_DMATriggerCplt
+     /tmp/ccr5TVAt.s:4639   .text.TIM_DMATriggerHalfCplt:00000000 TIM_DMATriggerHalfCplt
+     /tmp/ccr5TVAt.s:2571   .text.HAL_TIM_DMABurst_WriteStart:00000000 $t
+     /tmp/ccr5TVAt.s:2577   .text.HAL_TIM_DMABurst_WriteStart:00000000 HAL_TIM_DMABurst_WriteStart
+     /tmp/ccr5TVAt.s:2612   .text.HAL_TIM_DMABurst_WriteStop:00000000 $t
+     /tmp/ccr5TVAt.s:2618   .text.HAL_TIM_DMABurst_WriteStop:00000000 HAL_TIM_DMABurst_WriteStop
+     /tmp/ccr5TVAt.s:2783   .text.HAL_TIM_DMABurst_MultiReadStart:00000000 $t
+     /tmp/ccr5TVAt.s:2789   .text.HAL_TIM_DMABurst_MultiReadStart:00000000 HAL_TIM_DMABurst_MultiReadStart
+     /tmp/ccr5TVAt.s:3183   .text.HAL_TIM_DMABurst_MultiReadStart:00000198 $d
+     /tmp/ccr5TVAt.s:3782   .text.TIM_DMACaptureCplt:00000000 TIM_DMACaptureCplt
+     /tmp/ccr5TVAt.s:3900   .text.TIM_DMACaptureHalfCplt:00000000 TIM_DMACaptureHalfCplt
+     /tmp/ccr5TVAt.s:3196   .text.HAL_TIM_DMABurst_ReadStart:00000000 $t
+     /tmp/ccr5TVAt.s:3202   .text.HAL_TIM_DMABurst_ReadStart:00000000 HAL_TIM_DMABurst_ReadStart
+     /tmp/ccr5TVAt.s:3237   .text.HAL_TIM_DMABurst_ReadStop:00000000 $t
+     /tmp/ccr5TVAt.s:3243   .text.HAL_TIM_DMABurst_ReadStop:00000000 HAL_TIM_DMABurst_ReadStop
+     /tmp/ccr5TVAt.s:3408   .text.HAL_TIM_GenerateEvent:00000000 $t
+     /tmp/ccr5TVAt.s:3414   .text.HAL_TIM_GenerateEvent:00000000 HAL_TIM_GenerateEvent
+     /tmp/ccr5TVAt.s:3478   .text.HAL_TIM_ConfigTI1Input:00000000 $t
+     /tmp/ccr5TVAt.s:3484   .text.HAL_TIM_ConfigTI1Input:00000000 HAL_TIM_ConfigTI1Input
+     /tmp/ccr5TVAt.s:3524   .text.HAL_TIM_ReadCapturedValue:00000000 $t
+     /tmp/ccr5TVAt.s:3530   .text.HAL_TIM_ReadCapturedValue:00000000 HAL_TIM_ReadCapturedValue
+ARM GAS  /tmp/ccr5TVAt.s 			page 390
 
 
-     /tmp/ccKUjuNa.s:3614   .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-     /tmp/ccKUjuNa.s:3620   .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-     /tmp/ccKUjuNa.s:3636   .text.TIM_DMAPeriodElapsedCplt:00000000 $t
-     /tmp/ccKUjuNa.s:3673   .text.HAL_TIM_PeriodElapsedHalfCpltCallback:00000000 $t
-     /tmp/ccKUjuNa.s:3679   .text.HAL_TIM_PeriodElapsedHalfCpltCallback:00000000 HAL_TIM_PeriodElapsedHalfCpltCallback
-     /tmp/ccKUjuNa.s:3695   .text.TIM_DMAPeriodElapsedHalfCplt:00000000 $t
-     /tmp/ccKUjuNa.s:3732   .text.HAL_TIM_OC_DelayElapsedCallback:00000000 $t
-     /tmp/ccKUjuNa.s:3738   .text.HAL_TIM_OC_DelayElapsedCallback:00000000 HAL_TIM_OC_DelayElapsedCallback
-     /tmp/ccKUjuNa.s:3754   .text.HAL_TIM_IC_CaptureCallback:00000000 $t
-     /tmp/ccKUjuNa.s:3760   .text.HAL_TIM_IC_CaptureCallback:00000000 HAL_TIM_IC_CaptureCallback
-     /tmp/ccKUjuNa.s:3776   .text.TIM_DMACaptureCplt:00000000 $t
-     /tmp/ccKUjuNa.s:3872   .text.HAL_TIM_IC_CaptureHalfCpltCallback:00000000 $t
-     /tmp/ccKUjuNa.s:3878   .text.HAL_TIM_IC_CaptureHalfCpltCallback:00000000 HAL_TIM_IC_CaptureHalfCpltCallback
-     /tmp/ccKUjuNa.s:3894   .text.TIM_DMACaptureHalfCplt:00000000 $t
-     /tmp/ccKUjuNa.s:3990   .text.HAL_TIM_PWM_PulseFinishedCallback:00000000 $t
-     /tmp/ccKUjuNa.s:3996   .text.HAL_TIM_PWM_PulseFinishedCallback:00000000 HAL_TIM_PWM_PulseFinishedCallback
-     /tmp/ccKUjuNa.s:4012   .text.TIM_DMADelayPulseCplt:00000000 $t
-     /tmp/ccKUjuNa.s:4108   .text.HAL_TIM_PWM_PulseFinishedHalfCpltCallback:00000000 $t
-     /tmp/ccKUjuNa.s:4114   .text.HAL_TIM_PWM_PulseFinishedHalfCpltCallback:00000000 HAL_TIM_PWM_PulseFinishedHalfCpltCallback
-     /tmp/ccKUjuNa.s:4130   .text.TIM_DMADelayPulseHalfCplt:00000000 $t
-     /tmp/ccKUjuNa.s:4226   .text.HAL_TIM_TriggerCallback:00000000 $t
-     /tmp/ccKUjuNa.s:4232   .text.HAL_TIM_TriggerCallback:00000000 HAL_TIM_TriggerCallback
-     /tmp/ccKUjuNa.s:4248   .text.HAL_TIM_IRQHandler:00000000 $t
-     /tmp/ccKUjuNa.s:4254   .text.HAL_TIM_IRQHandler:00000000 HAL_TIM_IRQHandler
-     /tmp/ccKUjuNa.s:4575   .text.TIM_DMATriggerCplt:00000000 $t
-     /tmp/ccKUjuNa.s:4612   .text.HAL_TIM_TriggerHalfCpltCallback:00000000 $t
-     /tmp/ccKUjuNa.s:4618   .text.HAL_TIM_TriggerHalfCpltCallback:00000000 HAL_TIM_TriggerHalfCpltCallback
-     /tmp/ccKUjuNa.s:4634   .text.TIM_DMATriggerHalfCplt:00000000 $t
-     /tmp/ccKUjuNa.s:4671   .text.HAL_TIM_ErrorCallback:00000000 $t
-     /tmp/ccKUjuNa.s:4677   .text.HAL_TIM_ErrorCallback:00000000 HAL_TIM_ErrorCallback
-     /tmp/ccKUjuNa.s:4693   .text.TIM_DMAError:00000000 $t
-     /tmp/ccKUjuNa.s:4731   .text.HAL_TIM_Base_GetState:00000000 $t
-     /tmp/ccKUjuNa.s:4737   .text.HAL_TIM_Base_GetState:00000000 HAL_TIM_Base_GetState
-     /tmp/ccKUjuNa.s:4759   .text.HAL_TIM_OC_GetState:00000000 $t
-     /tmp/ccKUjuNa.s:4765   .text.HAL_TIM_OC_GetState:00000000 HAL_TIM_OC_GetState
-     /tmp/ccKUjuNa.s:4787   .text.HAL_TIM_PWM_GetState:00000000 $t
-     /tmp/ccKUjuNa.s:4793   .text.HAL_TIM_PWM_GetState:00000000 HAL_TIM_PWM_GetState
-     /tmp/ccKUjuNa.s:4815   .text.HAL_TIM_IC_GetState:00000000 $t
-     /tmp/ccKUjuNa.s:4821   .text.HAL_TIM_IC_GetState:00000000 HAL_TIM_IC_GetState
-     /tmp/ccKUjuNa.s:4843   .text.HAL_TIM_OnePulse_GetState:00000000 $t
-     /tmp/ccKUjuNa.s:4849   .text.HAL_TIM_OnePulse_GetState:00000000 HAL_TIM_OnePulse_GetState
-     /tmp/ccKUjuNa.s:4871   .text.HAL_TIM_Encoder_GetState:00000000 $t
-     /tmp/ccKUjuNa.s:4877   .text.HAL_TIM_Encoder_GetState:00000000 HAL_TIM_Encoder_GetState
-     /tmp/ccKUjuNa.s:4899   .text.TIM_Base_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:4905   .text.TIM_Base_SetConfig:00000000 TIM_Base_SetConfig
-     /tmp/ccKUjuNa.s:5045   .text.TIM_Base_SetConfig:00000088 $d
-     /tmp/ccKUjuNa.s:5056   .text.HAL_TIM_Base_Init:00000000 $t
-     /tmp/ccKUjuNa.s:5062   .text.HAL_TIM_Base_Init:00000000 HAL_TIM_Base_Init
-     /tmp/ccKUjuNa.s:5140   .text.HAL_TIM_OC_Init:00000000 $t
-     /tmp/ccKUjuNa.s:5146   .text.HAL_TIM_OC_Init:00000000 HAL_TIM_OC_Init
-     /tmp/ccKUjuNa.s:5224   .text.HAL_TIM_PWM_Init:00000000 $t
-     /tmp/ccKUjuNa.s:5230   .text.HAL_TIM_PWM_Init:00000000 HAL_TIM_PWM_Init
-     /tmp/ccKUjuNa.s:5308   .text.HAL_TIM_IC_Init:00000000 $t
-     /tmp/ccKUjuNa.s:5314   .text.HAL_TIM_IC_Init:00000000 HAL_TIM_IC_Init
-     /tmp/ccKUjuNa.s:5392   .text.HAL_TIM_OnePulse_Init:00000000 $t
-     /tmp/ccKUjuNa.s:5398   .text.HAL_TIM_OnePulse_Init:00000000 HAL_TIM_OnePulse_Init
-     /tmp/ccKUjuNa.s:5497   .text.HAL_TIM_Encoder_Init:00000000 $t
-ARM GAS  /tmp/ccKUjuNa.s 			page 391
+     /tmp/ccr5TVAt.s:3614   .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+     /tmp/ccr5TVAt.s:3620   .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+     /tmp/ccr5TVAt.s:3636   .text.TIM_DMAPeriodElapsedCplt:00000000 $t
+     /tmp/ccr5TVAt.s:3673   .text.HAL_TIM_PeriodElapsedHalfCpltCallback:00000000 $t
+     /tmp/ccr5TVAt.s:3679   .text.HAL_TIM_PeriodElapsedHalfCpltCallback:00000000 HAL_TIM_PeriodElapsedHalfCpltCallback
+     /tmp/ccr5TVAt.s:3695   .text.TIM_DMAPeriodElapsedHalfCplt:00000000 $t
+     /tmp/ccr5TVAt.s:3732   .text.HAL_TIM_OC_DelayElapsedCallback:00000000 $t
+     /tmp/ccr5TVAt.s:3738   .text.HAL_TIM_OC_DelayElapsedCallback:00000000 HAL_TIM_OC_DelayElapsedCallback
+     /tmp/ccr5TVAt.s:3754   .text.HAL_TIM_IC_CaptureCallback:00000000 $t
+     /tmp/ccr5TVAt.s:3760   .text.HAL_TIM_IC_CaptureCallback:00000000 HAL_TIM_IC_CaptureCallback
+     /tmp/ccr5TVAt.s:3776   .text.TIM_DMACaptureCplt:00000000 $t
+     /tmp/ccr5TVAt.s:3872   .text.HAL_TIM_IC_CaptureHalfCpltCallback:00000000 $t
+     /tmp/ccr5TVAt.s:3878   .text.HAL_TIM_IC_CaptureHalfCpltCallback:00000000 HAL_TIM_IC_CaptureHalfCpltCallback
+     /tmp/ccr5TVAt.s:3894   .text.TIM_DMACaptureHalfCplt:00000000 $t
+     /tmp/ccr5TVAt.s:3990   .text.HAL_TIM_PWM_PulseFinishedCallback:00000000 $t
+     /tmp/ccr5TVAt.s:3996   .text.HAL_TIM_PWM_PulseFinishedCallback:00000000 HAL_TIM_PWM_PulseFinishedCallback
+     /tmp/ccr5TVAt.s:4012   .text.TIM_DMADelayPulseCplt:00000000 $t
+     /tmp/ccr5TVAt.s:4108   .text.HAL_TIM_PWM_PulseFinishedHalfCpltCallback:00000000 $t
+     /tmp/ccr5TVAt.s:4114   .text.HAL_TIM_PWM_PulseFinishedHalfCpltCallback:00000000 HAL_TIM_PWM_PulseFinishedHalfCpltCallback
+     /tmp/ccr5TVAt.s:4130   .text.TIM_DMADelayPulseHalfCplt:00000000 $t
+     /tmp/ccr5TVAt.s:4226   .text.HAL_TIM_TriggerCallback:00000000 $t
+     /tmp/ccr5TVAt.s:4232   .text.HAL_TIM_TriggerCallback:00000000 HAL_TIM_TriggerCallback
+     /tmp/ccr5TVAt.s:4248   .text.HAL_TIM_IRQHandler:00000000 $t
+     /tmp/ccr5TVAt.s:4254   .text.HAL_TIM_IRQHandler:00000000 HAL_TIM_IRQHandler
+     /tmp/ccr5TVAt.s:4575   .text.TIM_DMATriggerCplt:00000000 $t
+     /tmp/ccr5TVAt.s:4612   .text.HAL_TIM_TriggerHalfCpltCallback:00000000 $t
+     /tmp/ccr5TVAt.s:4618   .text.HAL_TIM_TriggerHalfCpltCallback:00000000 HAL_TIM_TriggerHalfCpltCallback
+     /tmp/ccr5TVAt.s:4634   .text.TIM_DMATriggerHalfCplt:00000000 $t
+     /tmp/ccr5TVAt.s:4671   .text.HAL_TIM_ErrorCallback:00000000 $t
+     /tmp/ccr5TVAt.s:4677   .text.HAL_TIM_ErrorCallback:00000000 HAL_TIM_ErrorCallback
+     /tmp/ccr5TVAt.s:4693   .text.TIM_DMAError:00000000 $t
+     /tmp/ccr5TVAt.s:4731   .text.HAL_TIM_Base_GetState:00000000 $t
+     /tmp/ccr5TVAt.s:4737   .text.HAL_TIM_Base_GetState:00000000 HAL_TIM_Base_GetState
+     /tmp/ccr5TVAt.s:4759   .text.HAL_TIM_OC_GetState:00000000 $t
+     /tmp/ccr5TVAt.s:4765   .text.HAL_TIM_OC_GetState:00000000 HAL_TIM_OC_GetState
+     /tmp/ccr5TVAt.s:4787   .text.HAL_TIM_PWM_GetState:00000000 $t
+     /tmp/ccr5TVAt.s:4793   .text.HAL_TIM_PWM_GetState:00000000 HAL_TIM_PWM_GetState
+     /tmp/ccr5TVAt.s:4815   .text.HAL_TIM_IC_GetState:00000000 $t
+     /tmp/ccr5TVAt.s:4821   .text.HAL_TIM_IC_GetState:00000000 HAL_TIM_IC_GetState
+     /tmp/ccr5TVAt.s:4843   .text.HAL_TIM_OnePulse_GetState:00000000 $t
+     /tmp/ccr5TVAt.s:4849   .text.HAL_TIM_OnePulse_GetState:00000000 HAL_TIM_OnePulse_GetState
+     /tmp/ccr5TVAt.s:4871   .text.HAL_TIM_Encoder_GetState:00000000 $t
+     /tmp/ccr5TVAt.s:4877   .text.HAL_TIM_Encoder_GetState:00000000 HAL_TIM_Encoder_GetState
+     /tmp/ccr5TVAt.s:4899   .text.TIM_Base_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:4905   .text.TIM_Base_SetConfig:00000000 TIM_Base_SetConfig
+     /tmp/ccr5TVAt.s:5045   .text.TIM_Base_SetConfig:00000088 $d
+     /tmp/ccr5TVAt.s:5056   .text.HAL_TIM_Base_Init:00000000 $t
+     /tmp/ccr5TVAt.s:5062   .text.HAL_TIM_Base_Init:00000000 HAL_TIM_Base_Init
+     /tmp/ccr5TVAt.s:5140   .text.HAL_TIM_OC_Init:00000000 $t
+     /tmp/ccr5TVAt.s:5146   .text.HAL_TIM_OC_Init:00000000 HAL_TIM_OC_Init
+     /tmp/ccr5TVAt.s:5224   .text.HAL_TIM_PWM_Init:00000000 $t
+     /tmp/ccr5TVAt.s:5230   .text.HAL_TIM_PWM_Init:00000000 HAL_TIM_PWM_Init
+     /tmp/ccr5TVAt.s:5308   .text.HAL_TIM_IC_Init:00000000 $t
+     /tmp/ccr5TVAt.s:5314   .text.HAL_TIM_IC_Init:00000000 HAL_TIM_IC_Init
+     /tmp/ccr5TVAt.s:5392   .text.HAL_TIM_OnePulse_Init:00000000 $t
+     /tmp/ccr5TVAt.s:5398   .text.HAL_TIM_OnePulse_Init:00000000 HAL_TIM_OnePulse_Init
+     /tmp/ccr5TVAt.s:5497   .text.HAL_TIM_Encoder_Init:00000000 $t
+ARM GAS  /tmp/ccr5TVAt.s 			page 391
 
 
-     /tmp/ccKUjuNa.s:5503   .text.HAL_TIM_Encoder_Init:00000000 HAL_TIM_Encoder_Init
-     /tmp/ccKUjuNa.s:5718   .text.HAL_TIM_Encoder_Init:0000009c $d
-     /tmp/ccKUjuNa.s:5725   .text.TIM_OC2_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:5731   .text.TIM_OC2_SetConfig:00000000 TIM_OC2_SetConfig
-     /tmp/ccKUjuNa.s:5888   .text.TIM_OC2_SetConfig:0000006c $d
-     /tmp/ccKUjuNa.s:5898   .text.HAL_TIM_OC_ConfigChannel:00000000 $t
-     /tmp/ccKUjuNa.s:5904   .text.HAL_TIM_OC_ConfigChannel:00000000 HAL_TIM_OC_ConfigChannel
-     /tmp/ccKUjuNa.s:6016   .text.HAL_TIM_PWM_ConfigChannel:00000000 $t
-     /tmp/ccKUjuNa.s:6022   .text.HAL_TIM_PWM_ConfigChannel:00000000 HAL_TIM_PWM_ConfigChannel
-     /tmp/ccKUjuNa.s:6268   .text.HAL_TIM_PWM_ConfigChannel:000000e8 $d
-     /tmp/ccKUjuNa.s:6273   .text.TIM_TI1_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:6279   .text.TIM_TI1_SetConfig:00000000 TIM_TI1_SetConfig
-     /tmp/ccKUjuNa.s:6389   .text.TIM_TI1_SetConfig:00000050 $d
-     /tmp/ccKUjuNa.s:6396   .text.HAL_TIM_IC_ConfigChannel:00000000 $t
-     /tmp/ccKUjuNa.s:6402   .text.HAL_TIM_IC_ConfigChannel:00000000 HAL_TIM_IC_ConfigChannel
-     /tmp/ccKUjuNa.s:6622   .text.HAL_TIM_IC_ConfigChannel:000000c4 $d
-     /tmp/ccKUjuNa.s:6627   .text.HAL_TIM_OnePulse_ConfigChannel:00000000 $t
-     /tmp/ccKUjuNa.s:6633   .text.HAL_TIM_OnePulse_ConfigChannel:00000000 HAL_TIM_OnePulse_ConfigChannel
-     /tmp/ccKUjuNa.s:6905   .text.HAL_TIM_OnePulse_ConfigChannel:000000fc $d
-     /tmp/ccKUjuNa.s:6910   .text.TIM_ETR_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:6916   .text.TIM_ETR_SetConfig:00000000 TIM_ETR_SetConfig
-     /tmp/ccKUjuNa.s:6960   .text.TIM_ETR_SetConfig:00000014 $d
-     /tmp/ccKUjuNa.s:6965   .text.HAL_TIM_ConfigOCrefClear:00000000 $t
-     /tmp/ccKUjuNa.s:6971   .text.HAL_TIM_ConfigOCrefClear:00000000 HAL_TIM_ConfigOCrefClear
-     /tmp/ccKUjuNa.s:7228   .text.HAL_TIM_ConfigOCrefClear:00000110 $d
-     /tmp/ccKUjuNa.s:7234   .text.HAL_TIM_ConfigClockSource:00000000 $t
-     /tmp/ccKUjuNa.s:7240   .text.HAL_TIM_ConfigClockSource:00000000 HAL_TIM_ConfigClockSource
-     /tmp/ccKUjuNa.s:7494   .text.HAL_TIM_ConfigClockSource:000000e0 $d
-     /tmp/ccKUjuNa.s:7499   .text.TIM_SlaveTimer_SetConfig:00000000 $t
-     /tmp/ccKUjuNa.s:7504   .text.TIM_SlaveTimer_SetConfig:00000000 TIM_SlaveTimer_SetConfig
-     /tmp/ccKUjuNa.s:7715   .text.HAL_TIM_SlaveConfigSynchro:00000000 $t
-     /tmp/ccKUjuNa.s:7721   .text.HAL_TIM_SlaveConfigSynchro:00000000 HAL_TIM_SlaveConfigSynchro
-     /tmp/ccKUjuNa.s:7818   .text.HAL_TIM_SlaveConfigSynchro:00000058 $d
-     /tmp/ccKUjuNa.s:7823   .text.HAL_TIM_SlaveConfigSynchro_IT:00000000 $t
-     /tmp/ccKUjuNa.s:7829   .text.HAL_TIM_SlaveConfigSynchro_IT:00000000 HAL_TIM_SlaveConfigSynchro_IT
-     /tmp/ccKUjuNa.s:7926   .text.HAL_TIM_SlaveConfigSynchro_IT:00000058 $d
-     /tmp/ccKUjuNa.s:7931   .text.TIM_CCxChannelCmd:00000000 $t
-     /tmp/ccKUjuNa.s:7937   .text.TIM_CCxChannelCmd:00000000 TIM_CCxChannelCmd
-     /tmp/ccKUjuNa.s:7986   .text.HAL_TIM_OC_Start:00000000 $t
-     /tmp/ccKUjuNa.s:7992   .text.HAL_TIM_OC_Start:00000000 HAL_TIM_OC_Start
-     /tmp/ccKUjuNa.s:8074   .text.HAL_TIM_OC_Start:00000048 $d
-     /tmp/ccKUjuNa.s:8082   .text.HAL_TIM_OC_Stop:00000000 $t
-     /tmp/ccKUjuNa.s:8088   .text.HAL_TIM_OC_Stop:00000000 HAL_TIM_OC_Stop
-     /tmp/ccKUjuNa.s:8178   .text.HAL_TIM_OC_Stop:00000060 $d
-     /tmp/ccKUjuNa.s:8189   .text.HAL_TIM_OC_Start_IT:00000000 $t
-     /tmp/ccKUjuNa.s:8195   .text.HAL_TIM_OC_Start_IT:00000000 HAL_TIM_OC_Start_IT
-     /tmp/ccKUjuNa.s:8332   .text.HAL_TIM_OC_Start_IT:00000088 $d
-     /tmp/ccKUjuNa.s:8340   .text.HAL_TIM_OC_Stop_IT:00000000 $t
-     /tmp/ccKUjuNa.s:8346   .text.HAL_TIM_OC_Stop_IT:00000000 HAL_TIM_OC_Stop_IT
-     /tmp/ccKUjuNa.s:8491   .text.HAL_TIM_OC_Stop_IT:000000a0 $d
-     /tmp/ccKUjuNa.s:8502   .text.HAL_TIM_OC_Start_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:8508   .text.HAL_TIM_OC_Start_DMA:00000000 HAL_TIM_OC_Start_DMA
-     /tmp/ccKUjuNa.s:8833   .text.HAL_TIM_OC_Start_DMA:00000154 $d
-     /tmp/ccKUjuNa.s:8844   .text.HAL_TIM_OC_Stop_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:8850   .text.HAL_TIM_OC_Stop_DMA:00000000 HAL_TIM_OC_Stop_DMA
-     /tmp/ccKUjuNa.s:9032   .text.HAL_TIM_OC_Stop_DMA:000000c0 $d
-     /tmp/ccKUjuNa.s:9047   .text.HAL_TIM_PWM_Start:00000000 $t
-ARM GAS  /tmp/ccKUjuNa.s 			page 392
+     /tmp/ccr5TVAt.s:5503   .text.HAL_TIM_Encoder_Init:00000000 HAL_TIM_Encoder_Init
+     /tmp/ccr5TVAt.s:5718   .text.HAL_TIM_Encoder_Init:0000009c $d
+     /tmp/ccr5TVAt.s:5725   .text.TIM_OC2_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:5731   .text.TIM_OC2_SetConfig:00000000 TIM_OC2_SetConfig
+     /tmp/ccr5TVAt.s:5888   .text.TIM_OC2_SetConfig:0000006c $d
+     /tmp/ccr5TVAt.s:5898   .text.HAL_TIM_OC_ConfigChannel:00000000 $t
+     /tmp/ccr5TVAt.s:5904   .text.HAL_TIM_OC_ConfigChannel:00000000 HAL_TIM_OC_ConfigChannel
+     /tmp/ccr5TVAt.s:6016   .text.HAL_TIM_PWM_ConfigChannel:00000000 $t
+     /tmp/ccr5TVAt.s:6022   .text.HAL_TIM_PWM_ConfigChannel:00000000 HAL_TIM_PWM_ConfigChannel
+     /tmp/ccr5TVAt.s:6268   .text.HAL_TIM_PWM_ConfigChannel:000000e8 $d
+     /tmp/ccr5TVAt.s:6273   .text.TIM_TI1_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:6279   .text.TIM_TI1_SetConfig:00000000 TIM_TI1_SetConfig
+     /tmp/ccr5TVAt.s:6389   .text.TIM_TI1_SetConfig:00000050 $d
+     /tmp/ccr5TVAt.s:6396   .text.HAL_TIM_IC_ConfigChannel:00000000 $t
+     /tmp/ccr5TVAt.s:6402   .text.HAL_TIM_IC_ConfigChannel:00000000 HAL_TIM_IC_ConfigChannel
+     /tmp/ccr5TVAt.s:6622   .text.HAL_TIM_IC_ConfigChannel:000000c4 $d
+     /tmp/ccr5TVAt.s:6627   .text.HAL_TIM_OnePulse_ConfigChannel:00000000 $t
+     /tmp/ccr5TVAt.s:6633   .text.HAL_TIM_OnePulse_ConfigChannel:00000000 HAL_TIM_OnePulse_ConfigChannel
+     /tmp/ccr5TVAt.s:6905   .text.HAL_TIM_OnePulse_ConfigChannel:000000fc $d
+     /tmp/ccr5TVAt.s:6910   .text.TIM_ETR_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:6916   .text.TIM_ETR_SetConfig:00000000 TIM_ETR_SetConfig
+     /tmp/ccr5TVAt.s:6960   .text.TIM_ETR_SetConfig:00000014 $d
+     /tmp/ccr5TVAt.s:6965   .text.HAL_TIM_ConfigOCrefClear:00000000 $t
+     /tmp/ccr5TVAt.s:6971   .text.HAL_TIM_ConfigOCrefClear:00000000 HAL_TIM_ConfigOCrefClear
+     /tmp/ccr5TVAt.s:7228   .text.HAL_TIM_ConfigOCrefClear:00000110 $d
+     /tmp/ccr5TVAt.s:7234   .text.HAL_TIM_ConfigClockSource:00000000 $t
+     /tmp/ccr5TVAt.s:7240   .text.HAL_TIM_ConfigClockSource:00000000 HAL_TIM_ConfigClockSource
+     /tmp/ccr5TVAt.s:7494   .text.HAL_TIM_ConfigClockSource:000000e0 $d
+     /tmp/ccr5TVAt.s:7499   .text.TIM_SlaveTimer_SetConfig:00000000 $t
+     /tmp/ccr5TVAt.s:7504   .text.TIM_SlaveTimer_SetConfig:00000000 TIM_SlaveTimer_SetConfig
+     /tmp/ccr5TVAt.s:7715   .text.HAL_TIM_SlaveConfigSynchro:00000000 $t
+     /tmp/ccr5TVAt.s:7721   .text.HAL_TIM_SlaveConfigSynchro:00000000 HAL_TIM_SlaveConfigSynchro
+     /tmp/ccr5TVAt.s:7818   .text.HAL_TIM_SlaveConfigSynchro:00000058 $d
+     /tmp/ccr5TVAt.s:7823   .text.HAL_TIM_SlaveConfigSynchro_IT:00000000 $t
+     /tmp/ccr5TVAt.s:7829   .text.HAL_TIM_SlaveConfigSynchro_IT:00000000 HAL_TIM_SlaveConfigSynchro_IT
+     /tmp/ccr5TVAt.s:7926   .text.HAL_TIM_SlaveConfigSynchro_IT:00000058 $d
+     /tmp/ccr5TVAt.s:7931   .text.TIM_CCxChannelCmd:00000000 $t
+     /tmp/ccr5TVAt.s:7937   .text.TIM_CCxChannelCmd:00000000 TIM_CCxChannelCmd
+     /tmp/ccr5TVAt.s:7986   .text.HAL_TIM_OC_Start:00000000 $t
+     /tmp/ccr5TVAt.s:7992   .text.HAL_TIM_OC_Start:00000000 HAL_TIM_OC_Start
+     /tmp/ccr5TVAt.s:8074   .text.HAL_TIM_OC_Start:00000048 $d
+     /tmp/ccr5TVAt.s:8082   .text.HAL_TIM_OC_Stop:00000000 $t
+     /tmp/ccr5TVAt.s:8088   .text.HAL_TIM_OC_Stop:00000000 HAL_TIM_OC_Stop
+     /tmp/ccr5TVAt.s:8178   .text.HAL_TIM_OC_Stop:00000060 $d
+     /tmp/ccr5TVAt.s:8189   .text.HAL_TIM_OC_Start_IT:00000000 $t
+     /tmp/ccr5TVAt.s:8195   .text.HAL_TIM_OC_Start_IT:00000000 HAL_TIM_OC_Start_IT
+     /tmp/ccr5TVAt.s:8332   .text.HAL_TIM_OC_Start_IT:00000088 $d
+     /tmp/ccr5TVAt.s:8340   .text.HAL_TIM_OC_Stop_IT:00000000 $t
+     /tmp/ccr5TVAt.s:8346   .text.HAL_TIM_OC_Stop_IT:00000000 HAL_TIM_OC_Stop_IT
+     /tmp/ccr5TVAt.s:8491   .text.HAL_TIM_OC_Stop_IT:000000a0 $d
+     /tmp/ccr5TVAt.s:8502   .text.HAL_TIM_OC_Start_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:8508   .text.HAL_TIM_OC_Start_DMA:00000000 HAL_TIM_OC_Start_DMA
+     /tmp/ccr5TVAt.s:8833   .text.HAL_TIM_OC_Start_DMA:00000154 $d
+     /tmp/ccr5TVAt.s:8844   .text.HAL_TIM_OC_Stop_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:8850   .text.HAL_TIM_OC_Stop_DMA:00000000 HAL_TIM_OC_Stop_DMA
+     /tmp/ccr5TVAt.s:9032   .text.HAL_TIM_OC_Stop_DMA:000000c0 $d
+     /tmp/ccr5TVAt.s:9047   .text.HAL_TIM_PWM_Start:00000000 $t
+ARM GAS  /tmp/ccr5TVAt.s 			page 392
 
 
-     /tmp/ccKUjuNa.s:9053   .text.HAL_TIM_PWM_Start:00000000 HAL_TIM_PWM_Start
-     /tmp/ccKUjuNa.s:9135   .text.HAL_TIM_PWM_Start:00000048 $d
-     /tmp/ccKUjuNa.s:9143   .text.HAL_TIM_PWM_Stop:00000000 $t
-     /tmp/ccKUjuNa.s:9149   .text.HAL_TIM_PWM_Stop:00000000 HAL_TIM_PWM_Stop
-     /tmp/ccKUjuNa.s:9244   .text.HAL_TIM_PWM_Stop:00000064 $d
-     /tmp/ccKUjuNa.s:9255   .text.HAL_TIM_PWM_Start_IT:00000000 $t
-     /tmp/ccKUjuNa.s:9261   .text.HAL_TIM_PWM_Start_IT:00000000 HAL_TIM_PWM_Start_IT
-     /tmp/ccKUjuNa.s:9398   .text.HAL_TIM_PWM_Start_IT:00000088 $d
-     /tmp/ccKUjuNa.s:9406   .text.HAL_TIM_PWM_Stop_IT:00000000 $t
-     /tmp/ccKUjuNa.s:9412   .text.HAL_TIM_PWM_Stop_IT:00000000 HAL_TIM_PWM_Stop_IT
-     /tmp/ccKUjuNa.s:9557   .text.HAL_TIM_PWM_Stop_IT:000000a0 $d
-     /tmp/ccKUjuNa.s:9568   .text.HAL_TIM_PWM_Start_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:9574   .text.HAL_TIM_PWM_Start_DMA:00000000 HAL_TIM_PWM_Start_DMA
-     /tmp/ccKUjuNa.s:9899   .text.HAL_TIM_PWM_Start_DMA:00000154 $d
-     /tmp/ccKUjuNa.s:9910   .text.HAL_TIM_PWM_Stop_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:9916   .text.HAL_TIM_PWM_Stop_DMA:00000000 HAL_TIM_PWM_Stop_DMA
-     /tmp/ccKUjuNa.s:10098  .text.HAL_TIM_PWM_Stop_DMA:000000c0 $d
-     /tmp/ccKUjuNa.s:10113  .text.HAL_TIM_IC_Start:00000000 $t
-     /tmp/ccKUjuNa.s:10119  .text.HAL_TIM_IC_Start:00000000 HAL_TIM_IC_Start
-     /tmp/ccKUjuNa.s:10176  .text.HAL_TIM_IC_Stop:00000000 $t
-     /tmp/ccKUjuNa.s:10182  .text.HAL_TIM_IC_Stop:00000000 HAL_TIM_IC_Stop
-     /tmp/ccKUjuNa.s:10233  .text.HAL_TIM_IC_Stop:0000002c $d
-     /tmp/ccKUjuNa.s:10239  .text.HAL_TIM_IC_Start_IT:00000000 $t
-     /tmp/ccKUjuNa.s:10245  .text.HAL_TIM_IC_Start_IT:00000000 HAL_TIM_IC_Start_IT
-     /tmp/ccKUjuNa.s:10357  .text.HAL_TIM_IC_Stop_IT:00000000 $t
-     /tmp/ccKUjuNa.s:10363  .text.HAL_TIM_IC_Stop_IT:00000000 HAL_TIM_IC_Stop_IT
-     /tmp/ccKUjuNa.s:10469  .text.HAL_TIM_IC_Stop_IT:0000006c $d
-     /tmp/ccKUjuNa.s:10475  .text.HAL_TIM_IC_Start_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:10481  .text.HAL_TIM_IC_Start_DMA:00000000 HAL_TIM_IC_Start_DMA
-     /tmp/ccKUjuNa.s:10774  .text.HAL_TIM_IC_Start_DMA:0000012c $d
-     /tmp/ccKUjuNa.s:10781  .text.HAL_TIM_IC_Stop_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:10787  .text.HAL_TIM_IC_Stop_DMA:00000000 HAL_TIM_IC_Stop_DMA
-     /tmp/ccKUjuNa.s:10932  .text.HAL_TIM_IC_Stop_DMA:0000008c $d
-     /tmp/ccKUjuNa.s:10942  .text.HAL_TIM_OnePulse_Start:00000000 $t
-     /tmp/ccKUjuNa.s:10948  .text.HAL_TIM_OnePulse_Start:00000000 HAL_TIM_OnePulse_Start
-     /tmp/ccKUjuNa.s:11015  .text.HAL_TIM_OnePulse_Start:00000040 $d
-     /tmp/ccKUjuNa.s:11023  .text.HAL_TIM_OnePulse_Stop:00000000 $t
-     /tmp/ccKUjuNa.s:11029  .text.HAL_TIM_OnePulse_Stop:00000000 HAL_TIM_OnePulse_Stop
-     /tmp/ccKUjuNa.s:11128  .text.HAL_TIM_OnePulse_Stop:0000006c $d
-     /tmp/ccKUjuNa.s:11139  .text.HAL_TIM_OnePulse_Start_IT:00000000 $t
-     /tmp/ccKUjuNa.s:11145  .text.HAL_TIM_OnePulse_Start_IT:00000000 HAL_TIM_OnePulse_Start_IT
-     /tmp/ccKUjuNa.s:11224  .text.HAL_TIM_OnePulse_Start_IT:00000054 $d
-     /tmp/ccKUjuNa.s:11232  .text.HAL_TIM_OnePulse_Stop_IT:00000000 $t
-     /tmp/ccKUjuNa.s:11238  .text.HAL_TIM_OnePulse_Stop_IT:00000000 HAL_TIM_OnePulse_Stop_IT
-     /tmp/ccKUjuNa.s:11349  .text.HAL_TIM_OnePulse_Stop_IT:00000080 $d
-     /tmp/ccKUjuNa.s:11360  .text.HAL_TIM_Encoder_Start:00000000 $t
-     /tmp/ccKUjuNa.s:11366  .text.HAL_TIM_Encoder_Start:00000000 HAL_TIM_Encoder_Start
-     /tmp/ccKUjuNa.s:11449  .text.HAL_TIM_Encoder_Stop:00000000 $t
-     /tmp/ccKUjuNa.s:11455  .text.HAL_TIM_Encoder_Stop:00000000 HAL_TIM_Encoder_Stop
-     /tmp/ccKUjuNa.s:11550  .text.HAL_TIM_Encoder_Stop:00000058 $d
-     /tmp/ccKUjuNa.s:11556  .text.HAL_TIM_Encoder_Start_IT:00000000 $t
-     /tmp/ccKUjuNa.s:11562  .text.HAL_TIM_Encoder_Start_IT:00000000 HAL_TIM_Encoder_Start_IT
-     /tmp/ccKUjuNa.s:11669  .text.HAL_TIM_Encoder_Stop_IT:00000000 $t
-     /tmp/ccKUjuNa.s:11675  .text.HAL_TIM_Encoder_Stop_IT:00000000 HAL_TIM_Encoder_Stop_IT
-     /tmp/ccKUjuNa.s:11793  .text.HAL_TIM_Encoder_Stop_IT:00000080 $d
-     /tmp/ccKUjuNa.s:11799  .text.HAL_TIM_Encoder_Start_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:11805  .text.HAL_TIM_Encoder_Start_DMA:00000000 HAL_TIM_Encoder_Start_DMA
-ARM GAS  /tmp/ccKUjuNa.s 			page 393
+     /tmp/ccr5TVAt.s:9053   .text.HAL_TIM_PWM_Start:00000000 HAL_TIM_PWM_Start
+     /tmp/ccr5TVAt.s:9135   .text.HAL_TIM_PWM_Start:00000048 $d
+     /tmp/ccr5TVAt.s:9143   .text.HAL_TIM_PWM_Stop:00000000 $t
+     /tmp/ccr5TVAt.s:9149   .text.HAL_TIM_PWM_Stop:00000000 HAL_TIM_PWM_Stop
+     /tmp/ccr5TVAt.s:9244   .text.HAL_TIM_PWM_Stop:00000064 $d
+     /tmp/ccr5TVAt.s:9255   .text.HAL_TIM_PWM_Start_IT:00000000 $t
+     /tmp/ccr5TVAt.s:9261   .text.HAL_TIM_PWM_Start_IT:00000000 HAL_TIM_PWM_Start_IT
+     /tmp/ccr5TVAt.s:9398   .text.HAL_TIM_PWM_Start_IT:00000088 $d
+     /tmp/ccr5TVAt.s:9406   .text.HAL_TIM_PWM_Stop_IT:00000000 $t
+     /tmp/ccr5TVAt.s:9412   .text.HAL_TIM_PWM_Stop_IT:00000000 HAL_TIM_PWM_Stop_IT
+     /tmp/ccr5TVAt.s:9557   .text.HAL_TIM_PWM_Stop_IT:000000a0 $d
+     /tmp/ccr5TVAt.s:9568   .text.HAL_TIM_PWM_Start_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:9574   .text.HAL_TIM_PWM_Start_DMA:00000000 HAL_TIM_PWM_Start_DMA
+     /tmp/ccr5TVAt.s:9899   .text.HAL_TIM_PWM_Start_DMA:00000154 $d
+     /tmp/ccr5TVAt.s:9910   .text.HAL_TIM_PWM_Stop_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:9916   .text.HAL_TIM_PWM_Stop_DMA:00000000 HAL_TIM_PWM_Stop_DMA
+     /tmp/ccr5TVAt.s:10098  .text.HAL_TIM_PWM_Stop_DMA:000000c0 $d
+     /tmp/ccr5TVAt.s:10113  .text.HAL_TIM_IC_Start:00000000 $t
+     /tmp/ccr5TVAt.s:10119  .text.HAL_TIM_IC_Start:00000000 HAL_TIM_IC_Start
+     /tmp/ccr5TVAt.s:10176  .text.HAL_TIM_IC_Stop:00000000 $t
+     /tmp/ccr5TVAt.s:10182  .text.HAL_TIM_IC_Stop:00000000 HAL_TIM_IC_Stop
+     /tmp/ccr5TVAt.s:10233  .text.HAL_TIM_IC_Stop:0000002c $d
+     /tmp/ccr5TVAt.s:10239  .text.HAL_TIM_IC_Start_IT:00000000 $t
+     /tmp/ccr5TVAt.s:10245  .text.HAL_TIM_IC_Start_IT:00000000 HAL_TIM_IC_Start_IT
+     /tmp/ccr5TVAt.s:10357  .text.HAL_TIM_IC_Stop_IT:00000000 $t
+     /tmp/ccr5TVAt.s:10363  .text.HAL_TIM_IC_Stop_IT:00000000 HAL_TIM_IC_Stop_IT
+     /tmp/ccr5TVAt.s:10469  .text.HAL_TIM_IC_Stop_IT:0000006c $d
+     /tmp/ccr5TVAt.s:10475  .text.HAL_TIM_IC_Start_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:10481  .text.HAL_TIM_IC_Start_DMA:00000000 HAL_TIM_IC_Start_DMA
+     /tmp/ccr5TVAt.s:10774  .text.HAL_TIM_IC_Start_DMA:0000012c $d
+     /tmp/ccr5TVAt.s:10781  .text.HAL_TIM_IC_Stop_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:10787  .text.HAL_TIM_IC_Stop_DMA:00000000 HAL_TIM_IC_Stop_DMA
+     /tmp/ccr5TVAt.s:10932  .text.HAL_TIM_IC_Stop_DMA:0000008c $d
+     /tmp/ccr5TVAt.s:10942  .text.HAL_TIM_OnePulse_Start:00000000 $t
+     /tmp/ccr5TVAt.s:10948  .text.HAL_TIM_OnePulse_Start:00000000 HAL_TIM_OnePulse_Start
+     /tmp/ccr5TVAt.s:11015  .text.HAL_TIM_OnePulse_Start:00000040 $d
+     /tmp/ccr5TVAt.s:11023  .text.HAL_TIM_OnePulse_Stop:00000000 $t
+     /tmp/ccr5TVAt.s:11029  .text.HAL_TIM_OnePulse_Stop:00000000 HAL_TIM_OnePulse_Stop
+     /tmp/ccr5TVAt.s:11128  .text.HAL_TIM_OnePulse_Stop:0000006c $d
+     /tmp/ccr5TVAt.s:11139  .text.HAL_TIM_OnePulse_Start_IT:00000000 $t
+     /tmp/ccr5TVAt.s:11145  .text.HAL_TIM_OnePulse_Start_IT:00000000 HAL_TIM_OnePulse_Start_IT
+     /tmp/ccr5TVAt.s:11224  .text.HAL_TIM_OnePulse_Start_IT:00000054 $d
+     /tmp/ccr5TVAt.s:11232  .text.HAL_TIM_OnePulse_Stop_IT:00000000 $t
+     /tmp/ccr5TVAt.s:11238  .text.HAL_TIM_OnePulse_Stop_IT:00000000 HAL_TIM_OnePulse_Stop_IT
+     /tmp/ccr5TVAt.s:11349  .text.HAL_TIM_OnePulse_Stop_IT:00000080 $d
+     /tmp/ccr5TVAt.s:11360  .text.HAL_TIM_Encoder_Start:00000000 $t
+     /tmp/ccr5TVAt.s:11366  .text.HAL_TIM_Encoder_Start:00000000 HAL_TIM_Encoder_Start
+     /tmp/ccr5TVAt.s:11449  .text.HAL_TIM_Encoder_Stop:00000000 $t
+     /tmp/ccr5TVAt.s:11455  .text.HAL_TIM_Encoder_Stop:00000000 HAL_TIM_Encoder_Stop
+     /tmp/ccr5TVAt.s:11550  .text.HAL_TIM_Encoder_Stop:00000058 $d
+     /tmp/ccr5TVAt.s:11556  .text.HAL_TIM_Encoder_Start_IT:00000000 $t
+     /tmp/ccr5TVAt.s:11562  .text.HAL_TIM_Encoder_Start_IT:00000000 HAL_TIM_Encoder_Start_IT
+     /tmp/ccr5TVAt.s:11669  .text.HAL_TIM_Encoder_Stop_IT:00000000 $t
+     /tmp/ccr5TVAt.s:11675  .text.HAL_TIM_Encoder_Stop_IT:00000000 HAL_TIM_Encoder_Stop_IT
+     /tmp/ccr5TVAt.s:11793  .text.HAL_TIM_Encoder_Stop_IT:00000080 $d
+     /tmp/ccr5TVAt.s:11799  .text.HAL_TIM_Encoder_Start_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:11805  .text.HAL_TIM_Encoder_Start_DMA:00000000 HAL_TIM_Encoder_Start_DMA
+ARM GAS  /tmp/ccr5TVAt.s 			page 393
 
 
-     /tmp/ccKUjuNa.s:12126  .text.HAL_TIM_Encoder_Start_DMA:00000160 $d
-     /tmp/ccKUjuNa.s:12133  .text.HAL_TIM_Encoder_Stop_DMA:00000000 $t
-     /tmp/ccKUjuNa.s:12139  .text.HAL_TIM_Encoder_Stop_DMA:00000000 HAL_TIM_Encoder_Stop_DMA
-     /tmp/ccKUjuNa.s:12277  .text.HAL_TIM_Encoder_Stop_DMA:00000098 $d
+     /tmp/ccr5TVAt.s:12126  .text.HAL_TIM_Encoder_Start_DMA:00000160 $d
+     /tmp/ccr5TVAt.s:12133  .text.HAL_TIM_Encoder_Stop_DMA:00000000 $t
+     /tmp/ccr5TVAt.s:12139  .text.HAL_TIM_Encoder_Stop_DMA:00000000 HAL_TIM_Encoder_Stop_DMA
+     /tmp/ccr5TVAt.s:12277  .text.HAL_TIM_Encoder_Stop_DMA:00000098 $d
 
 UNDEFINED SYMBOLS
 HAL_DMA_Start_IT

@@ -225,7 +225,8 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 	}
 	//THIS IS BAD. if you send an x it won't stop motors until this delay finishes!
 	//Switch to a polling structure instead for final
-	HAL_Delay(1000*cmd->amount); 
+	while(get_distance() < target_dist)
+		;
 	motors_Off();
 	return err;
 }
@@ -261,7 +262,7 @@ void encoder_init(void) {
     /* TIM3->CR1 |= TIM_CR1_CEN;                               // Enable timer */
 		
 
-    TIM3->CCMR1 |= (TIM_CCMR1_CC3S_0 | TIM_CCMR1_CC4S_0);   // TI1FP1 and TI2FP2 signals connected to CH3 and CH4
+    TIM3->CCMR2 |= (TIM_CCMR1_CC1S_0 | TIM_CCMR1_CC2S_0);   // TI1FP1 and TI2FP2 signals connected to CH3 and CH4
     TIM3->SMCR |= (TIM_SMCR_SMS_1 | TIM_SMCR_SMS_0);        // Capture encoder on both rising and falling edges
     TIM3->ARR = 0xFFFF;                                     // Set ARR to top of timer (longest possible period)
     TIM3->CNT = 0x7FFF;                                     // Bias at midpoint to allow for negative rotation
@@ -292,20 +293,20 @@ void TIM6_DAC_IRQHandler(void) {
      */
     motorl_speed = (TIM3->CNT - 0x7FFF);
     TIM3->CNT = 0x7FFF; // Reset back to center point
-	motorr_speed = (TIM15->CNT - 0x7FFF);
-    TIM15->CNT = 0x7FFF; // Reset back to center point
+	motorr_speed = (TIM1->CNT - 0x7FFF);
+    TIM1->CNT = 0x7FFF; // Reset back to center point
 	
 	if(abs(motorl_speed)>10){
-		float ratio = ((float) abs(motorr_speed))/ ((float) motorl_speed);
+		float ratio = ((float) abs(motorl_speed))/ ((float) motorr_speed);
 		pwm_right = (int)(pwm_right * ratio);
 	}
 	
 	if(target_dist > 0){
-		current_dist += (float)abs(motorl_speed)/5.0;
+		current_dist += (float)abs(motorl_speed)/70;
 		if ((uint8_t)current_dist >= target_dist){
 			motors_Off();
 			if(!turning){
-				absolute_dist += current_dist * (float)sin((double)heading)
+				absolute_dist += current_dist * (float)sin((double)heading);
 			}
 			target_dist = 0;
 			current_dist = 0;

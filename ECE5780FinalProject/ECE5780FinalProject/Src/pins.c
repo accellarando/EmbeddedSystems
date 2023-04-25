@@ -52,9 +52,9 @@ motor_pins_t motor_left_pins = {
         }
     },
     .dir_b = {
-        .gpio = GPIOA,
+        .gpio = GPIOC,
         .pin = {
-            .Pin = GPIO_PIN_8,
+            .Pin = GPIO_PIN_9,
             .Mode = GPIO_MODE_OUTPUT_PP,
             .Pull = GPIO_NOPULL,
             .Speed = GPIO_SPEED_FREQ_LOW,
@@ -115,9 +115,9 @@ motor_pins_t motor_right_pins = {
 		}
 	},
 	.enc_a = {
-		.gpio = GPIOC,
+		.gpio = GPIOA,
 		.pin = {
-            .Pin = GPIO_PIN_9,
+            .Pin = GPIO_PIN_8,
             .Mode = GPIO_MODE_AF_PP,
             .Pull = GPIO_NOPULL,
 			.Speed = GPIO_SPEED_FREQ_LOW,
@@ -125,7 +125,7 @@ motor_pins_t motor_right_pins = {
 		}
 	},
 	.enc_b = {
-		.gpio = GPIOC,
+		.gpio = GPIOA,
 		.pin = {
             .Pin = GPIO_PIN_9,
             .Mode = GPIO_MODE_AF_PP,

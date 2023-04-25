@@ -1,26 +1,28 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2023 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include <string.h>
 #include "main.h"
 #include "pins.h"
+#include <stdbool.h>
 #include "motor.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -78,14 +80,14 @@ static void MX_TIM1_Init(void);
 #define TOGGLE_LED(led) (HAL_GPIO_TogglePin(GPIOC, led))
 
 void LED_Init(uint32_t pins) {
-    /* __HAL_RCC_GPIOC_CLK_ENABLE(); */
+	/* __HAL_RCC_GPIOC_CLK_ENABLE(); */
 
-    GPIO_InitTypeDef gpio_led_init = {pins,
-        GPIO_MODE_OUTPUT_PP,
-        GPIO_SPEED_FREQ_LOW,
-        GPIO_NOPULL
-    };
-    HAL_GPIO_Init(GPIOC, &gpio_led_init);
+	GPIO_InitTypeDef gpio_led_init = {pins,
+		GPIO_MODE_OUTPUT_PP,
+		GPIO_SPEED_FREQ_LOW,
+		GPIO_NOPULL
+	};
+	HAL_GPIO_Init(GPIOC, &gpio_led_init);
 }
 
 /**
@@ -96,7 +98,7 @@ void LED_Init(uint32_t pins) {
 void GPIO_AF_Init() {
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_GPIOB_CLK_ENABLE();
-    __HAL_RCC_GPIOC_CLK_ENABLE();
+	__HAL_RCC_GPIOC_CLK_ENABLE();
 
 	// uart_pins
 	HAL_GPIO_Init(uart_pins.rx.gpio, &(uart_pins.rx.pin));
@@ -137,7 +139,7 @@ void USART_Init() {
 	USART3->BRR = HAL_RCC_GetHCLKFreq() / 9600; //this is the baud rate we need to 
 												//use with the BT adapter
 
-	//Enable transmitter
+												//Enable transmitter
 	USART3->CR1 |= (1<<3);
 
 	//Enable receiver
@@ -190,19 +192,18 @@ void USART3_4_IRQHandler(){
 	incomingCommand = 1;
 	while(!(USART3->ISR & (1<<5)))
 		;
-	if(command[0])
+	if(command[0]){
 		if(command[1]){
-			if(command[2]){
-				USART_SendString(err);
-				ClearCommand();
-			}
-			else
-				command[2] = USART3->RDR;
+			USART_SendString(err);
+			ClearCommand();
 		}
-		else
+		else{
 			command[1] = USART3->RDR;
-	else
+		}
+	}
+	else{
 		command[0] = USART3->RDR;
+	}
 }
 
 void Log(){
@@ -275,7 +276,7 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	}
 
 	//these are for "vector commands" only:
-	
+
 	if(distance == '0' && direction == 'w'){
 		sprintf(part2, "indefinitely\n");
 		motorcmd.amount = 0;
@@ -324,41 +325,41 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 }
 
 /*
-void ProcessCommandPWM(uint8_t side, uint8_t amt){
-	MotorCommand motorcmd = {0};
-	motorcmd.dir = FORWARD;
-	motorcmd.amount = 9;
-	switch(side){
-		case 'l':
-			pwm_left = amt;
-			break;
-		case 'r':
-			pwm_right = amt;
-			break;
-		case 'x':
-			motorcmd.dir = OFF;
-			break;
-		default:
-			break;
-	}
-	MoveMotors(&motorcmd);
-	ClearCommand();
-}
-*/
+   void ProcessCommandPWM(uint8_t side, uint8_t amt){
+   MotorCommand motorcmd = {0};
+   motorcmd.dir = FORWARD;
+   motorcmd.amount = 9;
+   switch(side){
+   case 'l':
+   pwm_left = amt;
+   break;
+   case 'r':
+   pwm_right = amt;
+   break;
+   case 'x':
+   motorcmd.dir = OFF;
+   break;
+   default:
+   break;
+   }
+   MoveMotors(&motorcmd);
+   ClearCommand();
+   }
+   */
 
 /*
-void Ultrasonic_Init(uint32_t pins)
-{
-	__HAL_RCC_GPIOA_CLK_ENABLE();
+   void Ultrasonic_Init(uint32_t pins)
+   {
+   __HAL_RCC_GPIOA_CLK_ENABLE();
 
-	GPIO_InitTypeDef gpio_init = {GPIO_PIN_8 | GPIO_PIN_9,
-		GPIO_MODE_INPUT,
-		GPIO_SPEED_FREQ_LOW,
-		GPIO_NOPULL
-	};
-	HAL_GPIO_Init(GPIOA, &gpio_init);
-}
-*/
+   GPIO_InitTypeDef gpio_init = {GPIO_PIN_8 | GPIO_PIN_9,
+   GPIO_MODE_INPUT,
+   GPIO_SPEED_FREQ_LOW,
+   GPIO_NOPULL
+   };
+   HAL_GPIO_Init(GPIOA, &gpio_init);
+   }
+   */
 
 void GetDistance()
 {
@@ -376,117 +377,117 @@ void GetDistance()
 int main(void)
 {
 	HAL_Init();								// Initialize HAL
-    SystemClock_Config();
-    
-    //USART Initalizations
-    GPIO_AF_Init();
-    USART_Init();
+	SystemClock_Config();
 
-    motor_init();                           // Initialize motor code
-    
-    NVIC_EnableIRQ(USART3_4_IRQn);
-    NVIC_SetPriority(USART3_4_IRQn,1);
+	//USART Initalizations
+	GPIO_AF_Init();
+	USART_Init();
 
-    uint8_t prompt[] = "CMD> ";
-    
-    //PWM and Ultrasonic Initalizations
-    MX_GPIO_Init();
-    MX_TIM1_Init();
-    
-    HAL_TIM_Base_Start(&htim1);
-    HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_RESET);
-    HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_RESET);
-	
+	motor_init();                           // Initialize motor code
+
+	NVIC_EnableIRQ(USART3_4_IRQn);
+	NVIC_SetPriority(USART3_4_IRQn,1);
+
+	uint8_t prompt[] = "CMD> ";
+
+	//PWM and Ultrasonic Initalizations
+	MX_GPIO_Init();
+	MX_TIM1_Init();
+
+	HAL_TIM_Base_Start(&htim1);
+	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_RESET);
+
 	while (1) {
-        int32_t counter = 0;
-        HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_SET);  // pull the TRIG pin HIGH
-        
-        //__HAL_TIM_SET_COUNTER(&htim1, 0);
-        //while(__HAL_TIM_GET_COUNTER(&htim1) < 10);
-        while (counter < 10){
-            counter++;
-        }  // wait for 10 us
-        HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_RESET);  // pull the TRIG pin low
-        
-        
-        startTime = HAL_GetTick();
-        pMillis = HAL_GetTick(); // used this to avoid infinite while loop  (for timeout)
-        
-        // wait for the echo pin to go high
-        while (!(HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_LEFT)) && pMillis + 10 >  HAL_GetTick())
-        {
-         
-        }
-        //Value1 = __HAL_TIM_GET_COUNTER (&htim1);
-        Value1 = (HAL_GetTick() - startTime);
-        
+		int32_t counter = 0;
+		HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_SET);  // pull the TRIG pin HIGH
 
-      pMillis = HAL_GetTick(); // used this to avoid infinite while loop (for timeout)
-      // wait for the echo pin to go low
-        while ((HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_LEFT)) && pMillis + 50 > HAL_GetTick())
-        {
-            
-        }
-      //Value2 = __HAL_TIM_GET_COUNTER (&htim1);
-        Value2 = (HAL_GetTick() - startTime);
+		//__HAL_TIM_SET_COUNTER(&htim1, 0);
+		//while(__HAL_TIM_GET_COUNTER(&htim1) < 10);
+		while (counter < 10){
+			counter++;
+		}  // wait for 10 us
+		HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_RESET);  // pull the TRIG pin low
 
-      //Distance = ((Value2-Value1)* 0.034)/2;
-        leftDistance = (Value2 - Value1);
-        if(leftDistance < 10)
-        {
-            char strLeft[32];
-            sprintf(strLeft, "%u", leftDistance);
+
+		startTime = HAL_GetTick();
+		pMillis = HAL_GetTick(); // used this to avoid infinite while loop  (for timeout)
+
+		// wait for the echo pin to go high
+		while (!(HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_LEFT)) && pMillis + 10 >  HAL_GetTick())
+		{
+
+		}
+		//Value1 = __HAL_TIM_GET_COUNTER (&htim1);
+		Value1 = (HAL_GetTick() - startTime);
+
+
+		pMillis = HAL_GetTick(); // used this to avoid infinite while loop (for timeout)
+								 // wait for the echo pin to go low
+		while ((HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_LEFT)) && pMillis + 50 > HAL_GetTick())
+		{
+
+		}
+		//Value2 = __HAL_TIM_GET_COUNTER (&htim1);
+		Value2 = (HAL_GetTick() - startTime);
+
+		//Distance = ((Value2-Value1)* 0.034)/2;
+		leftDistance = (Value2 - Value1);
+		if(leftDistance < 10)
+		{
+			char strLeft[32];
+			sprintf(strLeft, "%u", leftDistance);
 			/*
-            USART_SendString("Left Ultrasonic: ");
-            USART_SendString(strLeft);
-            USART_SendString("\n");
-			*/
-        }
-        
-        counter = 0;
-        HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_SET);  // pull the TRIG pin HIGH
-        
-        //__HAL_TIM_SET_COUNTER(&htim1, 0);
-        //while(__HAL_TIM_GET_COUNTER(&htim1) < 10);
-        while (counter < 10){
-            counter++;
-        }  // wait for 10 us
-        HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_RESET);  // pull the TRIG pin low
-        
-        
-        startTime = HAL_GetTick();
-        pMillis = HAL_GetTick(); // used this to avoid infinite while loop  (for timeout)
-        
-        // wait for the echo pin to go high
-        while (!(HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_RIGHT)) && pMillis + 10 >  HAL_GetTick())
-        {
-         
-        }
-        //Value1 = __HAL_TIM_GET_COUNTER (&htim1);
-        Value1 = (HAL_GetTick() - startTime);
-        
+			   USART_SendString("Left Ultrasonic: ");
+			   USART_SendString(strLeft);
+			   USART_SendString("\n");
+			   */
+		}
 
-      pMillis = HAL_GetTick(); // used this to avoid infinite while loop (for timeout)
-      // wait for the echo pin to go low
-        while ((HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_RIGHT)) && pMillis + 50 > HAL_GetTick())
-        {
-            
-        }
-      //Value2 = __HAL_TIM_GET_COUNTER (&htim1);
-        Value2 = (HAL_GetTick() - startTime);
+		counter = 0;
+		HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_SET);  // pull the TRIG pin HIGH
 
-      //Distance = ((Value2-Value1)* 0.034)/2;
-        rightDistance = (Value2 - Value1);
-        if(rightDistance < 10)
-        {
-            char strRight[32];
-            sprintf(strRight, "%u", rightDistance);
+		//__HAL_TIM_SET_COUNTER(&htim1, 0);
+		//while(__HAL_TIM_GET_COUNTER(&htim1) < 10);
+		while (counter < 10){
+			counter++;
+		}  // wait for 10 us
+		HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_RESET);  // pull the TRIG pin low
+
+
+		startTime = HAL_GetTick();
+		pMillis = HAL_GetTick(); // used this to avoid infinite while loop  (for timeout)
+
+		// wait for the echo pin to go high
+		while (!(HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_RIGHT)) && pMillis + 10 >  HAL_GetTick())
+		{
+
+		}
+		//Value1 = __HAL_TIM_GET_COUNTER (&htim1);
+		Value1 = (HAL_GetTick() - startTime);
+
+
+		pMillis = HAL_GetTick(); // used this to avoid infinite while loop (for timeout)
+								 // wait for the echo pin to go low
+		while ((HAL_GPIO_ReadPin (ECHO_PORT, ECHO_PIN_RIGHT)) && pMillis + 50 > HAL_GetTick())
+		{
+
+		}
+		//Value2 = __HAL_TIM_GET_COUNTER (&htim1);
+		Value2 = (HAL_GetTick() - startTime);
+
+		//Distance = ((Value2-Value1)* 0.034)/2;
+		rightDistance = (Value2 - Value1);
+		if(rightDistance < 10)
+		{
+			char strRight[32];
+			sprintf(strRight, "%u", rightDistance);
 			/*
-            USART_SendString("Right Ultrasonic: ");
-            USART_SendString(strRight);
-            USART_SendString("\n");
-			*/
-	}
+			   USART_SendString("Right Ultrasonic: ");
+			   USART_SendString(strRight);
+			   USART_SendString("\n");
+			   */
+		}
 		if(incomingCommand)
 		{
 			if(command[0] != 'w' &&
@@ -500,15 +501,15 @@ int main(void)
 			}
 		}
 		/*
-		if(incomingCommand){
-			if(command[2]){
-				uint8_t tens = command[1] - '0';
-				uint8_t huns = command[2] - '0';
-				ProcessCommandPWM(command[0], 10*tens + huns);
-			}
-		}
-		*/
-	 HAL_Delay(500);
+		   if(incomingCommand){
+		   if(command[2]){
+		   uint8_t tens = command[1] - '0';
+		   uint8_t huns = command[2] - '0';
+		   ProcessCommandPWM(command[0], 10*tens + huns);
+		   }
+		   }
+		   */
+		HAL_Delay(500);
 	}
 }
 
@@ -555,74 +556,74 @@ void SystemClock_Config(void)
 static void MX_TIM1_Init(void)
 {
 
-  /* USER CODE BEGIN TIM1_Init 0 */
+	/* USER CODE BEGIN TIM1_Init 0 */
 
-  /* USER CODE END TIM1_Init 0 */
+	/* USER CODE END TIM1_Init 0 */
 
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+	TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+	TIM_MasterConfigTypeDef sMasterConfig = {0};
+	TIM_OC_InitTypeDef sConfigOC = {0};
+	TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
 
-  /* USER CODE BEGIN TIM1_Init 1 */
+	/* USER CODE BEGIN TIM1_Init 1 */
 
-  /* USER CODE END TIM1_Init 1 */
-  htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
-  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 65535;
-  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim1.Init.RepetitionCounter = 0;
-  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
-  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
-  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
-  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
-  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
-  sBreakDeadTimeConfig.DeadTime = 0;
-  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
-  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
-  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
-  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM1_Init 2 */
+	/* USER CODE END TIM1_Init 1 */
+	htim1.Instance = TIM1;
+	htim1.Init.Prescaler = 0;
+	htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+	htim1.Init.Period = 65535;
+	htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	htim1.Init.RepetitionCounter = 0;
+	htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+	if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+	if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+	if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sConfigOC.OCMode = TIM_OCMODE_PWM1;
+	sConfigOC.Pulse = 0;
+	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+	sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+	sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+	sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+	if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+	sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+	sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+	sBreakDeadTimeConfig.DeadTime = 0;
+	sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+	sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+	sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+	if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	/* USER CODE BEGIN TIM1_Init 2 */
 
-  /* USER CODE END TIM1_Init 2 */
-  HAL_TIM_MspPostInit(&htim1);
+	/* USER CODE END TIM1_Init 2 */
+	HAL_TIM_MspPostInit(&htim1);
 
 }
 
