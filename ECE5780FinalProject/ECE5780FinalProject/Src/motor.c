@@ -4,21 +4,15 @@
  */
 #include "motor.h"
 
-volatile int16_t error_integral = 0;    // Integrated error signal
-volatile uint8_t duty_cycle = 0;    	// Output PWM duty cycle
-volatile int16_t target_rpm = 0;    	// Desired speed target
 volatile int16_t motorl_speed = 0;   	// Measured left motor speed
 volatile int16_t motorr_speed = 0;   	// Measured left motor speed
-volatile int8_t adc_value = 0;      	// ADC measured motor current
-volatile int16_t error = 0;         	// Speed error signal
-volatile uint8_t Kp = 1;            	// Proportional gain
-volatile uint8_t Ki = 1;            	// Integral gain
+volatile uint8_t target_dist = 0;
+volatile float current_dist = 0;
 
 // Sets up the entire motor drive system
 void motor_init(void) {
     pwm_init();
     encoder_init();
-    ADC_init();
 }
 
 // Sets up the PWM and direction signals to drive the H-Bridge
@@ -205,12 +199,15 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 	switch(cmd->dir){
 		case FORWARD:
 			set_Forward();
+			target_dist = cmd->amount;
 			break;
 		case LEFT:
 			set_Left();
+			target_dist = (uint8_t) (cmd->amount / 11.5);
 			break;
 		case RIGHT:
 			set_Right();
+			target_dist = (uint8_t) (cmd->amount / 11.5);
 			break;
 		case OFF:
 			motors_Off();
@@ -287,30 +284,23 @@ void TIM6_DAC_IRQHandler(void) {
      */
     motorl_speed = (TIM3->CNT - 0x7FFF);
     TIM3->CNT = 0x7FFF; // Reset back to center point
-	  motorr_speed = (TIM15->CNT - 0x7FFF);
+	motorr_speed = (TIM15->CNT - 0x7FFF);
     TIM15->CNT = 0x7FFF; // Reset back to center point
+	
+	if(abs(motorl_speed)>10){
+		ratio = fabs(((float) motorr_speed)/ ((float) motorl_speed));
+		pwm_right = (int)(pwm_left * ratio);
+	}
+	
+	if(target_dist > 0){
+		current_dist += (float)abs(motorl_speed)/5.0;
+		if ((uint8_t)current_dist >= target_dist){
+			motors_Off();
+			target_dist = 0;
+			current_dist = 0;
+		}
+	}
     
     // Call the PI update function
     TIM6->SR &= ~TIM_SR_UIF;        // Acknowledge the interrupt
-}
-
-void ADC_init(void) {
-
-    // Configure PA1 for ADC input (used for current monitoring)
-    GPIOA->MODER |= (GPIO_MODER_MODER1_0 | GPIO_MODER_MODER1_1);
-
-    // Configure ADC to 8-bit continuous-run mode, (asynchronous clock mode)
-    RCC->APB2ENR |= RCC_APB2ENR_ADCEN;
-
-    ADC1->CFGR1 = 0;                        // Default resolution is 12-bit (RES[1:0] = 00 --> 12-bit)
-    ADC1->CFGR1 |= ADC_CFGR1_CONT;          // Set to continuous mode
-    ADC1->CHSELR |= ADC_CHSELR_CHSEL1;      // Enable channel 1
-
-    ADC1->CR = 0;
-    ADC1->CR |= ADC_CR_ADCAL;               // Perform self calibration
-    while(ADC1->CR & ADC_CR_ADCAL);         // Delay until calibration is complete
-
-    ADC1->CR |= ADC_CR_ADEN;                // Enable ADC
-    while(!(ADC1->ISR & ADC_ISR_ADRDY));    // Wait until ADC ready
-    ADC1->CR |= ADC_CR_ADSTART;             // Signal conversion start
 }
