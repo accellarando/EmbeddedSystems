@@ -17,6 +17,8 @@ volatile bool turning = false;
 #define max(a,b) ((a>b) ? a : b)
 #define min(a,b) ((a>b) ? b : a)
 
+#define PRINT_DEBUG 1
+
 // Sets up the entire motor drive system
 void motor_init(void) {
     pwm_init();
@@ -313,18 +315,24 @@ void TIM6_DAC_IRQHandler(void) {
 		float ratio = ((float) abs(motorl_speed))/ ((float) motorr_speed);
 		pwm_right = min((int)(pwm_right * ratio), 100);
 		pwm_setDutyCycleR(pwm_right);
+#if PRINT_DEBUG
 		sprintf(usart_buffer, "pwm_right: %d\n", pwm_right);
 		USART_SendString(usart_buffer);
 		sprintf(usart_buffer, "motorr: %d\n", motorr_speed);
 		USART_SendString(usart_buffer);
+#endif
 	}
 	
 	if(target_dist > 0){
 		current_dist += (float)abs(motorl_speed)/70;
+#if PRINT_DEBUG
 		sprintf(usart_buffer, "current_dist: %d\n", (int)current_dist);
 		USART_SendString(usart_buffer);
+#endif
 		if ((uint8_t)current_dist >= target_dist){
+#if PRINT_DEBUG
 			USART_SendString("Hit target\n");
+#endif
 			motors_Off();
 			motorl_speed = (TIM3->CNT - 0x7FFF);
 			TIM3->CNT = 0x7FFF; // Reset back to center point
