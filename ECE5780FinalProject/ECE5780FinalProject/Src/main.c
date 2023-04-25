@@ -362,7 +362,9 @@ void Ultrasonic_Init(uint32_t pins)
 
 void GetDistance()
 {
-
+	char dist[32] = "";
+	sprintf(dist, "%f\n", get_distance());
+	USART_SendString(dist);
 }
 
 /* USER CODE END 0 */

@@ -8,6 +8,9 @@ volatile int16_t motorl_speed = 0;   	// Measured left motor speed
 volatile int16_t motorr_speed = 0;   	// Measured left motor speed
 volatile uint8_t target_dist = 0;
 volatile float current_dist = 0;
+volatile float absolute_dist = 0;
+volatile float heading = 0;
+volatile bool turning = false;
 
 // Sets up the entire motor drive system
 void motor_init(void) {
@@ -117,7 +120,7 @@ void set_Motor_Direction(Direction dir, motor_pins_t* pins){
 }
 
 //Experimentation led to this 91 number for driving straight.
-volatile uint8_t pwm_right = 92;
+volatile uint8_t pwm_right = 100;
 volatile uint8_t pwm_left = 100;
 
 void set_Forward(){
@@ -198,16 +201,21 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 	uint8_t* err = "MoveMotors executed!\n";
 	switch(cmd->dir){
 		case FORWARD:
-			set_Forward();
+			turning = false;
 			target_dist = cmd->amount;
+			set_Forward();
 			break;
 		case LEFT:
-			set_Left();
+			turning = true;
 			target_dist = (uint8_t) (cmd->amount / 11.5);
+			heading += cmd->amount;
+			set_Left();
 			break;
 		case RIGHT:
-			set_Right();
+			turning = true;
 			target_dist = (uint8_t) (cmd->amount / 11.5);
+			heading -= cmd->amount;
+			set_Right();
 			break;
 		case OFF:
 			motors_Off();
@@ -217,7 +225,7 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 	}
 	//THIS IS BAD. if you send an x it won't stop motors until this delay finishes!
 	//Switch to a polling structure instead for final
-	HAL_Delay(10*cmd->amount); 
+	HAL_Delay(1000*cmd->amount); 
 	motors_Off();
 	return err;
 }
@@ -288,14 +296,17 @@ void TIM6_DAC_IRQHandler(void) {
     TIM15->CNT = 0x7FFF; // Reset back to center point
 	
 	if(abs(motorl_speed)>10){
-		ratio = fabs(((float) motorr_speed)/ ((float) motorl_speed));
-		pwm_right = (int)(pwm_left * ratio);
+		float ratio = ((float) abs(motorr_speed))/ ((float) motorl_speed);
+		pwm_right = (int)(pwm_right * ratio);
 	}
 	
 	if(target_dist > 0){
 		current_dist += (float)abs(motorl_speed)/5.0;
 		if ((uint8_t)current_dist >= target_dist){
 			motors_Off();
+			if(!turning){
+				absolute_dist += current_dist * (float)sin((double)heading)
+			}
 			target_dist = 0;
 			current_dist = 0;
 		}
@@ -303,4 +314,8 @@ void TIM6_DAC_IRQHandler(void) {
     
     // Call the PI update function
     TIM6->SR &= ~TIM_SR_UIF;        // Acknowledge the interrupt
+}
+
+float get_distance(void){
+	return absolute_dist;
 }

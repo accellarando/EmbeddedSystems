@@ -11,14 +11,12 @@
  *  Global Variable and Type Declarations
  *  -------------------------------------------------------------------------------------------------------------
  */
-extern volatile int16_t error_integral;    // Integrated error signal
-extern volatile uint8_t duty_cycle;    // Output PWM duty cycle
-extern volatile int16_t target_rpm;    // Desired speed target
 extern volatile int16_t motor_speed;   // Measured motor speed
-extern volatile int8_t adc_value;      // ADC measured motor current
-extern volatile int16_t error;         // Speed error signal
-extern volatile uint8_t Kp;            // Proportional gain
-extern volatile uint8_t Ki;            // Integral gain
+extern volatile uint8_t target_dist = 0;
+extern volatile float current_dist = 0;
+extern volatile float absolute_dist = 0;
+extern volatile float heading = 0;
+extern volatile bool turning = false;
 									   //
 extern volatile uint8_t pwm_right;
 extern volatile uint8_t pwm_left;
@@ -56,8 +54,8 @@ void set_Backward();
 void set_Left();
 void set_Right();
 
-// PI control code is called within a timer interrupt
-void PI_update(void);
+// Distance return
+float get_distance(void);
 
 uint8_t* MoveMotors(MotorCommand* cmd);
 
@@ -72,8 +70,5 @@ void pwm_init(void);
 
 // Sets up encoder interface to read motor speed
 void encoder_init(void);
-
-// Sets up ADC to measure motor current
-void ADC_init(void);
 
 #endif /* MOTOR_H_ */
