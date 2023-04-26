@@ -66,7 +66,7 @@ volatile uint16_t rightDistance = 0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_TIM1_Init(void);
+static void MX_TIM15_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -206,134 +206,13 @@ void USART3_4_IRQHandler(){
 	}
 }
 
-uint8_t first_captured = 0;
-uint32_t IC_Val1 = 0;
-uint32_t IC_Val2 = 0;
-uint32_t Difference = 0;
-uint32_t distance = 0;
-
-void TIM15_IRQHandler(void){
-	if(!first_captured){
-		IC_Val1 = HAL_TIM_ReadCapturedValue(&htim1, TIM_CHANNEL_1); // read the first value
-		first_captured = 1;  // set the first captured as true
-							 // Now change the polarity to falling edge
-		__HAL_TIM_SET_CAPTUREPOLARITY(&htim1, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_FALLING);
-	}
-	else{
-		IC_Val2 = HAL_TIM_ReadCapturedValue(&htim1, TIM_CHANNEL_1);  // read second value
-		__HAL_TIM_SET_COUNTER(&htim1, 0);  // reset the counter
-
-		if (IC_Val2 > IC_Val1)
-		{
-			Difference = IC_Val2-IC_Val1;
-		}
-
-		else if (IC_Val1 > IC_Val2)
-		{
-			Difference = (0xffff - IC_Val1) + IC_Val2;
-		}
-
-		Distance = Difference * .034/2;
-		Is_First_Captured = 0; // set it back to false
-
-		// set polarity to rising edge
-		__HAL_TIM_SET_CAPTUREPOLARITY(&htim1, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_RISING);
-		__HAL_TIM_DISABLE_IT(&htim1, TIM_IT_CC1);
-	}
-}
-}
-
-void TIM15_Init(){
-	RCC->APB2ENR |= RCC_APB2ENR_TIM15EN;
-
-	TIM15->PSC = 71;
-	TIM15->ARR = 65535;
-	TIM15->DIER |= (1<<9);
-	TIM15->CR1 |= TIM_CR1_CEN;
-
-	NVIC_EnableIRQ(TIM15_IRQn);
-}
-
-uint32_t Get_TIM15_Ticks(){
-	return TIM15->CNT;
-}
-
-void Set_TIM15_Ticks(uint32_t cnt){
-	TIM15->CR1 &= ~(TIM_CR1_CEN);
-	TIM15->CNT = cnt;
-	TIM15->CR1 |= TIM_CR1_CEN;
-}
-
-uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
-	volatile uint32_t counter = 0;
-
-	HAL_GPIO_WritePin(ultrasonic->trig.gpio, 
-			ultrasonic->trig.pin.Pin,
-			GPIO_PIN_SET); //pull left TRIG high
-
-	//__HAL_TIM_SET_COUNTER(&htim1, 0);
-	Set_TIM15_Ticks(0);
-	while(Get_TIM15_Ticks() < 10){
-		/* uint8_t str_buff[32]; */
-		/* sprintf(str_buff, "ticks: %d\n", Get_TIM15_Ticks()); */
-		/* USART_SendString(str_buff); */
-		;
-	}
-	/* while (counter < 10){ */
-	/* 	counter++; */
-	/* }   */
-	HAL_GPIO_WritePin(ultrasonic->trig.gpio, 
-			ultrasonic->trig.pin.Pin,
-			GPIO_PIN_RESET); //pull left TRIG low 
-
-	/* startTime = __HAL_TIM_GET_COUNTER(&htim1); */
-	/* pMillis = __HAL_TIM_GET_COUNTER(&htim1); // used this to avoid infinite while loop  (for timeout) */
-	startTime = Get_TIM15_Ticks();
-	pMillis = Get_TIM15_Ticks();
-
-	// wait for the echo pin to go high
-	while (!(HAL_GPIO_ReadPin (ultrasonic->echo.gpio, 
-					ultrasonic->echo.pin.Pin)) && 
-			pMillis + 10 > Get_TIM15_Ticks())
-		;
-
-	Value1 = Get_TIM15_Ticks();
-	/* Value1 = (HAL_GetTick() - startTime); */
-
-
-	/* pMillis = HAL_GetTick(); // used this to avoid infinite while loop (for timeout) */
-	/* pMillis = __HAL_TIM_GET_COUNTER(&htim1); */
-	pMillis = Get_TIM15_Ticks();
-	// wait for the echo pin to go low
-	while ((HAL_GPIO_ReadPin (ultrasonic->echo.gpio,
-					ultrasonic->echo.pin.Pin)) && 
-			pMillis + 50 > Get_TIM15_Ticks())
-		;
-
-	/* Value2 = (HAL_GetTick() - startTime); */
-	/* Value2 = __HAL_TIM_GET_COUNTER(&htim1); */
-	Value2 = Get_TIM15_Ticks();
-
-	//Distance = ((Value2-Value1)* 0.034)/2;
-	uint32_t distance = (Value2 - Value1);
-	/*
-	   if(leftDistance < 10)
-	   {
-	   char strLeft[32];
-	   sprintf(strLeft, "%u", leftDistance);
-	   USART_SendString("Left Ultrasonic: ");
-	   USART_SendString(strLeft);
-	   USART_SendString("\n");
-	   }
-	   */
-	return distance;
-}
 void Log(){
 	uint8_t str_buff[32];
-	sprintf(str_buff, "Ultrasonic left: %d\n", GetUltrasonic(&ultrasonic_left_pins));
-	USART_SendString(str_buff);
 
 	sprintf(str_buff, "Ultrasonic right: %d\n", GetUltrasonic(&ultrasonic_right_pins));
+	USART_SendString(str_buff);
+
+	sprintf(str_buff, "Ultrasonic left: %d\n", GetUltrasonic(&ultrasonic_left_pins));
 	USART_SendString(str_buff);
 }
 
@@ -494,13 +373,89 @@ void PrintDistance()
 	USART_SendString(dist);
 }
 
+volatile uint32_t risingEdgeTime;
+volatile uint32_t fallingEdgeTime;
+volatile uint32_t pulseWidth = 0;
+// Define constants
+#define SOUND_SPEED 340 // speed of sound in m/s
+#define TIMER_CLOCK_FREQ 8000000 // timer clock frequency in Hz
 
+// Declare global variables
+TIM_HandleTypeDef htim15;
+uint32_t pulse_start_time = 0;
+uint32_t pulse_end_time = 0;
+
+uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
+	HAL_TIM_Base_Start(&htim1);
+	HAL_GPIO_WritePin(ultrasonic->trig.gpio, ultrasonic->trig.pin.Pin, GPIO_PIN_SET);
+	__HAL_TIM_SET_COUNTER(&htim1, 0);
+	while (__HAL_TIM_GET_COUNTER (&htim1) < 10){
+		;  // wait for 10 us
+	}
+	HAL_GPIO_WritePin(ultrasonic->trig.gpio, ultrasonic->trig.pin.Pin, GPIO_PIN_RESET);
+
+	pMillis = HAL_GetTick();
+	while (!(HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 10 >  HAL_GetTick()){
+	}
+	uint16_t val1 = __HAL_TIM_GET_COUNTER (&htim1);
+
+	pMillis = HAL_GetTick();
+	while ((HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 50 > HAL_GetTick()){
+	}
+
+	uint16_t val2 = __HAL_TIM_GET_COUNTER (&htim1);
+
+	return (val2-val1)* 0.034/2;
+}
 /* USER CODE END 0 */
 
 /**
  * @brief  The application entry point.
  * @retval int
  */
+
+//doesn't actually init tim15 but don't worry about it....
+/*
+void TIM15_Init(){
+	TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+	TIM_MasterConfigTypeDef sMasterConfig = {0};
+	TIM_IC_InitTypeDef sConfigIC = {0};
+
+	htim15.Instance = TIM15;
+	htim15.Init.Prescaler = 14;
+	htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
+	htim15.Init.Period = 0xFFFF;
+	htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+	if (HAL_TIM_ConfigClockSource(&htim15, &sClockSourceConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	if (HAL_TIM_IC_Init(&htim15) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sConfigIC.ICPolarity = TIM_ICPOLARITY_BOTHEDGE;
+	sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
+	sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
+	sConfigIC.ICFilter = 0;
+	if (HAL_TIM_IC_ConfigChannel(&htim15, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+	if (HAL_TIMEx_MasterConfigSynchronization(&htim15, &sMasterConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+}
+*/
+
 int main(void)
 {
 	HAL_Init();								// Initialize HAL
@@ -509,7 +464,6 @@ int main(void)
 	//USART Initalizations
 	GPIO_AF_Init();
 	USART_Init();
-	TIM15_Init();
 
 	motor_init();                           // Initialize motor code
 
@@ -520,7 +474,8 @@ int main(void)
 
 	//PWM and Ultrasonic Initalizations
 	MX_GPIO_Init();
-	/* MX_TIM1_Init(); */
+	/* TIM15_Init(); */
+	MX_TIM15_Init(); 
 
 	/* HAL_TIM_Base_Start(&htim1); */
 	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_RESET);
@@ -588,91 +543,51 @@ void SystemClock_Config(void)
 }
 
 /**
- * @brief TIM2 Initialization Function
+ * @brief TIM15 Initialization Function
  * @param None
  * @retval None
  */
-static void MX_TIM1_Init(void)
+static void MX_TIM15_Init(void)
 {
 
-	/* USER CODE BEGIN TIM1_Init 0 */
+  /* USER CODE BEGIN TIM1_Init 0 */
 
-	/* USER CODE END TIM1_Init 0 */
+  /* USER CODE END TIM1_Init 0 */
 
-	TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-	TIM_MasterConfigTypeDef sMasterConfig = {0};
-	TIM_IC_InitTypeDef sConfigIC = {0};
-	TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
 
-	/* USER CODE BEGIN TIM1_Init 1 */
+  /* USER CODE BEGIN TIM1_Init 1 */
 
-	/* USER CODE END TIM1_Init 1 */
-	htim1.Instance = TIM15;
-	htim1.Init.Prescaler = 71;
-	htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim1.Init.Period = 65534;
-	htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	htim1.Init.RepetitionCounter = 0;
-	htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-	if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-	if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-	if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_RISING;
-	sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
-	sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
-	sConfigIC.ICFilter = 0;
-	if (HAL_TIM_IC_ConfigChannel(&htim1, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	/*
-	   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-	   sConfigOC.Pulse = 0;
-	   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-	   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-	   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-	   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
-	   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-	   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-	   {
-	   Error_Handler();
-	   }
-	   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
-	   {
-	   Error_Handler();
-	   }
-	   sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
-	   sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
-	   sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
-	   sBreakDeadTimeConfig.DeadTime = 0;
-	   sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
-	   sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
-	   sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
-	   if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
-	   {
-	   Error_Handler();
-	   }
-	   */
-	/* USER CODE BEGIN TIM1_Init 2 */
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM15;
+  htim1.Init.Prescaler = 71;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 65535;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
 
-	/* USER CODE END TIM1_Init 2 */
-	HAL_TIM_MspPostInit(&htim1);
+  __HAL_RCC_TIM15_CLK_ENABLE();
+
+  /* USER CODE BEGIN TIM1_Init 2 */
+
+  /* USER CODE END TIM1_Init 2 */
 
 }
 
