@@ -1,0 +1,10 @@
+Updates:
+	Ultrasonic sensors sort of work?
+	That pin on the right side is still loose on the motor driver
+
+Todo 2023-04-26
+Ella: bring extra voltage regulator
+Matt:
+Ryan: re-solder right side white pin header
+
+meet next: thursday

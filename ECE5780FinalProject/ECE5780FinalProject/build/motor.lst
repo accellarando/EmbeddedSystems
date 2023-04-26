@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccCg0tSZ.s 			page 1
+ARM GAS  /tmp/cc362czD.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
   27              		.loc 1 29 21 view -0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccCg0tSZ.s 			page 2
+ARM GAS  /tmp/cc362czD.s 			page 2
 
 
   30              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
   61:Src/motor.c   **** 
   62:Src/motor.c   **** 	HAL_GPIO_WritePin(motor_right_pins.dir_a.gpio, motor_right_pins.dir_a.pin.Pin, GPIO_PIN_SET);
   53              		.loc 1 62 2 view .LVU5
-ARM GAS  /tmp/ccCg0tSZ.s 			page 3
+ARM GAS  /tmp/cc362czD.s 			page 3
 
 
   54              		.loc 1 62 75 is_stmt 0 view .LVU6
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
   98 004e DB05     		lsls	r3, r3, #23
   99 0050 1960     		str	r1, [r3]
   73:Src/motor.c   ****     TIM2->CCMR1 = 0;                       // (prevents having to manually clear bits)
-ARM GAS  /tmp/ccCg0tSZ.s 			page 4
+ARM GAS  /tmp/cc362czD.s 			page 4
 
 
  100              		.loc 1 73 5 is_stmt 1 view .LVU23
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  142 007a 2243     		orrs	r2, r4
  143 007c 9A61     		str	r2, [r3, #24]
   86:Src/motor.c   ****     TIM2->CCER |= TIM_CCER_CC2E;           // Enable capture-compare channel 2
-ARM GAS  /tmp/ccCg0tSZ.s 			page 5
+ARM GAS  /tmp/cc362czD.s 			page 5
 
 
  144              		.loc 1 86 5 is_stmt 1 view .LVU45
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  191              		.cfi_startproc
  192              		@ args = 0, pretend = 0, frame = 0
  193              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccCg0tSZ.s 			page 6
+ARM GAS  /tmp/cc362czD.s 			page 6
 
 
  194              		.loc 1 95 38 is_stmt 0 view .LVU59
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  242              		.loc 1 103 38 is_stmt 0 view .LVU69
  243 0000 10B5     		push	{r4, lr}
  244              	.LCFI2:
-ARM GAS  /tmp/ccCg0tSZ.s 			page 7
+ARM GAS  /tmp/cc362czD.s 			page 7
 
 
  245              		.cfi_def_cfa_offset 8
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  290              		.cfi_def_cfa_offset 8
  291              		.cfi_offset 4, -8
  292              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccCg0tSZ.s 			page 8
+ARM GAS  /tmp/cc362czD.s 			page 8
 
 
  293 0002 0C00     		movs	r4, r1
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  328              		.loc 1 121 4 view .LVU88
  329 0024 898B     		ldrh	r1, [r1, #28]
  330              	.LVL19:
-ARM GAS  /tmp/ccCg0tSZ.s 			page 9
+ARM GAS  /tmp/cc362czD.s 			page 9
 
 
  121:Src/motor.c   **** 			HAL_GPIO_WritePin(pins->dir_b.gpio, pins->dir_b.pin.Pin, GPIO_PIN_SET);
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  136:Src/motor.c   **** 
  137:Src/motor.c   **** 	//right go forward
  138:Src/motor.c   **** 	set_Motor_Direction(FORWARD, &motor_right_pins);
-ARM GAS  /tmp/ccCg0tSZ.s 			page 10
+ARM GAS  /tmp/cc362czD.s 			page 10
 
 
  374              		.loc 1 138 2 view .LVU97
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  416              		@ frame_needed = 0, uses_anonymous_args = 0
  417 0000 10B5     		push	{r4, lr}
  418              	.LCFI5:
-ARM GAS  /tmp/ccCg0tSZ.s 			page 11
+ARM GAS  /tmp/cc362czD.s 			page 11
 
 
  419              		.cfi_def_cfa_offset 8
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  460              		.syntax unified
  461              		.code	16
  462              		.thumb_func
-ARM GAS  /tmp/ccCg0tSZ.s 			page 12
+ARM GAS  /tmp/cc362czD.s 			page 12
 
 
  464              	set_Right:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  502              	.L21:
  503 0028 00000000 		.word	motor_left_pins
  504 002c 00000000 		.word	motor_right_pins
-ARM GAS  /tmp/ccCg0tSZ.s 			page 13
+ARM GAS  /tmp/cc362czD.s 			page 13
 
 
  505 0030 00000000 		.word	pwm_right
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  194:Src/motor.c   **** 		GPIOA->ODR |= (1 << 8);
  195:Src/motor.c   **** 		GPIOA->ODR &= ~(1 << 5);
  196:Src/motor.c   **** 		GPIOB->ODR |= (1 << 10);
-ARM GAS  /tmp/ccCg0tSZ.s 			page 14
+ARM GAS  /tmp/cc362czD.s 			page 14
 
 
  197:Src/motor.c   **** 		GPIOB->ODR &= ~(1 << 2);
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  598      4D6F746F 
  598      72732065 
  598      78656375 
-ARM GAS  /tmp/ccCg0tSZ.s 			page 15
+ARM GAS  /tmp/cc362czD.s 			page 15
 
 
  598      74656421 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  644 0014 012B     		cmp	r3, #1
  645 0016 1CD1     		bne	.L34
  210:Src/motor.c   **** 		case FORWARD:
-ARM GAS  /tmp/ccCg0tSZ.s 			page 16
+ARM GAS  /tmp/cc362czD.s 			page 16
 
 
  211:Src/motor.c   **** 			turning = false;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  689              	.LVL50:
  690              	.L34:
  209:Src/motor.c   **** 		case FORWARD:
-ARM GAS  /tmp/ccCg0tSZ.s 			page 17
+ARM GAS  /tmp/cc362czD.s 			page 17
 
 
  691              		.loc 1 209 2 view .LVU143
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  211:Src/motor.c   **** 			target_dist = cmd->amount;
  723              		.loc 1 211 4 is_stmt 1 view .LVU153
  211:Src/motor.c   **** 			target_dist = cmd->amount;
-ARM GAS  /tmp/ccCg0tSZ.s 			page 18
+ARM GAS  /tmp/cc362czD.s 			page 18
 
 
  724              		.loc 1 211 12 is_stmt 0 view .LVU154
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  764              		.loc 1 223 16 view .LVU168
  765 009c 094B     		ldr	r3, .L36+8
  766 009e 1870     		strb	r0, [r3]
-ARM GAS  /tmp/ccCg0tSZ.s 			page 19
+ARM GAS  /tmp/cc362czD.s 			page 19
 
 
  224:Src/motor.c   **** 			set_Right();
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  814              		.cfi_def_cfa_offset 20
  815              		.cfi_offset 4, -20
  816              		.cfi_offset 5, -16
-ARM GAS  /tmp/ccCg0tSZ.s 			page 20
+ARM GAS  /tmp/cc362czD.s 			page 20
 
 
  817              		.cfi_offset 6, -12
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  265:Src/motor.c   ****     TIM3->CCMR1 |= (TIM_CCMR1_CC1S_0 | TIM_CCMR1_CC2S_0);   // TI1FP1 and TI2FP2 signals connected 
  850              		.loc 1 265 5 is_stmt 1 view .LVU190
  851              		.loc 1 265 9 is_stmt 0 view .LVU191
-ARM GAS  /tmp/ccCg0tSZ.s 			page 21
+ARM GAS  /tmp/cc362czD.s 			page 21
 
 
  852 0022 9869     		ldr	r0, [r3, #24]
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  894              		.loc 1 277 5 is_stmt 1 view .LVU211
  895              		.loc 1 277 9 is_stmt 0 view .LVU212
  896 0050 9A69     		ldr	r2, [r3, #24]
-ARM GAS  /tmp/ccCg0tSZ.s 			page 22
+ARM GAS  /tmp/cc362czD.s 			page 22
 
 
  897              		.loc 1 277 17 view .LVU213
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  935              		.loc 1 293 5 is_stmt 1 view .LVU231
  936              		.loc 1 293 9 is_stmt 0 view .LVU232
  937 007a DA68     		ldr	r2, [r3, #12]
-ARM GAS  /tmp/ccCg0tSZ.s 			page 23
+ARM GAS  /tmp/cc362czD.s 			page 23
 
 
  938              		.loc 1 293 16 view .LVU233
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
   38:Drivers/CMSIS/Include/core_cm0.h **** #endif
   39:Drivers/CMSIS/Include/core_cm0.h **** 
   40:Drivers/CMSIS/Include/core_cm0.h **** /**
-ARM GAS  /tmp/ccCg0tSZ.s 			page 24
+ARM GAS  /tmp/cc362czD.s 			page 24
 
 
   41:Drivers/CMSIS/Include/core_cm0.h ****   \page CMSIS_MISRA_Exceptions  MISRA-C:2004 Compliance Exceptions
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
   95:Drivers/CMSIS/Include/core_cm0.h ****     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
   96:Drivers/CMSIS/Include/core_cm0.h ****   #endif
   97:Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccCg0tSZ.s 			page 25
+ARM GAS  /tmp/cc362czD.s 			page 25
 
 
   98:Drivers/CMSIS/Include/core_cm0.h **** #elif defined ( __TI_ARM__ )
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  152:Drivers/CMSIS/Include/core_cm0.h **** /**
  153:Drivers/CMSIS/Include/core_cm0.h ****     \defgroup CMSIS_glob_defs CMSIS Global Defines
  154:Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccCg0tSZ.s 			page 26
+ARM GAS  /tmp/cc362czD.s 			page 26
 
 
  155:Drivers/CMSIS/Include/core_cm0.h ****     <strong>IO Type Qualifiers</strong> are used
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  209:Drivers/CMSIS/Include/core_cm0.h ****   uint32_t w;                            /*!< Type      used for word access */
  210:Drivers/CMSIS/Include/core_cm0.h **** } APSR_Type;
  211:Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccCg0tSZ.s 			page 27
+ARM GAS  /tmp/cc362czD.s 			page 27
 
 
  212:Drivers/CMSIS/Include/core_cm0.h **** /* APSR Register Definitions */
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  266:Drivers/CMSIS/Include/core_cm0.h **** 
  267:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_Z_Pos                         30U                                            /*!< xPSR
  268:Drivers/CMSIS/Include/core_cm0.h **** #define xPSR_Z_Msk                         (1UL << xPSR_Z_Pos)                            /*!< xPSR
-ARM GAS  /tmp/ccCg0tSZ.s 			page 28
+ARM GAS  /tmp/cc362czD.s 			page 28
 
 
  269:Drivers/CMSIS/Include/core_cm0.h **** 
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  323:Drivers/CMSIS/Include/core_cm0.h ****         uint32_t RESERVED3[31U];
  324:Drivers/CMSIS/Include/core_cm0.h ****         uint32_t RESERVED4[64U];
  325:Drivers/CMSIS/Include/core_cm0.h ****   __IOM uint32_t IP[8U];                 /*!< Offset: 0x300 (R/W)  Interrupt Priority Register */
-ARM GAS  /tmp/ccCg0tSZ.s 			page 29
+ARM GAS  /tmp/cc362czD.s 			page 29
 
 
  326:Drivers/CMSIS/Include/core_cm0.h **** }  NVIC_Type;
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  380:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSTSET_Pos             26U                                            /*!< SCB 
  381:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSTSET_Msk             (1UL << SCB_ICSR_PENDSTSET_Pos)                /*!< SCB 
  382:Drivers/CMSIS/Include/core_cm0.h **** 
-ARM GAS  /tmp/ccCg0tSZ.s 			page 30
+ARM GAS  /tmp/cc362czD.s 			page 30
 
 
  383:Drivers/CMSIS/Include/core_cm0.h **** #define SCB_ICSR_PENDSTCLR_Pos             25U                                            /*!< SCB 
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  437:Drivers/CMSIS/Include/core_cm0.h **** 
  438:Drivers/CMSIS/Include/core_cm0.h **** /**
  439:Drivers/CMSIS/Include/core_cm0.h ****   \ingroup  CMSIS_core_register
-ARM GAS  /tmp/ccCg0tSZ.s 			page 31
+ARM GAS  /tmp/cc362czD.s 			page 31
 
 
  440:Drivers/CMSIS/Include/core_cm0.h ****   \defgroup CMSIS_SysTick     System Tick Timer (SysTick)
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  494:Drivers/CMSIS/Include/core_cm0.h ****             Therefore they are not covered by the Cortex-M0 header file.
  495:Drivers/CMSIS/Include/core_cm0.h ****   @{
  496:Drivers/CMSIS/Include/core_cm0.h ****  */
-ARM GAS  /tmp/ccCg0tSZ.s 			page 32
+ARM GAS  /tmp/cc362czD.s 			page 32
 
 
  497:Drivers/CMSIS/Include/core_cm0.h **** /*@} end of group CMSIS_CoreDebug */
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  551:Drivers/CMSIS/Include/core_cm0.h ****   - Core NVIC Functions
  552:Drivers/CMSIS/Include/core_cm0.h ****   - Core SysTick Functions
  553:Drivers/CMSIS/Include/core_cm0.h ****   - Core Register Access Functions
-ARM GAS  /tmp/ccCg0tSZ.s 			page 33
+ARM GAS  /tmp/cc362czD.s 			page 33
 
 
  554:Drivers/CMSIS/Include/core_cm0.h ****  ******************************************************************************/
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  608:Drivers/CMSIS/Include/core_cm0.h **** /* Interrupt Priorities are WORD accessible only under Armv6-M                  */
  609:Drivers/CMSIS/Include/core_cm0.h **** /* The following MACROS handle generation of the register offset and byte masks */
  610:Drivers/CMSIS/Include/core_cm0.h **** #define _BIT_SHIFT(IRQn)         (  ((((uint32_t)(int32_t)(IRQn))         )      &  0x03UL) * 8UL)
-ARM GAS  /tmp/ccCg0tSZ.s 			page 34
+ARM GAS  /tmp/cc362czD.s 			page 34
 
 
  611:Drivers/CMSIS/Include/core_cm0.h **** #define _SHP_IDX(IRQn)           ( (((((uint32_t)(int32_t)(IRQn)) & 0x0FUL)-8UL) >>    2UL)      )
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  648:Drivers/CMSIS/Include/core_cm0.h ****     return(0U);
  649:Drivers/CMSIS/Include/core_cm0.h ****   }
  650:Drivers/CMSIS/Include/core_cm0.h **** }
-ARM GAS  /tmp/ccCg0tSZ.s 			page 35
+ARM GAS  /tmp/cc362czD.s 			page 35
 
 
  651:Drivers/CMSIS/Include/core_cm0.h **** 
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  705:Drivers/CMSIS/Include/core_cm0.h **** 
  706:Drivers/CMSIS/Include/core_cm0.h **** /**
  707:Drivers/CMSIS/Include/core_cm0.h ****   \brief   Clear Pending Interrupt
-ARM GAS  /tmp/ccCg0tSZ.s 			page 36
+ARM GAS  /tmp/cc362czD.s 			page 36
 
 
  708:Drivers/CMSIS/Include/core_cm0.h ****   \details Clears the pending bit of a device specific interrupt in the NVIC pending register.
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  994              	.L39:
  995 00a4 00100240 		.word	1073876992
  996 00a8 00040040 		.word	1073742848
-ARM GAS  /tmp/ccCg0tSZ.s 			page 37
+ARM GAS  /tmp/cc362czD.s 			page 37
 
 
  997 00ac FFFF0000 		.word	65535
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1046      72723A20 
  1046      25640A00 
  1047              		.align	2
-ARM GAS  /tmp/ccCg0tSZ.s 			page 38
+ARM GAS  /tmp/cc362czD.s 			page 38
 
 
  1048              	.LC34:
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1088 0010 634A     		ldr	r2, .L49+8
  1089 0012 1380     		strh	r3, [r2]
  308:Src/motor.c   **** 	/* sprintf(usart_buffer, "motorl: %d\n", motorl_speed); */
-ARM GAS  /tmp/ccCg0tSZ.s 			page 39
+ARM GAS  /tmp/cc362czD.s 			page 39
 
 
  309:Src/motor.c   **** 	/* USART_SendString(usart_buffer); */
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1137 0052 9B18     		adds	r3, r3, r2
  1138 0054 5340     		eors	r3, r2
  1139 0056 98B2     		uxth	r0, r3
-ARM GAS  /tmp/ccCg0tSZ.s 			page 40
+ARM GAS  /tmp/cc362czD.s 			page 40
 
 
  1140              		.loc 1 315 47 view .LVU278
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1192 009e C0B2     		uxtb	r0, r0
  1193 00a0 FFF7FEFF 		bl	pwm_setDutyCycleR
  1194              	.LVL81:
-ARM GAS  /tmp/ccCg0tSZ.s 			page 41
+ARM GAS  /tmp/cc362czD.s 			page 41
 
 
  318:Src/motor.c   **** #if PRINT_DEBUG
@@ -2458,10 +2458,10 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  338:Src/motor.c   **** 			TIM3->CNT = 0x7FFF; // Reset back to center point
  339:Src/motor.c   **** 			motorr_speed = (TIM1->CNT - 0x7FFF);
  340:Src/motor.c   **** 			TIM1->CNT = 0x7FFF; // Reset back to center point
-ARM GAS  /tmp/ccCg0tSZ.s 			page 42
+ARM GAS  /tmp/cc362czD.s 			page 42
 
 
- 341:Src/motor.c   **** 			pwm_right = 100;
+ 341:Src/motor.c   **** 			pwm_right = 0;
  342:Src/motor.c   **** 			if(!turning){
  343:Src/motor.c   **** 				absolute_dist += current_dist * (float)cos((double)heading);
  344:Src/motor.c   **** 			}
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1265              		.loc 1 329 3 is_stmt 1 view .LVU307
  1266 0104 2068     		ldr	r0, [r4]
  1267 0106 FFF7FEFF 		bl	__aeabi_f2iz
-ARM GAS  /tmp/ccCg0tSZ.s 			page 43
+ARM GAS  /tmp/cc362czD.s 			page 43
 
 
  1268              	.LVL89:
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1310              		.loc 1 338 4 is_stmt 1 view .LVU319
  338:Src/motor.c   **** 			motorr_speed = (TIM1->CNT - 0x7FFF);
  1311              		.loc 1 338 14 is_stmt 0 view .LVU320
-ARM GAS  /tmp/ccCg0tSZ.s 			page 44
+ARM GAS  /tmp/cc362czD.s 			page 44
 
 
  1312 0146 1749     		ldr	r1, .L49+12
@@ -2597,9 +2597,9 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1321              		.loc 1 339 17 view .LVU324
  1322 0152 1648     		ldr	r0, .L49+20
  1323 0154 0380     		strh	r3, [r0]
- 340:Src/motor.c   **** 			pwm_right = 100;
+ 340:Src/motor.c   **** 			pwm_right = 0;
  1324              		.loc 1 340 4 is_stmt 1 view .LVU325
- 340:Src/motor.c   **** 			pwm_right = 100;
+ 340:Src/motor.c   **** 			pwm_right = 0;
  1325              		.loc 1 340 14 is_stmt 0 view .LVU326
  1326 0156 5162     		str	r1, [r2, #36]
  341:Src/motor.c   **** 			if(!turning){
@@ -2607,7 +2607,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  341:Src/motor.c   **** 			if(!turning){
  1328              		.loc 1 341 14 is_stmt 0 view .LVU328
  1329 0158 154B     		ldr	r3, .L49+24
- 1330 015a 6422     		movs	r2, #100
+ 1330 015a 0022     		movs	r2, #0
  1331 015c 1A70     		strb	r2, [r3]
  342:Src/motor.c   **** 				absolute_dist += current_dist * (float)cos((double)heading);
  1332              		.loc 1 342 4 is_stmt 1 view .LVU329
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1351 0176 144B     		ldr	r3, .L49+48
  1352 0178 1968     		ldr	r1, [r3]
  1353 017a FFF7FEFF 		bl	__aeabi_fmul
-ARM GAS  /tmp/ccCg0tSZ.s 			page 45
+ARM GAS  /tmp/cc362czD.s 			page 45
 
 
  1354              	.LVL98:
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1405              	get_distance:
  1406              	.LFB56:
  353:Src/motor.c   **** 
-ARM GAS  /tmp/ccCg0tSZ.s 			page 46
+ARM GAS  /tmp/cc362czD.s 			page 46
 
 
  354:Src/motor.c   **** float get_distance(void){
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1473              		.align	1
  1476              	motorr_speed:
  1477 0000 0000     		.space	2
-ARM GAS  /tmp/ccCg0tSZ.s 			page 47
+ARM GAS  /tmp/cc362czD.s 			page 47
 
 
  1478              		.global	motorl_speed
@@ -2777,70 +2777,70 @@ ARM GAS  /tmp/ccCg0tSZ.s 			page 1
  1493              		.file 9 "Inc/main.h"
  1494              		.file 10 "/usr/arm-none-eabi/include/math.h"
  1495              		.file 11 "/usr/arm-none-eabi/include/stdio.h"
-ARM GAS  /tmp/ccCg0tSZ.s 			page 48
+ARM GAS  /tmp/cc362czD.s 			page 48
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 motor.c
-     /tmp/ccCg0tSZ.s:19     .text.pwm_init:00000000 $t
-     /tmp/ccCg0tSZ.s:25     .text.pwm_init:00000000 pwm_init
-     /tmp/ccCg0tSZ.s:172    .text.pwm_init:00000094 $d
-     /tmp/ccCg0tSZ.s:181    .text.pwm_setDutyCycleL:00000000 $t
-     /tmp/ccCg0tSZ.s:187    .text.pwm_setDutyCycleL:00000000 pwm_setDutyCycleL
-     /tmp/ccCg0tSZ.s:224    .text.pwm_setDutyCycleL:00000018 $d
-     /tmp/ccCg0tSZ.s:229    .text.pwm_setDutyCycleR:00000000 $t
-     /tmp/ccCg0tSZ.s:235    .text.pwm_setDutyCycleR:00000000 pwm_setDutyCycleR
-     /tmp/ccCg0tSZ.s:274    .text.set_Motor_Direction:00000000 $t
-     /tmp/ccCg0tSZ.s:280    .text.set_Motor_Direction:00000000 set_Motor_Direction
-     /tmp/ccCg0tSZ.s:352    .text.set_Forward:00000000 $t
-     /tmp/ccCg0tSZ.s:358    .text.set_Forward:00000000 set_Forward
-     /tmp/ccCg0tSZ.s:397    .text.set_Forward:00000028 $d
-     /tmp/ccCg0tSZ.s:1436   .data.pwm_right:00000000 pwm_right
-     /tmp/ccCg0tSZ.s:1430   .data.pwm_left:00000000 pwm_left
-     /tmp/ccCg0tSZ.s:405    .text.set_Backward:00000000 $t
-     /tmp/ccCg0tSZ.s:411    .text.set_Backward:00000000 set_Backward
-     /tmp/ccCg0tSZ.s:450    .text.set_Backward:00000028 $d
-     /tmp/ccCg0tSZ.s:458    .text.set_Right:00000000 $t
-     /tmp/ccCg0tSZ.s:464    .text.set_Right:00000000 set_Right
-     /tmp/ccCg0tSZ.s:503    .text.set_Right:00000028 $d
-     /tmp/ccCg0tSZ.s:511    .text.set_Left:00000000 $t
-     /tmp/ccCg0tSZ.s:517    .text.set_Left:00000000 set_Left
-     /tmp/ccCg0tSZ.s:556    .text.set_Left:00000028 $d
-     /tmp/ccCg0tSZ.s:564    .text.motors_Off:00000000 $t
-     /tmp/ccCg0tSZ.s:570    .text.motors_Off:00000000 motors_Off
-     /tmp/ccCg0tSZ.s:596    .rodata.MoveMotors.str1.4:00000000 $d
-     /tmp/ccCg0tSZ.s:609    .text.MoveMotors:00000000 $t
-     /tmp/ccCg0tSZ.s:615    .text.MoveMotors:00000000 MoveMotors
-     /tmp/ccCg0tSZ.s:790    .text.MoveMotors:000000bc $d
-     /tmp/ccCg0tSZ.s:1442   .bss.turning:00000000 turning
-     /tmp/ccCg0tSZ.s:1469   .bss.target_dist:00000000 target_dist
-     /tmp/ccCg0tSZ.s:1449   .bss.heading:00000000 heading
-     /tmp/ccCg0tSZ.s:800    .text.encoder_init:00000000 $t
-     /tmp/ccCg0tSZ.s:806    .text.encoder_init:00000000 encoder_init
-     /tmp/ccCg0tSZ.s:995    .text.encoder_init:000000a4 $d
-     /tmp/ccCg0tSZ.s:1008   .text.motor_init:00000000 $t
-     /tmp/ccCg0tSZ.s:1014   .text.motor_init:00000000 motor_init
-     /tmp/ccCg0tSZ.s:1041   .rodata.TIM6_DAC_IRQHandler.str1.4:00000000 $d
-     /tmp/ccCg0tSZ.s:1057   .text.TIM6_DAC_IRQHandler:00000000 $t
-     /tmp/ccCg0tSZ.s:1063   .text.TIM6_DAC_IRQHandler:00000000 TIM6_DAC_IRQHandler
-     /tmp/ccCg0tSZ.s:1377   .text.TIM6_DAC_IRQHandler:00000198 $d
-     /tmp/ccCg0tSZ.s:1483   .bss.motorl_speed:00000000 motorl_speed
-     /tmp/ccCg0tSZ.s:1476   .bss.motorr_speed:00000000 motorr_speed
-     /tmp/ccCg0tSZ.s:1463   .bss.current_dist:00000000 current_dist
-     /tmp/ccCg0tSZ.s:1456   .bss.absolute_dist:00000000 absolute_dist
-     /tmp/ccCg0tSZ.s:1399   .text.get_distance:00000000 $t
-     /tmp/ccCg0tSZ.s:1405   .text.get_distance:00000000 get_distance
-     /tmp/ccCg0tSZ.s:1422   .text.get_distance:00000008 $d
-     /tmp/ccCg0tSZ.s:1443   .bss.turning:00000000 $d
-     /tmp/ccCg0tSZ.s:1446   .bss.heading:00000000 $d
-     /tmp/ccCg0tSZ.s:1453   .bss.absolute_dist:00000000 $d
-     /tmp/ccCg0tSZ.s:1460   .bss.current_dist:00000000 $d
-     /tmp/ccCg0tSZ.s:1470   .bss.target_dist:00000000 $d
-     /tmp/ccCg0tSZ.s:1473   .bss.motorr_speed:00000000 $d
-ARM GAS  /tmp/ccCg0tSZ.s 			page 49
+     /tmp/cc362czD.s:19     .text.pwm_init:00000000 $t
+     /tmp/cc362czD.s:25     .text.pwm_init:00000000 pwm_init
+     /tmp/cc362czD.s:172    .text.pwm_init:00000094 $d
+     /tmp/cc362czD.s:181    .text.pwm_setDutyCycleL:00000000 $t
+     /tmp/cc362czD.s:187    .text.pwm_setDutyCycleL:00000000 pwm_setDutyCycleL
+     /tmp/cc362czD.s:224    .text.pwm_setDutyCycleL:00000018 $d
+     /tmp/cc362czD.s:229    .text.pwm_setDutyCycleR:00000000 $t
+     /tmp/cc362czD.s:235    .text.pwm_setDutyCycleR:00000000 pwm_setDutyCycleR
+     /tmp/cc362czD.s:274    .text.set_Motor_Direction:00000000 $t
+     /tmp/cc362czD.s:280    .text.set_Motor_Direction:00000000 set_Motor_Direction
+     /tmp/cc362czD.s:352    .text.set_Forward:00000000 $t
+     /tmp/cc362czD.s:358    .text.set_Forward:00000000 set_Forward
+     /tmp/cc362czD.s:397    .text.set_Forward:00000028 $d
+     /tmp/cc362czD.s:1436   .data.pwm_right:00000000 pwm_right
+     /tmp/cc362czD.s:1430   .data.pwm_left:00000000 pwm_left
+     /tmp/cc362czD.s:405    .text.set_Backward:00000000 $t
+     /tmp/cc362czD.s:411    .text.set_Backward:00000000 set_Backward
+     /tmp/cc362czD.s:450    .text.set_Backward:00000028 $d
+     /tmp/cc362czD.s:458    .text.set_Right:00000000 $t
+     /tmp/cc362czD.s:464    .text.set_Right:00000000 set_Right
+     /tmp/cc362czD.s:503    .text.set_Right:00000028 $d
+     /tmp/cc362czD.s:511    .text.set_Left:00000000 $t
+     /tmp/cc362czD.s:517    .text.set_Left:00000000 set_Left
+     /tmp/cc362czD.s:556    .text.set_Left:00000028 $d
+     /tmp/cc362czD.s:564    .text.motors_Off:00000000 $t
+     /tmp/cc362czD.s:570    .text.motors_Off:00000000 motors_Off
+     /tmp/cc362czD.s:596    .rodata.MoveMotors.str1.4:00000000 $d
+     /tmp/cc362czD.s:609    .text.MoveMotors:00000000 $t
+     /tmp/cc362czD.s:615    .text.MoveMotors:00000000 MoveMotors
+     /tmp/cc362czD.s:790    .text.MoveMotors:000000bc $d
+     /tmp/cc362czD.s:1442   .bss.turning:00000000 turning
+     /tmp/cc362czD.s:1469   .bss.target_dist:00000000 target_dist
+     /tmp/cc362czD.s:1449   .bss.heading:00000000 heading
+     /tmp/cc362czD.s:800    .text.encoder_init:00000000 $t
+     /tmp/cc362czD.s:806    .text.encoder_init:00000000 encoder_init
+     /tmp/cc362czD.s:995    .text.encoder_init:000000a4 $d
+     /tmp/cc362czD.s:1008   .text.motor_init:00000000 $t
+     /tmp/cc362czD.s:1014   .text.motor_init:00000000 motor_init
+     /tmp/cc362czD.s:1041   .rodata.TIM6_DAC_IRQHandler.str1.4:00000000 $d
+     /tmp/cc362czD.s:1057   .text.TIM6_DAC_IRQHandler:00000000 $t
+     /tmp/cc362czD.s:1063   .text.TIM6_DAC_IRQHandler:00000000 TIM6_DAC_IRQHandler
+     /tmp/cc362czD.s:1377   .text.TIM6_DAC_IRQHandler:00000198 $d
+     /tmp/cc362czD.s:1483   .bss.motorl_speed:00000000 motorl_speed
+     /tmp/cc362czD.s:1476   .bss.motorr_speed:00000000 motorr_speed
+     /tmp/cc362czD.s:1463   .bss.current_dist:00000000 current_dist
+     /tmp/cc362czD.s:1456   .bss.absolute_dist:00000000 absolute_dist
+     /tmp/cc362czD.s:1399   .text.get_distance:00000000 $t
+     /tmp/cc362czD.s:1405   .text.get_distance:00000000 get_distance
+     /tmp/cc362czD.s:1422   .text.get_distance:00000008 $d
+     /tmp/cc362czD.s:1443   .bss.turning:00000000 $d
+     /tmp/cc362czD.s:1446   .bss.heading:00000000 $d
+     /tmp/cc362czD.s:1453   .bss.absolute_dist:00000000 $d
+     /tmp/cc362czD.s:1460   .bss.current_dist:00000000 $d
+     /tmp/cc362czD.s:1470   .bss.target_dist:00000000 $d
+     /tmp/cc362czD.s:1473   .bss.motorr_speed:00000000 $d
+ARM GAS  /tmp/cc362czD.s 			page 49
 
 
-     /tmp/ccCg0tSZ.s:1480   .bss.motorl_speed:00000000 $d
+     /tmp/cc362czD.s:1480   .bss.motorl_speed:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

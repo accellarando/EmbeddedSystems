@@ -338,7 +338,7 @@ void TIM6_DAC_IRQHandler(void) {
 			TIM3->CNT = 0x7FFF; // Reset back to center point
 			motorr_speed = (TIM1->CNT - 0x7FFF);
 			TIM1->CNT = 0x7FFF; // Reset back to center point
-			pwm_right = 100;
+			pwm_right = 0;
 			if(!turning){
 				absolute_dist += current_dist * (float)cos((double)heading);
 			}
