@@ -312,7 +312,7 @@ void TIM6_DAC_IRQHandler(void) {
     TIM1->CNT = 0x7FFF; // Reset back to center point
 	
 	if(abs(motorl_speed)>50){
-		float ratio = ((float) abs(motorl_speed))/ ((float) motorr_speed);
+		float ratio = ((float) abs(motorl_speed))/ ((float) abs(motorr_speed));
 		pwm_right = min((int)(pwm_right * ratio), 100);
 		pwm_setDutyCycleR(pwm_right);
 #if PRINT_DEBUG
