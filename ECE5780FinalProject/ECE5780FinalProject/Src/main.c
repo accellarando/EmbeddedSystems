@@ -209,10 +209,13 @@ void USART3_4_IRQHandler(){
 void Log(){
 	uint8_t str_buff[32];
 
-	sprintf(str_buff, "Ultrasonic left: %u\n", GetUltrasonic(&ultrasonic_left_pins));
+	sprintf(str_buff, "Ultrasonic left: %u %u %u\n", GetUltrasonic(&ultrasonic_left_pins), GetUltrasonic(&ultrasonic_left_pins), GetUltrasonic(&ultrasonic_left_pins));
 	USART_SendString(str_buff);
-	HAL_Delay(500);
-	sprintf(str_buff, "Ultrasonic right: %u\n", GetUltrasonic(&ultrasonic_right_pins));
+
+	sprintf(str_buff, "Ultrasonic right: %u %u %u\n", GetUltrasonic(&ultrasonic_right_pins), GetUltrasonic(&ultrasonic_right_pins), GetUltrasonic(&ultrasonic_right_pins));
+	USART_SendString(str_buff);
+
+	sprintf(str_buff, "Distance travelled: %d\n", (int)get_distance());
 	USART_SendString(str_buff);
 
 }
@@ -383,7 +386,6 @@ volatile uint32_t pulseWidth = 0;
 TIM_HandleTypeDef htim155;
 uint32_t pulse_start_time = 0;
 uint32_t pulse_end_time = 0;
-#define ULTRASONIC_TIMEOUT 60
 
 uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
 	__HAL_TIM_SET_COUNTER(&htim15, 0);
@@ -400,17 +402,12 @@ uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
 	uint32_t val1 = __HAL_TIM_GET_COUNTER (&htim15);
 
 	pMillis = HAL_GetTick();
-	while ((HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 35 > HAL_GetTick()){
-		if(HAL_GetTick()-pMillis > ULTRASONIC_TIMEOUT)
-			return 0;
+	while ((HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 50 > HAL_GetTick()){
 	}
 
 	uint32_t val2 = __HAL_TIM_GET_COUNTER (&htim15);
 
-	uint8_t buff[32];
-	sprintf(buff, "val2: %d, val1: %d\n", val2, val1);
-	USART_SendString(buff);
-	return (val2-val1)/58;
+	return (val2-val1)/470;
 }
 /* USER CODE END 0 */
 
