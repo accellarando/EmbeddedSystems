@@ -211,7 +211,10 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 	switch(cmd->dir){
 		case FORWARD:
 			turning = false;
-			target_dist = cmd->amount;
+			if(!cmd->amount)
+				target_dist = -1;
+			else
+				target_dist = cmd->amount;
 			set_Forward();
 			break;
 		case LEFT:
