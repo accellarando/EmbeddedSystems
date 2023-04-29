@@ -405,7 +405,7 @@ uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
 	uint32_t val1 = __HAL_TIM_GET_COUNTER (&htim15);
 
 	pMillis = HAL_GetTick();
-	while ((HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 50 > HAL_GetTick()){
+	while ((HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 40 > HAL_GetTick()){
 	}
 
 	uint32_t val2 = __HAL_TIM_GET_COUNTER (&htim15);
