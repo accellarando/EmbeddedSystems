@@ -393,7 +393,9 @@ uint32_t pulse_end_time = 0;
 uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
 	__HAL_TIM_SET_COUNTER(&htim15, 0);
 	HAL_GPIO_WritePin(ultrasonic->trig.gpio, ultrasonic->trig.pin.Pin, GPIO_PIN_SET);
-	while (__HAL_TIM_GET_COUNTER (&htim15) < 10){
+	//while (__HAL_TIM_GET_COUNTER (&htim15) < 10){
+	uint32_t temp = HAL_GetTick();
+    	while(temp + 10 > HAL_GetTick()) {
 		;  // wait for 10 us
 	}
 	HAL_GPIO_WritePin(ultrasonic->trig.gpio, ultrasonic->trig.pin.Pin, GPIO_PIN_RESET);
