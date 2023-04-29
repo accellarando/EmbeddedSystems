@@ -218,6 +218,9 @@ void Log(){
 	sprintf(str_buff, "Distance travelled: %d\n", (int)get_distance());
 	USART_SendString(str_buff);
 
+	sprintf(str_buff, "Heading: %d\n", (int)get_heading());
+	USART_SendString(str_buff);
+
 }
 
 void Proceed(){

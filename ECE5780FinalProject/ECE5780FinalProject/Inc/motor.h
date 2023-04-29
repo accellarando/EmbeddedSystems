@@ -59,6 +59,9 @@ void set_Right();
 // Distance return
 float get_distance(void);
 
+// Heading return
+int32_t get_heading();
+
 uint8_t* MoveMotors(MotorCommand* cmd);
 
 

@@ -204,12 +204,15 @@ void motors_Off(){
 	pwm_setDutyCycleL(0);
 }
 
+static volatile uint8_t stopping = 0;
+
 uint8_t* MoveMotors(MotorCommand* cmd){
 	motors_Off();
 	pwm_right = 100;
 	uint8_t* err = "MoveMotors executed!\n";
 	switch(cmd->dir){
 		case FORWARD:
+			stopping = 0;
 			turning = false;
 			if(!cmd->amount)
 				target_dist = -1;
@@ -218,12 +221,14 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 			set_Forward();
 			break;
 		case LEFT:
+			stopping = 0;
 			turning = true;
 			target_dist = (uint8_t) (cmd->amount / 11.5);
 			heading += cmd->amount * 0.0174533; //convert to radians
 			set_Left();
 			break;
 		case RIGHT:
+			stopping = 0;
 			turning = true;
 			target_dist = (uint8_t) (cmd->amount / 11.5);
 			heading -= cmd->amount * 0.0174533; //convert to radians
@@ -354,7 +359,7 @@ void TIM6_DAC_IRQHandler(void) {
 		USART_SendString(usart_buffer);
 #endif
 		uint8_t obj = 0;
-		if ((uint8_t)current_dist >= target_dist || !turning && (obj = ObjectDetected())){
+		if (((uint8_t)current_dist >= target_dist) || (!turning && (obj = ObjectDetected()))){
 			if(obj)
 				USART_SendString("Object detected\n");
 			else
@@ -381,4 +386,8 @@ void TIM6_DAC_IRQHandler(void) {
 
 float get_distance(void){
 	return absolute_dist;
+}
+
+int32_t get_heading(){
+	return (int32_t)(heading * 57.3) % 360;
 }
