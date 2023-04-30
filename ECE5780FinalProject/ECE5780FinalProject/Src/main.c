@@ -199,32 +199,27 @@ void USART3_4_IRQHandler(){
 		}
 		else{
 			command[1] = USART3->RDR;
+			ProcessCommand(command[0], command[1]);
 		}
 	}
 	else{
 		command[0] = USART3->RDR;
+		if(command[0] != 'w' &&
+				command[0] != 'a' &&
+				command[0] != 'd'){
+			ProcessCommand(command[0], NULL);
+		}
 	}
 }
 
 void Log(){
 	uint8_t str_buff[32];
 
-	uint32_t samples[3] = {0};
-
-	for(uint8_t i=0; i<3; i++){
-		samples[i] = GetUltrasonic(&ultrasonic_right_pins);
-		HAL_Delay(60);
-	}
-	sprintf(str_buff, "Ultrasonic right: %u %u %u\n", samples[2], samples[1], samples[0]);
+	sprintf(str_buff, "Ultrasonic left: %d\n", GetUltrasonic(&ultrasonic_left_pins));
 	USART_SendString(str_buff);
 
-	for(uint8_t i=0; i<3; i++){
-		samples[i] = GetUltrasonic(&ultrasonic_left_pins);
-		HAL_Delay(60);
-	}
-	sprintf(str_buff, "Ultrasonic left: %u %u %u\n", samples[2], samples[1], samples[0]);
+	sprintf(str_buff, "Ultrasonic right: %d\n", GetUltrasonic(&ultrasonic_right_pins));
 	USART_SendString(str_buff);
-
 
 	sprintf(str_buff, "Distance travelled: %d\n", (int)get_distance());
 	USART_SendString(str_buff);
@@ -311,7 +306,6 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	}
 	else{
 		uint8_t dist = (distance - '0') * 20;
-		sprintf(part2, "%d\n", dist);
 		motorcmd.amount = dist;
 	}
 
@@ -319,9 +313,15 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	USART_SendString(part1);
 	USART_SendString(part2);
 
+	/* anyone know what this does?? or why it's in process command lol
+	 * HAL_Delay hangs when in an interrupt context, due to SysTick being
+	 * lower priority.
+	 * This is called from the USART interrupt, so this can't be here.
+	 * If you need it, use timers instead.
 	TIM2->CCR1 = CH1_DC;
 	HAL_Delay(1000);
 	TIM2->CCR1 = 0;
+	*/
 
 	uint8_t* result = MoveMotors(&motorcmd);
 	USART_SendString(result);
@@ -423,10 +423,9 @@ uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
 	}
 
 	uint32_t val2 = TIM15->CNT;
-	uint8_t buff[32];
-	sprintf(buff, "%d - %d, %d, %d\n", val2, val1, i, j);
-	USART_SendString(buff);
-	return (val2-val1)/4.55;
+	if(val2-val1 == 1200)
+		return -1;
+	return (val2-val1)/4.42; //this is a magic number that gives us centimeters with our prescaler value
 }
 /* USER CODE END 0 */
 
@@ -503,18 +502,6 @@ int main(void)
 	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_RESET);
 
 	while (1) {
-		if(incomingCommand)
-		{
-			if(command[0] != 'w' &&
-					command[0] != 'a' &&
-					command[0] != 'd'){
-				ProcessCommand(command[0], NULL);
-			}
-			if(command[1])
-			{
-				ProcessCommand(command[0], command[1]);
-			}
-		}
 		/*
 		   if(incomingCommand){
 		   if(command[2]){
@@ -582,29 +569,29 @@ static void MX_TIM15_Init(void)
 
 	/* USER CODE END TIM1_Init 1 */
 	/*
-	htim15.Instance = TIM15;
-	htim15.Init.Prescaler = 0;
-	htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim15.Init.Period = 65535;
-	htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	htim15.Init.RepetitionCounter = 0;
-	htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-	if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-	if (HAL_TIM_ConfigClockSource(&htim15, &sClockSourceConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-	if (HAL_TIMEx_MasterConfigSynchronization(&htim15, &sMasterConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	*/
+	   htim15.Instance = TIM15;
+	   htim15.Init.Prescaler = 0;
+	   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
+	   htim15.Init.Period = 65535;
+	   htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	   htim15.Init.RepetitionCounter = 0;
+	   htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+	   if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
+	   {
+	   Error_Handler();
+	   }
+	   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+	   if (HAL_TIM_ConfigClockSource(&htim15, &sClockSourceConfig) != HAL_OK)
+	   {
+	   Error_Handler();
+	   }
+	   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+	   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+	   if (HAL_TIMEx_MasterConfigSynchronization(&htim15, &sMasterConfig) != HAL_OK)
+	   {
+	   Error_Handler();
+	   }
+	   */
 
 	RCC->APB2ENR |= RCC_APB2ENR_TIM15EN;
 	TIM15->PSC |= 100;
