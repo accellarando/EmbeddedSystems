@@ -17,7 +17,7 @@ volatile bool turning = false;
 #define max(a,b) ((a>b) ? a : b)
 #define min(a,b) ((a>b) ? b : a)
 
-#define PRINT_DEBUG 0
+#define PRINT_DEBUG 1
 #define STOP_ULTRASONIC 20 //cm
 
 // Sets up the entire motor drive system
@@ -204,15 +204,12 @@ void motors_Off(){
 	pwm_setDutyCycleL(0);
 }
 
-static volatile uint8_t stopping = 0;
-
 uint8_t* MoveMotors(MotorCommand* cmd){
 	motors_Off();
 	pwm_right = 100;
 	uint8_t* err = "MoveMotors executed!\n";
 	switch(cmd->dir){
 		case FORWARD:
-			stopping = 0;
 			turning = false;
 			if(!cmd->amount)
 				target_dist = -1;
@@ -221,14 +218,12 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 			set_Forward();
 			break;
 		case LEFT:
-			stopping = 0;
 			turning = true;
 			target_dist = (uint8_t) (cmd->amount / 11.5);
 			heading += cmd->amount * 0.0174533; //convert to radians
 			set_Left();
 			break;
 		case RIGHT:
-			stopping = 0;
 			turning = true;
 			target_dist = (uint8_t) (cmd->amount / 11.5);
 			heading -= cmd->amount * 0.0174533; //convert to radians
@@ -308,7 +303,7 @@ void encoder_init(void) {
 }
 
 // Encoder interrupt to calculate motor speed, also manages PI controller
-#define ULTRASONIC_SAMPLES 4
+#define ULTRASONIC_SAMPLES 2
 
 uint8_t ObjectDetected(){
 	uint32_t us_left_sum = 0;
@@ -319,8 +314,8 @@ uint8_t ObjectDetected(){
 		us_right_sum += GetUltrasonic(&ultrasonic_right_pins);
 	}
 
-	us_left_sum >>= 2; //div by 4
-	us_right_sum >>= 2;
+	us_left_sum >>= 1; //div by 2
+	us_right_sum >>= 1;
 
 	return (us_left_sum < STOP_ULTRASONIC) || (us_right_sum < STOP_ULTRASONIC);
 }

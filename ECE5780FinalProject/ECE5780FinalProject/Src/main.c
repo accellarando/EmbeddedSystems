@@ -190,8 +190,8 @@ void ClearCommand(){
 void USART3_4_IRQHandler(){
 	uint8_t err[] = "Command too long!\n";
 	incomingCommand = 1;
-	while(!(USART3->ISR & (1<<5)))
-		;
+	while(!(USART3->ISR & (1<<5))){
+	}
 	if(command[0]){
 		if(command[1]){
 			USART_SendString(err);
@@ -209,11 +209,22 @@ void USART3_4_IRQHandler(){
 void Log(){
 	uint8_t str_buff[32];
 
-	sprintf(str_buff, "Ultrasonic left: %u %u %u\n", GetUltrasonic(&ultrasonic_left_pins), GetUltrasonic(&ultrasonic_left_pins), GetUltrasonic(&ultrasonic_left_pins));
+	uint32_t samples[3] = {0};
+
+	for(uint8_t i=0; i<3; i++){
+		samples[i] = GetUltrasonic(&ultrasonic_right_pins);
+		HAL_Delay(60);
+	}
+	sprintf(str_buff, "Ultrasonic right: %u %u %u\n", samples[2], samples[1], samples[0]);
 	USART_SendString(str_buff);
 
-	sprintf(str_buff, "Ultrasonic right: %u %u %u\n", GetUltrasonic(&ultrasonic_right_pins), GetUltrasonic(&ultrasonic_right_pins), GetUltrasonic(&ultrasonic_right_pins));
+	for(uint8_t i=0; i<3; i++){
+		samples[i] = GetUltrasonic(&ultrasonic_left_pins);
+		HAL_Delay(60);
+	}
+	sprintf(str_buff, "Ultrasonic left: %u %u %u\n", samples[2], samples[1], samples[0]);
 	USART_SendString(str_buff);
+
 
 	sprintf(str_buff, "Distance travelled: %d\n", (int)get_distance());
 	USART_SendString(str_buff);
@@ -278,8 +289,8 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 			part1 = stop;
 			USART_SendString(part1);
 			motorcmd.dir = OFF;
-			ClearCommand();
 			MoveMotors(&motorcmd);
+			ClearCommand();
 			return;
 		default:
 			USART_SendString(err);
@@ -391,28 +402,31 @@ uint32_t pulse_start_time = 0;
 uint32_t pulse_end_time = 0;
 
 uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
-	__HAL_TIM_SET_COUNTER(&htim15, 0);
+	uint32_t i = 0, j = 0;
+	TIM15->EGR |= 1; //clears counter
+	while(TIM15->EGR & 1)
+		;
 	HAL_GPIO_WritePin(ultrasonic->trig.gpio, ultrasonic->trig.pin.Pin, GPIO_PIN_SET);
-	//while (__HAL_TIM_GET_COUNTER (&htim15) < 10){
-	uint32_t temp = HAL_GetTick();
-    	while(temp + 10 > HAL_GetTick()) {
-		;  // wait for 10 us
+	while (TIM15->CNT < 200){
 	}
 	HAL_GPIO_WritePin(ultrasonic->trig.gpio, ultrasonic->trig.pin.Pin, GPIO_PIN_RESET);
 
-	pMillis = HAL_GetTick();
-	__HAL_TIM_SET_COUNTER(&htim15, 0);
-	while (!(HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 10 >  HAL_GetTick()){
+	pMillis = TIM15->CNT;
+	while (!(HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 200 >  TIM15->CNT){
+		i++;
 	}
-	uint32_t val1 = __HAL_TIM_GET_COUNTER (&htim15);
+	uint32_t val1 = TIM15->CNT;
 
-	pMillis = HAL_GetTick();
-	while ((HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 40 > HAL_GetTick()){
+	pMillis = val1;
+	while ((HAL_GPIO_ReadPin (ultrasonic->echo.gpio, ultrasonic->echo.pin.Pin)) && pMillis + 1200 > TIM15->CNT){
+		j++;
 	}
 
-	uint32_t val2 = __HAL_TIM_GET_COUNTER (&htim15);
-
-	return (val2-val1)/470;
+	uint32_t val2 = TIM15->CNT;
+	uint8_t buff[32];
+	sprintf(buff, "%d - %d, %d, %d\n", val2, val1, i, j);
+	USART_SendString(buff);
+	return (val2-val1)/4.55;
 }
 /* USER CODE END 0 */
 
@@ -423,45 +437,45 @@ uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
 
 //doesn't actually init tim15 but don't worry about it....
 /*
-void TIM15_Init(){
-	TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-	TIM_MasterConfigTypeDef sMasterConfig = {0};
-	TIM_IC_InitTypeDef sConfigIC = {0};
+   void TIM15_Init(){
+   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+   TIM_MasterConfigTypeDef sMasterConfig = {0};
+   TIM_IC_InitTypeDef sConfigIC = {0};
 
-	htim155.Instance = TIM15;
-	htim155.Init.Prescaler = 14;
-	htim155.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim155.Init.Period = 0xFFFF;
-	htim155.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	if (HAL_TIM_Base_Init(&htim155) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-	if (HAL_TIM_ConfigClockSource(&htim155, &sClockSourceConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	if (HAL_TIM_IC_Init(&htim155) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sConfigIC.ICPolarity = TIM_ICPOLARITY_BOTHEDGE;
-	sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
-	sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
-	sConfigIC.ICFilter = 0;
-	if (HAL_TIM_IC_ConfigChannel(&htim155, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
-	{
-		Error_Handler();
-	}
-	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-	if (HAL_TIMEx_MasterConfigSynchronization(&htim155, &sMasterConfig) != HAL_OK)
-	{
-		Error_Handler();
-	}
-}
-*/
+   htim155.Instance = TIM15;
+   htim155.Init.Prescaler = 14;
+   htim155.Init.CounterMode = TIM_COUNTERMODE_UP;
+   htim155.Init.Period = 0xFFFF;
+   htim155.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+   if (HAL_TIM_Base_Init(&htim155) != HAL_OK)
+   {
+   Error_Handler();
+   }
+   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+   if (HAL_TIM_ConfigClockSource(&htim155, &sClockSourceConfig) != HAL_OK)
+   {
+   Error_Handler();
+   }
+   if (HAL_TIM_IC_Init(&htim155) != HAL_OK)
+   {
+   Error_Handler();
+   }
+   sConfigIC.ICPolarity = TIM_ICPOLARITY_BOTHEDGE;
+   sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
+   sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
+   sConfigIC.ICFilter = 0;
+   if (HAL_TIM_IC_ConfigChannel(&htim155, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
+   {
+   Error_Handler();
+   }
+   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+   if (HAL_TIMEx_MasterConfigSynchronization(&htim155, &sMasterConfig) != HAL_OK)
+   {
+   Error_Handler();
+   }
+   }
+   */
 
 int main(void)
 {
@@ -475,7 +489,7 @@ int main(void)
 	motor_init();                           // Initialize motor code
 
 	NVIC_EnableIRQ(USART3_4_IRQn);
-	NVIC_SetPriority(USART3_4_IRQn,1);
+	NVIC_SetPriority(USART3_4_IRQn,2);
 
 	uint8_t prompt[] = "CMD> ";
 
@@ -557,45 +571,49 @@ void SystemClock_Config(void)
 static void MX_TIM15_Init(void)
 {
 
-  /* USER CODE BEGIN TIM1_Init 0 */
+	/* USER CODE BEGIN TIM1_Init 0 */
 
-  /* USER CODE END TIM1_Init 0 */
+	/* USER CODE END TIM1_Init 0 */
 
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
+	/* TIM_ClockConfigTypeDef sClockSourceConfig = {0}; */
+	/* TIM_MasterConfigTypeDef sMasterConfig = {0}; */
 
-  /* USER CODE BEGIN TIM1_Init 1 */
+	/* USER CODE BEGIN TIM1_Init 1 */
 
-  /* USER CODE END TIM1_Init 1 */
-  htim15.Instance = TIM15;
-  htim15.Init.Prescaler = 200;
-  htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim15.Init.Period = 65535;
-  htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim15.Init.RepetitionCounter = 0;
-  htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim15, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim15, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+	/* USER CODE END TIM1_Init 1 */
+	/*
+	htim15.Instance = TIM15;
+	htim15.Init.Prescaler = 0;
+	htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
+	htim15.Init.Period = 65535;
+	htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	htim15.Init.RepetitionCounter = 0;
+	htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+	if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+	if (HAL_TIM_ConfigClockSource(&htim15, &sClockSourceConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+	if (HAL_TIMEx_MasterConfigSynchronization(&htim15, &sMasterConfig) != HAL_OK)
+	{
+		Error_Handler();
+	}
+	*/
 
-  __HAL_RCC_TIM15_CLK_ENABLE();
+	RCC->APB2ENR |= RCC_APB2ENR_TIM15EN;
+	TIM15->PSC |= 100;
+	TIM15->CR1 |= TIM_CR1_CEN;
 
-	HAL_TIM_Base_Start(&htim15);
-  /* USER CODE BEGIN TIM1_Init 2 */
+	// HAL_TIM_Base_Start(&htim15);
+	/* USER CODE BEGIN TIM1_Init 2 */
 
-  /* USER CODE END TIM1_Init 2 */
+	/* USER CODE END TIM1_Init 2 */
 
 }
 
