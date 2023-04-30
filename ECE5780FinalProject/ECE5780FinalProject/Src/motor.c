@@ -208,7 +208,6 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 	motors_Off();
 	pwm_right = 100;
 	uint8_t* err = "MoveMotors executed!\n";
-	USART_SendString(err);
 	switch(cmd->dir){
 		case FORWARD:
 			turning = false;
