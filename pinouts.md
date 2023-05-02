@@ -11,9 +11,9 @@
 | --- | --- | --- |
 | Enable | PA4 | PWM: AF4: TIM14\_CH1 |
 | DirectionA | PA5 | Output |
-| DirectionB | PA6 | Output |
+| DirectionB | PC9 | Output |
 | EncoderA | PB4 | AF1: TIM3\_CH1 |
-| EncoderA | PB5 | AF1: TIM3\_CH2 |
+| EncoderB | PB5 | AF1: TIM3\_CH2 |
 
 ## Right Motor
 | Function | Pin | Configuration |
@@ -21,17 +21,17 @@
 | Enable | PB3 | PWM: AF2: TIM2\_CH2 |
 | DirectionA | PB2 | Output |
 | DirectionB | PB10 | Output |
-| EncoderA | PB14 | AF1: TIM15\_CH1 |
-| EncoderA | PB15 | AF1: TIM15\_CH2 |
+| EncoderA | PA8 | AF2: TIM1\_CH1 |
+| EncoderA | PA9 | AF2: TIM1\_CH2 |
 
 ## Left Ultrasonic Sensor
 | Function | Pin | Configuration |
 | --- | --- | --- |
-| Echo | PB11 | Input? |
-| Trig | PB12 | Input? |
+| Echo | PB11 | Input |
+| Trig | PB12 | Output |
 
 ## Right Ultrasonic Sensor
 | Function | Pin | Configuration |
 | --- | --- | --- |
-| Echo | PB13 | Input? |
-| Trig | PB14 | Input? |
+| Echo | PB14 | Input |
+| Trig | PB13 | Output |
