@@ -8,7 +8,7 @@
 
 volatile int16_t motorl_speed = 0;   	// Measured left motor speed
 volatile int16_t motorr_speed = 0;   	// Measured left motor speed
-volatile uint8_t target_dist = 0;
+volatile float target_dist = 0;
 volatile float current_dist = 0;
 volatile float absolute_dist = 0;
 volatile float heading = 0;
@@ -19,6 +19,7 @@ volatile bool turning = false;
 
 #define PRINT_DEBUG 0
 #define STOP_ULTRASONIC 20 //cm
+#define INFINITY 5000 //long long course lmao
 
 // Sets up the entire motor drive system
 void motor_init(void) {
@@ -211,36 +212,31 @@ uint8_t* MoveMotors(MotorCommand* cmd){
 	switch(cmd->dir){
 		case FORWARD:
 			turning = false;
-			if(!cmd->amount)
-				target_dist = -1;
+			if(cmd->amount==0.0)
+				target_dist = INFINITY;
 			else
 				target_dist = cmd->amount;
 			set_Forward();
 			break;
 		case LEFT:
 			turning = true;
-			target_dist = (uint8_t) (cmd->amount / 11.5);
+			target_dist = cmd->amount / 11.4592;
 			heading += cmd->amount * 0.0174533; //convert to radians
 			set_Left();
 			break;
 		case RIGHT:
 			turning = true;
-			target_dist = (uint8_t) (cmd->amount / 11.5);
+			target_dist = cmd->amount / 11.4592;
 			heading -= cmd->amount * 0.0174533; //convert to radians
 			set_Right();
 			break;
 		case OFF:
-			target_dist = 1;
+			target_dist = 1.0;
 			motors_Off();
 			break;
 		default:
 			err = "Invalid command to MoveMotors!\n";
 	}
-	//THIS IS BAD. if you send an x it won't stop motors until this delay finishes!
-	//Switch to a polling structure instead for final
-	/* while(get_distance() < target_dist) */
-	/* 	; */
-	/* motors_Off(); */
 	return err;
 }
 
@@ -347,14 +343,14 @@ void TIM6_DAC_IRQHandler(void) {
 #endif
 	}
 
-	if(target_dist > 0){
+	if(target_dist != 0.0){
 		current_dist += (float)abs(motorl_speed)/132;
 #if PRINT_DEBUG
 		sprintf(usart_buffer, "current_dist: %d\n", (int)current_dist);
 		USART_SendString(usart_buffer);
 #endif
 		uint8_t obj = 0;
-		if (((uint8_t)current_dist >= target_dist) || (!turning && (obj = ObjectDetected()))){
+		if ((current_dist >= target_dist) || (!turning && (obj = ObjectDetected()))){
 			if(obj)
 				USART_SendString("Object detected\n");
 			else
@@ -370,8 +366,8 @@ void TIM6_DAC_IRQHandler(void) {
 				sprintf(usart_buffer, "heading: %d\n", (int)heading);
 				USART_SendString(usart_buffer);
 			}
-			target_dist = 0;
-			current_dist = 0;
+			target_dist = 0.0;
+			current_dist = 0.0;
 		}
 	}
 

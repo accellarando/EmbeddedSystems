@@ -46,12 +46,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim15;
-#define TRIG_PIN_LEFT GPIO_PIN_11
-#define TRIG_PIN_RIGHT GPIO_PIN_13
-#define TRIG_PORT GPIOB
-#define ECHO_PIN_LEFT GPIO_PIN_12
-#define ECHO_PIN_RIGHT GPIO_PIN_14
-#define ECHO_PORT GPIOB
 volatile uint32_t pMillis;
 volatile uint16_t startTime;
 volatile uint16_t Value1 = 0;
@@ -139,7 +133,7 @@ void USART_Init() {
 	USART3->BRR = HAL_RCC_GetHCLKFreq() / 9600; //this is the baud rate we need to 
 												//use with the BT adapter
 
-												//Enable transmitter
+	//Enable transmitter
 	USART3->CR1 |= (1<<3);
 
 	//Enable receiver
@@ -235,10 +229,6 @@ void Proceed(){
 }
 
 void ProcessCommand(uint8_t direction, uint8_t distance){
-	uint32_t left_motor_pin;
-	uint32_t right_motor_pin;
-	int32_t CH1_DC = 65535;
-
 	uint8_t err[] = "ERROR: Invalid command!\n";
 
 	uint8_t forward[] = "Moving forward ";
@@ -294,7 +284,6 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	}
 
 	//these are for "vector commands" only:
-
 	if(distance == '0' && direction == 'w'){
 		sprintf(part2, "indefinitely\n");
 		motorcmd.amount = 0;
@@ -306,6 +295,8 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 	}
 	else{
 		uint8_t dist = (distance - '0') * 20;
+		if(dist == 80)
+			dist = 90; //support for 90-degree turns
 		motorcmd.amount = dist;
 	}
 
@@ -328,61 +319,7 @@ void ProcessCommand(uint8_t direction, uint8_t distance){
 
 	ClearCommand();
 
-
-	// Example code while loop
-	//    while (1)
-	//    {
-	//        while(CH1_DC < 65535)
-	//        {
-	//            TIM2->CCR1 = CH1_DC;
-	//            CH1_DC += 70;
-	//            HAL_Delay(1);
-	//        }
-	//        while(CH1_DC > 0)
-	//        {
-	//            TIM2->CCR1 = CH1_DC;
-	//            CH1_DC -= 70;
-	//            HAL_Delay(1);
-	//        }
-	//    }
 }
-
-/*
-   void ProcessCommandPWM(uint8_t side, uint8_t amt){
-   MotorCommand motorcmd = {0};
-   motorcmd.dir = FORWARD;
-   motorcmd.amount = 9;
-   switch(side){
-   case 'l':
-   pwm_left = amt;
-   break;
-   case 'r':
-   pwm_right = amt;
-   break;
-   case 'x':
-   motorcmd.dir = OFF;
-   break;
-   default:
-   break;
-   }
-   MoveMotors(&motorcmd);
-   ClearCommand();
-   }
-   */
-
-/*
-   void Ultrasonic_Init(uint32_t pins)
-   {
-   __HAL_RCC_GPIOA_CLK_ENABLE();
-
-   GPIO_InitTypeDef gpio_init = {GPIO_PIN_8 | GPIO_PIN_9,
-   GPIO_MODE_INPUT,
-   GPIO_SPEED_FREQ_LOW,
-   GPIO_NOPULL
-   };
-   HAL_GPIO_Init(GPIOA, &gpio_init);
-   }
-   */
 
 void PrintDistance()
 {
@@ -390,16 +327,6 @@ void PrintDistance()
 	sprintf(dist, "%f\n", get_distance());
 	USART_SendString(dist);
 }
-
-volatile uint32_t risingEdgeTime;
-volatile uint32_t fallingEdgeTime;
-volatile uint32_t pulseWidth = 0;
-// Define constants
-
-// Declare global variables
-TIM_HandleTypeDef htim155;
-uint32_t pulse_start_time = 0;
-uint32_t pulse_end_time = 0;
 
 uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
 	uint32_t i = 0, j = 0;
@@ -433,49 +360,6 @@ uint32_t GetUltrasonic(ultrasonic_pins_t* ultrasonic){
  * @brief  The application entry point.
  * @retval int
  */
-
-//doesn't actually init tim15 but don't worry about it....
-/*
-   void TIM15_Init(){
-   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-   TIM_MasterConfigTypeDef sMasterConfig = {0};
-   TIM_IC_InitTypeDef sConfigIC = {0};
-
-   htim155.Instance = TIM15;
-   htim155.Init.Prescaler = 14;
-   htim155.Init.CounterMode = TIM_COUNTERMODE_UP;
-   htim155.Init.Period = 0xFFFF;
-   htim155.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-   if (HAL_TIM_Base_Init(&htim155) != HAL_OK)
-   {
-   Error_Handler();
-   }
-   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-   if (HAL_TIM_ConfigClockSource(&htim155, &sClockSourceConfig) != HAL_OK)
-   {
-   Error_Handler();
-   }
-   if (HAL_TIM_IC_Init(&htim155) != HAL_OK)
-   {
-   Error_Handler();
-   }
-   sConfigIC.ICPolarity = TIM_ICPOLARITY_BOTHEDGE;
-   sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
-   sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
-   sConfigIC.ICFilter = 0;
-   if (HAL_TIM_IC_ConfigChannel(&htim155, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
-   {
-   Error_Handler();
-   }
-   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-   if (HAL_TIMEx_MasterConfigSynchronization(&htim155, &sMasterConfig) != HAL_OK)
-   {
-   Error_Handler();
-   }
-   }
-   */
-
 int main(void)
 {
 	HAL_Init();								// Initialize HAL
@@ -490,28 +374,12 @@ int main(void)
 	NVIC_EnableIRQ(USART3_4_IRQn);
 	NVIC_SetPriority(USART3_4_IRQn,2);
 
-	uint8_t prompt[] = "CMD> ";
-
 	//PWM and Ultrasonic Initalizations
 	MX_GPIO_Init();
-	/* TIM15_Init(); */
 	MX_TIM15_Init(); 
 
-	/* HAL_TIM_Base_Start(&htim15); */
-	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_LEFT, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(TRIG_PORT, TRIG_PIN_RIGHT, GPIO_PIN_RESET);
-
 	while (1) {
-		/*
-		   if(incomingCommand){
-		   if(command[2]){
-		   uint8_t tens = command[1] - '0';
-		   uint8_t huns = command[2] - '0';
-		   ProcessCommandPWM(command[0], 10*tens + huns);
-		   }
-		   }
-		   */
-		HAL_Delay(500);
+		//Handled in interrupts.
 	}
 }
 
@@ -557,51 +425,10 @@ void SystemClock_Config(void)
  */
 static void MX_TIM15_Init(void)
 {
-
-	/* USER CODE BEGIN TIM1_Init 0 */
-
-	/* USER CODE END TIM1_Init 0 */
-
-	/* TIM_ClockConfigTypeDef sClockSourceConfig = {0}; */
-	/* TIM_MasterConfigTypeDef sMasterConfig = {0}; */
-
-	/* USER CODE BEGIN TIM1_Init 1 */
-
-	/* USER CODE END TIM1_Init 1 */
-	/*
-	   htim15.Instance = TIM15;
-	   htim15.Init.Prescaler = 0;
-	   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
-	   htim15.Init.Period = 65535;
-	   htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	   htim15.Init.RepetitionCounter = 0;
-	   htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-	   if (HAL_TIM_Base_Init(&htim15) != HAL_OK)
-	   {
-	   Error_Handler();
-	   }
-	   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-	   if (HAL_TIM_ConfigClockSource(&htim15, &sClockSourceConfig) != HAL_OK)
-	   {
-	   Error_Handler();
-	   }
-	   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-	   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-	   if (HAL_TIMEx_MasterConfigSynchronization(&htim15, &sMasterConfig) != HAL_OK)
-	   {
-	   Error_Handler();
-	   }
-	   */
-
+	//hal machine Broke
 	RCC->APB2ENR |= RCC_APB2ENR_TIM15EN;
 	TIM15->PSC |= 100;
 	TIM15->CR1 |= TIM_CR1_CEN;
-
-	// HAL_TIM_Base_Start(&htim15);
-	/* USER CODE BEGIN TIM1_Init 2 */
-
-	/* USER CODE END TIM1_Init 2 */
-
 }
 
 /**
@@ -663,7 +490,7 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 {
 	/* USER CODE BEGIN 6 */
-	/* User can add his own implementation to report the file name and line number,
+	/* User can add their own implementation to report the file name and line number,
 ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 	/* USER CODE END 6 */
 }

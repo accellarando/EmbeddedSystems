@@ -11,10 +11,10 @@
 
 /* -------------------------------------------------------------------------------------------------------------
  *  Global Variable and Type Declarations
- *  -------------------------------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------------------------------
  */
 extern volatile int16_t motor_speed;   // Measured motor speed
-extern volatile uint8_t target_dist;
+extern volatile float target_dist;
 extern volatile float current_dist;
 extern volatile float absolute_dist;
 extern volatile float heading;
@@ -35,7 +35,7 @@ typedef enum direction Direction;
 
 typedef struct{
 	Direction dir;
-	uint8_t amount;
+	float amount;
 } MotorCommand;
 
 /* -------------------------------------------------------------------------------------------------------------
