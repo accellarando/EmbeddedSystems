@@ -28,7 +28,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f0xx.h"
-#include "Legacy/stm32_hal_legacy.h"
+#if defined(USE_HAL_LEGACY)
+  #include "Legacy/stm32_hal_legacy.h"
+#endif
 #include <stddef.h>
 
 /* Exported types ------------------------------------------------------------*/
@@ -55,18 +57,18 @@ typedef enum
 
 /* Exported macro ------------------------------------------------------------*/
 
-#define UNUSED(X) (void)X      /* To avoid gcc/g++ warnings */
-
 #define HAL_MAX_DELAY      0xFFFFFFFFU
 
 #define HAL_IS_BIT_SET(REG, BIT)         (((REG) & (BIT)) == (BIT))
 #define HAL_IS_BIT_CLR(REG, BIT)         (((REG) & (BIT)) == 0U)
 
-#define __HAL_LINKDMA(__HANDLE__, __PPP_DMA_FIELD__, __DMA_HANDLE__)               \
+#define __HAL_LINKDMA(__HANDLE__, __PPP_DMA_FIELD_, __DMA_HANDLE_)                 \
                         do{                                                        \
-                              (__HANDLE__)->__PPP_DMA_FIELD__ = &(__DMA_HANDLE__); \
-                              (__DMA_HANDLE__).Parent = (__HANDLE__);             \
-                          } while(0U)
+                              (__HANDLE__)->__PPP_DMA_FIELD_ = &(__DMA_HANDLE_);   \
+                              (__DMA_HANDLE_).Parent = (__HANDLE__);               \
+                          } while(0)
+
+#define UNUSED(X) (void)X      /* To avoid gcc/g++ warnings */
 
 /** @brief Reset the Handle's State field.
   * @param __HANDLE__ specifies the Peripheral Handle.
@@ -83,10 +85,9 @@ typedef enum
   *            HAL_PPP_MspInit() which will reconfigure the low level hardware.
   * @retval None
   */
-#define __HAL_RESET_HANDLE_STATE(__HANDLE__) ((__HANDLE__)->State = 0U)
+#define __HAL_RESET_HANDLE_STATE(__HANDLE__) ((__HANDLE__)->State = 0)
 
-#if (USE_RTOS == 1U)
-  /* Reserved for future use */
+#if (USE_RTOS == 1)
   #error " USE_RTOS should be 0 in the current HAL release "
 #else
   #define __HAL_LOCK(__HANDLE__)                                           \
@@ -99,22 +100,15 @@ typedef enum
                                     {                                      \
                                        (__HANDLE__)->Lock = HAL_LOCKED;    \
                                     }                                      \
-                                  }while (0U)
+       	                          }while (0)
 
   #define __HAL_UNLOCK(__HANDLE__)                                          \
                                   do{                                       \
                                       (__HANDLE__)->Lock = HAL_UNLOCKED;    \
-                                    }while (0U)
+                                    }while (0)
 #endif /* USE_RTOS */
 
-#if defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050) /* ARM Compiler V6 */
-  #ifndef __weak
-    #define __weak  __attribute__((weak))
-  #endif
-  #ifndef __packed
-    #define __packed  __attribute__((packed))
-  #endif
-#elif defined ( __GNUC__ ) && !defined (__CC_ARM) /* GNU Compiler */
+#if  defined ( __GNUC__ )
   #ifndef __weak
     #define __weak   __attribute__((weak))
   #endif /* __weak */
@@ -125,14 +119,7 @@ typedef enum
 
 
 /* Macro to get variable aligned on 4-bytes, for __ICCARM__ the directive "#pragma data_alignment=4" must be used instead */
-#if defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050) /* ARM Compiler V6 */
-  #ifndef __ALIGN_BEGIN
-    #define __ALIGN_BEGIN
-  #endif
-  #ifndef __ALIGN_END
-    #define __ALIGN_END      __attribute__ ((aligned (4)))
-  #endif
-#elif defined ( __GNUC__ ) && !defined (__CC_ARM) /* GNU Compiler */
+#if defined   (__GNUC__)        /* GNU Compiler */
   #ifndef __ALIGN_END
     #define __ALIGN_END    __attribute__ ((aligned (4)))
   #endif /* __ALIGN_END */
@@ -144,7 +131,7 @@ typedef enum
     #define __ALIGN_END
   #endif /* __ALIGN_END */
   #ifndef __ALIGN_BEGIN      
-    #if defined   (__CC_ARM)      /* ARM Compiler V5*/
+    #if defined   (__CC_ARM)      /* ARM Compiler */
       #define __ALIGN_BEGIN    __align(4)  
     #elif defined (__ICCARM__)    /* IAR Compiler */
       #define __ALIGN_BEGIN 
@@ -155,9 +142,9 @@ typedef enum
 /** 
   * @brief  __NOINLINE definition
   */ 
-#if defined ( __CC_ARM   ) || (defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)) || defined   (  __GNUC__  )
-/* ARM V4/V5 and V6 & GNU Compiler
-   -------------------------------
+#if defined ( __CC_ARM   ) || defined   (  __GNUC__  )
+/* ARM & GNUCompiler 
+   ---------------- 
 */
 #define __NOINLINE __attribute__ ( (noinline) )
 
@@ -176,3 +163,4 @@ typedef enum
 #endif /* ___STM32F0xx_HAL_DEF */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
