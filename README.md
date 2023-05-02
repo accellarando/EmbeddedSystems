@@ -29,18 +29,17 @@ This section provides a list of materials, part numbers, and costs associated wi
 
 | Description | Vendor | Part Number | Qty | Total Cost |
 |-------------|--------|-------------|-----|------------|
-| 3D Printed Chassis | Thingiverse | - | 1 | - |
+| 3D Printed Chassis | Thingiverse | 1641782| 1 | - |
 | 6V Brushed DC Motor | Adafruit | 4638 | 2 | $25.00 |
 | Motor Controllers | OSHPark | N/A | 2 | $15.00 |
 | Wheel Kit for Motors | Pololu | 1087 | 1 | $3.95 |
 | 16mm Caster Wheel | Adafruit | 3949 | 1 | $1.95 |
 | STM32F072 Discovery Board | MEB Stockroom | STM32F072B-DISCO | 1 | $12.00 |
-| Bluetooth Adapter | ProtoSupplies | ZS-040 | 1 | $11.95 |
+| Bluetooth Adapter | ProtoSupplies | HC-05 | 1 | $11.95 |
 | Battery Pack | Adafruit | 3859 | 1 | $2.95 |
 | Ultrasonic Sensor | Adafruit | 3942 | 3 | $11.85 |
-| Force Sensor | Adafruit | 1075 | 3 | $17.85 |
 | Voltage Regulator | Wolfwhoop | 5824093032 | 2 | $12.89 |
-| | | | **Total:** | **$115.39** |
+| | | | **Total:** | **$97.54** |
 
 Additionally, this table lists components required for assembling the motor driver. These component prices vary, but the total tends to be under $10.
 
@@ -57,6 +56,25 @@ Additionally, this table lists components required for assembling the motor driv
 | J4       | DC power jack                  | CON-SOCJ-2155       | 1   |
 
 ## Documentation
+
+## Datasheets 
+[6V Brushed DC Motor](https://cdn-shop.adafruit.com/product-files/4638/n20+motors_C15008.pdf)
+
+[Wheel Kit for Motors](https://www.pololu.com/file/0J1708/pololu-wheel-dimensions.pdf)
+
+[16mm Caster Wheel](https://www.adafruit.com/product/3949)
+
+[STM32F0](https://www.st.com/content/ccc/resource/technical/document/datasheet/cd/46/43/83/22/d3/40/c8/DM00090510.pdf/files/DM00090510.pdf/jcr:content/translations/en.DM00090510.pdf)
+
+[STM32F0 Programming Manual](https://www.st.com/content/ccc/resource/technical/document/programming_manual/fc/90/c7/17/a1/44/43/89/DM00051352.pdf/files/DM00051352.pdf/jcr:content/translations/en.DM00051352.pdf)
+
+[STM32F0 Peripheral Manual](https://www.st.com/content/ccc/resource/technical/document/reference_manual/c2/f8/8a/f2/18/e6/43/96/DM00031936.pdf/files/DM00031936.pdf/jcr:content/translations/en.DM00031936.pdf)
+
+[STM32F072RB Discovery Board User Manual](https://www.st.com/content/ccc/resource/technical/document/user_manual/3b/8d/46/57/b7/a9/49/b4/DM00099401.pdf/files/DM00099401.pdf/jcr:content/translations/en.DM00099401.pdf)
+
+[HC-05 Bluetooth Adapter](www.electronicaestudio.com/docs/istd016A.pdf)
+
+[HC-SR04 Ultrasonic Sensor](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
 
 ### Block diagrams and flow charts
 Refer to this simplified block diagram of the rover for an overview, or see the wiring diagram for more details.
@@ -78,3 +96,12 @@ However, due to time constraints and limited testing time, we decided not to imp
 
 The semi-autonomous algorithm was described with this flowchart.
 ![Autonomous robot control flowchart](img/AutonomousFlowchart.jpg)
+
+### Force Sensing
+The original project proposal also listed force sensors as a secondary sensor we could use. These would act as a failsafe to prevent moving obstacles around, in case of ultrasonic sensor failure.
+
+### Voltage Regulators
+The voltage regulators used did not come in a DIP (dual inline package) and were not designed for use in a breadboard. They work fine, but getting the wires to connect with breadboard terminals proved difficult. A chip such as the LM7805 may be more robust, easier to implement, and cheaper.
+
+
+
