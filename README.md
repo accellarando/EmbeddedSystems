@@ -17,7 +17,6 @@ The purpose of this project is to create a controllable robot that can navigate 
     3. Using a breadboard on the front, mount the two ultrasonic sensors on the left and right sides of the breadboard, and the bluetooth adaptor in the center.
     4. Connect the battery pack to one set of power and ground rails, and use a voltage divider to connect the other rail.
     5. Wire the components as shown in the Documentation.
-    6. 
 
 ### Software
     This section assumes that the ARM GNU Toolchain has been [installed](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads).
