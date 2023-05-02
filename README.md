@@ -87,7 +87,8 @@ Additionally, this table lists components required for assembling the motor driv
 Refer to this simplified block diagram of the rover for an overview, or see the wiring diagram for more details.
 ![Rover block diagram](img/BlockDiagram.png)
 
-### Wiring diagrams
+### Wiring diagram
+![Rover wiring diagram](img/WiringDiagram.png)
 
 ### Schematics and PCB layouts
 For the custom DC motor driver used in this project, refer to [Motor\_Driver.brd](Motor_Driver.brd) for the PCB layout, and [Motor\_Driver.sch](Motor_Driver.sch) for the circuit schematic. An image of this motor driver schematic is also displayed below for convenience.
