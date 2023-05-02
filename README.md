@@ -90,9 +90,9 @@ Refer to this simplified block diagram of the rover for an overview, or see the 
 ### Wiring diagrams
 
 ### Schematics and PCB layouts
-For the custom DC motor driver used in this project, refer to [Motor\_Driver.brd](Motor_Driver.brd) for the PCB layout, and [Motor\_Driver.?](Motor_Driver.sch) for the circuit schematic. An image of this motor driver schematic is also displayed below for convenience.
+For the custom DC motor driver used in this project, refer to [Motor\_Driver.brd](Motor_Driver.brd) for the PCB layout, and [Motor\_Driver.sch](Motor_Driver.sch) for the circuit schematic. An image of this motor driver schematic is also displayed below for convenience.
 
-Matt todo: Upload schematic, insert image here
+![Motor Driver Schematic image](img/MotorDriverSchematic.png)
 
 ## Further areas of research
 
